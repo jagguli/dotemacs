@@ -1,0 +1,26 @@
+;; CScope =============================================================================
+(require 'xcscope)
+(setq cscope-do-not-update-database t)
+(define-key evil-normal-state-map (kbd "C-]") 'cscope-find-global-definition-no-prompting)
+(evil-define-key 'normal evil-normal-state-map "C-c d" 'cscope-find-symbol)
+(define-key evil-normal-state-map (kbd "C-t") 'cscope-pop-mark)
+(evil-declare-key 'motion cscope-list-entry-keymap (kbd "<return>") 'cscope-select-entry-other-window)
+(evil-declare-key 'motion cscope-list-entry-keymap (kbd "RET") 'cscope-select-entry-other-window)
+
+(add-hook 'cscope-list-entry-hook 
+      #'(lambda ()
+            (setq w (get-buffer-window "*cscope*"))
+            (select-window w)
+            (setq h (window-height w))
+            (shrink-window (- h 15))
+            ;;(print "cscope-list-entry-hook")
+            ))
+(add-hook 'cscope-minor-mode-hooks
+      #'(lambda ()
+            (define-key evil-normal-state-map (kbd "C-]") 'cscope-find-global-definition-no-prompting)
+            (evil-define-key 'normal evil-normal-state-map "C-c d" 'cscope-find-symbol)
+            (define-key evil-normal-state-map (kbd "C-t") 'cscope-pop-mark)
+            (evil-declare-key 'motion cscope-list-entry-keymap (kbd "<return>") 'cscope-select-entry-other-window)
+            (evil-declare-key 'motion cscope-list-entry-keymap (kbd "RET") 'cscope-select-entry-other-window)
+            (print "cscope-minor-mode-hook Called !!")
+            ))
