@@ -1,6 +1,19 @@
 ;; Python Mode ================================================================================ 
-;;(autoload 'python-mode "python-mode.el" "Python mode." t)
-;;(setq auto-mode-alist (append '(("/*.\.py$" . python-mode)) auto-mode-alist))
+(require 'pymacs)
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+(autoload 'pymacs-autoload "pymacs")
+(pymacs-load "ropemacs" "rope-")
+(setq ropemacs-enable-autoimport t)
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+
+(require 'auto-complete)
+(global-auto-complete-mode t)
+
 ;;;;http://emacs-fu.blogspot.com.au/2008/12/showing-and-hiding-blocks-of-code.html
 (add-hook 'python-mode-hook
       #'(lambda ()
@@ -51,8 +64,6 @@
             (message "Running…")
             (shell-command cmdStr "*run-current-file output*")))))
 
-(require 'pymacs)
-(pymacs-load "ropemacs" "rope-")
 
 ;; Debug statements ==================================================================
 (defvar buster-test-regexp

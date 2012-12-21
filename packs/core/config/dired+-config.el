@@ -1,5 +1,6 @@
 ;; Dired =============================================================================
 (require 'dired+)
+(require 'dired+-face-settings)
 (defun start-dired ()
   (interactive)
   (dired "."))

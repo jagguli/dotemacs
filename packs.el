@@ -107,7 +107,7 @@
 ;;         M         M M  M M     .dMMM MM        .M
 ;;         MMMMMMMMMMM MMMM MMMMMMMMMMM MMMMMMMMMMMM
 ;;
-;;           http://github.com/ghoseb/dotemacs
+;;           http://github.com/jagguli/dotemacs
 ;;
 ;; " (live-welcome-message) "
 
