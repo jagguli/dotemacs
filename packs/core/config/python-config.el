@@ -6,7 +6,7 @@
 (autoload 'pymacs-exec "pymacs" nil t)
 (autoload 'pymacs-load "pymacs" nil t)
 (autoload 'pymacs-autoload "pymacs")
-(pymacs-load "ropemacs" "rope-")
+;(pymacs-load "ropemacs" "rope-")
 (setq ropemacs-enable-autoimport t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
@@ -21,7 +21,7 @@
     (local-set-key (kbd "C-c <left>")  'hs-hide-block)
     (local-set-key (kbd "C-c <up>")    'hs-hide-all)
     (local-set-key (kbd "C-c <down>")  'hs-show-all)
-    ;;(local-set-key (kbd "C-]")  'cscope-find-symbol)
+    ;(local-set-key (kbd "C-]")  'cscope-find-symbol)
     ;;(hs-minor-mode t)
     ;;(hs-hide-all)
     ;;(setq autopair-handle-action-fns
@@ -29,7 +29,7 @@
         ;;  #'autopair-python-triple-quote-action
     ))
 
-(add-hook 'find-file-hook 'flymake-find-file-hook)
+;;(add-hook 'find-file-hook 'flymake-find-file-hook)
 (when (load "flymake" t)
   (defun flymake-pyflakes-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
