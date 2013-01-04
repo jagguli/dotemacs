@@ -12,5 +12,6 @@
 (live-load-config-file "ediff-config.el")
 (live-load-config-file "xplan-config.el")
 (live-load-config-file "cscope-config.el")
+(live-load-config-file "flycheck-config.el")
 
 

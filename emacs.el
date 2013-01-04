@@ -67,6 +67,6 @@
  '(diredp-date-time ((((type tty)) :foreground "yellow") (t :foreground "goldenrod1")))
  '(diredp-dir-heading ((((type tty)) :background "yellow" :foreground "blue") (t :background "Pink" :foreground "DarkOrchid1")))
  '(diredp-display-msg ((((type tty)) :foreground "blue") (t :foreground "cornflower blue")))
- '(flymake-errline ((t (:background "color-53"))))
- '(flymake-warnline ((t (:background "color-58"))))
+ ;;'(flymake-errline ((t (:background "color-53"))))
+ ;;'(flymake-warnline ((t (:background "color-58"))))
  '(vertical-border ((t (:inherit mode-line-inactive :background "brightblack" :foreground "brightblack" :weight thin :width condensed)))))

@@ -12,6 +12,7 @@
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 (require 'auto-complete)
+(require 'column-marker)
 (global-auto-complete-mode t)
 
 ;;;;http://emacs-fu.blogspot.com.au/2008/12/showing-and-hiding-blocks-of-code.html
@@ -21,6 +22,7 @@
     (local-set-key (kbd "C-c <left>")  'hs-hide-block)
     (local-set-key (kbd "C-c <up>")    'hs-hide-all)
     (local-set-key (kbd "C-c <down>")  'hs-show-all)
+    (column-marker-1 80)
     ;(local-set-key (kbd "C-]")  'cscope-find-symbol)
     ;;(hs-minor-mode t)
     ;;(hs-hide-all)
@@ -30,17 +32,17 @@
     ))
 
 ;;(add-hook 'find-file-hook 'flymake-find-file-hook)
-(when (load "flymake" t)
-  (defun flymake-pyflakes-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list "pycheckers"  (list local-file))))
-  (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-pyflakes-init)))
-(load-library "flymake-cursor")
+;;(when (load "flymake" t)
+;;  (defun flymake-pyflakes-init ()
+;;    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+;;                       'flymake-create-temp-inplace))
+;;           (local-file (file-relative-name
+;;                        temp-file
+;;                        (file-name-directory buffer-file-name))))
+;;      (list "pycheckers"  (list local-file))))
+;;  (add-to-list 'flymake-allowed-file-name-masks
+;;               '("\\.py\\'" flymake-pyflakes-init)))
+;;(load-library "flymake-cursor")
 ;;(global-set-key [f10] 'flymake-goto-prev-error)
 ;;(global-set-key [f11] 'flymake-goto-next-error)
 
