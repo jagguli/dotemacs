@@ -13,5 +13,4 @@
 (live-load-config-file "xplan-config.el")
 (live-load-config-file "cscope-config.el")
 (live-load-config-file "flycheck-config.el")
-
-
+(live-load-config-file "erlang-config.el")

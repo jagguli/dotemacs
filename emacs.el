@@ -17,10 +17,18 @@
   (interactive)
   (find-file "~/.emacs.d/emacs.el"))
 
+(global-font-lock-mode t)
+(setq font-lock-maximum-decoration t)
+(add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
+
+
 ;;======= Code folding =======
 (defun jao-toggle-selective-display ()
   (interactive)
   (set-selective-display (if selective-display nil 1)))
+
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . mustache-mode))
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/sh"))
 
 ;; Settings ===============
 
@@ -56,7 +64,7 @@
  '(paredit-mode nil t)
  '(recentf-mode t)
  '(repository-root-matchers (quote (repository-root-matcher/git repository-root-matcher/svn)))
- '(split-width-threshold 95)
+ '(split-width-threshold 105)
  '(split-window-keep-point nil))
 
 (custom-set-faces
@@ -67,6 +75,6 @@
  '(diredp-date-time ((((type tty)) :foreground "yellow") (t :foreground "goldenrod1")))
  '(diredp-dir-heading ((((type tty)) :background "yellow" :foreground "blue") (t :background "Pink" :foreground "DarkOrchid1")))
  '(diredp-display-msg ((((type tty)) :foreground "blue") (t :foreground "cornflower blue")))
- ;;'(flymake-errline ((t (:background "color-53"))))
- ;;'(flymake-warnline ((t (:background "color-58"))))
+ '(flymake-errline ((t (:background "color-124"))))
+ '(flymake-warnline ((t (:background "color-161"))))
  '(vertical-border ((t (:inherit mode-line-inactive :background "brightblack" :foreground "brightblack" :weight thin :width condensed)))))
