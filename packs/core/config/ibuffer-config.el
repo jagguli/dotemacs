@@ -1,52 +1,65 @@
-(require 'dired)
-(require 'dash)
+(define-key global-map (kbd "<f3>") 'ibuffer)
+(define-key global-map (kbd "S-<f3>") 'ibuffer-bs-show)
+(menu-bar-mode 0)
+(setq mode-line-format
+          (list
+           ;; value of `mode-name'
+           "%m: "
+           ;; value of current buffer name
+           "buffer %b, "
+           ;; value of current line number
+           "line %l "
+           "-- user: "
+           ;; value of user
+           (getenv "USER")))
 
-;; Make dired less verbose
-(require 'dired-details)
-(setq-default dired-details-hidden-string "--- ")
-(dired-details-install)
+(setq ibuffer-saved-filter-groups
+      '(("home"
+         ("Xplan Py" (filename . ".*iress/xplan.*py$"))
+         ("Xplan html" (filename . ".*iress/xplan.*html$"))
+         ("Xplan javascript" (filename . ".*iress/xplan.*js$"))
+         ;;("Xplan Html" (or (mode . html-mode)
+         ;;(mode . css-mode)))
+         ("Hotfix" (filename . ".*iress/hotfix.*"))
+         ("emacs-config" (or (filename . ".emacs.d")
+                             (filename . "emacs-config")))
+         ("Org" (or (mode . org-mode)
+                    (filename . "OrgMode")))
+         ("code" (filename . "code"))
+         ("Subversion" (name . "\*svn"))
+         ("Magit" (name . "\*magit"))
+         ("ERC" (mode . erc-mode))
+         ("Help" (or (name . "\*Help\*")
+                     (name . "\*Apropos\*")
+                          (name . "\*info\*"))))))
+(setq ibuffer-show-empty-filter-groups nil)
+(add-hook 'ibuffer-mode-hook
+          '(lambda ()
+                  (ibuffer-switch-to-saved-filter-groups "home")))
 
-;; Reload dired after making changes
-(--each '(dired-do-rename
-          dired-create-directory
-          wdired-abort-changes)
-        (eval `(defadvice ,it (after revert-buffer activate)
-                 (revert-buffer))))
+;; Use human readable Size column instead of original one
+;;(define-ibuffer-column size-h
+;;  (:name "Size" :inline t)
+;;  (cond
+;;   ((> (buffer-size) 1000) (format "%7.3fk" (/ (buffer-size) 1000.0)))
+;;   ((> (buffer-size) 1000000) (format "%7.3fM" (/ (buffer-size) 1000000.0)))
+;;   (t (format "%8d" (buffer-size)))))
+;;
+;;;; Modify the default ibuffer-formats
+;;(setq ibuffer-formats
+;;      '((mark modified read-only " "
+;;              (name 18 18 :left :elide)
+;;              " "
+;;              (size-h 9 -1 :right)
+;;              " "
+;;              (mode 16 16 :left :elide)
+;;              " "
+;;              filename-and-process)))
 
-;; C-a is nicer in dired if it moves back to start of files
-(defun dired-back-to-start-of-files ()
-  (interactive)
-  (backward-char (- (current-column) 2)))
-
-(define-key dired-mode-map (kbd "C-a") 'dired-back-to-start-of-files)
-
-;; M-up is nicer in dired if it moves to the third line - straight to the ".."
-(defun dired-back-to-top ()
-  (interactive)
-  (beginning-of-buffer)
-  (next-line 2)
-  (dired-back-to-start-of-files))
-
-(define-key dired-mode-map (vector 'remap 'beginning-of-buffer) 'dired-back-to-top)
-(define-key dired-mode-map (vector 'remap 'smart-up) 'dired-back-to-top)
-
-;; M-down is nicer in dired if it moves to the last file
-(defun dired-jump-to-bottom ()
-  (interactive)
-  (end-of-buffer)
-  (next-line -1)
-  (dired-back-to-start-of-files))
-
-(define-key dired-mode-map (vector 'remap 'end-of-buffer) 'dired-jump-to-bottom)
-(define-key dired-mode-map (vector 'remap 'smart-down) 'dired-jump-to-bottom)
-
-;; Delete with C-x C-k to match file buffers and magit
-(define-key dired-mode-map (kbd "C-x C-k") 'dired-do-delete)
-
-(eval-after-load "wdired"
-  '(progn
-     (define-key wdired-mode-map (kbd "C-a") 'dired-back-to-start-of-files)
-     (define-key wdired-mode-map (vector 'remap 'beginning-of-buffer) 'dired-back-to-top)
-     (define-key wdired-mode-map (vector 'remap 'end-of-buffer) 'dired-jump-to-bottom)))
-
-(provide 'setup-dired)
+;; Switching to ibuffer puts the cursor on the most recent buffer
+(defadvice ibuffer (around ibuffer-point-to-most-recent) ()
+  "Open ibuffer with cursor pointed to most recent buffer name"
+  (let ((recent-buffer-name (buffer-name)))
+    ad-do-it
+    (ibuffer-jump-to-buffer recent-buffer-name)))
+  (ad-activate 'ibuffer)
