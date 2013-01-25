@@ -1,7 +1,6 @@
 (require 'package)
  (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("marmalade" . "http://marmalade-repo.org/packages/")
-                           ("sunrise-commander" . "http://joseito.republika.pl/sunrise-commander/")
                            ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 (package-initialize)
@@ -11,8 +10,8 @@
 
 ;; Add in your own as you wish:
 (defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings
-                                  evil dired+ tango-2-theme xclip ack-and-a-half
-                                  scss-mode flycheck jinja2-mode pymacs auto-complete)
+                                  evil dired+ tango-2-theme xclip hideshowvis
+                                  scss-mode flycheck jinja2-mode pymacs)
     "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)

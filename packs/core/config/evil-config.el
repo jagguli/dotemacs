@@ -5,7 +5,6 @@
 (evil-mode 1)
 (setq evil-default-state 'normal)
 (setq evil-flash-delay 60)
-(define-key global-map (kbd "<f3>") 'buffer-menu)
 (define-key evil-insert-state-map (kbd "C-w") 'evil-window-map)
 (define-key evil-insert-state-map (kbd "C-w <left>") 'evil-window-left)
 (define-key evil-insert-state-map (kbd "C-w <right>") 'evil-window-right)

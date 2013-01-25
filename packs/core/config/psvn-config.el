@@ -10,3 +10,7 @@
 (defun svn-add nil
   (interactive)
   (insert (buffer-file-name (nth 1 (buffer-list)))))
+
+(defalias 'svn-log 'svn-status-show-svn-log)
+;;(defun 'svn-ediff)
+

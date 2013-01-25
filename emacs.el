@@ -7,7 +7,6 @@
   (interactive)
   (save-some-buffers)
   (kill-emacs))
-
 (defun reload-emacs-config ()
   "reload emacs config"
   (interactive)
@@ -22,6 +21,16 @@
   (interactive)
   (set-selective-display (if selective-display nil 1)))
 
+
+(add-to-list 'auto-mode-alist '("\\.erl\\'" . erlang-mode))
+
+(defun search-all-buffers (regexp &optional allbufs)
+  "Show all lines matching REGEXP in all buffers."
+  (interactive (occur-read-primary-args))
+  (multi-occur-in-matching-buffers ".*" regexp))
+
+(global-set-key (kbd "M-s /") 'search-all-buffers)
+
 ;; Settings ===============
 
 (setq stack-trace-on-error t)
@@ -34,6 +43,7 @@
 (setq c-default-style "linux"
                 c-basic-offset 4)
 (setq x-select-enable-clipboard t)
+(savehist-mode 1)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -42,17 +52,25 @@
  ;; If there is more than one, they won't work right.
  '(Buffer-menu-use-frame-buffer-list "Mode")
  '(ack-and-a-half-prompt-for-directory t)
+ '(auto-revert-interval 0.5)
  '(compilation-disable-input t)
  '(custom-enabled-themes (quote (tango-2-steven)))
  '(custom-safe-themes (quote ("13b2915043d7e7627e1273d98eb95ebc5b3cc09ef4197afb2e1ede78fe6e0972" "1057947e1144d06a9fc8e97b6a72b72cf533a4cfe1247c4af047dc9221e9b102" "3800c684fc72cd982e3366a7c92bb4f3975afb9405371c7cfcbeb0bee45ddd18" "7c66e61cada84d119feb99a90d30da44fddc60f386fca041c01de74ebdd934c2" "f41ff26357e8ad4d740901057c0e2caa68b21ecfc639cbc865fdd8a1cb7563a9" "1797bbff3860a9eca27b92017b96a0df151ddf2eb5f73e22e37eb59f0892115e" "21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
  '(ecb-options-version "2.40")
  '(ecb-source-path (quote ("/home/steven/iress/xplan/")))
  '(ediff-split-window-function (quote split-window-horizontally))
+ '(evil-fold-level 1)
  '(evil-search-module (quote evil-search))
  '(grep-command "ack --with-filename --nogroup --all")
  '(lazy-highlight-cleanup nil)
  '(lazy-highlight-initial-delay 0)
  '(lazy-highlight-max-at-a-time nil)
+ '(ls-lisp-verbosity (quote nil))
+ '(notmuch-saved-searches (quote (("unread" . "tag:unread") ("inbox" . "date:30d..0s and tag:INBOX and NOT tag:archive and NOT tag:osc and NOT tag:autotester"))))
+ '(notmuch-search-hook (quote (notmuch-hl-line-mode (lambda ()
+                                                      (set 'notmuch-search-oldest-first (not notmuch-search-oldest-first))))))
+ '(notmuch-show-hook (quote (notmuch-show-turn-on-visual-line-mode (lambda ()
+                                                      (set 'notmuch-search-oldest-first (not notmuch-search-oldest-first))))))
  '(paredit-mode nil t)
  '(recentf-mode t)
  '(repository-root-matchers (quote (repository-root-matcher/git repository-root-matcher/svn)))
@@ -64,9 +82,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-marker-1 ((t (:background "color-53"))))
  '(diredp-date-time ((((type tty)) :foreground "yellow") (t :foreground "goldenrod1")))
  '(diredp-dir-heading ((((type tty)) :background "yellow" :foreground "blue") (t :background "Pink" :foreground "DarkOrchid1")))
+ '(diredp-dir-priv ((t (:background "color-16" :foreground "color-21"))))
  '(diredp-display-msg ((((type tty)) :foreground "blue") (t :foreground "cornflower blue")))
- ;;'(flymake-errline ((t (:background "color-53"))))
- ;;'(flymake-warnline ((t (:background "color-58"))))
+ '(diredp-file-name ((t nil)))
+ '(diredp-file-suffix ((t nil)))
+ '(match ((t (:background "color-22"))))
  '(vertical-border ((t (:inherit mode-line-inactive :background "brightblack" :foreground "brightblack" :weight thin :width condensed)))))

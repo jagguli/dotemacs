@@ -22,5 +22,5 @@
             (define-key evil-normal-state-map (kbd "C-t") 'cscope-pop-mark)
             (evil-declare-key 'motion cscope-list-entry-keymap (kbd "<return>") 'cscope-select-entry-other-window)
             (evil-declare-key 'motion cscope-list-entry-keymap (kbd "RET") 'cscope-select-entry-other-window)
-            (print "cscope-minor-mode-hook Called !!")
+            ;;(print "cscope-minor-mode-hook Called !!")
             ))

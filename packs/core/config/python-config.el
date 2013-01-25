@@ -11,9 +11,7 @@
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
-(require 'auto-complete)
 (require 'column-marker)
-(global-auto-complete-mode t)
 
 ;;;;http://emacs-fu.blogspot.com.au/2008/12/showing-and-hiding-blocks-of-code.html
 (add-hook 'python-mode-hook
