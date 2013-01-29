@@ -3,3 +3,4 @@ backups/*
 .smex-items
 ac-comphist.dat
 elpa/*
+url/*

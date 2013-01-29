@@ -1,5 +1,6 @@
-(define-key global-map (kbd "<f3>") 'ibuffer)
-(define-key global-map (kbd "S-<f3>") 'ibuffer-bs-show)
+(require 'ibuffer)
+(define-key global-map (kbd "S-<f3>") 'ibuffer)
+(define-key global-map (kbd "<f3>") 'ibuffer-bs-show)
 (menu-bar-mode 0)
 (setq mode-line-format
           (list
@@ -18,6 +19,10 @@
          ("Xplan Py" (filename . ".*iress/xplan.*py$"))
          ("Xplan html" (filename . ".*iress/xplan.*html$"))
          ("Xplan javascript" (filename . ".*iress/xplan.*js$"))
+         ("python" (filename . ".*.py$"))
+         ("javascript" (filename . ".*.js$"))
+         ("html" (filename . ".*.html$"))
+         ("mustache" (filename . ".*.mustache$"))
          ;;("Xplan Html" (or (mode . html-mode)
          ;;(mode . css-mode)))
          ("Hotfix" (filename . ".*iress/hotfix.*"))
@@ -38,23 +43,23 @@
                   (ibuffer-switch-to-saved-filter-groups "home")))
 
 ;; Use human readable Size column instead of original one
-;;(define-ibuffer-column size-h
-;;  (:name "Size" :inline t)
-;;  (cond
-;;   ((> (buffer-size) 1000) (format "%7.3fk" (/ (buffer-size) 1000.0)))
-;;   ((> (buffer-size) 1000000) (format "%7.3fM" (/ (buffer-size) 1000000.0)))
-;;   (t (format "%8d" (buffer-size)))))
-;;
+(define-ibuffer-column size-h
+  (:name "Size" :inline t)
+  (cond
+   ((> (buffer-size) 1000) (format "%7.3fk" (/ (buffer-size) 1000.0)))
+   ((> (buffer-size) 1000000) (format "%7.3fM" (/ (buffer-size) 1000000.0)))
+   (t (format "%8d" (buffer-size)))))
+
 ;;;; Modify the default ibuffer-formats
-;;(setq ibuffer-formats
-;;      '((mark modified read-only " "
-;;              (name 18 18 :left :elide)
-;;              " "
-;;              (size-h 9 -1 :right)
-;;              " "
-;;              (mode 16 16 :left :elide)
-;;              " "
-;;              filename-and-process)))
+(setq ibuffer-formats
+      '((mark modified read-only " "
+              (name 30 30 :left :elide)
+              " "
+              (size-h 9 1 :right)
+              " "
+              (mode 16 16 :left :elide)
+              " "
+              filename-and-process)))
 
 ;; Switching to ibuffer puts the cursor on the most recent buffer
 (defadvice ibuffer (around ibuffer-point-to-most-recent) ()

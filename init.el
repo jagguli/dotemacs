@@ -10,9 +10,9 @@
 
 ;; Add in your own as you wish:
 (defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings
-                                  evil dired+ tango-2-theme xclip hideshowvis
+                                  evil dired+ tango-2-theme xclip 
                                   scss-mode flycheck jinja2-mode pymacs
-                                  column-marker)
+                                  column-marker dired-details dash)
     "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
