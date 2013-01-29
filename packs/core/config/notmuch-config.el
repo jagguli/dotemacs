@@ -89,8 +89,10 @@
                    (overlay (car overlays)))
               (when overlay
                 (overlay-put overlay 'face '((:inherit bold) (:foreground "green")))))))))))
+
 (add-hook 'notmuch-hello-refresh-hook 'color-inbox-if-unread)
 
-(setq notmuch-search-line-faces '(("deleted" . (:foreground "red"
-                                                            :background "blue"))
-                                  ("unread" . (:foreground "green"))))
+(setq notmuch-search-line-faces
+      '(("deleted" . (:foreground "red" :background "blue"))
+        ("unread" . (:foreground "green"))
+        ("flagged" . (:foreground "red" :background "lightgreen"))))

@@ -72,7 +72,7 @@
  '(lazy-highlight-initial-delay 0)
  '(lazy-highlight-max-at-a-time nil)
  '(ls-lisp-verbosity (quote nil))
- '(notmuch-saved-searches (quote (("unread" . "tag:unread") ("inbox" . "not tag:mailers and date:30d..0s"))))
+ '(notmuch-saved-searches (quote (("unread" . "tag:unread") ("inbox" . "not tag:mailers and date:30d..0s tag:flagged"))))
  '(notmuch-search-hook (quote (notmuch-hl-line-mode (lambda nil (set (quote notmuch-search-oldest-first) (not notmuch-search-oldest-first))))))
  '(notmuch-search-oldest-first nil)
  '(notmuch-show-all-multipart/alternative-parts nil)
