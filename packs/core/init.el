@@ -17,3 +17,4 @@
 (live-load-config-file "ibuffer-config.el")
 (live-load-config-file "notmuch-config.el")
 (live-load-config-file "erlang-config.el")
+(live-load-config-file "taskjuggler-config.el")

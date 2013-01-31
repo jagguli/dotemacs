@@ -19,14 +19,38 @@
 (global-font-lock-mode t)
 (setq font-lock-maximum-decoration t)
 (add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
+(add-to-list 'auto-mode-alist '("\\.erl\\'" . erlang-mode))
 
+;;======= command line  =======
+(defun command-line-diff (switch)
+  (let ((file1 (pop command-line-args-left))
+        (file2 (pop command-line-args-left)))
+    (ediff file1 file2)))
 
+(add-to-list 'command-switch-alist '("diff" . command-line-diff))
+
+;; Usage: emacs -diff file1 file2
+
+(defun xclip-insert ()
+  (interactive)
+  (insert (shell-command-to-string
+      "xclip -o")))
+
+(defun my-put-file-name-on-clipboard ()
+  "Put the current file name on the clipboard"
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (with-temp-buffer
+        (insert filename)
+        (clipboard-kill-region (point-min) (point-max)))
+      (message filename))))
 ;;======= Code folding =======
 (defun jao-toggle-selective-display ()
   (interactive)
   (set-selective-display (if selective-display nil 1)))
-
-(add-to-list 'auto-mode-alist '("\\.erl\\'" . erlang-mode))
 
 (defun search-all-buffers (regexp &optional allbufs)
   "Show all lines matching REGEXP in all buffers."
@@ -39,6 +63,8 @@
 
 ;; Settings ===============
 
+(setq browse-url-browser-function 'browse-url-generic
+               browse-url-generic-program "/usr/bin/conkeror")
 (setq stack-trace-on-error t)
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-echo-area-message t)
@@ -72,7 +98,8 @@
  '(lazy-highlight-initial-delay 0)
  '(lazy-highlight-max-at-a-time nil)
  '(ls-lisp-verbosity (quote nil))
- '(notmuch-saved-searches (quote (("unread" . "tag:unread") ("inbox" . "not tag:mailers and date:30d..0s tag:flagged"))))
+ ;;'(notmuch-saved-searches (quote (("unread" . "tag:unread") ("inbox" . "not tag:mailers and date:30d..0s tag:flagged"))))
+ '(notmuch-saved-searches (quote (("unread" . "tag:unread") ("inbox" . "date:30d..0s and tag:INBOX and NOT tag:archive and NOT tag:osc and NOT tag:autotester") ("sent/replied" . "tag:sent tag:replied and date:30d..0s"))))
  '(notmuch-search-hook (quote (notmuch-hl-line-mode (lambda nil (set (quote notmuch-search-oldest-first) (not notmuch-search-oldest-first))))))
  '(notmuch-search-oldest-first nil)
  '(notmuch-show-all-multipart/alternative-parts nil)
