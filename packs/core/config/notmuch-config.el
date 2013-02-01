@@ -96,3 +96,8 @@
   (lambda ()
     (interactive)
     (notmuch-show-tag "-unread")))
+
+(define-key notmuch-show-mode-map "r" 'notmuch-show-reply)
+(define-key notmuch-show-mode-map "R" 'notmuch-show-reply-sender)
+(define-key notmuch-search-mode-map "r" 'notmuch-search-reply-to-thread)
+(define-key notmuch-search-mode-map "R" 'notmuch-search-reply-to-thread-sender)
