@@ -4,6 +4,8 @@
 ;;http://dnquark.com/blog/2012/02/emacs-evil-ecumenicalism/
 (evil-mode 1)
 (setq evil-default-state 'normal)
+(evil-set-initial-state 'jabber-chat-mode 'emacs)
+(evil-set-initial-state 'jabber-roster-mode 'emacs)
 (setq evil-flash-delay 60)
 (define-key evil-insert-state-map (kbd "C-w") 'evil-window-map)
 (define-key evil-insert-state-map (kbd "C-w <left>") 'evil-window-left)
@@ -20,7 +22,7 @@
 
 (defun fileinfo ()
   (interactive)
-  ;;(keyboard-quit)
+  ;;(keyboard-quit)s
   (message nil)
   (evil-show-file-info))
 
@@ -28,3 +30,5 @@
 (global-set-key (kbd "C-c") 'quit)
 
 
+
+(setq evil-default-cursor t)

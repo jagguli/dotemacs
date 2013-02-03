@@ -19,3 +19,6 @@
 (live-load-config-file "erlang-config.el")
 (live-load-config-file "taskjuggler-config.el")
 (live-load-config-file "twittering-config.el")
+(live-load-config-file "jabber-config.el")
+(live-load-config-file "orgmode-config.el")
+

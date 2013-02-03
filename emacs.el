@@ -19,38 +19,14 @@
 (global-font-lock-mode t)
 (setq font-lock-maximum-decoration t)
 (add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
-(add-to-list 'auto-mode-alist '("\\.erl\\'" . erlang-mode))
 
-;;======= command line  =======
-(defun command-line-diff (switch)
-  (let ((file1 (pop command-line-args-left))
-        (file2 (pop command-line-args-left)))
-    (ediff file1 file2)))
 
-(add-to-list 'command-switch-alist '("diff" . command-line-diff))
-
-;; Usage: emacs -diff file1 file2
-
-(defun xclip-insert ()
-  (interactive)
-  (insert (shell-command-to-string
-      "xclip -o")))
-
-(defun my-put-file-name-on-clipboard ()
-  "Put the current file name on the clipboard"
-  (interactive)
-  (let ((filename (if (equal major-mode 'dired-mode)
-                      default-directory
-                    (buffer-file-name))))
-    (when filename
-      (with-temp-buffer
-        (insert filename)
-        (clipboard-kill-region (point-min) (point-max)))
-      (message filename))))
 ;;======= Code folding =======
 (defun jao-toggle-selective-display ()
   (interactive)
   (set-selective-display (if selective-display nil 1)))
+
+(add-to-list 'auto-mode-alist '("\\.erl\\'" . erlang-mode))
 
 (defun search-all-buffers (regexp &optional allbufs)
   "Show all lines matching REGEXP in all buffers."
@@ -63,8 +39,6 @@
 
 ;; Settings ===============
 
-(setq browse-url-browser-function 'browse-url-generic
-               browse-url-generic-program "/usr/bin/conkeror")
 (setq stack-trace-on-error t)
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-echo-area-message t)
@@ -98,6 +72,7 @@
  '(lazy-highlight-initial-delay 0)
  '(lazy-highlight-max-at-a-time nil)
  '(ls-lisp-verbosity (quote nil))
+ '(newsticker-url-list (quote (("FastCompany" "http://www.fastcompany.com/rss.xml" nil nil nil) ("TheNextWeb" "http://feeds2.feedburner.com/thenextweb" nil nil nil) ("BoingBoing" "http://feeds.boingboing.net/boingboing/iBag" nil nil nil) ("TechRepublic" "http://www.techrepublic.com/search?t=1&o=1&mode=rss" nil nil nil) ("TechCrunch" "http://feeds.feedburner.com/TechCrunch/" nil nil nil))))
  '(notmuch-saved-searches (quote (("unread" . "tag:unread") ("inbox" . "date:30d..0s and tag:INBOX and NOT tag:archive and NOT tag:osc and NOT tag:autotester") ("sent/replied" . "tag:sent tag:replied and date:30d..0s"))))
  '(notmuch-search-hook (quote (notmuch-hl-line-mode (lambda nil (set (quote notmuch-search-oldest-first) (not notmuch-search-oldest-first))))))
  '(notmuch-search-line-faces (quote (("deleted" :foreground "red" :background "blue") ("unread" :foreground "green") ("flagged" :foreground "lightgreen" :background "darkslategrey") ("me" :foreground "white") ("INBOX" :foreground "color-243"))))
@@ -106,6 +81,7 @@
  '(notmuch-show-hook (quote (notmuch-show-turn-on-visual-line-mode (lambda nil (set (quote notmuch-search-oldest-first) (not notmuch-search-oldest-first))))))
  '(notmuch-show-indent-messages-width 2)
  '(notmuch-show-indent-multipart t)
+ '(org-todo-keywords (quote ((sequence "TODO" "DONE" "CANCELED"))))
  '(paredit-mode nil t)
  '(recentf-mode t)
  '(repository-root-matchers (quote (repository-root-matcher/git repository-root-matcher/svn)))
@@ -119,14 +95,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-marker-1 ((t (:background "color-53"))))
+ '(cursor ((t (:background "light slate blue" :foreground "#888888"))))
  '(diredp-date-time ((((type tty)) :foreground "yellow") (t :foreground "goldenrod1")))
  '(diredp-dir-heading ((((type tty)) :background "yellow" :foreground "blue") (t :background "Pink" :foreground "DarkOrchid1")))
  '(diredp-dir-priv ((t (:background "color-16" :foreground "color-21"))))
  '(diredp-display-msg ((((type tty)) :foreground "blue") (t :foreground "cornflower blue")))
  '(diredp-file-name ((t nil)))
  '(diredp-file-suffix ((t nil)))
- '(flymake-errline ((t (:background "color-124"))) t)
- '(flymake-warnline ((t (:background "color-161"))) t)
+ '(flymake-errline ((t (:background "color-124"))))
+ '(flymake-warnline ((t (:background "color-161"))))
  '(match ((t (:background "color-22"))))
  '(notmuch-tag-face ((t (:foreground "color-237"))))
  '(vertical-border ((t (:inherit mode-line-inactive :background "brightblack" :foreground "brightblack" :weight thin :width condensed)))))
