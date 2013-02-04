@@ -73,7 +73,7 @@
  '(lazy-highlight-max-at-a-time nil)
  '(ls-lisp-verbosity (quote nil))
  '(newsticker-url-list (quote (("FastCompany" "http://www.fastcompany.com/rss.xml" nil nil nil) ("TheNextWeb" "http://feeds2.feedburner.com/thenextweb" nil nil nil) ("BoingBoing" "http://feeds.boingboing.net/boingboing/iBag" nil nil nil) ("TechRepublic" "http://www.techrepublic.com/search?t=1&o=1&mode=rss" nil nil nil) ("TechCrunch" "http://feeds.feedburner.com/TechCrunch/" nil nil nil))))
- '(notmuch-saved-searches (quote (("unread" . "tag:unread") ("inbox" . "date:30d..0s and tag:INBOX and NOT tag:archive and NOT tag:osc and NOT tag:autotester") ("sent/replied" . "tag:sent tag:replied and date:30d..0s"))))
+ '(notmuch-saved-searches (quote (("unread" . "tag:unread") ("inbox" . "date:30d..0s and tag:INBOX and NOT tag:archive and NOT tag:osc and NOT tag:autotester") ("sent/replied" . "tag:sent tag:replied and date:30d..0s") ("osc_notes" . "tag:osc  and \"a NOTE has been added\" and date:30d..0s"))))
  '(notmuch-search-hook (quote (notmuch-hl-line-mode (lambda nil (set (quote notmuch-search-oldest-first) (not notmuch-search-oldest-first))))))
  '(notmuch-search-line-faces (quote (("deleted" :foreground "red" :background "blue") ("unread" :foreground "green") ("flagged" :foreground "lightgreen" :background "darkslategrey") ("me" :foreground "white") ("INBOX" :foreground "color-243"))))
  '(notmuch-search-oldest-first nil)
