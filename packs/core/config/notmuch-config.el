@@ -87,15 +87,19 @@
 
 (add-hook 'notmuch-hello-refresh-hook 'color-inbox-if-unread)
 
-(setq notmuch-search-line-faces
-      '(("deleted" . (:foreground "red" :background "blue"))
-        ("unread" . (:foreground "green"))
-        ("flagged" . (:foreground "lightgreen" :background "darkslategrey"))))
+;;(setq notmuch-search-line-faces
+;;      '(("deleted" . (:foreground "red" :background "blue"))
+;;        ("unread" . (:foreground "green"))
+;;        ("flagged" . (:foreground "lightgreen" :background "darkslategrey"))))
 
 (add-hook 'notmuch-show-hook 
   (lambda ()
     (interactive)
-    (notmuch-show-tag "-unread")))
+    (notmuch-show-tag-all "-unread")))
+
+(defun notmuch-attach-file()
+  (interactive)
+  (mml-attach-file))
 
 (define-key notmuch-show-mode-map "r" 'notmuch-show-reply)
 (define-key notmuch-show-mode-map "R" 'notmuch-show-reply-sender)
