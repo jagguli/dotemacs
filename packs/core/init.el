@@ -21,4 +21,5 @@
 (live-load-config-file "twittering-config.el")
 (live-load-config-file "jabber-config.el")
 (live-load-config-file "orgmode-config.el")
+(live-load-config-file "calfw-config.el")
 

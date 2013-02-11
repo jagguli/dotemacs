@@ -20,6 +20,11 @@
 (setq font-lock-maximum-decoration t)
 (add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
 
+(setq inhibit-splash-screen t)
+;(setq org-agenda-include-diary t)
+;(pop-to-buffer (get-buffer-create (generate-new-buffer-name "*scratch-org*")))
+;(insert "Scratch buffer with org-mode.\n\n")
+;(org-mode)
 
 ;;======= Code folding =======
 (defun jao-toggle-selective-display ()
@@ -73,7 +78,7 @@
  '(lazy-highlight-max-at-a-time nil)
  '(ls-lisp-verbosity (quote nil))
  '(newsticker-url-list (quote (("FastCompany" "http://www.fastcompany.com/rss.xml" nil nil nil) ("TheNextWeb" "http://feeds2.feedburner.com/thenextweb" nil nil nil) ("BoingBoing" "http://feeds.boingboing.net/boingboing/iBag" nil nil nil) ("TechRepublic" "http://www.techrepublic.com/search?t=1&o=1&mode=rss" nil nil nil) ("TechCrunch" "http://feeds.feedburner.com/TechCrunch/" nil nil nil))))
- '(notmuch-saved-searches (quote (("unread" . "tag:unread") ("inbox" . "(date:30d..0s and tag:INBOX and NOT tag:archive and NOT tag:osc and NOT tag:autotester) or tag:flagged") ("sent/replied" . "tag:sent tag:replied and date:30d..0s") ("osc_note" . "tag:osc  and \"a NOTE has been added\""))))
+ '(notmuch-saved-searches (quote (("unread" . "tag:unread") ("sent/replied" . "tag:sent tag:replied and date:30d..0s") ("osc_note" . "tag:osc  and \"a NOTE has been added\"") ("inbox" . "tag:INBOX tag:inbox"))))
  '(notmuch-search-hook (quote (notmuch-hl-line-mode)))
  '(notmuch-search-line-faces (quote (("deleted" :foreground "red" :background "blue") ("unread" :foreground "green") ("flagged" :foreground "magenta") ("me" :weight bold :foreground "white") ("INBOX" :foreground "color-243"))))
  '(notmuch-search-oldest-first nil)
@@ -103,8 +108,8 @@
  '(diredp-display-msg ((((type tty)) :foreground "blue") (t :foreground "cornflower blue")))
  '(diredp-file-name ((t nil)))
  '(diredp-file-suffix ((t nil)))
- '(flymake-errline ((t (:background "color-124"))) t)
- '(flymake-warnline ((t (:background "color-161"))) t)
+ '(flymake-errline ((t (:background "color-124"))))
+ '(flymake-warnline ((t (:background "color-161"))))
  '(match ((t (:background "color-22"))))
  '(notmuch-tag-face ((t (:foreground "color-19"))))
  '(vertical-border ((t (:inherit mode-line-inactive :background "brightblack" :foreground "brightblack" :weight thin :width condensed)))))
