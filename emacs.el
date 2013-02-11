@@ -19,14 +19,38 @@
 (global-font-lock-mode t)
 (setq font-lock-maximum-decoration t)
 (add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
+(add-to-list 'auto-mode-alist '("\\.erl\\'" . erlang-mode))
 
+;;======= command line  =======
+(defun command-line-diff (switch)
+  (let ((file1 (pop command-line-args-left))
+        (file2 (pop command-line-args-left)))
+    (ediff file1 file2)))
 
+(add-to-list 'command-switch-alist '("diff" . command-line-diff))
+
+;; Usage: emacs -diff file1 file2
+
+(defun xclip-insert ()
+  (interactive)
+  (insert (shell-command-to-string
+      "xclip -o")))
+
+(defun my-put-file-name-on-clipboard ()
+  "Put the current file name on the clipboard"
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (with-temp-buffer
+        (insert filename)
+        (clipboard-kill-region (point-min) (point-max)))
+      (message filename))))
 ;;======= Code folding =======
 (defun jao-toggle-selective-display ()
   (interactive)
   (set-selective-display (if selective-display nil 1)))
-
-(add-to-list 'auto-mode-alist '("\\.erl\\'" . erlang-mode))
 
 (defun search-all-buffers (regexp &optional allbufs)
   "Show all lines matching REGEXP in all buffers."
