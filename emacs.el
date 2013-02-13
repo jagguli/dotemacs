@@ -1,6 +1,3 @@
-(load-file "~/.emacs.d/init.el")
-(load-file "~/.emacs.d/packs.el")
-
 ; define function to shutdown emacs server instance
 (defun server-shutdown ()
   "Save buffers, Quit, and Shutdown (kill) server"
@@ -15,6 +12,10 @@
 (defun edit-emacs-config ()
   (interactive)
   (find-file "~/.emacs.d/emacs.el"))
+
+(load-file "~/.emacs.d/init.el")
+(load-file "~/.emacs.d/packs.el")
+
 
 (global-font-lock-mode t)
 (setq font-lock-maximum-decoration t)
@@ -35,6 +36,11 @@
   (interactive)
   (insert (shell-command-to-string
       "xclip -o")))
+(setq inhibit-splash-screen t)
+;(setq org-agenda-include-diary t)
+;(pop-to-buffer (get-buffer-create (generate-new-buffer-name "*scratch-org*")))
+;(insert "Scratch buffer with org-mode.\n\n")
+;(org-mode)
 
 (defun my-put-file-name-on-clipboard ()
   "Put the current file name on the clipboard"
@@ -47,6 +53,19 @@
         (insert filename)
         (clipboard-kill-region (point-min) (point-max)))
       (message filename))))
+
+(setq locate-make-command-line
+      (lambda (ss) (list locate-command "--database" "/home/steven/iress/locate.db" "--basename" "--regexp" ss)))
+(defun check-debug (&optional buffer)
+  (interactive)
+  (if buffer (set-buffer buffer) (set-buffer (current-buffer)))
+  (goto-char (point-min))
+  (assert (= 0 (search-forward "sj_debug"))))
+
+(add-hook 'vc-before-checkin-hook 
+          #'(lambda ()
+              (check-debug vc-parent-buffer)
+              ))
 ;;======= Code folding =======
 (defun jao-toggle-selective-display ()
   (interactive)
@@ -86,6 +105,7 @@
  '(compilation-disable-input t)
  '(custom-enabled-themes (quote (tango-2-steven)))
  '(custom-safe-themes (quote ("13b2915043d7e7627e1273d98eb95ebc5b3cc09ef4197afb2e1ede78fe6e0972" "1057947e1144d06a9fc8e97b6a72b72cf533a4cfe1247c4af047dc9221e9b102" "3800c684fc72cd982e3366a7c92bb4f3975afb9405371c7cfcbeb0bee45ddd18" "7c66e61cada84d119feb99a90d30da44fddc60f386fca041c01de74ebdd934c2" "f41ff26357e8ad4d740901057c0e2caa68b21ecfc639cbc865fdd8a1cb7563a9" "1797bbff3860a9eca27b92017b96a0df151ddf2eb5f73e22e37eb59f0892115e" "21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
+ '(dired-omit-files "^\\.[^.]+.*$")
  '(ecb-options-version "2.40")
  '(ecb-source-path (quote ("/home/steven/iress/xplan/")))
  '(ediff-split-window-function (quote split-window-horizontally))
@@ -97,12 +117,12 @@
  '(lazy-highlight-max-at-a-time nil)
  '(ls-lisp-verbosity (quote nil))
  '(newsticker-url-list (quote (("FastCompany" "http://www.fastcompany.com/rss.xml" nil nil nil) ("TheNextWeb" "http://feeds2.feedburner.com/thenextweb" nil nil nil) ("BoingBoing" "http://feeds.boingboing.net/boingboing/iBag" nil nil nil) ("TechRepublic" "http://www.techrepublic.com/search?t=1&o=1&mode=rss" nil nil nil) ("TechCrunch" "http://feeds.feedburner.com/TechCrunch/" nil nil nil))))
- '(notmuch-saved-searches (quote (("unread" . "tag:unread") ("inbox" . "(date:30d..0s and tag:INBOX and NOT tag:archive and NOT tag:osc and NOT tag:autotester) or tag:flagged") ("sent/replied" . "tag:sent tag:replied and date:30d..0s") ("osc_note" . "tag:osc  and \"a NOTE has been added\""))))
+ '(notmuch-saved-searches (quote (("unread" . "tag:unread") ("sent/replied" . "tag:sent tag:replied and date:30d..0s") ("osc_note" . "tag:osc  and \"a NOTE has been added\"") ("inbox" . "(tag:INBOX or  tag:inbox) and not tag:osc"))))
  '(notmuch-search-hook (quote (notmuch-hl-line-mode)))
  '(notmuch-search-line-faces (quote (("deleted" :foreground "red" :background "blue") ("unread" :foreground "green") ("flagged" :foreground "magenta") ("me" :weight bold :foreground "white") ("INBOX" :foreground "color-243"))))
  '(notmuch-search-oldest-first nil)
  '(notmuch-show-all-multipart/alternative-parts nil)
- '(notmuch-show-hook (quote (notmuch-show-turn-on-visual-line-mode (lambda nil (set (quote notmuch-search-oldest-first) (not notmuch-search-oldest-first))))))
+ '(notmuch-show-hook (quote (notmuch-show-turn-on-visual-line-mode)))
  '(notmuch-show-indent-messages-width 2)
  '(notmuch-show-indent-multipart t)
  '(org-todo-keywords (quote ((sequence "TODO" "DONE" "CANCELED"))))
@@ -119,16 +139,17 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(column-marker-1 ((t (:background "color-53"))))
  '(cursor ((t (:background "light slate blue" :foreground "#888888"))))
- '(diredp-date-time ((((type tty)) :foreground "yellow") (t :foreground "goldenrod1")))
- '(diredp-dir-heading ((((type tty)) :background "yellow" :foreground "blue") (t :background "Pink" :foreground "DarkOrchid1")))
- '(diredp-dir-priv ((t (:background "color-16" :foreground "color-21"))))
- '(diredp-display-msg ((((type tty)) :foreground "blue") (t :foreground "cornflower blue")))
- '(diredp-file-name ((t nil)))
- '(diredp-file-suffix ((t nil)))
+ '(diredp-date-time ((((type tty)) :foreground "yellow") (t :foreground "goldenrod1")) t)
+ '(diredp-dir-heading ((((type tty)) :background "yellow" :foreground "blue") (t :background "Pink" :foreground "DarkOrchid1")) t)
+ '(diredp-dir-priv ((t (:background "color-16" :foreground "color-21"))) t)
+ '(diredp-display-msg ((((type tty)) :foreground "blue") (t :foreground "cornflower blue")) t)
+ '(diredp-file-name ((t nil)) t)
+ '(diredp-file-suffix ((t nil)) t)
  '(flymake-errline ((t (:background "color-124"))) t)
  '(flymake-warnline ((t (:background "color-161"))) t)
  '(match ((t (:background "color-22"))))
  '(notmuch-tag-face ((t (:foreground "color-19"))))
- '(vertical-border ((t (:inherit mode-line-inactive :background "brightblack" :foreground "brightblack" :weight thin :width condensed)))))
+ '(vertical-border ((t (:inherit mode-line-inactive :background "grey" :foreground "grey" :weight thin :width condensed)))))

@@ -3,13 +3,9 @@
 (require 'ls-lisp)
 (setq ls-lisp-use-insert-directory-program nil)
 
-(require 'dired-x)
 
 (setq-default dired-omit-files-p t) ; this is buffer-local
                                 ; variable
-
-(setq dired-omit-files
-                (concat dired-omit-files "\\|^\\..+$"))
 
 (setq dired-listing-switches "-alh")
 (dired-omit-mode 1)
@@ -29,7 +25,6 @@
 (add-hook 'dired-mode-hook
           '(lambda ()
 (setq dired-listing-switches "-alh")
-(dired-omit-mode 1)
 ;;            (print "dired-mode-hook Called !!")
 ;;            (toggle-diredp-find-file-reuse-dir 1)
 ;;            (diredp-toggle-find-file-reuse-dir 1)

@@ -1,9 +1,14 @@
 (require 'dired)
 (require 'dash)
-
+(require 'dired-x)
 ;; Make dired less verbose
 (require 'dired-details)
-(setq-default dired-details-hidden-string "--- ")
+
+
+;;(setq dired-omit-files
+;;      (concat dired-omit-files "\\|^\\.[a-zA-Z]+$"))
+(dired-omit-mode 1)
+;;(setq-default dired-details-hidden-string "--- ")
 (dired-details-install)
 
 ;; Reload dired after making changes
@@ -48,5 +53,6 @@
      (define-key wdired-mode-map (kbd "C-a") 'dired-back-to-start-of-files)
      (define-key wdired-mode-map (vector 'remap 'beginning-of-buffer) 'dired-back-to-top)
      (define-key wdired-mode-map (vector 'remap 'end-of-buffer) 'dired-jump-to-bottom)))
+
 
 (provide 'setup-dired)
