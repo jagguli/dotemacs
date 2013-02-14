@@ -21,6 +21,14 @@
 (setq font-lock-maximum-decoration t)
 (add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
 (add-to-list 'auto-mode-alist '("\\.erl\\'" . erlang-mode))
+(require 'find-file-in-project)
+;;(setq ffip-project-file ".emacs-project" )
+;;(setq ffip-project-root "~/iress/xplan/" )
+(setq ffip-limit 9000000 )
+(setq ffip-find-options "-not -regex \".*tranlog.*\" -not -regex \".*min\.js.*\" -not -regex \".*\.class$\"" )
+(add-to-list 'ffip-patterns "*.java")
+(add-to-list 'ffip-patterns "*.idl")
+
 
 ;;======= command line  =======
 (defun command-line-diff (switch)
@@ -102,6 +110,7 @@
  '(Buffer-menu-use-frame-buffer-list "Mode")
  '(ack-and-a-half-prompt-for-directory t)
  '(auto-revert-interval 0.5)
+ '(browse-url-browser-function (quote browse-url-chromium))
  '(compilation-disable-input t)
  '(custom-enabled-themes (quote (tango-2-steven)))
  '(custom-safe-themes (quote ("13b2915043d7e7627e1273d98eb95ebc5b3cc09ef4197afb2e1ede78fe6e0972" "1057947e1144d06a9fc8e97b6a72b72cf533a4cfe1247c4af047dc9221e9b102" "3800c684fc72cd982e3366a7c92bb4f3975afb9405371c7cfcbeb0bee45ddd18" "7c66e61cada84d119feb99a90d30da44fddc60f386fca041c01de74ebdd934c2" "f41ff26357e8ad4d740901057c0e2caa68b21ecfc639cbc865fdd8a1cb7563a9" "1797bbff3860a9eca27b92017b96a0df151ddf2eb5f73e22e37eb59f0892115e" "21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
