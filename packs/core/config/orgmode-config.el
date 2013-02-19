@@ -9,3 +9,5 @@
                              "~/Dropbox/OrgMode/startup.org" 
                              "~/Dropbox/OrgMode/zen.org" 
                              "~/Dropbox/OrgMode/home.org"))
+
+(add-hook 'after-init-hook 'org-agenda-list)
