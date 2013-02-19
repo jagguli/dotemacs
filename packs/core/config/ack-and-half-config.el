@@ -30,7 +30,6 @@
        (progn
       (split-window-vertically)))))
 (add-hook 'grep-mode-hook 'my-grep-hook)
-(global-set-key (kbd "C-x /") 'ack)
 
 (defun split-horizontally-for-temp-buffers ()
   "Split the window horizontally for temp buffers."

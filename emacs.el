@@ -29,6 +29,7 @@
 (add-to-list 'ffip-patterns "*.java")
 (add-to-list 'ffip-patterns "*.idl")
 
+(global-set-key (kbd "C-x /") 'find-file-in-project)
 
 ;;======= command line  =======
 (defun command-line-diff (switch)
@@ -134,6 +135,9 @@
  '(notmuch-show-hook (quote (notmuch-show-turn-on-visual-line-mode)))
  '(notmuch-show-indent-messages-width 2)
  '(notmuch-show-indent-multipart t)
+ '(org-directory "~/Dropbox/OrgMode")
+ '(org-mobile-directory "~/Dropbox/MobileOrg")
+ '(org-mobile-inbox-for-pull "~/Dropbox/MobileOrg/mobileorg.org")
  '(org-todo-keywords (quote ((sequence "TODO" "DONE" "CANCELED"))))
  '(paredit-mode nil t)
  '(recentf-mode t)
