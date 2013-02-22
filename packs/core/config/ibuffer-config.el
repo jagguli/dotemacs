@@ -1,6 +1,8 @@
 (require 'ibuffer)
 (define-key global-map (kbd "S-<f3>") 'ibuffer)
-(define-key global-map (kbd "<f3>") 'ibuffer-bs-show)
+(define-key global-map (kbd "<f3>") '(lambda ()
+                                       (interactive)
+                                      (ibuffer t)))
 (menu-bar-mode 0)
 (setq mode-line-format
           (list
