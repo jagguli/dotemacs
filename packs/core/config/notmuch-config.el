@@ -9,8 +9,8 @@
 ;; we substitute sendmail with msmtp
 (setq sendmail-program "/usr/bin/msmtp")
 ;;need to tell msmtp which account we're using
-;;(setq message-sendmail-extra-arguments '("-a" "gmail"))
-(setq message-sendmail-extra-arguments '("-a" "iress"))
+(setq message-sendmail-extra-arguments '("-a" "gmail"))
+;;(setq message-sendmail-extra-arguments '("-a" "iress"))
 ;; you might want to set the following too
 ;;(setq mail-host-address "iress.com.au")
 ;;(setq user-full-name "Steven Joseph")

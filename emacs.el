@@ -135,6 +135,7 @@
  '(notmuch-show-hook (quote (notmuch-show-turn-on-visual-line-mode)))
  '(notmuch-show-indent-messages-width 2)
  '(notmuch-show-indent-multipart t)
+ '(org-agenda-files (quote ("~/Dropbox/OrgMode/work.org" "~/Dropbox/OrgMode/startup.org" "~/Dropbox/OrgMode/zen.org")))
  '(org-directory "~/Dropbox/OrgMode")
  '(org-mobile-directory "~/Dropbox/MobileOrg")
  '(org-mobile-inbox-for-pull "~/Dropbox/MobileOrg/mobileorg.org")
