@@ -1,16 +1,17 @@
 (require 'notmuch)
 (require 'notmuch-pick)
 (require 'notmuch-address)
-(setq notmuch-address-command "~/bin/notmuch-lbdbq")
-    (notmuch-address-message-insinuate)
+(if (string-match "^SYDSJOSEPH.*" system-name ) 
+    (setq notmuch-address-command "~/bin/notmuch-lbdbq")
+    (setq notmuch-address-command "~/bin/notmuch-goobook"))
+(notmuch-address-message-insinuate)
 ;; with Emacs 23.1, you have to set this explicitly (in MS Windows)
 ;; otherwise it tries to send through OS associated mail client
 (setq message-send-mail-function 'message-send-mail-with-sendmail)
 ;; we substitute sendmail with msmtp
 (setq sendmail-program "/usr/bin/msmtp")
 ;;need to tell msmtp which account we're using
-(setq message-sendmail-extra-arguments '("-a" "gmail"))
-;;(setq message-sendmail-extra-arguments '("-a" "iress"))
+;;(setq message-sendmail-extra-arguments '("-a" "gmail"))
 ;; you might want to set the following too
 ;;(setq mail-host-address "iress.com.au")
 ;;(setq user-full-name "Steven Joseph")
@@ -48,6 +49,13 @@
     (if (member "flagged" (notmuch-show-get-tags))
         (notmuch-show-tag "-flagged")
       (notmuch-show-tag "+flagged"))))
+
+(define-key notmuch-show-mode-map "b"
+  (lambda (&optional address)
+    "Bounce the current message."
+    (interactive "sBounce To: ")
+    (notmuch-show-view-raw-message)
+            (message-resend address)))
 
 (defvar notmuch-hello-refresh-count 0)
 

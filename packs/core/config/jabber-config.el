@@ -3,7 +3,12 @@
 (setq jabber-account-list
       '(("stevenjose@gmail.com"
          (:network-server . "talk.google.com")
-                (:connection-type . ssl))))
+         (:connection-type . ssl))
+("steven.joseph@mel-imsrv1"
+         (:network-server . "mel-imsrv1")
+         (:connection-type . ssl)
+         (:port . 5222))
+        ))
 
 (defun jabber ()
   (interactive)
