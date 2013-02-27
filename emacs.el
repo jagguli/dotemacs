@@ -122,6 +122,8 @@
  '(evil-fold-level 1)
  '(evil-search-module (quote evil-search))
  '(grep-command "ack --with-filename --nogroup --all")
+ '(jabber-auto-reconnect t)
+ '(jabber-roster-line-format "  %c %-25n %u %-8s  %S")
  '(lazy-highlight-cleanup nil)
  '(lazy-highlight-initial-delay 0)
  '(lazy-highlight-max-at-a-time nil)

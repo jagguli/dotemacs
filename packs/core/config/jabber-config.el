@@ -1,19 +1,26 @@
 (live-add-pack-lib "emacs-jabber")
+(add-hook 'jabber-post-connect-hooks 'jabber-keepalive-start)
+(setq jabber-keepalive-interval 30)
 (require 'jabber-autoloads)
+(require 'jabber-libnotify)
+(setq jabber-invalid-certificate-servers '("mel-imsrv1"))
 (setq jabber-account-list
       '(("stevenjose@gmail.com"
          (:network-server . "talk.google.com")
          (:connection-type . ssl))
 ("steven.joseph@mel-imsrv1"
          (:network-server . "mel-imsrv1")
-         (:connection-type . ssl)
+         (:connection-type . starttls)
          (:port . 5222))
         ))
+
+(setq jabber-alert-message-wave "~/.sounds/computerbeep_9.wav")
 
 (defun jabber ()
   (interactive)
   (jabber-connect)
       (switch-to-buffer "*-jabber-*"))
+
 
 (defun egh:jabber-google-groupchat-create ()
   (interactive)
