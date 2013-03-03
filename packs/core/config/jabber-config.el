@@ -7,8 +7,9 @@
 (setq jabber-account-list
       '(("stevenjose@gmail.com"
          (:network-server . "talk.google.com")
+         (:port . 443)
          (:connection-type . ssl))
-("steven.joseph@mel-imsrv1"
+        ("steven.joseph@mel-imsrv1"
          (:network-server . "mel-imsrv1")
          (:connection-type . starttls)
          (:port . 5222))

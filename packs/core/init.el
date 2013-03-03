@@ -23,4 +23,5 @@
 (live-load-config-file "jabber-config.el")
 (live-load-config-file "orgmode-config.el")
 (live-load-config-file "calfw-config.el")
+(live-add-pack-lib "/usr/local/share/emacs/site-lisp/")
 
