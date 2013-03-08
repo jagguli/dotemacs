@@ -83,7 +83,7 @@
     (flush-lines "^from.*sj_debug$")
     (goto-char (point-min))
     (search-forward-regexp "^#!.*$" (point-at-eol) t)
-    (insert "\nfrom debug import shell, debug as sj_debug\n"))
+    (insert "from debug import shell, debug as sj_debug\n"))
   )
 (define-key global-map (kbd "<f8>" ) 'breakpoint-set)
 (defun breakpoint-uset nil

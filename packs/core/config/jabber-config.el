@@ -1,8 +1,8 @@
 (live-add-pack-lib "emacs-jabber")
-(add-hook 'jabber-post-connect-hooks 'jabber-keepalive-start)
-(setq jabber-keepalive-interval 30)
 (require 'jabber-autoloads)
 (require 'jabber-libnotify)
+;;(add-hook 'jabber-post-connect-hooks 'jabber-keepalive-start)
+;;(setq jabber-keepalive-interval 30)
 (setq jabber-invalid-certificate-servers '("mel-imsrv1"))
 (setq jabber-account-list
       '(("stevenjose@gmail.com"

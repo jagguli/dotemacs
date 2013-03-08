@@ -103,13 +103,44 @@
 (add-hook 'notmuch-show-hook 
   (lambda ()
     (interactive)
-    (notmuch-show-tag-all "-unread")))
+    (notmuch-show-mark-read)
+    (notmuch-show-tag-all "-unread")
+    (notmuch-show-collapse-all)))
 
+(defun notmuch-show-collapse-all ()
+  (interactive)
+  (setq current-prefix-arg '(4))
+  (call-interactively 'notmuch-show-open-or-close-all) 
+  )
 (defun notmuch-attach-file()
   (interactive)
   (mml-attach-file))
 
+(defun open-in-chrome ()
+  (interactive)
+  (notmuch-show-pipe-message t "/home/steven/bin/mutt_chrome.py"))
+
+(define-key notmuch-show-mode-map "a" 'notmuch-show-collapse-all)
 (define-key notmuch-show-mode-map "r" 'notmuch-show-reply)
 (define-key notmuch-show-mode-map "R" 'notmuch-show-reply-sender)
 (define-key notmuch-search-mode-map "r" 'notmuch-search-reply-to-thread)
 (define-key notmuch-search-mode-map "R" 'notmuch-search-reply-to-thread-sender)
+(define-key notmuch-show-mode-map "o" 'open-in-chrome)
+
+;; (defun match-strings-all (&optional string)
+;;    "Return the list of all expressions matched in last search.
+;;  
+;;  STRING is optionally what was given to `string-match'."
+;;    (let ((n-matches (1- (/ (length (match-data)) 2))))
+;;      (mapcar (lambda (i) (match-string i string))
+;;              (number-sequence 0 n-matches))))
+;;
+;;(defun notmuch-show-picture-headers ()
+;;  "insert image near email address"
+;;(message "calling")
+;;  (goto-char (point-min))
+;;    (message (buffer-substring (match-beginning) (match-end)))
+;;
+;;    ))
+;;
+;;(add-hook 'notmuch-show-hook 'notmuch-show-picture-headers t)

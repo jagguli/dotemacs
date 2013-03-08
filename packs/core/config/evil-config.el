@@ -1,9 +1,13 @@
 ;; Evil =============================================================================
+(setq x-select-enable-clipboard t
+            x-select-enable-primary t)
+
 (require 'evil)
 (require 'evil-search)
 ;;http://dnquark.com/blog/2012/02/emacs-evil-ecumenicalism/
 (evil-mode 1)
 (setq evil-default-state 'normal)
+;;(evil-set-initial-state 'notmuch-show-mode 'normal)
 (evil-set-initial-state 'jabber-chat-mode 'emacs)
 (evil-set-initial-state 'jabber-roster-mode 'emacs)
 (setq evil-flash-delay 60)
@@ -25,7 +29,7 @@
 
 (defun fileinfo ()
   (interactive)
-  ;;(keyboard-quit)s
+  ;;(keyboard-quit)
   (message nil)
   (evil-show-file-info))
 
