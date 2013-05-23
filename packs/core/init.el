@@ -1,6 +1,7 @@
 (require 'buff-menu+)
 (require 'fix-buffers-list)
 (require 'repository-root)
+(live-load-config-file "web-mode-config.el")
 (live-load-config-file "evil-config.el")
 (live-load-config-file "psvn-config.el")
 (live-load-config-file "grin-config.el")
@@ -23,5 +24,8 @@
 (live-load-config-file "jabber-config.el")
 (live-load-config-file "orgmode-config.el")
 (live-load-config-file "calfw-config.el")
+(live-load-config-file "tail-config.el")
+(live-load-config-file "server-config.el")
+(live-load-config-file "tmux-config.el")
 (live-add-pack-lib "/usr/local/share/emacs/site-lisp/")
 

@@ -1,0 +1,15 @@
+(require 'xterm-frobs)
+(defun my-set-xterm-title ()
+  (interactive)
+  (xterm-set-window-title
+   (concat (getenv "HOSTNAME") "- emacs - " (buffer-name))))
+
+(let ((term (getenv "TERM")))
+  (when (and (not window-system)
+             (or (string= term "xterm")
+                 (string= term "rxvt")
+                 (string= term "rxvt-256color")
+                 ))
+    (require 'xterm-frobs)
+    (add-hook 'window-configuration-change-hook 'my-set-xterm-title)
+    (add-hook 'emacs-startup-hook 'my-set-xterm-title)))

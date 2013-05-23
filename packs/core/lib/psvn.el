@@ -1504,7 +1504,7 @@ The hook svn-pre-run-hook allows to monitor/modify the ARGLIST."
                    (setq beginning-of-buffer (bobp))
                    (forward-line -1))
                  (svn-process-handle-error (mapconcat 'identity (reverse error-strings) "\n")))
-             (message "svn failed: %s" event)))
+             (message (replace-regexp-in-string "\n$" "" ("svn failed: %s" event)) )))
           (t
            (message "svn process had unknown event: %s" event))
           (svn-status-show-process-output nil t))))
