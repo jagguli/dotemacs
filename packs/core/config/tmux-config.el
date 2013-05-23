@@ -5,7 +5,7 @@
             (modify-frame-parameters frame `((prevname . ,(shell-command-to-string "tmux display-message -p \"#W\""))))
             (shell-command
              (format "tmux rename-window %s"
-                     (car (last (split-string server-name "/")))))))
+                     (car (last (split-string server-name "/")))))) t)
 
 (add-hook 'delete-frame-functions
           (lambda (frame) 

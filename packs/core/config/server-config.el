@@ -7,6 +7,7 @@
 ;; I've found this very useful.  Tested with Emacs 24.0.50.1 @ 2010-20-07 -- Geoff Teale
 
 (defun setup-window-system-frame-colours (&rest frame)
+  (print "setup-window-system-frame-colours")
   (if window-system
       (let ((f (if (car frame)
 		   (car frame)
@@ -23,7 +24,7 @@
 (defadvice server-create-window-system-frame
   (after set-window-system-frame-colours ())
   "Set custom frame colours when creating the first frame on a display"
-  (message "Running after frame-initialize")
+  (print "Running after frame-initialize")
   (setup-window-system-frame-colours))
 (ad-activate 'server-create-window-system-frame)
 (add-hook 'after-make-frame-functions 'setup-window-system-frame-colours t)
