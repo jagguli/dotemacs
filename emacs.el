@@ -82,7 +82,7 @@
 ;;======= Code folding =======
 (defun jao-toggle-selective-display ()
   (interactive)
-  (set-selective-display (if selective-display nil 1)))
+  (set-selective-display (if selective-display nil 2)))
 
 (defun search-all-buffers (regexp &optional allbufs)
   "Show all lines matching REGEXP in all buffers."
@@ -131,6 +131,8 @@ Chromium."
  '(ack-and-a-half-prompt-for-directory t)
  '(ansi-color-faces-vector [default bold shadow italic underline bold bold-italic bold])
  '(ansi-color-names-vector (vector "#839496" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#002b36"))
+ '(auth-source-protocols (quote ((imap "imap" "imaps" "143" "993") (pop3 "pop3" "pop" "pop3s" "110" "995") (ssh "ssh" "22") (sftp "sftp" "115") (smtp "smtp" "25") (jabber "jabber-client" "5222"))))
+ '(auth-sources (quote ("~/.authinfo")))
  '(auto-revert-interval 0.5)
  '(browse-url-browser-function (quote browse-url-chromium))
  '(compilation-disable-input t)
@@ -156,6 +158,7 @@ Chromium."
  '(jabber-keepalive-interval 30)
  '(jabber-libnotify-method (quote dbus))
  '(jabber-roster-line-format "%c %-25n %u %-8s  %S")
+ '(jabber-use-auth-sources t)
  '(jabber-use-global-history nil)
  '(lazy-highlight-cleanup nil)
  '(lazy-highlight-initial-delay 0)
@@ -170,7 +173,7 @@ Chromium."
  '(notmuch-show-indent-messages-width 2)
  '(notmuch-show-indent-multipart t)
  '(notmuch-show-only-matching-messages t)
- '(org-agenda-files (quote ("~/Dropbox/OrgMode/work.org" "~/Dropbox/OrgMode/startup.org" "~/Dropbox/OrgMode/zen.org")))
+ ;;'(org-agenda-files (quote ("~/Dropbox/OrgMode/work.org" "~/Dropbox/OrgMode/startup.org" "~/Dropbox/OrgMode/zen.org")))
  '(org-directory "~/Dropbox/OrgMode")
  '(org-mobile-directory "~/Dropbox/MobileOrg")
  '(org-mobile-inbox-for-pull "~/Dropbox/MobileOrg/mobileorg.org")

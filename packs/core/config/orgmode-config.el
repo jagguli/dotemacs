@@ -8,4 +8,5 @@
                              "~/Dropbox/OrgMode/startup.org" 
                              "~/Dropbox/OrgMode/zen.org"))
 
-(add-hook 'after-init-hook 'org-agenda-list)
+;;(add-hook 'after-init-hook 'org-agenda-list)
+
