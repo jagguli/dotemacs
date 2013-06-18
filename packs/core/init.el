@@ -27,7 +27,7 @@
 (live-load-config-file "tail-config.el")
 (live-load-config-file "server-config.el")
 (live-load-config-file "tmux-config.el")
-(live-load-config-file "jedi-config.el")
-(live-load-config-file "ecb-config.el")
+;;(live-load-config-file "jedi-config.el")
+;;(live-load-config-file "ecb-config.el")
 (live-add-pack-lib "/usr/local/share/emacs/site-lisp/")
 

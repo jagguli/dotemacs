@@ -31,6 +31,21 @@
 
 (global-set-key (kbd "C-x /") 'find-file-in-project)
 
+(defun gettags (filename)
+  (interactive)
+  (shell-command-to-string
+   (format "/home/steven/bin/tagquery.py %s" filename)))
+;;(setq speedbar-fetch-etags-command "/home/steven/bin/tagquery.py")
+;;            speedbar-fetch-etags-arguments '(""))
+(load "speedbar")
+(setq speedbar-fetch-etags-parse-list
+      (cons '("\\.py\\'" . speedbar-parse-c-or-c++tag)
+                        speedbar-fetch-etags-parse-list))
+(setq speedbar-fetch-etags-arguments nil)
+(setq speedbar-fetch-etags-command "tagquery.py")
+(setq speedbar-supported-extension-expressions (quote (".[ch]\\(\\+\\+\\|pp\\|c\\|h\\|xx\\)?" ".tex\\(i\\(nfo\\)?\\)?" ".el" ".emacs" ".l" ".lsp" ".p" ".java" ".js" ".f\\(90\\|77\\|or\\)?" ".py")))
+(setq speedbar-use-imenu-flag nil)
+(setq speedbar-verbosity-level 2)
 ;;======= command line  =======
 (defun command-line-diff (switch)
   (let ((file1 (pop command-line-args-left))
@@ -142,8 +157,9 @@ Chromium."
  '(ecb-activation-selects-ecb-frame-if-already-active t)
  '(ecb-options-version "2.40")
  '(ecb-source-file-regexps (quote ((".*" ("\\(^\\(\\.\\|#\\)\\|\\(~$\\|\\.\\(elc\\|obj\\|o\\|class\\|lib\\|dll\\|a\\|so\\|cache\\|pyc\\)$\\)\\)") ("^\\.\\(emacs\\|gnus\\)$")))))
- '(ecb-source-path (quote ("/home/steven/iress/xplan/")))
+ '(ecb-source-path (quote ("/home/steven/iress/xplan/" "/home/steven/iress")))
  '(ecb-tree-indent 2)
+ '(ecb-vc-enable-support nil)
  '(ediff-split-window-function (quote split-window-horizontally))
  '(evil-fold-level 1)
  '(evil-search-module (quote evil-search))
@@ -158,6 +174,7 @@ Chromium."
  '(jabber-history-enable-rotation t)
  '(jabber-history-enabled t)
  '(jabber-history-muc-enabled t)
+ '(jabber-invalid-certificate-servers (quote ("mel-imsrv1" "mel-imsrv1.devel.iress.com.au" "mel-imsrv1/nil")) t)
  '(jabber-keepalive-interval 30)
  '(jabber-libnotify-method (quote dbus))
  '(jabber-roster-line-format "%c %-25n %u %-8s  %S")
@@ -213,8 +230,10 @@ Chromium."
  '(flymake-errline ((t (:background "color-124"))) t)
  '(flymake-warnline ((t (:background "color-161"))) t)
  '(idle-highlight ((t (:background "color-234"))))
+ '(log-view-message ((t nil)))
  '(match ((t (:background "color-22"))))
  '(notmuch-tag-face ((t (:foreground "color-19"))))
+ '(rst-level-1 ((t (:background "color-236"))))
  '(vertical-border ((t (:inherit mode-line-inactive :background "grey" :foreground "grey" :weight thin :width condensed)))))
 (put 'narrow-to-region 'disabled nil)
 

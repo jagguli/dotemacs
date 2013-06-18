@@ -1,24 +1,40 @@
 (require 'notmuch)
 (require 'notmuch-pick nil t)
 (require 'notmuch-address)
+(require 'password-cache)
+(require 'keepassdb)
+(notmuch-address-message-insinuate)
+
+(defun message-send-mail-with-iress-sendmail ()
+  (interactive)
+  (setq message-sendmail-extra-arguments
+        `("--passwordeval"
+          ,(keepass-get-command "/devices/iress" "password")))
+  ;;(setq user-mail-address (format "%s@iress.com.au"
+  ;;                                (keepass-get "/devices/iress")))
+  (message-send-mail-with-sendmail))
+
 (if (string-match "^SYDSJOSEPH.*" system-name )
     (progn 
       (setq notmuch-wash-original-regexp "^\\(From: .*\\|.* writes:\\)$")
       (setq notmuch-wash-citation-lines-prefix 0)
       (setq notmuch-wash-citation-lines-suffix 0)
+
+      (setq message-send-mail-function 'message-send-mail-with-iress-sendmail)
       (setq notmuch-address-command "~/bin/notmuch-lbdbq"))
-    (setq notmuch-address-command "~/bin/notmuch-goobook"))
-(notmuch-address-message-insinuate)
+  (progn
+    (setq message-send-mail-function 'message-send-mail-with-sendmail)
+    (setq notmuch-address-command "~/bin/notmuch-goobook")))
+
 ;; with Emacs 23.1, you have to set this explicitly (in MS Windows)
 ;; otherwise it tries to send through OS associated mail client
-(setq message-send-mail-function 'message-send-mail-with-sendmail)
 ;; we substitute sendmail with msmtp
 (setq sendmail-program "/usr/bin/msmtp")
 ;;need to tell msmtp which account we're using
 ;;(setq message-sendmail-extra-arguments '("-a" "gmail"))
 ;; you might want to set the following too
 ;;(setq mail-host-address "iress.com.au")
-;;(setq user-full-name "Steven Joseph")
+(setq user-full-name "Steven Joseph")
 ;;(setq user-mail-address "example@exampl.com.au")
 
 (define-key notmuch-search-mode-map "d"
