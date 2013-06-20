@@ -6,6 +6,8 @@
 (autoload 'pymacs-exec "pymacs" nil t)
 (autoload 'pymacs-load "pymacs" nil t)
 (autoload 'pymacs-autoload "pymacs")
+;;(setq jedi:setup-keys t)
+;;(add-hook 'python-mode-hook 'jedi:setup)
 ;(pymacs-load "ropemacs" "rope-")
 (setq ropemacs-enable-autoimport t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
@@ -83,7 +85,7 @@
     (flush-lines "^from.*sj_debug$")
     (goto-char (point-min))
     (search-forward-regexp "^#!.*$" (point-at-eol) t)
-    (insert "from debug import shell, debug as sj_debug\n"))
+    (insert "from debug import pprint, shell, profile, debug as sj_debug\n"))
   )
 (define-key global-map (kbd "<f8>" ) 'breakpoint-set)
 (defun breakpoint-uset nil

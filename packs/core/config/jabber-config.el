@@ -1,26 +1,30 @@
 (live-add-pack-lib "emacs-jabber")
 (require 'jabber-autoloads)
 (require 'jabber-libnotify)
-;;(add-hook 'jabber-post-connect-hooks 'jabber-keepalive-start)
-;;(setq jabber-keepalive-interval 30)
-(setq jabber-invalid-certificate-servers '("mel-imsrv1"))
-(setq jabber-account-list
-      '(("stevenjose@gmail.com"
-         (:network-server . "talk.google.com")
-         (:port . 443)
-         (:connection-type . ssl))
-        ("steven.joseph@mel-imsrv1"
-         (:network-server . "mel-imsrv1")
-         (:connection-type . starttls)
-         (:port . 5222))
-        ))
-
+(require 'keepassdb)
 (setq jabber-alert-message-wave "~/.sounds/computerbeep_9.wav")
+(setq jabber-invalid-certificate-servers '("mel-imsrv1" "mel-imsrv1.devel.iress.com.au"))
 
 (defun jabber ()
   (interactive)
-  (jabber-connect)
-      (switch-to-buffer "*-jabber-*"))
+  (if (string-match "^.*.iress.com.au" system-name )
+      (progn
+        (setq jabber-account-list `((,(keepass-get "/jabber/iress" "username")
+                                     (:password . ,(keepass-get "/jabber/iress" "password"))))))
+    (progn
+      (setq jabber-account-list `((,(keepass-get "/jabber/melit" "username")
+                                   (:password . ,(keepass-get "/jabber/melit" "password"))
+                                   (:network-server . "talk.google.com")
+                                   (:connection-type . ssl)
+                                   (:port . 443))
+                                  (,(keepass-get "/jabber/stevenjose" "username")
+                                   (:password . ,(keepass-get "/jabber/stevenjose" "password"))
+                                   (:network-server . "talk.google.com")
+                                   (:connection-type . ssl)
+                                   (:port . 443))))
+      ))
+  (jabber-connect-all)
+  (switch-to-buffer "*-jabber-*"))
 
 
 (defun egh:jabber-google-groupchat-create ()

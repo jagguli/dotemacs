@@ -4,8 +4,10 @@
 ;;(define-key global-map "c a" 'org-agenda)
 (setq org-log-done t)
 
-(setq org-agenda-files (list "~/Dropbox/OrgMode/work.org"
-                             "~/Dropbox/OrgMode/startup.org" 
-                             "~/Dropbox/OrgMode/zen.org"))
 
-(add-hook 'after-init-hook 'org-agenda-list)
+;;(setq org-agenda-files (list "~/Dropbox/OrgMode/work.org"
+;;                             "~/Dropbox/OrgMode/startup.org" 
+;;                             "~/Dropbox/OrgMode/zen.org"))
+
+;;(add-hook 'after-init-hook 'org-agenda-list)
+
