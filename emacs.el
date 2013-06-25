@@ -273,3 +273,4 @@ Chromium."
        (hs-hide-leafs-recursive (point-min) (point-max)))
      (message "Hiding blocks ... done"))
           (run-hooks 'hs-hide-hook)))
+
