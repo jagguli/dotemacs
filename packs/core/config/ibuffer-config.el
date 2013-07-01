@@ -1,8 +1,13 @@
 (require 'ibuffer)
-(define-key global-map (kbd "S-<f3>") 'ibuffer)
-(define-key global-map (kbd "<f3>") '(lambda ()
-                                       (interactive)
-                                      (ibuffer t)))
+(global-set-key [(shift f3)] (lambda ()
+                                   (Interactive) (ibuffer)))
+(global-set-key [(f3)] (lambda ()
+                          (interactive)
+                          (ibuffer t)))
+;;(define-key global-map (kbd "S-<f3>") 'ibuffer)
+;;(define-key global-map (kbd "<f3>") '(lambda ()
+;;                                       (interactive)
+;;                                       (ibuffer t)))
 (menu-bar-mode 0)
 (setq mode-line-format
           (list
