@@ -1,0 +1,35 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("0101602: Portfolio Snapshot Report - Incorrect values for 'Amount Invested' column when cash account is not in the Report Currency "
+ (filename . "~/iress/xplan/src/py/xpt/report/engines/xml/portfolio/extreport/alman.py")
+ (front-context-string . "            low_")
+ (rear-context-string . "ts, aggregates,\n")
+ (position . 3363))
+("gcis columns osc:0100286"
+ (filename . "~/iress/xplan24/data/wwwroot/js/xpt/portfolio/list_position.js")
+ (front-context-string . "_column.visible(")
+ (rear-context-string . "es_sense && gics")
+ (position . 5046))
+("osc 97314"
+ (filename . "~/iress/xplan/src/py/xpt/iress/ips/server.py")
+ (front-context-string . "OSITION\n        ")
+ (rear-context-string . " topics.TR_IPS_P")
+ (position . 287309))
+("osc 85058"
+ (filename . "~/iress/xplan/src/py/xpt/portfolio/fee_analysis.py")
+ (front-context-string . "1)\n            #")
+ (rear-context-string . "e(self.session, ")
+ (position . 25350))
+("tplvars.py"
+ (filename . "~/iress/xplan25/src/py/xpt/report/tplvars.py")
+ (front-context-string . "sinstance(to_cur")
+ (rear-context-string . "e.value\n    if i")
+ (position . 4046))
+("selenium tests"
+ (filename . "~/iress/xplan/test/py/nightstalker/selenium/webdriver/src/model/oscitems/__init__.py")
+ (front-context-string)
+ (rear-context-string)
+ (position . 1))
+)
