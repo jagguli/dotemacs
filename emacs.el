@@ -247,6 +247,7 @@ Chromium."
  '(icicle-special-candidate ((t (:background "color-19"))))
  '(idle-highlight ((t (:background "color-234"))))
  '(log-view-message ((t nil)))
+ '(magit-header ((t (:inherit header-line :background "white" :foreground "black"))))
  '(match ((t (:background "color-22"))))
  '(mode-line ((t (:background "#262626" :foreground "#262626" :inverse-video t :box nil :underline nil :slant normal :weight normal))))
  '(mode-line-inactive ((t (:inherit mode-line :background "#494949" :foreground "#494949" :inverse-video t :box nil :underline nil :slant normal :weight normal))))
