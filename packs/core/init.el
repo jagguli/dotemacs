@@ -9,12 +9,12 @@
 (live-load-config-file "javascript-config.el")
 (live-load-config-file "minibuffer-config.el")
 (live-load-config-file "python-config.el")
-(live-load-config-file "recent-files-config.el")
+;;(live-load-config-file "recent-files-config.el")
 (live-load-config-file "ediff-config.el")
 (live-load-config-file "xplan-config.el")
 (live-load-config-file "cscope-config.el")
 (live-load-config-file "flycheck-config.el")
-(live-load-config-file "ibuffer-config.el")
+;;(live-load-config-file "ibuffer-config.el")
 (live-load-config-file "notmuch-config.el")
 (live-load-config-file "erlang-config.el")
 (live-load-config-file "taskjuggler-config.el")
@@ -32,6 +32,7 @@
 (live-load-config-file "icicles-config.el")
 ;;(live-load-config-file "jedi-config.el")
 ;;(live-load-config-file "ecb-config.el")
+(live-load-config-file "helm-config.el")
 (live-add-pack-lib "/usr/local/share/emacs/site-lisp/")
 
 
