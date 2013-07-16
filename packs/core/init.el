@@ -1,6 +1,7 @@
 (require 'buff-menu+)
 (require 'fix-buffers-list)
 (require 'repository-root)
+(require 'org-journal)
 (live-load-config-file "web-mode-config.el")
 (live-load-config-file "evil-config.el")
 (live-load-config-file "psvn-config.el")
