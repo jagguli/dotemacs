@@ -29,15 +29,14 @@
 (live-load-config-file "eproject-config.el")
 (live-load-config-file "modeline-config.el")
 (live-load-config-file "idutils-config.el")
-(live-load-config-file "icicles-config.el")
 ;;(live-load-config-file "jedi-config.el")
 ;;(live-load-config-file "ecb-config.el")
 (live-load-config-file "helm-config.el")
+(live-load-config-file "icicles-config.el")
 (live-add-pack-lib "/usr/local/share/emacs/site-lisp/")
-
-
 (live-load-config-file "dired-config.el")
 (live-load-config-file "dired+-config.el")
+
 (defun guess-where-keybinding-is-defined (key)
   "try to guess where a key binding might be defined"
   (interactive (list (read-key-sequence "Describe key: ")))
