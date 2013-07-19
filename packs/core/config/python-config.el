@@ -30,6 +30,8 @@
       ;;(list #'autopair-default-handle-action
         ;;  #'autopair-python-triple-quote-action
     ))
+(add-hook 'python-mode-hook 'jedi:setup)
+
 
 ;;(add-hook 'find-file-hook 'flymake-find-file-hook)
 ;;(when (load "flymake" t)

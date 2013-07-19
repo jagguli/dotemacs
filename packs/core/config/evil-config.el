@@ -47,3 +47,10 @@
 
 
 (setq evil-default-cursor t)
+
+(iswitchb-mode 1)
+(setq iswitchb-buffer-ignore '("^\\*"))
+
+
+;;(define-key evil-normal-state-map (kbd "C-^") 'iswitchb-buffer)
+

@@ -15,6 +15,7 @@
             (shrink-window (- h 15))
             ;;(print "cscope-list-entry-hook")
             ))
+
 (add-hook 'cscope-minor-mode-hooks
       #'(lambda ()
             (define-key evil-normal-state-map (kbd "C-]") 'cscope-find-global-definition-no-prompting)
@@ -24,3 +25,17 @@
             (evil-declare-key 'motion cscope-list-entry-keymap (kbd "RET") 'cscope-select-entry-other-window)
             ;;(print "cscope-minor-mode-hook Called !!")
             ))
+
+
+(defun cscope-find-this-symbol-popup (symbol)
+  "Locate a symbol in source code."
+  (interactive (list
+		(cscope-prompt-for-symbol "Find this symbol: " nil)
+		))
+  (let ( (cscope-adjust t) )	 ;; Use fuzzy matching.
+    (setq cscope-display-cscope-buffer nil)
+    (setq cscope-symbol symbol)
+    (cscope-call (format "Finding symbol: %s" symbol)
+		 (list "-0" symbol) nil )
+    (setq cscope-display-cscope-buffer t)
+    ))

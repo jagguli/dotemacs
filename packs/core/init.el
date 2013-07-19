@@ -2,6 +2,7 @@
 (require 'fix-buffers-list)
 (require 'repository-root)
 (require 'org-journal)
+(require 'popup-switcher)  
 (live-load-config-file "web-mode-config.el")
 (live-load-config-file "evil-config.el")
 (live-load-config-file "psvn-config.el")
@@ -15,7 +16,7 @@
 (live-load-config-file "xplan-config.el")
 (live-load-config-file "cscope-config.el")
 (live-load-config-file "flycheck-config.el")
-;;(live-load-config-file "ibuffer-config.el")
+(live-load-config-file "ibuffer-config.el")
 (live-load-config-file "notmuch-config.el")
 (live-load-config-file "erlang-config.el")
 (live-load-config-file "taskjuggler-config.el")
@@ -32,8 +33,8 @@
 (live-load-config-file "idutils-config.el")
 ;;(live-load-config-file "jedi-config.el")
 ;;(live-load-config-file "ecb-config.el")
-(live-load-config-file "helm-config.el")
 (live-load-config-file "icicles-config.el")
+(live-load-config-file "helm-config.el")
 (live-add-pack-lib "/usr/local/share/emacs/site-lisp/")
 (live-load-config-file "dired-config.el")
 (live-load-config-file "dired+-config.el")
@@ -47,3 +48,5 @@
       (if (setq found (caar bindings))
           (find-function (cdar bindings)))
       (setq bindings (cdr bindings)))))
+
+
