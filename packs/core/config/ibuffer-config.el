@@ -3,11 +3,15 @@
                                    (Interactive) (ibuffer)))
 (global-set-key [(f3)] (lambda ()
                           (interactive)
-                          (ibuffer t)))
+                          (ibuffer t)
+                          (ibuffer-filter-disable)
+                          ))
 ;;(define-key global-map (kbd "S-<f3>") 'ibuffer)
 ;;(define-key global-map (kbd "<f3>") '(lambda ()
 ;;                                       (interactive)
 ;;                                       (ibuffer t)))
+;;(define-key ibuffer-mode-map (kbd "C-n") 'ibuffer-filter-by-name)
+(define-key ibuffer-mode-map [(f3)] 'ibuffer-filter-by-name)
 (menu-bar-mode 0)
 (setq mode-line-format
           (list

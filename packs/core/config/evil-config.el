@@ -4,6 +4,7 @@
 
 (require 'evil)
 (require 'evil-search)
+(require 'evil-org)
 ;;http://dnquark.com/blog/2012/02/emacs-evil-ecumenicalism/
 (evil-mode 1)
 (setq evil-default-state 'normal)
@@ -46,3 +47,10 @@
 
 
 (setq evil-default-cursor t)
+
+(iswitchb-mode 1)
+(setq iswitchb-buffer-ignore '("^\\*"))
+
+
+;;(define-key evil-normal-state-map (kbd "C-^") 'iswitchb-buffer)
+

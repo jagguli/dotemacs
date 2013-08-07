@@ -34,3 +34,26 @@
         (account (jabber-read-account)))
     (jabber-groupchat-join account group (jabber-muc-read-my-nickname account group) t)))
 
+
+(defun jabber-notify-tray (FROM BUFFER TEXT TITLE)
+  (interactive)
+  (message (format "%s, %s, %s, %s" FROM BUFFER TEXT TITLE))
+)
+(add-hook 'jabber-message-hooks 'jabber-notify-tray)
+
+(defun jabber-tray-onview
+  (interactive)
+  (message "clear notifications"))
+
+(defun tray-setup-change-hooks ()
+  (interactive)
+  (let ()
+         ;; make the change hooks local to this buffer as we don't
+;; want
+    ;; this code working in all buffers
+    (make-local-hook 'before-change-functions)
+    (add-hook 'before-change-functions
+              'jabber-tray-onview
+              t
+              t)))
+(add-hook 'jabber-chat-mode-hook 'tray-setup-change-hooks)
