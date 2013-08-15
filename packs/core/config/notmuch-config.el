@@ -140,6 +140,15 @@
   (interactive)
   (notmuch-show-pipe-message t "/home/steven/bin/mutt_chrome.py"))
 
+(defun notmuch-toggle-all-headers ()
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (loop do (notmuch-show-toggle-visibility-headers)
+	  until (not (notmuch-show-goto-message-next))))
+  (force-window-update))
+
+(define-key notmuch-show-mode-map "H" 'notmuch-toggle-all-headers)
 (define-key notmuch-show-mode-map "a" 'notmuch-show-collapse-all)
 (define-key notmuch-show-mode-map "r" 'notmuch-show-reply)
 (define-key notmuch-show-mode-map "R" 'notmuch-show-reply-sender)
@@ -164,3 +173,4 @@
 ;;    ))
 ;;
 ;;(add-hook 'notmuch-show-hook 'notmuch-show-picture-headers t)
+

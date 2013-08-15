@@ -54,3 +54,26 @@
 
 ;;(define-key evil-normal-state-map (kbd "C-^") 'iswitchb-buffer)
 
+
+(defun buffer-mode (buffer-or-string)
+  "Returns the major mode associated with a buffer."
+  (with-current-buffer buffer-or-string
+    (format "%s" major-mode)))
+
+(defun other-buffer-ex ()
+  (interactive)
+  (switch-to-buffer (if (string-equal (buffer-mode (other-buffer)) "comint-mode")
+         (next-buffer) (other-buffer))))  
+
+(evil-define-command evil-buffer-ex (buffer)
+  "Switches to another buffer."
+  :repeat nil
+  (interactive "<b>")
+  (if buffer
+      (when (or (get-buffer buffer)
+                (y-or-n-p (format "No buffer with name \"%s\" exists. \
+Create new buffer? " buffer)))
+        (switch-to-buffer buffer))
+    (switch-to-buffer (other-buffer-ex))))
+
+(define-key evil-normal-state-map (kbd "C-^") 'evil-buffer-ex)

@@ -45,6 +45,8 @@
          ("Subversion" (name . "\*svn"))
          ("Magit" (name . "\*magit"))
          ("ERC" (mode . erc-mode))
+         ("Log Tail" (mode . comint-mode))
+         ("Files" (filename . "^[:space:]*$"))
          ("Help" (or (name . "\*Help\*")
                      (name . "\*Apropos\*")
                           (name . "\*info\*"))))))
@@ -70,7 +72,9 @@
               " "
               (mode 16 16 :left :elide)
               " "
-              filename-and-process)))
+              filename-and-process)
+	(filename-and-process)
+))
 
 ;; Switching to ibuffer puts the cursor on the most recent buffer
 (defadvice ibuffer (around ibuffer-point-to-most-recent) ()

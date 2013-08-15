@@ -35,11 +35,27 @@
     (jabber-groupchat-join account group (jabber-muc-read-my-nickname account group) t)))
 
 
+(require 'dbus)                                                                      
+(defvar z-jabber-bus-name "org.emacs.JabberEl" "The name on the session bus")
+(defvar z-jabber-bus-object "/org/emacs/JabberEl" "The name of the object you're talking to")
+(defvar z-jabber-interface "org.emacs.JabberEl" "The interface your object implements")
+                                                                                     
+(defun z-jabber-send-tray-test ()
+  "Send a message using DBus"
+  (interactive)
+  (dbus-call-method-asynchronously :session z-jabber-bus-name z-jabber-bus-object z-jabber-interface "activity" 'message jabber-activity-count-string))
+
+(defun z-jabber-send-tray ()
+  "Send a message using DBus"
+  (dbus-call-method-asynchronously :session z-jabber-bus-name z-jabber-bus-object z-jabber-interface "activity" 'message jabber-activity-count-string))
+
 (defun jabber-notify-tray (FROM BUFFER TEXT TITLE)
   (interactive)
-  (message (format "%s, %s, %s, %s" FROM BUFFER TEXT TITLE))
-)
+  (message (format "%s, %s, %s, %s" FROM BUFFER TEXT TITLE)))
+
 (add-hook 'jabber-message-hooks 'jabber-notify-tray)
+(add-hook 'jabber-activity-update-hooks 'z-jabber-send-tray)
+(add-hook 'jabber-activity-hooks 'z-jabber-send-tray)
 
 (defun jabber-tray-onview
   (interactive)
