@@ -8,7 +8,7 @@
 (autoload 'pymacs-autoload "pymacs")
 ;;(setq jedi:setup-keys t)
 ;;(add-hook 'python-mode-hook 'jedi:setup)
-;(pymacs-load "ropemacs" "rope-")
+(pymacs-load "ropemacs" "rope-")
 (setq ropemacs-enable-autoimport t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))

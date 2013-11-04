@@ -14,18 +14,22 @@
   ;;                                (keepass-get "/devices/iress")))
   (message-send-mail-with-sendmail))
 
-(if (string-match "^SYDSJOSEPH.*" system-name )
-    (progn 
-      (setq notmuch-wash-original-regexp "^\\(From: .*\\|.* writes:\\)$")
-      (setq notmuch-wash-citation-lines-prefix 0)
-      (setq notmuch-wash-citation-lines-suffix 0)
+(defun notmuch-config ()
+  (interactive)
+  (if (string-match "^SYDSJOSEPH.*" system-name )
+      (progn 
+	(setq notmuch-wash-original-regexp "^\\(From: .*\\|.* writes:\\)$")
+	(setq notmuch-wash-citation-lines-prefix 0)
+	(setq notmuch-wash-citation-lines-suffix 0)
+	(setq notmuch-identites '((keepass-get-command "/devices/iress" "url")))
 
-      (setq message-send-mail-function 'message-send-mail-with-iress-sendmail)
-      (setq notmuch-address-command "~/bin/notmuch-lbdbq"))
-  (progn
-    (setq message-send-mail-function 'message-send-mail-with-sendmail)
-    (setq notmuch-address-command "~/bin/notmuch-goobook")))
+	(setq message-send-mail-function 'message-send-mail-with-iress-sendmail)
+	(setq notmuch-address-command "~/bin/notmuch-lbdbq"))
+    (progn
+      (setq message-send-mail-function 'message-send-mail-with-sendmail)
+      (setq notmuch-address-command "~/bin/notmuch-goobook"))))
 
+(notmuch-config)
 ;; with Emacs 23.1, you have to set this explicitly (in MS Windows)
 ;; otherwise it tries to send through OS associated mail client
 ;; we substitute sendmail with msmtp
@@ -138,6 +142,7 @@
 
 (defun open-in-chrome ()
   (interactive)
+  (message "open-in-chrome")
   (notmuch-show-pipe-message t "/home/steven/bin/mutt_chrome.py"))
 
 (defun notmuch-toggle-all-headers ()
