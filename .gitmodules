@@ -1,0 +1,3 @@
+[submodule "packs/core/lib/emacs-jabber"]
+	path = packs/core/lib/emacs-jabber
+	url = https://github.com/legoscia/emacs-jabber.git

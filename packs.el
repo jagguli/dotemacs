@@ -112,7 +112,7 @@
 ;; " (live-welcome-message) "
 
 " ))
-(insert-file-contents "~/Dropbox/OrgMode/zen.org")
+;;(insert-file-contents "~/Dropbox/OrgMode/zen.org")
 
 ;;;
 ;;; Entry point
