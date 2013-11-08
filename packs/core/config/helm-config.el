@@ -1,6 +1,7 @@
 (require 'helm)
 (require 'helm-ag)
 (require 'helm-command)
+(require 'helm-recoll)
 ;;(require 'ibuffer)
 ;;(helm-mode 1)
 (global-set-key "\M-x" 'helm-M-x)
@@ -43,3 +44,10 @@
 ;;           (a b) (string<
 ;;                  (downcase (buffer-name a))
 ;;                  (downcase (buffer-name b)))))))
+
+;;(helm-recoll-create-source "docs" "~/.recoll/docs")
+(helm-recoll-create-source "progs" "~/.recoll/")
+;;(defun helmrecoll ()
+;;  (interactive)
+;;  (helm :sources '(helm-source-recoll-progs)))
+;;(global-set-key "\C-x?"  'helmrecoll)

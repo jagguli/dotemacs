@@ -4,3 +4,4 @@ backups/*
 ac-comphist.dat
 elpa/*
 url/*
+*.elc
