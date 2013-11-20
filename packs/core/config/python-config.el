@@ -23,6 +23,7 @@
     (local-set-key (kbd "C-c <up>")    'hs-hide-all)
     (local-set-key (kbd "C-c <down>")  'hs-show-all)
     (column-marker-1 80)
+    (if (< (count-lines (point-min) (point-max)) 2000) (flycheck-mode))
     ;(local-set-key (kbd "C-]")  'cscope-find-symbol)
     ;;(hs-minor-mode t)
     ;;(hs-hide-all)
@@ -82,12 +83,15 @@
     ;;(search-forward-regexp buster-test-regexp (point-at-eol) t)
     (insert "sj_debug() ###############################################################\n")
     (previous-line)
-    (python-indent-line)
+    (python-indent-line))
+  (save-excursion 
     (goto-char (point-min))
     (flush-lines "^from.*sj_debug$")
     (goto-char (point-min))
-    (search-forward-regexp "^#!.*$" (point-at-eol) t)
-    (insert "from debug import pprint, shell, profile, debug as sj_debug\n"))
+    (if (search-forward-regexp "^#!.*$" (point-max) t)
+        (next-line) (goto-char (point-min)))
+    (insert "from debug import pprint, pprintxml, shell, profile, debug as sj_debug\n"))
+
   )
 (define-key global-map (kbd "<f8>" ) 'breakpoint-set)
 (defun breakpoint-uset nil

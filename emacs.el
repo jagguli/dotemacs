@@ -190,6 +190,7 @@ Chromium."
  '(evil-search-module (quote evil-search))
  '(fci-rule-color "#073642")
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
+ '(flycheck-checkers (quote (bash c/c++-clang c/c++-cppcheck coffee-coffeelint css-csslint elixir emacs-lisp emacs-lisp-checkdoc erlang go-gofmt go-build go-test haml haskell-hdevtools haskell-ghc haskell-hlint html-tidy javascript-jshint json-jsonlint less lua perl php php-phpcs puppet-parser puppet-lint python-flake8 rst ruby-rubocop ruby ruby-jruby rust sass scala scss sh-dash sh-bash tex-chktex tex-lacheck xml-xmlstarlet zsh)))
  '(flycheck-idle-change-delay 5)
  '(foreground-color nil)
  '(gmm-tool-bar-style (quote retro))

@@ -179,3 +179,25 @@
 ;;
 ;;(add-hook 'notmuch-show-hook 'notmuch-show-picture-headers t)
 
+(defun notmuch-show-accept-invite ()
+  "accept ics invite"
+  (interactive)
+  (with-current-notmuch-show-message
+   (let ((mm-handle (mm-dissect-buffer)))
+     (notmuch-save-attachments
+      mm-handle (> (notmuch-count-attachments mm-handle) 1))))
+  (message "Done"))
+
+(defun notmuch-accept-invite ()
+  (notmuch-foreach-mime-part
+   (lambda (p)
+     (let ((disposition (mm-handle-disposition p)))
+       (and (listp disposition)
+            (or (equal (car disposition) "attachment")
+                (and (equal (car disposition) "inline")
+                     (assq 'filename disposition)))
+            (or (not queryp)
+                (y-or-n-p
+                 (concat "Save '" (cdr (assq 'filename disposition)) "' ")))
+            (mm-save-part p))))
+   mm-handle)
