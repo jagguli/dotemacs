@@ -110,3 +110,21 @@
     (mapc 'kill-buffer 
           (delq (current-buffer) 
                 (remove-if-not 'buffer-file-name (buffer-list)))))
+
+(defun popup-cscope-process-filter (process output)
+  ;;(message process)
+  (message output))
+
+(defun popup-cscope-process-sentinel (process event)
+  ;;(message process)
+  (message event))
+
+(defun cscope-popup ()
+  (interactive)
+  (let ( (symbol (cscope-extract-symbol-at-cursor nil))
+	 (cscope-adjust t) )	 ;; Use fuzzy matching.
+    (setq cscope-symbol symbol)
+    (setq cscope-display-cscope-buffer nil)
+    (cscope-call (format "Finding global definition: %s" symbol)
+		 (list "-1" symbol) nil 'popup-cscope-process-filter
+		 'popup-cscope-process-sentinel)))
