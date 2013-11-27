@@ -200,4 +200,4 @@
                 (y-or-n-p
                  (concat "Save '" (cdr (assq 'filename disposition)) "' ")))
             (mm-save-part p))))
-   mm-handle)
+   mm-handle))

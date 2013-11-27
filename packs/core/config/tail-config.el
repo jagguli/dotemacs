@@ -10,3 +10,7 @@
   (if (eq branch 0) (setq branch "") (setq branch (number-to-string branch)))
   (itail (format "~/iress/xplan%s/var/local/log/stderr.log" branch))
   )
+
+(add-hook 'itail-mode-hook
+      #'(lambda ()
+          (compilation-minor-mode 1)))

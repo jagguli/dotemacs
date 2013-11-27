@@ -1,5 +1,5 @@
 ; define function to shutdown emacs server instance
-(defun server-shutdown ()
+(defun shutdown ()
   "Save buffers, Quit, and Shutdown (kill) server"
   (interactive)
   (save-some-buffers)
@@ -200,9 +200,13 @@ Chromium."
  '(helm-always-two-windows t)
  '(helm-boring-buffer-regexp-list (quote ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-" "\\*Custom" "\\*Complet" "\\*magit")))
  '(helm-c-ack-version 2)
+ '(helm-completing-read-handlers-alist (quote ((describe-function . helm-completing-read-symbols) (describe-variable . helm-completing-read-symbols) (debug-on-entry . helm-completing-read-symbols) (find-function . helm-completing-read-symbols) (find-tag . helm-completing-read-with-cands-in-buffer) (ffap-alternate-file) (tmm-menubar) (find-file . ido))))
  '(helm-ff-file-name-history-use-recentf t)
  '(helm-for-files-preferred-list (quote (helm-source-buffers-list helm-source-recentf helm-source-bookmarks helm-source-file-cache helm-source-files-in-current-dir helm-source-locate helm-source-id-utils)))
  '(helm-match-plugin-mode t nil (helm-match-plugin))
+ '(helm-mode t)
+ '(helm-mode-handle-completion-in-region t)
+ '(helm-mode-reverse-history nil)
  '(helm-reuse-last-window-split-state t)
  '(helm-split-window-default-side (quote left))
  '(itail-fancy-mode-line t)
