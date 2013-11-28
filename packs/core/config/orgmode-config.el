@@ -9,5 +9,13 @@
                              "~/Dropbox/OrgMode/startup.org" 
                              "~/Dropbox/OrgMode/zen.org"))
 
+(defun note ()
+  (interactive)
+  (find-file "~/Dropbox/OrgMode/notes.org")
+  (goto-char (point-min))
+  (insert "------------------------------------------------------------\n")
+  (esk-insert-date)
+  (insert "\n\n")
+ (previous-line) )
 ;;(add-hook 'after-init-hook 'org-agenda-list)
 
