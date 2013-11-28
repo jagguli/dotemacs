@@ -238,7 +238,7 @@ Chromium."
  '(ls-lisp-dirs-first t)
  '(ls-lisp-verbosity (quote nil))
  '(newsticker-url-list (quote (("FastCompany" "http://www.fastcompany.com/rss.xml" nil nil nil) ("TheNextWeb" "http://feeds2.feedburner.com/thenextweb" nil nil nil) ("BoingBoing" "http://feeds.boingboing.net/boingboing/iBag" nil nil nil) ("TechRepublic" "http://www.techrepublic.com/search?t=1&o=1&mode=rss" nil nil nil) ("TechCrunch" "http://feeds.feedburner.com/TechCrunch/" nil nil nil))))
- '(notmuch-saved-searches (quote (("unread" . "tag:unread") ("sent/replied" . "tag:sent tag:replied and date:30d..0s") ("inbox" . "(tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s") ("osc" . "tag:osc") ("osc_note" . "tag:osc  and \"a NOTE has been added\"") ("misc" . "tag:misc"))))
+ '(notmuch-saved-searches (quote (("unread" . "tag:unread") ("sent/replied" . "tag:sent tag:replied and date:30d..0s") ("inbox" . "(tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s") ("osc" . "tag:osc") ("osc_note" . "tag:osc  and \"a NOTE has been added\"") ("nomailers" . "not tag:mailers") ("misc" . "tag:misc"))))
  '(notmuch-search-hook (quote (notmuch-hl-line-mode)))
  '(notmuch-search-line-faces (quote (("deleted" :foreground "red" :background "blue") ("unread" :foreground "green") ("flagged" :foreground "magenta") ("me" :weight bold :foreground "white") ("INBOX" :foreground "color-243"))))
  '(notmuch-search-oldest-first nil)
