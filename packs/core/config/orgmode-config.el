@@ -5,9 +5,9 @@
 (setq org-log-done t)
 
 
-;;(setq org-agenda-files (list "~/Dropbox/OrgMode/work.org"
-;;                             "~/Dropbox/OrgMode/startup.org" 
-;;                             "~/Dropbox/OrgMode/zen.org"))
+(setq org-agenda-files (list "~/Dropbox/OrgMode/work.org"
+                             "~/Dropbox/OrgMode/startup.org" 
+                             "~/Dropbox/OrgMode/zen.org"))
 
 ;;(add-hook 'after-init-hook 'org-agenda-list)
 
