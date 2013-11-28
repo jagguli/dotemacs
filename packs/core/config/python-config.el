@@ -1,17 +1,15 @@
 ;; Python Mode ================================================================================ 
 (require 'pymacs)
-(autoload 'pymacs-apply "pymacs")
-(autoload 'pymacs-call "pymacs")
-(autoload 'pymacs-eval "pymacs" nil t)
-(autoload 'pymacs-exec "pymacs" nil t)
-(autoload 'pymacs-load "pymacs" nil t)
-(autoload 'pymacs-autoload "pymacs")
-;;(setq jedi:setup-keys t)
-;;(add-hook 'python-mode-hook 'jedi:setup)
-(pymacs-load "ropemacs" "rope-")
-(setq ropemacs-enable-autoimport t)
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+;(autoload 'pymacs-apply "pymacs")
+;(autoload 'pymacs-call "pymacs")
+;(autoload 'pymacs-eval "pymacs" nil t)
+;(autoload 'pymacs-exec "pymacs" nil t)
+;(autoload 'pymacs-load "pymacs" nil t)
+;(autoload 'pymacs-autoload "pymacs")
+;(pymacs-load "ropemacs" "rope-")
+;(setq ropemacs-enable-autoimport t)
+;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 (require 'column-marker)
 
@@ -31,7 +29,6 @@
       ;;(list #'autopair-default-handle-action
         ;;  #'autopair-python-triple-quote-action
     ))
-(add-hook 'python-mode-hook 'jedi:setup)
 
 
 ;;(add-hook 'find-file-hook 'flymake-find-file-hook)
@@ -74,6 +71,7 @@
 (defvar buster-test-regexp
   "^#.*"
     "Regular expression that finds the beginning of a test function")
+
 (defun breakpoint-set nil
   (interactive)
   (save-excursion 
@@ -102,11 +100,5 @@
     (goto-char (point-min))
     (flush-lines ".*sj_debug().*"))
   )
+
 (define-key global-map (kbd "<f7>" ) 'breakpoint-uset)
-;; kill all other buffers
-(defun kill-other-buffers ()
-    "Kill all other buffers."
-    (interactive)
-    (mapc 'kill-buffer 
-          (delq (current-buffer) 
-                (remove-if-not 'buffer-file-name (buffer-list)))))

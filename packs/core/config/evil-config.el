@@ -11,6 +11,7 @@
 ;;(evil-set-initial-state 'notmuch-show-mode 'normal)
 (evil-set-initial-state 'jabber-chat-mode 'emacs)
 (evil-set-initial-state 'jabber-roster-mode 'emacs)
+(evil-set-initial-state 'direx:direx-mode 'emacs)
 (setq evil-flash-delay 60)
 ;;; esc quits
 
