@@ -4,7 +4,7 @@
 ;;(require 'helm-command)
 ;;(require 'ibuffer)
 (helm-mode 1)
-;;(global-set-key "\M-x" 'helm-M-x)
+(global-set-key "\M-x" 'helm-M-x)
 (global-set-key "\C-x\C-r" 'helm-recentf)
 (defun helm-eproject-locate ()
   (interactive)

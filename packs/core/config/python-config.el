@@ -64,7 +64,8 @@
       (if progName
           (progn
             (message "Running…")
-            (shell-command cmdStr "*run-current-file output*")))))
+            (shell-command cmdStr "*run-current-file output*")
+            (revert-buffer)))))
 
 
 ;; Debug statements ==================================================================
