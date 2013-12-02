@@ -264,7 +264,7 @@ Chromium."
  '(scss-compile-at-save nil)
  '(send-mail-function (quote mailclient-send-it))
  '(shell-file-name "/bin/sh")
- '(split-height-threshold 90)
+ '(split-height-threshold 190)
  '(split-width-threshold 205)
  '(split-window-keep-point nil)
  '(tool-bar-mode nil)

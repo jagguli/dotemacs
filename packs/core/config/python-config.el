@@ -128,3 +128,7 @@
     (cscope-call (format "Finding global definition: %s" symbol)
 		 (list "-1" symbol) nil 'popup-cscope-process-filter
 		 'popup-cscope-process-sentinel)))
+
+(require 'nose)
+
+(add-to-list 'nose-project-names "/usr/sbin/nosetests3")
