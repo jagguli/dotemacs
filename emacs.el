@@ -141,8 +141,8 @@ Chromium."
   (setq url (browse-url-encode-url url))
   (let* ((process-environment (browse-url-process-environment)))
     (apply 'start-process
-	   (concat "google-chrome " url) nil
-	   "google-chrome"
+	   (concat "chromium " url) nil
+	   "chromium"
 	   (append
 	    browse-url-chromium-arguments
 	    (list url)))))
@@ -247,6 +247,7 @@ Chromium."
  '(notmuch-show-all-multipart/alternative-parts nil)
  '(notmuch-show-indent-messages-width 2)
  '(notmuch-show-indent-multipart t)
+ '(notmuch-show-insert-text/plain-hook (quote (notmuch-wash-convert-inline-patch-to-part notmuch-wash-wrap-long-lines notmuch-wash-tidy-citations notmuch-wash-elide-blank-lines notmuch-wash-excerpt-citations)))
  '(notmuch-show-only-matching-messages t)
  '(org-directory "~/Dropbox/OrgMode")
  '(org-from-is-user-regexp nil)
@@ -264,7 +265,7 @@ Chromium."
  '(scss-compile-at-save nil)
  '(send-mail-function (quote mailclient-send-it))
  '(shell-file-name "/bin/sh")
- '(split-height-threshold 190)
+ '(split-height-threshold 90)
  '(split-width-threshold 205)
  '(split-window-keep-point nil)
  '(tool-bar-mode nil)
@@ -283,7 +284,7 @@ Chromium."
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#FFFFFF" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(bmkp-local-file-without-region ((t (:foreground "green"))))
  '(column-marker-1 ((t (:background "color-53"))))
- '(cscope-line-face ((t nil)) t)
+ '(cscope-line-face ((t nil)))
  '(cursor ((t (:background "light slate blue" :foreground "#888888"))))
  '(diredp-date-time ((((type tty)) :foreground "yellow") (t :foreground "goldenrod1")))
  '(diredp-dir-heading ((((type tty)) :background "yellow" :foreground "blue") (t :background "Pink" :foreground "DarkOrchid1")))

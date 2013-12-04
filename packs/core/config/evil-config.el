@@ -38,12 +38,11 @@
 (global-set-key (kbd "C-g") 'fileinfo)
 (global-set-key (kbd "C-c") 'quit)
 (define-key evil-normal-state-map [escape] 'fileinfo)
-(define-key evil-visual-state-map [escape] 'fileinfo)
-(define-key minibuffer-local-map [escape] 'fileinfo)
-(define-key minibuffer-local-ns-map [escape] 'fileinfo)
-(define-key minibuffer-local-completion-map [escape] 'fileinfo)
-(define-key minibuffer-local-must-match-map [escape] 'fileinfo)
-(define-key minibuffer-local-isearch-map [escape] 'fileinfo)
+;(define-key minibuffer-local-map [escape] 'fileinfo)
+;(define-key minibuffer-local-ns-map [escape] 'fileinfo)
+;(define-key minibuffer-local-completion-map [escape] 'fileinfo)
+;(define-key minibuffer-local-must-match-map [escape] 'fileinfo)
+;(define-key minibuffer-local-isearch-map [escape] 'fileinfo)
 
 
 

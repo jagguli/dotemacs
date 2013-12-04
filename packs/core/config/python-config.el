@@ -1,5 +1,6 @@
 ;; Python Mode ================================================================================ 
 (require 'pymacs)
+;;(require 'python-magic)
 ;(autoload 'pymacs-apply "pymacs")
 ;(autoload 'pymacs-call "pymacs")
 ;(autoload 'pymacs-eval "pymacs" nil t)
@@ -13,18 +14,42 @@
 
 (require 'column-marker)
 
+(add-hook 'outline-minor-mode-hook 
+           (lambda () 
+             (require 'outline-magic)
+))
+
+(defadvice goto-line (after expand-after-goto-line
+                            activate compile)
+  "hideshow-expand affected block when using goto-line in a collapsed buffer"
+  (save-excursion
+  (show-subtree)))
+
+(defadvice evil-goto-line (after expand-after-goto-line
+                            activate compile)
+  "hideshow-expand affected block when using goto-line in a collapsed buffer"
+  (save-excursion
+  (show-subtree)))
+
 ;;;;http://emacs-fu.blogspot.com.au/2008/12/showing-and-hiding-blocks-of-code.html
 (add-hook 'python-mode-hook
       #'(lambda ()
-    (local-set-key (kbd "C-c <right>") 'hs-show-block)
-    (local-set-key (kbd "C-c <left>")  'hs-hide-block)
-    (local-set-key (kbd "C-c <up>")    'hs-hide-all)
-    (local-set-key (kbd "C-c <down>")  'hs-show-all)
     (column-marker-1 80)
     (if (< (count-lines (point-min) (point-max)) 2000) (flycheck-mode))
-    ;(local-set-key (kbd "C-]")  'cscope-find-symbol)
-    ;;(hs-minor-mode t)
-    ;;(hs-hide-all)
+    (setq outline-regexp "[ \t]*\\(class\\|def\\|with\\) ")
+    (outline-minor-mode t)
+    (hide-body)
+    (hide-sublevels)
+    (show-paren-mode 1)
+    (define-key evil-normal-state-map "zo" 'show-entry)
+    (define-key evil-normal-state-map "zO" 'hide-other)
+    (define-key evil-normal-state-map "zc" 'hide-entry)
+    (define-key evil-normal-state-map "za" 'outline-cycle)
+    (define-key evil-normal-state-map "\t" 'outline-cycle)
+    (define-key evil-normal-state-map "zr" 'show-subtree)
+    (define-key evil-normal-state-map "zR" 'show-all)
+    (define-key evil-normal-state-map "zm" 'hide-subtree)
+    (define-key evil-normal-state-map "zM" 'hide-body)
     ;;(setq autopair-handle-action-fns
       ;;(list #'autopair-default-handle-action
         ;;  #'autopair-python-triple-quote-action
