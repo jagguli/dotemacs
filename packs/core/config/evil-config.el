@@ -21,7 +21,7 @@
 (define-key evil-insert-state-map (kbd "C-w <right>") 'evil-window-right)
 (define-key evil-insert-state-map (kbd "C-w <up>") 'evil-window-up)
 (define-key evil-insert-state-map (kbd "C-w <down>") 'evil-window-down)
-(define-key evil-normal-state-map (kbd "`") 'find-file)
+(define-key evil-normal-state-map (kbd "`") 'helm-find-files)
 ;;(define-key global-map (kbd "`") 'find-file)
 (evil-define-command "Ve" (function 
                             lambda() (split-window-horizontally)))

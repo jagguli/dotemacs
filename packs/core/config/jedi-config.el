@@ -10,11 +10,10 @@
       '("--sys-path" "/home/steven/iress/xplan99/src/py/"
         "--sys-path" "/home/steven/iress/xplan99/lib/py/"))
 
+(defun my-jedi-python-mode-hook ()
+  (define-key python-mode-map "\C-cx" 'jedi-direx:pop-to-buffer)
+  (define-key evil-normal-state-map (kbd "C-]") 'jedi:goto-definition)
+  (define-key evil-normal-state-map (kbd "C-t") 'jedi:goto-definition-pop-marker)
+  (define-key evil-normal-state-map (kbd "C-M-]") 'helm-jedi-related-names)) 
 
-(add-hook 'python-mode-hook
-      #'(lambda ()
-          (define-key python-mode-map "\C-cx" 'jedi-direx:pop-to-buffer)
-          (define-key evil-normal-state-map (kbd "C-]") 'jedi:goto-definition)
-          (define-key evil-normal-state-map (kbd "C-t") 'jedi:goto-definition-pop-marker)
-          (define-key evil-normal-state-map (kbd "C-M-]") 'helm-jedi-related-names)
-))
+(add-hook 'python-mode-hook 'my-jedi-python-mode-hook)

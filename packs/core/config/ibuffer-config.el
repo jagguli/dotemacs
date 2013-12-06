@@ -1,5 +1,5 @@
 (require 'ibuffer)
-(global-set-key [(shift f3)] (lambda ()
+(global-set-key "\C-xb" (lambda ()
                                    (interactive) (ibuffer)))
 (global-set-key [(f3)] (lambda ()
                           (interactive)
