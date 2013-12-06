@@ -32,46 +32,28 @@
   (show-subtree)))
 
 ;;;;http://emacs-fu.blogspot.com.au/2008/12/showing-and-hiding-blocks-of-code.html
-(add-hook 'python-mode-hook
-      #'(lambda ()
-    (column-marker-1 80)
-    (if (boundp 'ediff-mode)  ()
-        (progn
-          (message "outline…")
-          (if (< (count-lines (point-min) (point-max)) 2000) (flycheck-mode))
-          (setq outline-regexp "[ \t]*\\(class\\|def\\|with\\) ")
-          (outline-minor-mode t)
-          (hide-body)
-          (show-paren-mode 1)
-          (define-key evil-normal-state-map "zo" 'show-entry)
-          (define-key evil-normal-state-map "zO" 'hide-other)
-          (define-key evil-normal-state-map "zc" 'hide-entry)
-          (define-key evil-normal-state-map "za" 'outline-cycle)
-          (define-key evil-normal-state-map "\t" 'outline-cycle)
-          (define-key evil-normal-state-map "zr" 'show-subtree)
-          (define-key evil-normal-state-map "zR" 'show-all)
-          (define-key evil-normal-state-map "zm" 'hide-subtree)
-          (define-key evil-normal-state-map "zM" 'hide-body)))
-    ;;(setq autopair-handle-action-fns
-      ;;(list #'autopair-default-handle-action
-        ;;  #'autopair-python-triple-quote-action
-    ))
+(defun my-python-mode-hook ()
+  (interactive)
+  (column-marker-1 80)
+  (if (< (count-lines (point-min) (point-max)) 2000) 
+      (flycheck-mode) 
+    (flycheck-mode -1))
+  (setq outline-regexp "[ \t]*\\(class\\|def\\|with\\) ")
+  (outline-minor-mode t)
+  (hide-body)
+  (show-paren-mode 1)
+  (define-key evil-normal-state-map "zo" 'show-entry)
+  (define-key evil-normal-state-map "zO" 'hide-other)
+  (define-key evil-normal-state-map "zc" 'hide-entry)
+  (define-key evil-normal-state-map "za" 'outline-cycle)
+  (define-key evil-normal-state-map "\t" 'outline-cycle)
+  (define-key evil-normal-state-map "zr" 'show-subtree)
+  (define-key evil-normal-state-map "zR" 'show-all)
+  (define-key evil-normal-state-map "zm" 'hide-subtree)
+  (define-key evil-normal-state-map "zM" 'hide-body))
 
+(add-hook 'python-mode-hook 'my-python-mode-hook)
 
-;;(add-hook 'find-file-hook 'flymake-find-file-hook)
-;;(when (load "flymake" t)
-;;  (defun flymake-pyflakes-init ()
-;;    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-;;                       'flymake-create-temp-inplace))
-;;           (local-file (file-relative-name
-;;                        temp-file
-;;                        (file-name-directory buffer-file-name))))
-;;      (list "pycheckers"  (list local-file))))
-;;  (add-to-list 'flymake-allowed-file-name-masks
-;;               '("\\.py\\'" flymake-pyflakes-init)))
-;;(load-library "flymake-cursor")
-;;(global-set-key [f10] 'flymake-goto-prev-error)
-;;(global-set-key [f11] 'flymake-goto-next-error)
 
 (defun pep8fix ()
     "Execute autopep8 on current file"
@@ -96,17 +78,12 @@
 
 
 ;; Debug statements ==================================================================
-(defvar buster-test-regexp
-  "^#.*"
-    "Regular expression that finds the beginning of a test function")
 
 (defun breakpoint-set nil
   (interactive)
   (save-excursion 
     (next-line)
     (beginning-of-line)
-    ;;(open-line)
-    ;;(search-forward-regexp buster-test-regexp (point-at-eol) t)
     (insert "sj_debug() ###############################################################\n")
     (previous-line)
     (python-indent-line))
@@ -130,31 +107,9 @@
   )
 
 (define-key global-map (kbd "<f7>" ) 'breakpoint-uset)
-;; kill all other buffers
-(defun kill-other-buffers ()
-    "Kill all other buffers."
-    (interactive)
-    (mapc 'kill-buffer 
-          (delq (current-buffer) 
-                (remove-if-not 'buffer-file-name (buffer-list)))))
 
-(defun popup-cscope-process-filter (process output)
-  ;;(message process)
-  (message output))
 
-(defun popup-cscope-process-sentinel (process event)
-  ;;(message process)
-  (message event))
-
-(defun cscope-popup ()
-  (interactive)
-  (let ( (symbol (cscope-extract-symbol-at-cursor nil))
-	 (cscope-adjust t) )	 ;; Use fuzzy matching.
-    (setq cscope-symbol symbol)
-    (setq cscope-display-cscope-buffer nil)
-    (cscope-call (format "Finding global definition: %s" symbol)
-		 (list "-1" symbol) nil 'popup-cscope-process-filter
-		 'popup-cscope-process-sentinel)))
+;; Nose configuration ==========================================================
 
 (require 'nose)
 

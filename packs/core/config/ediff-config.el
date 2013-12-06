@@ -24,8 +24,12 @@
 (add-hook 'ediff-before-setup-hook 'my-ediff-bsh)
 (add-hook 'ediff-after-setup-windows-hook 'my-ediff-aswh);
 (add-hook 'ediff-quit-hook 'my-ediff-qh)
+(defun my-ediff-mode-hook ()
+  (interactive)
+  (message "EDIFF MODE")
+  (global-flycheck-mode -1)
+  (flycheck-mode -1)
+  (outline-minor-mode -1))
 
-(add-hook 'ediff-mode-hook
-      #'(lambda ()
-          (outline-minor-mode nil)
-          ))
+;; (add-hook 'ediff-mode-hook 'my-ediff-mode-hook)
+(add-hook 'ediff-prepare-buffer-hook 'my-ediff-mode-hook)

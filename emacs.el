@@ -4,6 +4,7 @@
   (interactive)
   (save-some-buffers)
   (kill-emacs))
+
 (defun reload-emacs-config ()
   "reload emacs config"
   (interactive)
@@ -20,6 +21,13 @@
       "Kill all other buffers."
       (interactive)
       (mapc 'kill-buffer (buffer-list)))
+
+(defun kill-other-file-buffers ()
+    "Kill all other buffers."
+    (interactive)
+    (mapc 'kill-buffer 
+          (delq (current-buffer) 
+                (remove-if-not 'buffer-file-name (buffer-list)))))
 
 (defun edit-emacs-config ()
   (interactive)
@@ -266,8 +274,9 @@ Chromium."
  '(scss-compile-at-save nil)
  '(send-mail-function (quote mailclient-send-it))
  '(shell-file-name "/bin/sh")
- '(split-height-threshold 80)
- '(split-width-threshold 305)
+ '(split-height-threshold nil)
+ ;; split-width-threshold has to be half the screen columns for me
+ '(split-width-threshold 116)
  '(split-window-keep-point nil)
  '(tool-bar-mode nil)
  '(url-handler-mode t)
@@ -293,14 +302,14 @@ Chromium."
  '(diredp-display-msg ((((type tty)) :foreground "blue") (t :foreground "cornflower blue")))
  '(diredp-file-name ((t nil)))
  '(diredp-file-suffix ((t nil)))
- '(ediff-current-diff-A ((t (:background "color-17" :foreground "white"))) t)
- '(ediff-current-diff-B ((t (:background "color-17" :foreground "white"))) t)
- '(ediff-even-diff-A ((t (:background "color-237" :foreground "Black"))) t)
- '(ediff-even-diff-B ((t (:background "color-239" :foreground "White"))) t)
- '(ediff-odd-diff-A ((t (:background "color-239" :foreground "White"))) t)
- '(ediff-odd-diff-B ((t (:background "color-239" :foreground "Black"))) t)
- '(flycheck-error ((t (:background "color-89"))) t)
- '(flycheck-warning ((t (:underline (:color "red" :style wave)))) t)
+ '(ediff-current-diff-A ((t (:background "color-17" :foreground "white"))))
+ '(ediff-current-diff-B ((t (:background "color-17" :foreground "white"))))
+ '(ediff-even-diff-A ((t (:background "color-237" :foreground "Black"))))
+ '(ediff-even-diff-B ((t (:background "color-239" :foreground "White"))))
+ '(ediff-odd-diff-A ((t (:background "color-239" :foreground "White"))))
+ '(ediff-odd-diff-B ((t (:background "color-239" :foreground "Black"))))
+ '(flycheck-error ((t (:background "color-89"))))
+ '(flycheck-warning ((t (:underline (:color "red" :style wave)))))
  '(flymake-errline ((t (:background "color-124"))) t)
  '(flymake-warnline ((t (:background "color-161"))) t)
  '(helm-selection ((t (:background "color-17" :underline t))))
