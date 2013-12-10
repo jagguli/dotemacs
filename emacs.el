@@ -298,6 +298,7 @@ Chromium."
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#FFFFFF" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(bmkp-local-file-without-region ((t (:foreground "green"))))
+ '(col-highlight ((t (:background "color-237"))))
  '(column-marker-1 ((t (:background "color-53"))))
  '(cscope-line-face ((t nil)))
  '(cursor ((t (:background "light slate blue" :foreground "#888888"))))
@@ -318,7 +319,7 @@ Chromium."
  '(flymake-errline ((t (:background "color-124"))) t)
  '(flymake-warnline ((t (:background "color-161"))) t)
  '(helm-ff-directory ((t (:background "color-18" :foreground "white"))))
- '(helm-selection ((t (:background "color-17" :underline t))))
+ '(helm-selection ((t (:background "brightblue"))))
  '(helm-source-header ((t (:background "color-18" :foreground "black" :weight bold :height 1.3 :family "Sans Serif"))))
  '(helm-visible-mark ((t (:background "color-17"))))
  '(icicle-candidate-part ((t (:background "color-17"))) t)
