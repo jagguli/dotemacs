@@ -281,7 +281,7 @@ Chromium."
  '(send-mail-function (quote mailclient-send-it))
  '(shell-file-name "/bin/sh")
  '(split-height-threshold nil)
- '(split-width-threshold 116)
+ '(split-width-threshold 122)
  '(split-window-keep-point nil)
  '(tool-bar-mode nil)
  '(url-handler-mode t)
