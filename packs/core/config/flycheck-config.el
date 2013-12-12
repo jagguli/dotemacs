@@ -7,4 +7,3 @@
 ;;(setq flymake-no-changes-timeout 5)
 ;;(add-hook 'evil-normal-state-entry-hook 'flymake-start-syntax-check)
 
-
