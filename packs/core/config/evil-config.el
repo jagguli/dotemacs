@@ -5,13 +5,14 @@
 (require 'evil)
 (require 'evil-org)
 ;;http://dnquark.com/blog/2012/02/emacs-evil-ecumenicalism/
-(evil-mode 1)
 (setq evil-default-state 'normal)
 
 (defun my-text-mode-hook ()
+  (message "Evil Mode")
   (setq evil-symbol-word-search t))
 
-(add-hook 'evil-mode-hook 'my-text-mode-hook)
+(evil-mode 1)
+(add-hook 'evil-local-mode-hook 'my-text-mode-hook)
 ;;(evil-set-initial-state 'notmuch-show-mode 'normal)
 (evil-set-initial-state 'jabber-chat-mode 'emacs)
 (evil-set-initial-state 'jabber-roster-mode 'emacs)
