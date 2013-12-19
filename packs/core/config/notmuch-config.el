@@ -16,11 +16,11 @@
 
 (defun notmuch-config ()
   (interactive)
+  (setq notmuch-wash-wrap-lines-length 70)
   (if (string-match "^SYDSJOSEPH.*" system-name )
       (progn 
 	(setq notmuch-wash-original-regexp "^\\(From: .*\\|.* writes:\\)$")
 	(setq notmuch-wash-citation-lines-prefix 0)
-	(setq notmuch-wash-citation-lines-suffix 0)
 	(setq notmuch-identites '((keepass-get-command "/devices/iress" "url")))
 
 	(setq message-send-mail-function 'message-send-mail-with-iress-sendmail)
@@ -201,3 +201,22 @@
                  (concat "Save '" (cdr (assq 'filename disposition)) "' ")))
             (mm-save-part p))))
    mm-handle))
+
+(defun write-string-to-file (string file)
+  (interactive "sEnter the string: \nFFile to save to: ")
+  (with-temp-file file
+    (progn 
+      (insert-file file)
+      (open-line 1)
+      (insert string))))
+
+
+(defun add-to-mailers ()
+  (interactive)
+  (if (notmuch-show-get-from)
+      (progn 
+        (message (notmuch-show-get-from))
+        (write-string-to-file 
+          (format "%s" (notmuch-show-get-from))
+          (expand-file-name "~/.mailers")
+          ))))
