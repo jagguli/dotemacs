@@ -11,7 +11,9 @@
   (if (string-match "^.*.iress.com.au" system-name )
       (progn
         (setq jabber-account-list `((,(keepass-get "/jabber/iress" "username")
-                                     (:password . ,(keepass-get "/jabber/iress" "password"))))))
+                                     (:password . ,(keepass-get "/jabber/iress" "password")))))
+        (jabber-connect-all)
+        )
     (progn
       (setq jabber-account-list `((,(keepass-get "/jabber/melit" "username")
                                    (:password . ,(keepass-get "/jabber/melit" "password"))
@@ -23,8 +25,12 @@
                                    (:network-server . "talk.google.com")
                                    (:connection-type . ssl)
                                    (:port . 443))))
+                                  (,(keepass-get "/facebook/xmpp" "username")
+                                   (:password . ,(keepass-get "/facebook/xmpp" "password"))
+                                   (:network-server . ,(keepass-get "/facebook/xmpp" "url"))
+                                   (:connection-type . ssl)
+                                   (:port . 443))))
       ))
-  (jabber-connect-all)
   (switch-to-buffer "*-jabber-*"))
 
 

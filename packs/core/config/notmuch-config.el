@@ -24,7 +24,7 @@
 	(setq notmuch-identites '((keepass-get-command "/devices/iress" "url")))
 
 	(setq message-send-mail-function 'message-send-mail-with-iress-sendmail)
-	(setq notmuch-address-command "~/bin/notmuch-lbdbq"))
+	(setq notmuch-address-command "~/bin/mutt_ldap.py"))
     (progn
       (setq message-send-mail-function 'message-send-mail-with-sendmail)
       (setq notmuch-address-command "~/bin/notmuch-goobook"))))
