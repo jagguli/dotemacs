@@ -8,7 +8,10 @@
 
 (setq jedi:server-args
       '("--sys-path" "/home/steven/iress/xplan99/src/py/"
-        "--sys-path" "/home/steven/iress/xplan99/lib/py/"))
+        "--sys-path" "/home/steven/iress/xplan99/lib/py/"
+        "--virtual-env" "/home/steven/.local/"
+        "--virtual-env" "/usr/lib/"
+        ))
 
 (defun my-jedi-python-mode-hook ()
   (define-key python-mode-map "\C-cx" 'jedi-direx:pop-to-buffer)

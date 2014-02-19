@@ -1,13 +1,14 @@
 ;; Python Mode ================================================================================ 
 (require 'pymacs)
 ;;(require 'python-magic)
-;(autoload 'pymacs-apply "pymacs")
-;(autoload 'pymacs-call "pymacs")
-;(autoload 'pymacs-eval "pymacs" nil t)
-;(autoload 'pymacs-exec "pymacs" nil t)
-;(autoload 'pymacs-load "pymacs" nil t)
-;(autoload 'pymacs-autoload "pymacs")
-;(pymacs-load "ropemacs" "rope-")
+(setq pymacs-python-command "python2")
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+(autoload 'pymacs-autoload "pymacs")
+(pymacs-load "ropemacs" "rope-")
 ;(setq ropemacs-enable-autoimport t)
 ;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 ;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
@@ -31,6 +32,13 @@
   (save-excursion
   (show-subtree)))
 
+
+(defun string/starts-with (string prefix)
+  "Return t if STRING starts with prefix."
+  (and (string-match (rx-to-string `(bos ,prefix) t)
+                     string)
+       t))
+
 ;;;;http://emacs-fu.blogspot.com.au/2008/12/showing-and-hiding-blocks-of-code.html
 (defun my-python-mode-hook ()
   (interactive)
@@ -38,15 +46,17 @@
   (if (< (count-lines (point-min) (point-max)) 2000) 
       (flycheck-mode) 
     (flycheck-mode -1))
-  (setq outline-regexp "[ \t]*\\(class\\|def\\|with\\) ")
-  (outline-minor-mode t)
+
+  (if (not (string/starts-with (buffer-name) "*mo-git-blame") )
+      (setq outline-regexp "[ \t]*\\(class\\|def\\|with\\) ")
+    (outline-minor-mode t)
+    (define-key evil-normal-state-map "za" 'outline-cycle)
+    (define-key evil-normal-state-map "\t" 'outline-cycle))
   (hide-body)
   (show-paren-mode 1)
   (define-key evil-normal-state-map "zo" 'show-entry)
   (define-key evil-normal-state-map "zO" 'hide-other)
   (define-key evil-normal-state-map "zc" 'hide-entry)
-  (define-key evil-normal-state-map "za" 'outline-cycle)
-  (define-key evil-normal-state-map "\t" 'outline-cycle)
   (define-key evil-normal-state-map "zr" 'show-subtree)
   (define-key evil-normal-state-map "zR" 'show-all)
   (define-key evil-normal-state-map "zm" 'hide-subtree)
@@ -93,6 +103,7 @@
     (goto-char (point-min))
     (if (search-forward-regexp "^#!.*$" (point-max) t)
         (next-line) (goto-char (point-min)))
+    (open-line)
     (insert "from debug import pprint, pprintxml, shell, profile, debug as sj_debug\n"))
 
   )
