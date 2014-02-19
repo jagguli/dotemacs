@@ -11,6 +11,7 @@
   (helm-locate-with-db (format "%s/locatedb"
    eproject-root))
   )
+
 (defun helm-eproject-ag ()
   (interactive)
   (let* ((helm-ag-default-directory (eproject-root))

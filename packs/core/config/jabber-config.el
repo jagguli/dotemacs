@@ -11,20 +11,21 @@
   (if (string-match "^.*.iress.com.au" system-name )
       (progn
         (setq jabber-account-list `((,(keepass-get "/jabber/iress" "username")
-                                     (:password . ,(keepass-get "/jabber/iress" "password"))))))
+                                     (:password . ,(keepass-get "/jabber/iress" "password")))))
+        (jabber-connect-all)
+        )
     (progn
-      (setq jabber-account-list `((,(keepass-get "/jabber/melit" "username")
-                                   (:password . ,(keepass-get "/jabber/melit" "password"))
-                                   (:network-server . "talk.google.com")
+      (setq jabber-account-list `((,(keepass-get "/facebook/xmpp" "username")
+                                   (:password . ,(keepass-get "/facebook/xmpp" "password"))
+                                   (:network-server . ,(keepass-get "/facebook/xmpp" "url"))
+                                   (:port . 5222))
+                                  (,(keepass-get "/google/jabber/melit" "username")
+                                   (:password . ,(keepass-get "/google/jabber/melit" "password"))
+                                   (:network-server . ,(keepass-get "/google/jabber/melit" "url"))
                                    (:connection-type . ssl)
                                    (:port . 443))
-                                  (,(keepass-get "/jabber/stevenjose" "username")
-                                   (:password . ,(keepass-get "/jabber/stevenjose" "password"))
-                                   (:network-server . "talk.google.com")
-                                   (:connection-type . ssl)
-                                   (:port . 443))))
+                                  ))
       ))
-  (jabber-connect-all)
   (switch-to-buffer "*-jabber-*"))
 
 
@@ -88,11 +89,11 @@
               t
               t)))
 
-(add-hook 'jabber-message-hooks 'jabber-notify-tray)
+;;(add-hook 'jabber-message-hooks 'jabber-notify-tray)
 ;;(add-hook 'jabber-activity-update-hooks 'z-jabber-send-tray-activity-update)
 ;;(add-hook 'jabber-activity-hooks 'z-jabber-send-tray-activity)
 ;;(add-hook 'jabber-chat-mode-hook 'z-jabber-send-tray-chatmode)
-(add-hook 'jabber-chat-send-hooks 'z-jabber-send-tray-chatsend)
+;;(add-hook 'jabber-chat-send-hooks 'z-jabber-send-tray-chatsend)
 
 (setq jabber-chat-header-line-format
       '(" " (:eval (jabber-jid-displayname jabber-chatting-with))
