@@ -1,14 +1,14 @@
 ;; Python Mode ================================================================================ 
-(require 'pymacs)
-;;(require 'python-magic)
-(setq pymacs-python-command "python2")
-(autoload 'pymacs-apply "pymacs")
-(autoload 'pymacs-call "pymacs")
-(autoload 'pymacs-eval "pymacs" nil t)
-(autoload 'pymacs-exec "pymacs" nil t)
-(autoload 'pymacs-load "pymacs" nil t)
-(autoload 'pymacs-autoload "pymacs")
-(pymacs-load "ropemacs" "rope-")
+;(require 'pymacs)
+;;;(require 'python-magic)
+;;(setq pymacs-python-command "python2")
+;(autoload 'pymacs-apply "pymacs")
+;(autoload 'pymacs-call "pymacs")
+;(autoload 'pymacs-eval "pymacs" nil t)
+;(autoload 'pymacs-exec "pymacs" nil t)
+;(autoload 'pymacs-load "pymacs" nil t)
+;(autoload 'pymacs-autoload "pymacs")
+;(pymacs-load "ropemacs" "rope-")
 ;(setq ropemacs-enable-autoimport t)
 ;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 ;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
@@ -91,31 +91,20 @@
 
 (defun breakpoint-set nil
   (interactive)
-  (save-excursion 
-    (next-line)
-    (beginning-of-line)
-    (insert "sj_debug() ###############################################################\n")
-    (previous-line)
-    (python-indent-line))
-  (save-excursion 
-    (goto-char (point-min))
-    (flush-lines "^from.*sj_debug$")
-    (goto-char (point-min))
-    (if (search-forward-regexp "^#!.*$" (point-max) t)
-        (next-line) (goto-char (point-min)))
-    (open-line)
-    (insert "from debug import pprint, pprintxml, shell, profile, debug as sj_debug\n"))
+  (next-line)
+  (beginning-of-line)
+  (insert "import sj; sj.debug() #######################\n")
+  (previous-line)
+  (python-indent-line)
+  (highlight-lines-matching-regexp "^[ ]*import sj; sj.debug()"))
 
-  )
 (define-key global-map (kbd "<f8>" ) 'breakpoint-set)
+
 (defun breakpoint-uset nil
   (interactive)
   (save-excursion 
     (goto-char (point-min))
-    (flush-lines "^from.*sj_debug$")
-    (goto-char (point-min))
-    (flush-lines ".*sj_debug().*"))
-  )
+    (flush-lines "^[ ]*import sj; sj.debug().*$")))
 
 (define-key global-map (kbd "<f7>" ) 'breakpoint-uset)
 
