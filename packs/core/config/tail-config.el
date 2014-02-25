@@ -14,3 +14,8 @@
 (add-hook 'itail-mode-hook
       #'(lambda ()
           (compilation-minor-mode 1)))
+ 
+(defun goto-end nil
+  (interactive)
+  (goto-line (point-max)))
+(define-key itail-keymap (kbd "C-g" ) 'goto-end)

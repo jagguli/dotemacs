@@ -6,6 +6,17 @@
 (helm-mode 1)
 (global-set-key "\M-x" 'helm-M-x)
 (global-set-key "\C-x\C-r" 'helm-recentf)
+(global-set-key "\C-xb" 'helm-buffers-list)
+(global-set-key [(f3)] 'helm-buffers-list)
+                                   
+;;(global-set-key [(control f3)] (lambda ()
+;;                     (interactive) (ibuffer)))
+;;(global-set-key [(f3)] (lambda ()
+;;                          (interactive)
+;;			  ;;(split-window-right)
+;;                          (ibuffer t)
+;;                          (ibuffer-filter-disable)
+;;                          ))
 (defun helm-eproject-locate ()
   (interactive)
   (helm-locate-with-db (format "%s/locatedb"

@@ -4,14 +4,15 @@
 (require 'jabber-tmux)
 (require 'keepassdb)
 (setq jabber-alert-message-wave "~/.sounds/computerbeep_9.wav")
-(setq jabber-invalid-certificate-servers '("mel-imsrv1" "mel-imsrv1.devel.iress.com.au"))
+(setq jabber-invalid-certificate-servers '("mel-imsrv1" "mel-imsrv1.devel.iress.com.au" "iress.com.au"))
 
 (defun jabber ()
   (interactive)
   (if (string-match "^.*.iress.com.au" system-name )
       (progn
-        (setq jabber-account-list `((,(keepass-get "/jabber/iress" "username")
-                                     (:password . ,(keepass-get "/jabber/iress" "password")))))
+        (setq jabber-account-list `((,(keepass-get "/iress/jabber" "username")
+                                     (:network-server . ,(keepass-get "/iress/jabber" "url"))
+                                     (:password . ,(keepass-get "/iress/default" "password")))))
         (jabber-connect-all)
         )
     (progn
@@ -26,7 +27,7 @@
                                    (:port . 443))
                                   ))
       ))
-  (switch-to-buffer "*-jabber-*"))
+  (switch-to-buffer "*-jabber-roster-*"))
 
 
 (defun egh:jabber-google-groupchat-create ()
@@ -89,11 +90,11 @@
               t
               t)))
 
-;;(add-hook 'jabber-message-hooks 'jabber-notify-tray)
-;;(add-hook 'jabber-activity-update-hooks 'z-jabber-send-tray-activity-update)
-;;(add-hook 'jabber-activity-hooks 'z-jabber-send-tray-activity)
-;;(add-hook 'jabber-chat-mode-hook 'z-jabber-send-tray-chatmode)
-;;(add-hook 'jabber-chat-send-hooks 'z-jabber-send-tray-chatsend)
+(add-hook 'jabber-message-hooks 'jabber-notify-tray)
+(add-hook 'jabber-activity-update-hooks 'z-jabber-send-tray-activity-update)
+(add-hook 'jabber-activity-hooks 'z-jabber-send-tray-activity)
+(add-hook 'jabber-chat-mode-hook 'z-jabber-send-tray-chatmode)
+(add-hook 'jabber-chat-send-hooks 'z-jabber-send-tray-chatsend)
 
 (setq jabber-chat-header-line-format
       '(" " (:eval (jabber-jid-displayname jabber-chatting-with))

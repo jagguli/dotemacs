@@ -9,7 +9,7 @@
   (interactive)
   (setq message-sendmail-extra-arguments
         `("--passwordeval"
-          ,(keepass-get-command "/devices/iress" "password")))
+          ,(keepass-get-command "/iress/default" "password")))
   ;;(setq user-mail-address (format "%s@iress.com.au"
   ;;                                (keepass-get "/devices/iress")))
   (message-send-mail-with-sendmail))
@@ -21,7 +21,7 @@
       (progn 
 	(setq notmuch-wash-original-regexp "^\\(From: .*\\|.* writes:\\)$")
 	(setq notmuch-wash-citation-lines-prefix 0)
-	(setq notmuch-identites '((keepass-get-command "/devices/iress" "url")))
+	(setq notmuch-identites '((keepass-get-command "/iress/default" "url")))
 
 	(setq message-send-mail-function 'message-send-mail-with-iress-sendmail)
 	(setq notmuch-address-command "~/bin/mutt_ldap.py"))
@@ -127,9 +127,11 @@
 (add-hook 'notmuch-show-hook 
   (lambda ()
     (interactive)
-    (notmuch-show-mark-read)
-    (notmuch-show-tag-all "-unread")
-    (notmuch-show-collapse-all)))
+    ;;(notmuch-show-mark-read)
+    ;(call-interactively 'notmuch-show-open-or-close-all) 
+    (notmuch-show-tag-all  '("-unread"))
+    ;;(notmuch-show-collapse-all)
+    ))
 
 (defun notmuch-show-collapse-all ()
   (interactive)

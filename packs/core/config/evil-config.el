@@ -8,7 +8,6 @@
 (setq evil-default-state 'normal)
 
 (defun my-text-mode-hook ()
-  (message "Evil Mode")
   (setq evil-symbol-word-search t))
 
 (evil-mode 1)
@@ -17,6 +16,12 @@
 (evil-set-initial-state 'jabber-chat-mode 'emacs)
 (evil-set-initial-state 'jabber-roster-mode 'emacs)
 (evil-set-initial-state 'direx:direx-mode 'emacs)
+(evil-set-initial-state 'mo-git-blame 'emacs)
+(evil-set-initial-state 'svn-mode 'emacs)
+(evil-set-initial-state 'svn-status-mode 'emacs)
+(evil-set-initial-state 'newsticker-mode 'emacs)
+(evil-set-initial-state 'newsticker-treeview-mode 'emacs)
+(evil-set-initial-state 'notmuch-show-mode 'emacs)
 (setq evil-flash-delay 60)
 ;;; esc quits
 
