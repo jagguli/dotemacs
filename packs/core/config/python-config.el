@@ -1,7 +1,7 @@
 ;; Python Mode ================================================================================ 
-;(require 'pymacs)
-;;(require 'python-magic)
-;(setq pymacs-python-command "python2")
+;;(require 'pymacs)
+;;;(require 'python-magic)
+;;(setq pymacs-python-command "python2")
 ;(autoload 'pymacs-apply "pymacs")
 ;(autoload 'pymacs-call "pymacs")
 ;(autoload 'pymacs-eval "pymacs" nil t)
@@ -96,15 +96,16 @@
     (beginning-of-line)
     (insert "import sj; sj.debug() ######## FIXME:REMOVE ME steven.joseph ################\n")
     (previous-line)
-    (python-indent-line)))
+    (python-indent-line)
+  (highlight-lines-matching-regexp "^[ ]*import sj; sj.debug()"))
 
 (define-key global-map (kbd "<f8>" ) 'breakpoint-set)
+
 (defun breakpoint-uset nil
   (interactive)
   (save-excursion 
     (goto-char (point-min))
-    (flush-lines ".*sj\.debug().*"))
-  )
+    (flush-lines "^[ ]*import sj; sj.debug().*$")))
 
 (define-key global-map (kbd "<f7>" ) 'breakpoint-uset)
 

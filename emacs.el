@@ -342,7 +342,7 @@ Chromium."
  '(icicle-saved-candidate ((t (:background "color-17"))) t)
  '(icicle-special-candidate ((t (:background "color-19"))) t)
  '(idle-highlight ((t (:background "color-17"))))
- '(log-view-message ((t nil)) t)
+ '(log-view-message ((t nil)))
  '(magit-header ((t (:inherit header-line :background "white" :foreground "black"))))
  '(match ((t (:background "color-22"))))
  '(mode-line ((t (:background "#262626" :foreground "#262626" :inverse-video t :box nil :underline nil :slant normal :weight normal))))
