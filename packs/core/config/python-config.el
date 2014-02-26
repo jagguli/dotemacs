@@ -33,12 +33,15 @@
   (show-subtree)))
 
 
-(defun string/starts-with (string prefix)
-  "Return t if STRING starts with prefix."
-  (and (string-match (rx-to-string `(bos ,prefix) t)
-                     string)
-       t))
+(defun string/starts-with (s begins)
+      "returns non-nil if string S starts with BEGINS.  Else nil."
+      (cond ((>= (length s) (length begins))
+             (string-equal (substring s 0 (length begins)) begins))
+            (t nil)))
 
+(set-display-table-slot standard-display-table
+                        'selective-display
+                        (string-to-vector " [...]\n"))
 ;;;;http://emacs-fu.blogspot.com.au/2008/12/showing-and-hiding-blocks-of-code.html
 (defun my-python-mode-hook ()
   (interactive)
@@ -48,10 +51,11 @@
     (flycheck-mode -1))
 
   (if (not (string/starts-with (buffer-name) "*mo-git-blame") )
-      (setq outline-regexp "[ \t]*\\(class\\|def\\|with\\) ")
-    (outline-minor-mode t)
-    (define-key evil-normal-state-map "za" 'outline-cycle)
-    (define-key evil-normal-state-map "\t" 'outline-cycle))
+      (progn
+        (setq outline-regexp "[ \t]*\\(class\\|def\\|with\\) ")
+        (outline-minor-mode t)
+        (define-key evil-normal-state-map "za" 'outline-cycle)
+        (define-key evil-normal-state-map "\t" 'outline-cycle)))
   (hide-body)
   (show-paren-mode 1)
   (define-key evil-normal-state-map "zo" 'show-entry)
@@ -97,7 +101,8 @@
     (insert "import sj; sj.debug() ######## FIXME:REMOVE ME steven.joseph ################\n")
     (previous-line)
     (python-indent-line)
-  (highlight-lines-matching-regexp "^[ ]*import sj; sj.debug()"))
+  (highlight-lines-matching-regexp "^[ ]*import sj; sj.debug().*")))
+
 
 (define-key global-map (kbd "<f8>" ) 'breakpoint-set)
 

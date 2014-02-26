@@ -292,7 +292,7 @@ Chromium."
  '(send-mail-function (quote mailclient-send-it))
  '(shell-file-name "/bin/sh")
  '(split-height-threshold nil)
- '(split-width-threshold 122)
+ '(split-width-threshold nil)
  '(split-window-keep-point nil)
  '(tool-bar-mode nil)
  '(url-handler-mode t)
@@ -342,7 +342,7 @@ Chromium."
  '(icicle-saved-candidate ((t (:background "color-17"))) t)
  '(icicle-special-candidate ((t (:background "color-19"))) t)
  '(idle-highlight ((t (:background "color-17"))))
- '(log-view-message ((t nil)))
+ '(log-view-message ((t nil)) t)
  '(magit-header ((t (:inherit header-line :background "white" :foreground "black"))))
  '(match ((t (:background "color-22"))))
  '(mode-line ((t (:background "#262626" :foreground "#262626" :inverse-video t :box nil :underline nil :slant normal :weight normal))))
@@ -354,41 +354,41 @@ Chromium."
  '(vertical-border ((t (:inherit mode-line-inactive :background "grey" :foreground "grey" :weight thin :width condensed)))))
 (put 'narrow-to-region 'disabled nil)
 
-(defun hs-hide-leafs-recursive (minp maxp)
-  "Hide blocks below point that do not contain further blocks in
-    region (MINP MAXP)."
-  (when (hs-find-block-beginning)
-    (setq minp (1+ (point)))
-    (funcall hs-forward-sexp-func 1)
-    (setq maxp (1- (point))))
-  (unless hs-allow-nesting
-    (hs-discard-overlays minp maxp))
-  (goto-char minp)
-  (let ((leaf t))
-    (while (progn
-             (forward-comment (buffer-size))
-             (and (< (point) maxp)
-                  (re-search-forward hs-block-start-regexp maxp t)))
-      (setq pos (match-beginning hs-block-start-mdata-select))
-      (if (hs-hide-leafs-recursive minp maxp)
-          (save-excursion
-            (goto-char pos)
-            (hs-hide-block-at-point t)))
-      (setq leaf nil))
-    (goto-char maxp)
-    leaf))
-
-(defun hs-hide-leafs ()
-  "Hide all blocks in the buffer that do not contain subordinate
-    blocks.  The hook `hs-hide-hook' is run; see `run-hooks'."
-  (interactive)
-  (hs-life-goes-on
-   (save-excursion
-     (message "Hiding blocks ...")
-     (save-excursion
-       (goto-char (point-min))
-       (hs-hide-leafs-recursive (point-min) (point-max)))
-     (message "Hiding blocks ... done"))
-          (run-hooks 'hs-hide-hook)))
+;;(defun hs-hide-leafs-recursive (minp maxp)
+;;  "Hide blocks below point that do not contain further blocks in
+;;    region (MINP MAXP)."
+;;  (when (hs-find-block-beginning)
+;;    (setq minp (1+ (point)))
+;;    (funcall hs-forward-sexp-func 1)
+;;    (setq maxp (1- (point))))
+;;  (unless hs-allow-nesting
+;;    (hs-discard-overlays minp maxp))
+;;  (goto-char minp)
+;;  (let ((leaf t))
+;;    (while (progn
+;;             (forward-comment (buffer-size))
+;;             (and (< (point) maxp)
+;;                  (re-search-forward hs-block-start-regexp maxp t)))
+;;      (setq pos (match-beginning hs-block-start-mdata-select))
+;;      (if (hs-hide-leafs-recursive minp maxp)
+;;          (save-excursion
+;;            (goto-char pos)
+;;            (hs-hide-block-at-point t)))
+;;      (setq leaf nil))
+;;    (goto-char maxp)
+;;    leaf))
+;;
+;;(defun hs-hide-leafs ()
+;;  "Hide all blocks in the buffer that do not contain subordinate
+;;    blocks.  The hook `hs-hide-hook' is run; see `run-hooks'."
+;;  (interactive)
+;;  (hs-life-goes-on
+;;   (save-excursion
+;;     (message "Hiding blocks ...")
+;;     (save-excursion
+;;       (goto-char (point-min))
+;;       (hs-hide-leafs-recursive (point-min) (point-max)))
+;;     (message "Hiding blocks ... done"))
+;;          (run-hooks 'hs-hide-hook)))
 
 (put 'dired-find-alternate-file 'disabled nil)
