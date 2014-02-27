@@ -127,6 +127,7 @@
 (global-set-key (kbd "M-s /") 'search-all-buffers)
 (eval-after-load 'tramp '(setenv "SHELL" "/bin/sh"))
 
+(menu-bar-mode -1)
 ;; Settings ===============
 
 (setq stack-trace-on-error t)
