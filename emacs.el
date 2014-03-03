@@ -96,10 +96,10 @@
     (when filename
       (with-temp-buffer
         (insert filename)
-        (insert " ")
+        (insert ":")
         (insert lineno)
-        (insert "\n\n")
-        (shell-command-on-region (point-min) (point-max) "xclip -i"))
+        (insert "\n")
+        (shell-command-on-region (point-min) (point-max) "xsel -i"))
       (message filename))))
 
 (setq locate-make-command-line

@@ -120,3 +120,9 @@
 (require 'nose)
 
 (add-to-list 'nose-project-names "/usr/sbin/nosetests3")
+
+(defun add-break nil
+  (interactive)
+   (with-temp-buffer
+      (insert-file-contents "~/.fpdb/breakpoints")
+      (buffer-string)))
