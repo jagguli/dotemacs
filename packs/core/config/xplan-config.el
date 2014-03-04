@@ -9,6 +9,17 @@
           buffer-file-name)))
 
 
+(defun diff-version (version)
+  "Diff selected region in two xplan versions"
+  (interactive "nVersion: \n")
+  (ediff-region-linewise buffer-file-name
+         (replace-regexp-in-string
+          "xplan[0-9]*/"
+          (format "%s%s/" "xplan"
+                  (if (equal version 0) "" version))
+          buffer-file-name)))
+
+
 (defun switch-version (version)
   "Switch to file in other xplan version"
   (interactive "nVersion: \n")

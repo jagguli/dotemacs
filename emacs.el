@@ -13,28 +13,7 @@
   ;(load-file "~/.emacs.d/packs.el")
   ;(load-file "~/.emacs.d/packs/core/init.el")
   ;(load-file "~/.emacs.d/packs/themes/init.el")
-  )
-
-(defun kill-other-buffers ()
-      "Kill all other buffers."
-      (interactive)
-      (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
-
-(defun kill-all-buffers ()
-      "Kill all other buffers."
-      (interactive)
-      (mapc 'kill-buffer (buffer-list)))
-
-(defun kill-other-file-buffers ()
-    "Kill all other buffers."
-    (interactive)
-    (mapc 'kill-buffer 
-          (delq (current-buffer) 
-                (remove-if-not 'buffer-file-name (buffer-list)))))
-
-(defun edit-emacs-config ()
-  (interactive)
-  (find-file "~/.emacs.d/emacs.el"))
+)
 
 (load-file "~/.emacs.d/init.el")
 (load-file "~/.emacs.d/packs.el")  
@@ -47,10 +26,6 @@
 (add-to-list 'auto-mode-alist '("\\.erl\\'" . erlang-mode))
 
 
-(defun gettags (filename)
-  (interactive)
-  (shell-command-to-string
-   (format "/home/steven/bin/tagquery.py %s" filename)))
 ;;(setq speedbar-fetch-etags-command "/home/steven/bin/tagquery.py")
 ;;            speedbar-fetch-etags-arguments '(""))
 (load "speedbar")
@@ -65,71 +40,10 @@
 (setq speedbar-dynamic-tags-function-list
       (delete (first speedbar-dynamic-tags-function-list)
               speedbar-dynamic-tags-function-list))
-(defalias 'yes-or-no-p 'y-or-n-p)
-;;======= command line  =======
-(defun command-line-diff (switch)
-  (let ((file1 (pop command-line-args-left))
-        (file2 (pop command-line-args-left)))
-    (ediff file1 file2)))
 
-(add-to-list 'command-switch-alist '("diff" . command-line-diff))
-
-;; Usage: emacs -diff file1 file2
-
-(defun xclip-insert ()
-  (interactive)
-  (insert (shell-command-to-string
-      "xclip -o")))
-(setq inhibit-splash-screen t)
-;(setq org-agenda-include-diary t)
-;(pop-to-buffer (get-buffer-create (generate-new-buffer-name "*scratch-org*")))
-;(insert "Scratch buffer with org-mode.\n\n")
-;(org-mode)
-
-(defun my-put-file-name-on-clipboard ()
-  "Put the current file name on the clipboard"
-  (interactive)
-  (setq lineno  (what-line))
-  (let ((filename (if (equal major-mode 'dired-mode)
-                      default-directory
-                    (buffer-file-name))))
-    (when filename
-      (with-temp-buffer
-        (insert filename)
-        (insert ":")
-        (insert lineno)
-        (insert "\n")
-        (shell-command-on-region (point-min) (point-max) "xsel -i"))
-      (message filename))))
-
-(setq locate-make-command-line
-      (lambda (ss) (list locate-command "--database" "/home/steven/iress/locate.db" "--basename" "--regexp" ss)))
-(defun check-debug (&optional buffer)
-  (interactive)
-  (if buffer (set-buffer buffer) (set-buffer (current-buffer)))
-  (goto-char (point-min))
-  (assert (= 0 (search-forward "sj_debug"))))
-
-(add-hook 'vc-before-checkin-hook 
-          #'(lambda ()
-              (check-debug vc-parent-buffer)
-              ))
-;;======= Code folding =======
-(defun jao-toggle-selective-display ()
-  (interactive)
-  (set-selective-display (if selective-display nil 2)))
-
-(defun search-all-buffers (regexp &optional allbufs)
-  "Show all lines matching REGEXP in all buffers."
-  (interactive (occur-read-primary-args))
-  (multi-occur-in-matching-buffers ".*" regexp))
-
-(global-set-key (kbd "M-s /") 'search-all-buffers)
-(eval-after-load 'tramp '(setenv "SHELL" "/bin/sh"))
-
-(menu-bar-mode -1)
 ;; Settings ===============
 
+(defalias 'yes-or-no-p 'y-or-n-p)
 (setq stack-trace-on-error t)
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-echo-area-message t)
@@ -141,8 +55,9 @@
                 c-basic-offset 4)
 (setq x-select-enable-clipboard t)
 (savehist-mode 1)
+(setq inhibit-splash-screen t)
+(menu-bar-mode -1)
 
-;;;###autoload
 (defun browse-url-chrome (url &optional new-window)
   "Ask the Chromium WWW browser to load URL.
 Default to the URL around or before point.  The strings in

@@ -5,6 +5,7 @@
 (require 'popup-switcher)  
 
 ;(live-load-config-file "icicles-config.el")
+(live-load-config-file "my-config.el")
 (live-load-config-file "recent-files-config.el")
 (live-load-config-file "helm-config.el")
 (live-load-config-file "helm-recoll.el")
