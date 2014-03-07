@@ -104,7 +104,6 @@
   (highlight-lines-matching-regexp "^[ ]*import sj; sj.debug().*")))
 
 
-(define-key global-map (kbd "<f8>" ) 'breakpoint-set)
 
 (defun breakpoint-uset nil
   (interactive)
@@ -112,7 +111,6 @@
     (goto-char (point-min))
     (flush-lines "^[ ]*import sj; sj.debug().*$")))
 
-(define-key global-map (kbd "<f7>" ) 'breakpoint-uset)
 
 
 ;; Nose configuration ==========================================================
@@ -121,8 +119,35 @@
 
 (add-to-list 'nose-project-names "/usr/sbin/nosetests3")
 
-(defun add-break nil
+
+(defun clear-breakpoints nil
   (interactive)
-   (with-temp-buffer
-      (insert-file-contents "~/.fpdb/breakpoints")
-      (buffer-string)))
+  (write-region "" nil "~/.cpdb/breakpoints"))
+
+(defun remove-breakpoint nil
+  (interactive)
+  (let ((bpfile "~/.cpdb/breakpoints")
+        (bpline (format "%s:%s" (buffer-file-name) (line-number-at-pos (point)))))
+    (with-temp-buffer
+      (insert-file-contents bpfile)
+      (goto-char (point-min))
+      (flush-lines bpline)
+      (when (file-writable-p bpfile)
+        (write-region (point-min) (point-max) bpfile)))))
+
+(defun add-breakpoint nil
+  (interactive)
+  (let ((bpfile "~/.cpdb/breakpoints")
+        (bpline (format "%s:%s" (buffer-file-name) (line-number-at-pos (point)))))
+    (with-temp-buffer
+      (insert-file-contents bpfile)
+      (goto-char (point-min))
+      (flush-lines bpline)
+      (insert bpline)
+      (insert "\n")
+      (sort-lines nil (point-min) (point-max))
+      (when (file-writable-p bpfile)
+        (write-region (point-min) (point-max) bpfile)))))
+
+(define-key global-map (kbd "<f8>" ) 'add-breakpoint)
+(define-key global-map (kbd "<f7>" ) 'remove-breakpoint)

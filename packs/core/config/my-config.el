@@ -41,7 +41,7 @@
 ;(insert "Scratch buffer with org-mode.\n\n")
 ;(org-mode)
 
-(defun file-name-to-clipboard ()
+(defun filename-to-clipboard ()
   "Put the current file name on the clipboard"
   (interactive)
   (setq lineno  (what-line))
