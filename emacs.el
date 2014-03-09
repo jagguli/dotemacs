@@ -57,6 +57,7 @@
 (savehist-mode 1)
 (setq inhibit-splash-screen t)
 (menu-bar-mode -1)
+(setq ido-use-filename-at-point nil)
 
 (defun browse-url-chrome (url &optional new-window)
   "Ask the Chromium WWW browser to load URL.
