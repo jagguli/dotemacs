@@ -12,7 +12,7 @@
 (defun diff-version (version)
   "Diff selected region in two xplan versions"
   (interactive "nVersion: \n")
-  (ediff-region-linewise buffer-file-name
+  (ediff-regions-linewise buffer-file-name
          (replace-regexp-in-string
           "xplan[0-9]*/"
           (format "%s%s/" "xplan"
