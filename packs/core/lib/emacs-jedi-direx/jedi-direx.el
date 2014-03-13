@@ -37,6 +37,11 @@
   :group 'programming
   :prefix "jedi-direx")
 
+(defcustom jedi-direx:hide-imports nil
+  "If non-nil, imports will not be shown in the tree."
+  :type 'boolean
+  :group 'jedi-direx)
+
 
 ;;; Core
 
@@ -62,8 +67,21 @@
                    :cache cache
                    :name (plist-get (car cache) :name))))
 
+(defun jedi-direx:-filter-cache (items)
+  "Filter out cache items according to configuration."
+  (delq nil
+        (mapcar
+         (lambda (item)
+           (let ((item-type (plist-get (car item) :item-type)))
+             (unless (and jedi-direx:hide-imports
+                          (stringp item-type) (string= item-type "import"))
+               item)))
+         items)))
+
+
 (defmethod direx:node-children ((node jedi-direx:object))
-  (mapcar 'jedi-direx:node-from-cache (cdr (oref node :cache))))
+  (mapcar 'jedi-direx:node-from-cache
+          (jedi-direx:-filter-cache (cdr (oref node :cache)))))
 
 
 ;;; Face
@@ -151,6 +169,15 @@
   (interactive)
   (switch-to-buffer (jedi-direx:make-buffer)))
 
+
+;;; Setup
+
+;;;###autoload
+(defun jedi-direx:setup ()
+  "Add it to `jedi-mode-hook' to use jedi-direx."
+  (when jedi-mode
+    (add-hook 'after-change-functions 'jedi:after-change-handler nil t)
+    (jedi:defined-names-deferred)))
 
 (provide 'jedi-direx)
 
