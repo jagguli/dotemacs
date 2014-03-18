@@ -27,7 +27,7 @@
 (live-load-config-file "erlang-config.el")
 (live-load-config-file "taskjuggler-config.el")
 (live-load-config-file "twittering-config.el")
-(live-load-config-file "jabber-config.el")
+;;(live-load-config-file "jabber-config.el")
 (live-load-config-file "orgmode-config.el")
 (live-load-config-file "calfw-config.el")
 (live-load-config-file "tail-config.el")
@@ -43,7 +43,7 @@
 (live-load-config-file "dired-config.el")
 (live-load-config-file "dired+-config.el")
 (live-load-config-file "other-buffer.el")
-(live-load-config-file "elscreen-config.el")
+;;(live-load-config-file "elscreen-config.el")
 
 (defun guess-where-keybinding-is-defined (key)
   "try to guess where a key binding might be defined"
