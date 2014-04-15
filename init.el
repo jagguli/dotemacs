@@ -39,7 +39,7 @@
        python python-magic repository-root scss-mode elisp-slime-nav
        magit git-rebase-mode git-commit-mode ido-ubiquitous smex
        find-file-in-project paredit tango-2-theme twittering-mode
-       undo-tree w3m web-mode xclip web-beautify unbound)
+       undo-tree w3m web-mode xclip web-beautify unbound guide-key)
     "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
