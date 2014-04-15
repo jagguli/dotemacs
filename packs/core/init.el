@@ -3,11 +3,12 @@
 (require 'repository-root)
 (require 'org-journal)
 (require 'popup-switcher)  
+(require 'suggbind)  
 
 ;(live-load-config-file "icicles-config.el")
 (live-add-pack-lib "jedi-direx")
 (live-load-config-file "my-config.el")
-(live-load-config-file "recent-files-config.el")
+;;(live-load-config-file "recent-files-config.el")
 (live-load-config-file "helm-config.el")
 (live-load-config-file "helm-recoll.el")
 (live-load-config-file "evil-config.el")
@@ -43,6 +44,7 @@
 (live-load-config-file "dired-config.el")
 (live-load-config-file "dired+-config.el")
 (live-load-config-file "other-buffer.el")
+(live-load-config-file "guide-key-config.el")
 ;;(live-load-config-file "elscreen-config.el")
 
 (defun guess-where-keybinding-is-defined (key)

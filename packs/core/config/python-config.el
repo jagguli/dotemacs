@@ -1,5 +1,4 @@
 ;; Python Mode ================================================================================ 
-;;(require 'pymacs)
 ;;;(require 'python-magic)
 ;;(setq pymacs-python-command "python2")
 ;(autoload 'pymacs-apply "pymacs")
@@ -8,10 +7,21 @@
 ;(autoload 'pymacs-exec "pymacs" nil t)
 ;(autoload 'pymacs-load "pymacs" nil t)
 ;(autoload 'pymacs-autoload "pymacs")
-;;(pymacs-load "ropemacs" "rope-")
 ;(setq ropemacs-enable-autoimport t)
 ;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 ;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+(defun load-ropemacs ()
+  "Load pymacs and ropemacs"
+  (interactive)
+   (setq ropemacs-global-prefix "C-x @")
+  (require 'pymacs)
+  (pymacs-load "ropemacs" "rope-")
+  ;; Automatically save project python buffers before refactorings
+  (setq ropemacs-confirm-saving 'nil)
+)
+(load-ropemacs)
+(global-set-key "\C-xpl" 'load-ropemacs)
+
 (eval-after-load "python"
   '(define-key python-mode-map "\C-cx" 'jedi-direx:pop-to-buffer))
 (add-hook 'jedi-mode-hook 'jedi-direx:setup)
@@ -53,7 +63,10 @@
       (flycheck-mode) 
     (flycheck-mode -1))
 
-  (if (not (string/starts-with (buffer-name) "*mo-git-blame") )
+  (if (not (or
+            (string/starts-with (buffer-name) "*mo-git-blame")
+            (string/starts-with (buffer-name) "*svn-status")
+            ))
       (progn
         (setq outline-regexp "[ \t]*\\(class\\|def\\|with\\) ")
         (outline-minor-mode t)
@@ -68,7 +81,7 @@
         (define-key evil-normal-state-map "zR" 'show-all)
         (define-key evil-normal-state-map "zm" 'hide-subtree)
         (define-key evil-normal-state-map "zM" 'hide-body)
-        (define-key evil-normal-state-map "C-i" 'evil-jump-forward)
+        (define-key evil-normal-state-map (kbd "C-i")  'evil-jump-forward)
         )
     )
   )
@@ -129,11 +142,13 @@
 
 (defun clear-breakpoints nil
   (interactive)
-  (write-region "" nil "~/.cpdb/breakpoints"))
+  (write-region "" nil (if (string-match ".*xplan.*" buffer-file-name)
+                    "~/.xplanbreakpoints" "~/.cpdb/breakpoints")))
 
 (defun remove-breakpoint nil
   (interactive)
-  (let ((bpfile "~/.cpdb/breakpoints")
+  (let ((bpfile (if (string-match ".*xplan.*" buffer-file-name)
+                    "~/.xplanbreakpoints" "~/.cpdb/breakpoints"))
         (bpline (format "%s:%s" (buffer-file-name) (line-number-at-pos (point)))))
     (with-temp-buffer
       (insert-file-contents bpfile)
@@ -144,7 +159,8 @@
 
 (defun add-breakpoint nil
   (interactive)
-  (let ((bpfile "~/.cpdb/breakpoints")
+  (let ((bpfile (if (string-match ".*xplan.*" buffer-file-name)
+                    "~/.xplanbreakpoints" "~/.cpdb/breakpoints"))
         (bpline (format "%s:%s" (buffer-file-name) (line-number-at-pos (point)))))
     (with-temp-buffer
       (insert-file-contents bpfile)

@@ -58,6 +58,7 @@
 (setq inhibit-splash-screen t)
 (menu-bar-mode -1)
 (setq ido-use-filename-at-point nil)
+(which-function-mode)
 
 (defun browse-url-chrome (url &optional new-window)
   "Ask the Chromium WWW browser to load URL.
@@ -75,6 +76,15 @@ Chromium."
 	    browse-url-chromium-arguments
 	    (list url)))))
 
+(defun reset-font ()
+  (interactive)
+  (global-font-lock-mode nil)
+  (font-lock-fontify-buffer)
+  (global-font-lock-mode t)
+  (recenter-top-bottom))
+
+(global-set-key (kbd "C-l") 'reset-font)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -88,14 +98,13 @@ Chromium."
  '(auto-revert-interval 0.5)
  '(background-color nil)
  '(background-mode dark)
- '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
- '(bookmark-default-file "/home/steven/Dropbox/.emacsbookmarks")
+ '(bmkp-last-as-first-bookmark-file "~/share/Dropbox/.emacsbookmarks")
+ '(bookmark-default-file "/home/steven/share/Dropbox/.emacsbookmarks")
  '(bookmark-version-control (quote nospecial))
  '(browse-url-browser-function (quote browse-url-chromium))
  '(browse-url-chromium-program "google-chrome")
  '(compilation-disable-input t)
  '(cursor-color nil)
- '(custom-enabled-themes (quote (solarized-dark)))
  '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "e9a1226ffed627ec58294d77c62aa9561ec5f42309a1f7a2423c6227e34e3581" "13b2915043d7e7627e1273d98eb95ebc5b3cc09ef4197afb2e1ede78fe6e0972" "1057947e1144d06a9fc8e97b6a72b72cf533a4cfe1247c4af047dc9221e9b102" "3800c684fc72cd982e3366a7c92bb4f3975afb9405371c7cfcbeb0bee45ddd18" "7c66e61cada84d119feb99a90d30da44fddc60f386fca041c01de74ebdd934c2" "f41ff26357e8ad4d740901057c0e2caa68b21ecfc639cbc865fdd8a1cb7563a9" "1797bbff3860a9eca27b92017b96a0df151ddf2eb5f73e22e37eb59f0892115e" "21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
  '(dictionary-proxy-port 80)
  '(dictionary-proxy-server "syd-devproxy1.devel.iress.com.au")
@@ -138,7 +147,7 @@ Chromium."
  '(grep-highlight-matches (quote auto))
  '(gud-pdb-command-name "python -d")
  '(helm-always-two-windows t)
- '(helm-boring-buffer-regexp-list (quote ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-" "\\*Custom" "\\*Complet" "\\*magit")))
+ '(helm-boring-buffer-regexp-list (quote ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-" "\\*Custom" "\\*Complet" "\\*magit" "\\*tail" "\\*ag" "\\*cscope" "\\*scratch" "\\*epc")))
  '(helm-boring-file-regexp-list (quote ("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$")))
  '(helm-c-ack-version 2)
  '(helm-ff-auto-update-initial-value nil)
@@ -174,6 +183,7 @@ Chromium."
  '(lazy-highlight-cleanup nil)
  '(lazy-highlight-initial-delay 0)
  '(lazy-highlight-max-at-a-time nil)
+ '(line-number-mode t)
  '(ls-lisp-dirs-first t)
  '(ls-lisp-verbosity (quote nil))
  '(mml-enable-flowed nil)
@@ -258,7 +268,7 @@ Chromium."
  '(icicle-proxy-candidate ((t (:background "color-17" :box (:line-width 2 :color "White" :style released-button)))) t)
  '(icicle-saved-candidate ((t (:background "color-17"))) t)
  '(icicle-special-candidate ((t (:background "color-19"))) t)
- '(idle-highlight ((t (:background "color-17"))) t)
+ '(idle-highlight ((t (:background "color-17"))))
  '(log-view-message ((t nil)) t)
  '(magit-header ((t (:inherit header-line :background "white" :foreground "black"))))
  '(match ((t (:background "color-22"))))

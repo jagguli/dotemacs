@@ -1,1 +1,1 @@
-(define-key global-map (kbd "C-x s" ) 'magit-status)
+(global-set-key "\C-xgs" 'magit-status)
