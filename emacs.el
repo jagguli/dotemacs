@@ -58,7 +58,6 @@
 (setq inhibit-splash-screen t)
 (menu-bar-mode -1)
 (setq ido-use-filename-at-point nil)
-(which-function-mode)
 
 (defun browse-url-chrome (url &optional new-window)
   "Ask the Chromium WWW browser to load URL.
@@ -272,7 +271,7 @@ Chromium."
  '(log-view-message ((t nil)) t)
  '(magit-header ((t (:inherit header-line :background "white" :foreground "black"))))
  '(match ((t (:background "color-22"))))
- '(mode-line ((t (:background "#262626" :foreground "#262626" :inverse-video t :box nil :underline nil :slant normal :weight normal))))
+ '(mode-line ((t (:background "brightcyan" :foreground "color-17" :inverse-video t :box nil :underline nil :slant normal :weight normal))))
  '(mode-line-inactive ((t (:inherit mode-line :background "#494949" :foreground "#494949" :inverse-video t :box nil :underline nil :slant normal :weight normal))))
  '(notmuch-message-summary-face ((t (:background "color-17"))))
  '(notmuch-tag-face ((t (:foreground "color-19"))))
