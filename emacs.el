@@ -40,6 +40,7 @@
 (setq speedbar-dynamic-tags-function-list
       (delete (first speedbar-dynamic-tags-function-list)
               speedbar-dynamic-tags-function-list))
+(desktop-save-mode)
 
 ;; Settings ===============
 

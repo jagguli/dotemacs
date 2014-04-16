@@ -1,6 +1,5 @@
 ;; Python Mode ================================================================================ 
 ;;;(require 'python-magic)
-;;(setq pymacs-python-command "python2")
 ;(autoload 'pymacs-apply "pymacs")
 ;(autoload 'pymacs-call "pymacs")
 ;(autoload 'pymacs-eval "pymacs" nil t)
@@ -14,7 +13,9 @@
 (defun load-ropemacs ()
   "Load pymacs and ropemacs"
   (interactive)
-   (setq ropemacs-global-prefix "C-x @")
+  (setq pymacs-python-command "/usr/bin/python2")
+  (setenv "PYMACS_PYTHON" "python2.7")
+  (setq ropemacs-global-prefix "C-x @")
   (require 'pymacs)
   (pymacs-load "ropemacs" "rope-")
   ;; Automatically save project python buffers before refactorings

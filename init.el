@@ -40,7 +40,7 @@
        magit git-rebase-mode git-commit-mode ido-ubiquitous smex
        find-file-in-project paredit tango-2-theme twittering-mode
        undo-tree w3m web-mode xclip web-beautify unbound guide-key
-       help-fns+ sudo-ext)
+       help-fns+ sudo-ext smart-mode-line)
     "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
