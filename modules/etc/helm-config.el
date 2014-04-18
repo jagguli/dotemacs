@@ -1,4 +1,4 @@
-(live-add-pack-lib "helm")
+(add-user-lib "helm")
 (require 'helm-config)
 ;;(require 'helm-ag)
 ;;(require 'helm-command)

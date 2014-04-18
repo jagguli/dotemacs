@@ -1,4 +1,4 @@
-(setq sml/theme 'ample)
+(setq sml/theme 'respectful)
 (sml/setup)
 ;;; use setq-default to set it for /all/ modes
 ;;(setq-default mode-line-format

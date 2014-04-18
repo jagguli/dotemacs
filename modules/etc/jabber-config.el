@@ -1,4 +1,4 @@
-(live-add-pack-lib "emacs-jabber")
+(add-user-lib "emacs-jabber")
 (require 'jabber-autoloads)
 (require 'jabber-libnotify)
 (require 'jabber-tmux)

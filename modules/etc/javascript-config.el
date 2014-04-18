@@ -6,3 +6,6 @@
 (defun my-js-mode-hooks ()
   (flycheck-mode t))
 (add-hook 'js-mode-hook 'my-js-mode-hooks)
+
+(add-hook 'js-mode-hook (lambda () (tern-mode t)))
+

@@ -1,52 +1,210 @@
-(require 'package)
- (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                           ("marmalade" . "http://marmalade-repo.org/packages/")
-                           ("melpa" . "http://melpa.milkbox.net/packages/")))
-
-(package-initialize)
-
-(when (not package-archive-contents)
-    (package-refresh-contents))
-
-;; Add in your own as you wish:
-(defvar my-packages
-  '(ag bookmark+ calfw calfw-gcal color-file-completion color-moccur color-theme-active
-       color-theme-actress color-theme-approximate color-theme-blackboard
-       color-theme-buffer-local color-theme-cobalt
-       color-theme-colorful-obsolescence color-theme-complexity
-       color-theme-dawn-night color-theme-dg color-theme-dpaste
-       color-theme-eclipse color-theme-emacs-revert-theme
-       color-theme-github color-theme-gruber-darker color-theme-heroku
-       color-theme-ir-black color-theme-library color-theme-molokai
-       color-theme-monokai color-theme-railscasts
-       color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow
-       color-theme-solarized color-theme-tango color-theme-twilight
-       color-theme-vim-insert-mode color-theme-wombat+
-       color-theme-wombat color-theme color-theme-x column-marker
-       diff-hl dired+ dired-details direx dsvn elscreen eproject
-       erlang etags-select etags-table evil-leader evil-paredit evil
-       findr flycheck-color-mode-line flycheck flymake-cursor
-       goto-chg helm-ack helm-ag anything
-       helm-dired-recent-dirs helm-git helm-git-grep
-       helm-project-persist helm-projectile helm-recoll helm-themes
-       helm hideshowvis icicles ipython itail jedi auto-complete epc
-       ctable concurrent deferred jinja2-mode
-       magit-commit-training-wheels markdown-mode+ markdown-mode
-       mo-git-blame multi-project multi-web-mode mustache
-       mustache-mode nose notmuch-labeler notmuch org-journal
-       outline-magic popup-switcher popup powerline project-persist
-       projectile pkg-info epl dash pyflakes pylint pymacs pysmell
-       python python-magic repository-root scss-mode elisp-slime-nav
-       magit git-rebase-mode git-commit-mode ido-ubiquitous smex
-       find-file-in-project paredit tango-2-theme twittering-mode
-       undo-tree w3m web-mode xclip web-beautify unbound guide-key
-       help-fns+ sudo-ext smart-mode-line crosshair)
-    "A list of packages to ensure are installed at launch.")
-
-(dolist (p my-packages)
-    (when (not (package-installed-p p))
-         (package-install p)))
-
-(defun activated-packages ()
+; define function to shutdown emacs server instance
+(defun shutdown ()
+  "Save buffers, Quit, and Shutdown (kill) server"
   (interactive)
-  (message (format "%s" package-activated-list)))
+  (save-some-buffers)
+  (kill-emacs))
+(defun reload-emacs-config ()
+  "reload emacs config"
+  (interactive)
+  (load-file "~/.emacs.d/init.el")
+)
+(defun start-server (name)
+  "start an emacs server"
+  (interactive)
+  (setq server-name name)
+  (setq server-use-tcp t)
+  (server-start))
+(load-file "~/.emacs.d/packages.el")
+(load-file "~/.emacs.d/emacs.el")
+(load-file "~/.emacs.d/modules.el")  
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(Buffer-menu-use-frame-buffer-list "Mode")
+ '(ack-and-a-half-prompt-for-directory t)
+ '(ansi-color-faces-vector [default bold shadow italic underline bold bold-italic bold])
+ '(auth-source-protocols (quote ((imap "imap" "imaps" "143" "993") (pop3 "pop3" "pop" "pop3s" "110" "995") (ssh "ssh" "22") (sftp "sftp" "115") (smtp "smtp" "25") (jabber "jabber-client" "5222"))))
+ '(auth-sources (quote ("~/.authinfo")))
+ '(auto-revert-interval 0.5)
+ '(background-color nil)
+ '(background-mode dark)
+ '(bmkp-last-as-first-bookmark-file "~/share/Dropbox/.emacsbookmarks")
+ '(bookmark-default-file "/home/steven/share/Dropbox/.emacsbookmarks")
+ '(bookmark-version-control (quote nospecial))
+ '(browse-url-browser-function (quote browse-url-chromium))
+ '(browse-url-chromium-program "google-chrome")
+ '(compilation-disable-input t)
+ '(cursor-color nil)
+ '(custom-safe-themes (quote ("bad832ac33fcbce342b4d69431e7393701f0823a3820f6030ccc361edd2a4be4" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "e9a1226ffed627ec58294d77c62aa9561ec5f42309a1f7a2423c6227e34e3581" "13b2915043d7e7627e1273d98eb95ebc5b3cc09ef4197afb2e1ede78fe6e0972" "1057947e1144d06a9fc8e97b6a72b72cf533a4cfe1247c4af047dc9221e9b102" "3800c684fc72cd982e3366a7c92bb4f3975afb9405371c7cfcbeb0bee45ddd18" "7c66e61cada84d119feb99a90d30da44fddc60f386fca041c01de74ebdd934c2" "f41ff26357e8ad4d740901057c0e2caa68b21ecfc639cbc865fdd8a1cb7563a9" "1797bbff3860a9eca27b92017b96a0df151ddf2eb5f73e22e37eb59f0892115e" "21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
+ '(dictionary-proxy-port 80)
+ '(dictionary-proxy-server "syd-devproxy1.devel.iress.com.au")
+ '(dictionary-use-http-proxy t)
+ '(dired-omit-files "^\\.[^.]+.*$")
+ '(ecb-activation-selects-ecb-frame-if-already-active t)
+ '(ecb-options-version "2.40")
+ '(ecb-source-file-regexps (quote ((".*" ("\\(^\\(\\.\\|#\\)\\|\\(~$\\|\\.\\(elc\\|obj\\|o\\|class\\|lib\\|dll\\|a\\|so\\|cache\\|pyc\\)$\\)\\)") ("^\\.\\(emacs\\|gnus\\)$")))))
+ '(ecb-source-path (quote ("/home/steven/iress/xplan/" "/home/steven/iress")))
+ '(ecb-tree-indent 2)
+ '(ecb-vc-enable-support nil)
+ '(ediff-split-window-function (quote split-window-right))
+ '(erc-autojoin-mode t)
+ '(erc-button-mode t)
+ '(erc-fill-mode t)
+ '(erc-hide-list (quote ("JOIN" "NICK" "PART" "QUIT" "MODE")))
+ '(erc-irccontrols-mode t)
+ '(erc-list-mode t)
+ '(erc-match-mode t)
+ '(erc-menu-mode t)
+ '(erc-move-to-prompt-mode t)
+ '(erc-netsplit-mode t)
+ '(erc-networks-mode t)
+ '(erc-noncommands-mode t)
+ '(erc-pcomplete-mode t)
+ '(erc-readonly-mode t)
+ '(erc-ring-mode t)
+ '(erc-stamp-mode t)
+ '(erc-track-minor-mode t)
+ '(erc-track-mode t)
+ '(evil-fold-level 1)
+ '(evil-search-module (quote evil-search))
+ '(fci-rule-color "#073642")
+ '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
+ '(flycheck-checkers (quote (coffee-coffeelint css-csslint elixir emacs-lisp emacs-lisp-checkdoc erlang go-gofmt go-build go-test haml html-tidy javascript-jshint json-jsonlint lua perl php php-phpcs puppet-parser puppet-lint python-flake8 python-pylint rst ruby-rubocop ruby ruby-jruby rust sass scala scss sh-bash tex-chktex tex-lacheck xml-xmlstarlet)))
+ '(flycheck-idle-change-delay 5)
+ '(foreground-color nil)
+ '(fortune-dir "/usr/share/fortune/")
+ '(gmm-tool-bar-style (quote retro))
+ '(grep-command "ack --with-filename --nogroup --all")
+ '(grep-highlight-matches (quote auto))
+ '(gud-pdb-command-name "python -d")
+ '(helm-M-x-always-save-history t)
+ '(helm-adaptive-history-file "~/share/Dropbox/helm-adaptive-history")
+ '(helm-always-two-windows t)
+ '(helm-boring-buffer-regexp-list (quote ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-" "\\*Custom" "\\*Complet" "\\*magit" "\\*tail" "\\*ag" "\\*cscope" "\\*scratch" "\\*epc")))
+ '(helm-boring-file-regexp-list (quote ("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$")))
+ '(helm-c-ack-version 2)
+ '(helm-ff-auto-update-initial-value nil)
+ '(helm-ff-file-name-history-use-recentf t)
+ '(helm-ff-ido-style-backspace t)
+ '(helm-ff-skip-boring-files t)
+ '(helm-ff-smart-completion t)
+ '(helm-ff-transformer-show-only-basename nil)
+ '(helm-findutils-skip-boring-files t)
+ '(helm-for-files-preferred-list (quote (helm-source-buffers-list helm-source-recentf helm-source-bookmarks helm-source-file-cache helm-source-files-in-current-dir helm-source-locate helm-source-id-utils)))
+ '(helm-match-plugin-mode t nil (helm-match-plugin))
+ '(helm-mode t)
+ '(helm-mode-handle-completion-in-region t)
+ '(helm-mode-reverse-history nil)
+ '(helm-reuse-last-window-split-state nil)
+ '(helm-split-window-default-side (quote left))
+ '(helm-split-window-in-side-p nil)
+ '(idle-highlight-idle-time 1.5)
+ '(idle-update-delay 1.5)
+ '(itail-fancy-mode-line t)
+ '(itail-highlight-list (quote (("Error" . hi-red-b) ("GET\\|POST\\|DELETE\\|PUT" . hi-green-b) ("[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}" . font-lock-string-face) ("File \\\".*\\\"" . hi-red-b) ("^Traceback.*$" . hi-red-b))))
+ '(jabber-alert-message-hooks (quote (jabber-message-display jabber-message-wave jabber-message-tmux jabber-message-libnotify)))
+ '(jabber-auto-reconnect t)
+ '(jabber-history-enable-rotation t)
+ '(jabber-history-enabled t)
+ '(jabber-history-muc-enabled t)
+ '(jabber-invalid-certificate-servers (quote ("mel-imsrv1" "mel-imsrv1.devel.iress.com.au" "mel-imsrv1/nil")) t)
+ '(jabber-keepalive-interval 30)
+ '(jabber-libnotify-method (quote dbus))
+ '(jabber-roster-line-format "%c %-25n %u %-8s  %S")
+ '(jabber-use-auth-sources t)
+ '(jabber-use-global-history nil)
+ '(lazy-highlight-cleanup nil)
+ '(lazy-highlight-initial-delay 0)
+ '(lazy-highlight-max-at-a-time nil)
+ '(line-number-mode t)
+ '(ls-lisp-dirs-first t)
+ '(ls-lisp-verbosity (quote nil))
+ '(mml-enable-flowed nil)
+ '(newsticker-html-renderer (quote w3m-region))
+ '(newsticker-retrieval-method (quote extern))
+ '(newsticker-url-list (quote (("FastCompany" "http://www.fastcompany.com/rss.xml" nil nil nil) ("TheNextWeb" "http://feeds2.feedburner.com/thenextweb" nil nil nil) ("BoingBoing" "http://feeds.boingboing.net/boingboing/iBag" nil nil nil) ("TechRepublic" "http://www.techrepublic.com/search?t=1&o=1&mode=rss" nil nil nil) ("TechCrunch" "http://feeds.feedburner.com/TechCrunch/" nil nil nil) ("Archlinux" "https://www.archlinux.org/feeds/news/" nil nil nil))))
+ '(notmuch-identities (quote ("steven.joseph@iress.com.au")))
+ '(notmuch-saved-searches (quote (("unread" . "tag:unread") ("sent/replied" . "tag:sent tag:replied and date:30d..0s") ("inbox" . "(tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s") ("osc" . "tag:osc") ("osc_note" . "tag:osc  and \"a NOTE has been added\"") ("nomailers" . "not tag:mailers") ("misc" . "tag:misc") ("last30days" . "date:30d..0s") ("me" . "tag:me and (tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s or (tag:sent or tag:replied or from:steven.joseph) ") ("unread_me" . "tag:me and (tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s and tag:unread or (tag:sent or tag:replied or from:steven.joseph)"))))
+ '(notmuch-search-hook (quote (notmuch-hl-line-mode)))
+ '(notmuch-search-line-faces (quote (("deleted" :foreground "red" :background "blue") ("unread" :foreground "green") ("flagged" :foreground "magenta") ("me" :weight bold :foreground "white") ("INBOX" :foreground "color-243"))))
+ '(notmuch-search-oldest-first nil)
+ '(notmuch-show-all-multipart/alternative-parts nil)
+ '(notmuch-show-empty-saved-searches t)
+ '(notmuch-show-indent-messages-width 2)
+ '(notmuch-show-indent-multipart t)
+ '(notmuch-show-insert-text/plain-hook (quote (notmuch-wash-convert-inline-patch-to-part notmuch-wash-wrap-long-lines notmuch-wash-tidy-citations notmuch-wash-elide-blank-lines notmuch-wash-excerpt-citations)))
+ '(notmuch-show-only-matching-messages t)
+ '(paredit-mode nil t)
+ '(password-cache-expiry nil)
+ '(recentf-auto-cleanup 300)
+ '(recentf-max-menu-items 100)
+ '(recentf-max-saved-items 200)
+ '(recentf-mode t)
+ '(repository-root-matchers (quote (repository-root-matcher/git repository-root-matcher/svn)))
+ '(scss-compile-at-save nil)
+ '(send-mail-function (quote mailclient-send-it))
+ '(shell-file-name "/bin/sh")
+ '(split-height-threshold nil)
+ '(split-width-threshold nil)
+ '(split-window-keep-point nil)
+ '(tool-bar-mode nil)
+ '(url-handler-mode t)
+ '(url-handler-regexp "\\`\\(\\(https?\\|ftp\\|file\\|nfs\\)://|File\\)")
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map (quote ((20 . "#dc322f") (40 . "#cb4b16") (60 . "#b58900") (80 . "#859900") (100 . "#2aa198") (120 . "#268bd2") (140 . "#d33682") (160 . "#6c71c4") (180 . "#dc322f") (200 . "#cb4b16") (220 . "#b58900") (240 . "#859900") (260 . "#2aa198") (280 . "#268bd2") (300 . "#d33682") (320 . "#6c71c4") (340 . "#dc322f") (360 . "#cb4b16"))))
+ '(vc-annotate-very-old-color nil)
+ '(xclip-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#FFFFFF" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+ '(bmkp-local-file-without-region ((t (:foreground "green"))))
+ '(col-highlight ((t (:background "color-237"))))
+ '(column-marker-1 ((t (:background "color-53"))))
+ '(cscope-line-face ((t nil)))
+ '(cursor ((t (:background "light slate blue" :foreground "#888888"))))
+ '(diredp-date-time ((((type tty)) :foreground "yellow") (t :foreground "goldenrod1")))
+ '(diredp-dir-heading ((((type tty)) :background "yellow" :foreground "blue") (t :background "Pink" :foreground "DarkOrchid1")))
+ '(diredp-dir-priv ((t (:background "color-16" :foreground "color-21"))))
+ '(diredp-display-msg ((((type tty)) :foreground "blue") (t :foreground "cornflower blue")))
+ '(diredp-file-name ((t nil)))
+ '(diredp-file-suffix ((t nil)))
+ '(ediff-current-diff-A ((t (:background "color-17" :foreground "white"))))
+ '(ediff-current-diff-B ((t (:background "color-17" :foreground "white"))))
+ '(ediff-even-diff-A ((t (:background "color-237" :foreground "Black"))))
+ '(ediff-even-diff-B ((t (:background "color-239" :foreground "White"))))
+ '(ediff-odd-diff-A ((t (:background "color-239" :foreground "White"))))
+ '(ediff-odd-diff-B ((t (:background "color-239" :foreground "Black"))))
+ '(flycheck-error ((t (:background "color-89"))))
+ '(flycheck-warning ((t (:underline (:color "red" :style wave)))))
+ '(flymake-errline ((t (:background "color-124"))) t)
+ '(flymake-warnline ((t (:background "color-161"))) t)
+ '(helm-ff-directory ((t (:background "color-18" :foreground "white"))))
+ '(helm-selection ((t (:background "color-232" :foreground "color-226" :weight extra-bold))))
+ '(helm-source-header ((t (:background "color-18" :foreground "black" :weight bold :height 1.3 :family "Sans Serif"))))
+ '(helm-visible-mark ((t (:background "color-17"))))
+ '(icicle-candidate-part ((t (:background "color-17"))) t)
+ '(icicle-current-candidate-highlight ((t (:background "color-19"))) t)
+ '(icicle-extra-candidate ((t (:background "color-17"))) t)
+ '(icicle-input-completion-fail ((t (:background "color-88" :foreground "Black"))) t)
+ '(icicle-input-completion-fail-lax ((t (:background "color-53" :foreground "Black"))) t)
+ '(icicle-proxy-candidate ((t (:background "color-17" :box (:line-width 2 :color "White" :style released-button)))) t)
+ '(icicle-saved-candidate ((t (:background "color-17"))) t)
+ '(icicle-special-candidate ((t (:background "color-19"))) t)
+ '(idle-highlight ((t (:background "color-17"))) t)
+ '(log-view-message ((t nil)) t)
+ '(magit-header ((t (:inherit header-line :background "white" :foreground "black"))) t)
+ '(match ((t (:background "color-22"))))
+ '(mode-line ((t (:background "white" :foreground "color-235" :inverse-video t :box (:line-width 2 :color "grey75" :style released-button) :underline nil :slant normal :weight normal))))
+ '(mode-line-inactive ((t (:inherit mode-line :background "#494949" :foreground "#494949" :inverse-video t :box nil :underline nil :slant normal :weight normal))))
+ '(notmuch-message-summary-face ((t (:background "color-17"))))
+ '(notmuch-tag-face ((t (:foreground "color-19"))))
+ '(rst-level-1 ((t (:background "color-236"))) t)
+ '(trailing-whitespace ((t (:background "color-54" :foreground "color-54" :inverse-video t :underline nil :slant normal :weight normal))))
+ '(vertical-border ((t (:inherit mode-line-inactive :background "grey" :foreground "grey" :weight thin :width condensed)))))

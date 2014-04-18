@@ -1,5 +1,5 @@
-(live-add-pack-lib "emacs-jedi")
-(live-add-pack-lib "emacs-jedi-direx")
+(add-user-lib "emacs-jedi")
+(add-user-lib "emacs-jedi-direx")
 
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)                      ; optional
