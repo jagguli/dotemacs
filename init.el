@@ -18,7 +18,6 @@
 (load-file "~/.emacs.d/packages.el")
 (load-file "~/.emacs.d/emacs.el")
 (load-file "~/.emacs.d/modules.el")  
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -69,11 +68,12 @@
  '(erc-stamp-mode t)
  '(erc-track-minor-mode t)
  '(erc-track-mode t)
+ '(evil-ex-hl-update-delay 0.1)
  '(evil-fold-level 1)
  '(evil-search-module (quote evil-search))
  '(fci-rule-color "#073642")
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
- '(flycheck-checkers (quote (coffee-coffeelint css-csslint elixir emacs-lisp emacs-lisp-checkdoc erlang go-gofmt go-build go-test haml html-tidy javascript-jshint json-jsonlint lua perl php php-phpcs puppet-parser puppet-lint python-flake8 python-pylint rst ruby-rubocop ruby ruby-jruby rust sass scala scss sh-bash tex-chktex tex-lacheck xml-xmlstarlet)))
+ '(flycheck-checkers (quote (coffee-coffeelint css-csslint elixir emacs-lisp emacs-lisp-checkdoc erlang go-gofmt go-build go-test haml html-tidy javascript-jshint json-jsonlint lua perl php php-phpcs puppet-parser puppet-lint python-flake8 python-pylint rst ruby-rubocop ruby ruby-jruby rust sass scala scss sh-bash tex-chktex tex-lacheck xml-xmlstarlet zsh)))
  '(flycheck-idle-change-delay 5)
  '(foreground-color nil)
  '(fortune-dir "/usr/share/fortune/")
@@ -138,6 +138,7 @@
  '(notmuch-show-indent-multipart t)
  '(notmuch-show-insert-text/plain-hook (quote (notmuch-wash-convert-inline-patch-to-part notmuch-wash-wrap-long-lines notmuch-wash-tidy-citations notmuch-wash-elide-blank-lines notmuch-wash-excerpt-citations)))
  '(notmuch-show-only-matching-messages t)
+ '(org-journal-dir "~/documents/journal/")
  '(paredit-mode nil t)
  '(password-cache-expiry nil)
  '(recentf-auto-cleanup 300)
@@ -201,10 +202,18 @@
  '(log-view-message ((t nil)) t)
  '(magit-header ((t (:inherit header-line :background "white" :foreground "black"))) t)
  '(match ((t (:background "color-22"))))
- '(mode-line ((t (:background "white" :foreground "color-235" :inverse-video t :box (:line-width 2 :color "grey75" :style released-button) :underline nil :slant normal :weight normal))))
- '(mode-line-inactive ((t (:inherit mode-line :background "#494949" :foreground "#494949" :inverse-video t :box nil :underline nil :slant normal :weight normal))))
+ ;'(mode-line ((t (:background "white" :foreground "color-235" :inverse-video t :box (:line-width 2 :color "grey75" :style released-button) :underline nil :slant normal :weight normal))))
+ ;'(mode-line-inactive ((t (:inherit mode-line :background "#494949" :foreground "#494949" :inverse-video t :box nil :underline nil :slant normal :weight normal))))
  '(notmuch-message-summary-face ((t (:background "color-17"))))
  '(notmuch-tag-face ((t (:foreground "color-19"))))
  '(rst-level-1 ((t (:background "color-236"))) t)
  '(trailing-whitespace ((t (:background "color-54" :foreground "color-54" :inverse-video t :underline nil :slant normal :weight normal))))
  '(vertical-border ((t (:inherit mode-line-inactive :background "grey" :foreground "grey" :weight thin :width condensed)))))
+
+(defun custom-startup (frame)
+  (org-todo-list t)
+  (modify-frame-parameters frame '((frame-buffer  . "*Org Agenda*")))
+
+  ;;(switch-to-buffer "*Org Agenda*")
+)
+(add-hook 'after-make-frame-functions 'custom-startup t)
