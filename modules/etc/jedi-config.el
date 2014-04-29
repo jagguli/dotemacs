@@ -7,8 +7,8 @@
 (require 'jedi-direx)
 
 (setq jedi:server-args
-      '("--sys-path" "/home/steven/iress/xplan99/src/py/"
-        "--sys-path" "/home/steven/iress/xplan99/lib/py/"
+      '("--sys-path" "/home/steven/iress/xplan/src/py/"
+        "--sys-path" "/home/steven/iress/xplan/lib/py/"
         "--sys-path" "/usr/lib/python2.7/site-packages/"
         "--sys-path" "/home/steven/.local/lib/python2.7/site-packages/"
         ))

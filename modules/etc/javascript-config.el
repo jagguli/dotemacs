@@ -3,6 +3,8 @@
 ;;                    (lambda () (flymake-mode t)))
 ;;(setq jslint-v8-shell "/usr/bin/d8")
 
+(autoload 'tern-mode "tern.el" nil t)
+
 (defun my-js-mode-hooks ()
   (flycheck-mode t))
 (add-hook 'js-mode-hook 'my-js-mode-hooks)

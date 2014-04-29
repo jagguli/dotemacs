@@ -3,7 +3,7 @@
 ;;(define-key global-map "c l" 'org-store-link)
 ;;(define-key global-map "c a" 'org-agenda)
 (setq org-log-done t)
-(setq org-directory "~/share/Dropbox/OrgMode/")
+(setq org-directory (expand-file-name "~/share/Dropbox/OrgMode/"))
 (setq org-from-is-user-regexp nil)
 (setq org-log-done t)
 (setq org-mobile-directory (concat org-directory "MobileOrg/"))
@@ -29,3 +29,7 @@
  (previous-line) )
 ;;(add-hook 'after-init-hook 'org-agenda-list)
 
+
+(defun my-org-files ()
+    (interactive)
+    (helm-find-files-1 org-directory))
