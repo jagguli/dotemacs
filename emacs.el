@@ -51,39 +51,4 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 
-(defun browse-url-chrome (url &optional new-window)
-  "Ask the Chromium WWW browser to load URL.
-Default to the URL around or before point.  The strings in
-variable `browse-url-chromium-arguments' are also passed to
-Chromium."
-  (interactive (browse-url-interactive-arg "URL: "))
-  (message "opening chrome")
-  (setq url (browse-url-encode-url url))
-  (let* ((process-environment (browse-url-process-environment)))
-    (apply 'start-process
-	   (concat "google-chrome " url) nil
-	   "google-chrome"
-	   (append
-	    browse-url-chromium-arguments
-	    (list url)))))
-
-(defun reset-font ()
-  (interactive)
-  (global-font-lock-mode nil)
-  (font-lock-fontify-buffer)
-  (global-font-lock-mode t)
-  (recenter-top-bottom))
-(global-set-key (kbd "C-l") 'reset-font)
-
-
-(defun guess-where-keybinding-is-defined (key)
-  "try to guess where a key binding might be defined"
-  (interactive (list (read-key-sequence "Describe key: ")))
-  (let ((bindings (minor-mode-key-binding key))
-        found)
-    (while (and bindings (not found))
-      (if (setq found (caar bindings))
-          (find-function (cdar bindings)))
-      (setq bindings (cdr bindings)))))
-
   

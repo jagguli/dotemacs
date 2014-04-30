@@ -4,20 +4,24 @@
   (interactive)
   (save-some-buffers)
   (kill-emacs))
+
 (defun reload-emacs-config ()
   "reload emacs config"
   (interactive)
   (load-file "~/.emacs.d/init.el")
 )
+
 (defun start-server (name)
   "start an emacs server"
   (interactive)
   (setq server-name name)
   (setq server-use-tcp t)
   (server-start))
+
 (load-file "~/.emacs.d/packages.el")
 (load-file "~/.emacs.d/emacs.el")
 (load-file "~/.emacs.d/modules.el")  
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -207,11 +211,3 @@
  '(rst-level-1 ((t (:background "color-236"))) t)
  '(trailing-whitespace ((t (:background "color-54" :foreground "color-54" :inverse-video t :underline nil :slant normal :weight normal))))
  '(vertical-border ((t (:inherit mode-line-inactive :background "grey" :foreground "grey" :weight thin :width condensed)))))
-
-(defun custom-startup (frame)
-  (org-todo-list t)
-  (modify-frame-parameters frame '((frame-buffer  . "*Org Agenda*")))
-
-  ;;(switch-to-buffer "*Org Agenda*")
-)
-(add-hook 'after-make-frame-functions 'custom-startup t)

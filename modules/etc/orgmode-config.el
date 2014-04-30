@@ -10,6 +10,7 @@
 (setq org-mobile-inbox-for-pull (concat org-mobile-directory "mobileorg.org"))
 (setq org-return-follows-link t)
 (setq org-todo-keywords (quote ((sequence "TODO" "DONE" "CANCELED"))))
+(setq org-catch-invisible-edits t)
 
 (defun add-agenda-file (p)
   (add-to-list 'org-agenda-files (concat org-directory p)))
