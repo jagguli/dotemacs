@@ -15,10 +15,11 @@
 (defun add-agenda-file (p)
   (add-to-list 'org-agenda-files (concat org-directory p)))
 
-(add-agenda-file "work.org")
-(add-agenda-file "startup.org")
-(add-agenda-file "zen.org")
-(add-agenda-file "notes.org")
+(add-agenda-file "")
+;;(add-agenda-file "work.org")
+;;(add-agenda-file "startup.org")
+;;(add-agenda-file "zen.org")
+;;(add-agenda-file "notes.org")
 
 (defun note ()
   (interactive)
@@ -50,3 +51,6 @@
              "* %?\nOSC:\n")
         )
       )
+
+(setq org-clock-persist 'history)
+(org-clock-persistence-insinuate)
