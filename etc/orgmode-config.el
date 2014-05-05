@@ -34,3 +34,19 @@
 (defun my-org-files ()
     (interactive)
     (helm-find-files-1 org-directory))
+
+(setq org-default-notes-file (concat org-directory "notes.org"))
+;;(define-key global-map "\C-cc" 'org-capture)
+
+(setq org-capture-templates
+      '(
+        ("t" "Todo" entry (file+headline "~/org/todo.org" "Tasks")
+             "* TODO %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/org/ijournal.org")
+             "* %?\nEntered on %U\n  %i\n  %a")
+        ("n" "Note" entry (file+datetree "~/org/note.org")
+             "* %?\nEntered on %U\n  %i\n  %a")
+        ("o" "OSC" entry (file+datetree "~/org/osc.org")
+             "* %?\nOSC:\n")
+        )
+      )
