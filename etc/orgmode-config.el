@@ -11,6 +11,7 @@
 (setq org-return-follows-link t)
 (setq org-todo-keywords (quote ((sequence "TODO" "DONE" "CANCELED"))))
 (setq org-catch-invisible-edits t)
+(setq org-agenda-file-regexp "[^.].*\\.org$")
 
 (defun add-agenda-file (p)
   (add-to-list 'org-agenda-files (concat org-directory p)))
@@ -54,3 +55,6 @@
 
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
+
+(setq org-todo-keywords
+       '((sequence "TODO(t)" "WAIT(w@/!)" "SOMETIME(s)" "|" "DONE(d!)" "CANCELED(c@)")))
