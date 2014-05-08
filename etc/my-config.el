@@ -119,3 +119,17 @@ Chromium."
 	    (list url)))))
 
 
+
+(defadvice replace-highlight 
+  (before outline-expand-replace 
+          (match-beg match-end range-beg range-end
+                     search-string regexp-flag delimited-flag
+                     case-fold-search))
+  (condition-case nil 
+      (save-excursion
+        (outline-back-to-heading)
+        (show-subtree))
+    (error nil))
+)
+
+(ad-activate 'replace-highlight)
