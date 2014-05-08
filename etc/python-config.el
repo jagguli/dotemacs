@@ -23,13 +23,6 @@
 )
 (load-ropemacs)
 (global-set-key "\C-xpl" 'load-ropemacs)
-
-(eval-after-load "python"
-  '(define-key python-mode-map "\C-cx" 'jedi-direx:pop-to-buffer))
-(add-hook 'jedi-mode-hook 'jedi-direx:setup)
-
-(require 'column-marker)
-
 (add-hook 'outline-minor-mode-hook 
            (lambda () 
              (require 'outline-magic)

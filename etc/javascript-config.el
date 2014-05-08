@@ -1,13 +1,13 @@
-;;(add-to-list 'load-path "~/.emacs.d/jslint-v8")
-;;(add-hook 'javascript-mode-hook
-;;                    (lambda () (flymake-mode t)))
-;;(setq jslint-v8-shell "/usr/bin/d8")
-
 (autoload 'tern-mode "tern.el" nil t)
 
 (defun my-js-mode-hooks ()
-  (flycheck-mode t))
+  (flycheck-mode t)
+  (tern-mode t)
+  (define-key evil-normal-state-map (kbd "C-]") 'tern-find-definition)
+  (define-key evil-normal-state-map (kbd "C-t") 'tern-pop-find-definition)
+  (define-key evil-normal-state-map (kbd "C-M-]") 'tern-find-definition-by-name)
+)
+
 (add-hook 'js-mode-hook 'my-js-mode-hooks)
 
-(add-hook 'js-mode-hook (lambda () (tern-mode t)))
 

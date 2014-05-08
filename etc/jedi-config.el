@@ -1,7 +1,6 @@
 (add-user-lib "emacs-jedi")
 (add-user-lib "emacs-jedi-direx")
 
-(add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)                      ; optional
 (setq jedi:complete-on-dot t)                 ; optional
 (require 'jedi-direx)
@@ -17,6 +16,9 @@
   (define-key python-mode-map "\C-cx" 'jedi-direx:pop-to-buffer)
   (define-key evil-normal-state-map (kbd "C-]") 'jedi:goto-definition)
   (define-key evil-normal-state-map (kbd "C-t") 'jedi:goto-definition-pop-marker)
-  (define-key evil-normal-state-map (kbd "C-M-]") 'helm-jedi-related-names)) 
+  (define-key evil-normal-state-map (kbd "C-M-]") 'helm-jedi-related-names)
+) 
 
+(add-hook 'python-mode-hook 'jedi:setup)
 (add-hook 'python-mode-hook 'my-jedi-python-mode-hook)
+(add-hook 'jedi-mode-hook 'jedi-direx:setup)

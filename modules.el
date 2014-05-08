@@ -23,6 +23,7 @@
 (require 'popup-switcher)  
 (require 'suggbind)  
 (require 'sudo-ext)  
+(require 'column-marker)
 (load-theme 'tango-2-steven t)
 
 ;;(load-user-config "icicles-config.el")
