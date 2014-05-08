@@ -64,3 +64,12 @@ file to write to."
         (find-file (cdr (assoc-ignore-representation fname tocpl))))) 
 ;;(global-set-key "\C-x\C-r" 'recentf-open-files-compl)
 ;(global-set-key "\C-x\C-r" 'recentf-open-files)
+
+;; Save the recentf file list every 10 minutes (= 600 seconds)
+(setq recentf-last-list '())
+(defun recentf-save-if-changes ()
+  "Test if the recentf-list has changed and saves it in this case"
+  (unless (equalp recentf-last-list recentf-list)
+    (setq recentf-last-list recentf-list)
+    (recentf-save-list)))
+(run-at-time t 600 'recentf-save-if-changes)
