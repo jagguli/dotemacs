@@ -22,6 +22,7 @@
 (evil-set-initial-state 'newsticker-mode 'emacs)
 (evil-set-initial-state 'newsticker-treeview-mode 'emacs)
 (evil-set-initial-state 'notmuch-show-mode 'emacs)
+(evil-set-initial-state 'dirtree-mode 'emacs)
 (setq evil-flash-delay 60)
 ;;; esc quits
 
