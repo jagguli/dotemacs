@@ -52,3 +52,5 @@
 
 
   
+
+(setq plantuml-jar-path "/opt/plantuml/plantuml.jar")
