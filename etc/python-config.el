@@ -167,5 +167,7 @@
       (when (file-writable-p bpfile)
         (write-region (point-min) (point-max) bpfile)))))
 
-(define-key global-map (kbd "<f8>" ) 'add-breakpoint)
-(define-key global-map (kbd "<f7>" ) 'remove-breakpoint)
+(define-key global-map (kbd "S-<f8>" ) 'add-breakpoint)
+(define-key global-map (kbd "S-<f7>" ) 'remove-breakpoint)
+(define-key global-map (kbd "<f8>" ) 'breakpoint-set)
+(define-key global-map (kbd "<f7>" ) 'breakpoint-uset)
