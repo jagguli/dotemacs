@@ -52,3 +52,4 @@
 
 
   
+(setenv "SSH_AUTH_SOCK" (concat (getenv "HOME") "/.ssh-auth-sock"))
