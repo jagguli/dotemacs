@@ -88,7 +88,7 @@
  '(helm-M-x-always-save-history t)
  '(helm-adaptive-history-file "~/share/Dropbox/helm-adaptive-history")
  '(helm-always-two-windows t)
- '(helm-boring-buffer-regexp-list (quote ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-" "\\*Custom" "\\*Complet" "\\*magit" "\\*tail" "\\*ag" "\\*cscope" "\\*scratch" "\\*epc")))
+ '(helm-boring-buffer-regexp-list (quote ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-" "\\*Custom" "\\*Complet" "\\*magit" "\\*tail" "\\*cscope" "\\*scratch" "\\*epc")))
  '(helm-boring-file-regexp-list (quote ("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$")))
  '(helm-c-ack-version 2)
  '(helm-ff-auto-update-initial-value nil)
