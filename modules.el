@@ -50,7 +50,7 @@
 (load-user-config "erlang-config.el")
 (load-user-config "taskjuggler-config.el")
 (load-user-config "twittering-config.el")
-;;(load-user-config "jabber-config.el")
+(load-user-config "jabber-config.el")
 (load-user-config "calfw-config.el")
 (load-user-config "tail-config.el")
 (load-user-config "server-config.el")
