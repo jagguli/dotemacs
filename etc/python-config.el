@@ -21,7 +21,7 @@
   ;; Automatically save project python buffers before refactorings
   (setq ropemacs-confirm-saving 'nil)
 )
-(load-ropemacs)
+;;(load-ropemacs)
 (global-set-key "\C-xpl" 'load-ropemacs)
 (add-hook 'outline-minor-mode-hook 
            (lambda () 
@@ -169,3 +169,5 @@
 
 (define-key global-map (kbd "<f8>" ) 'add-breakpoint)
 (define-key global-map (kbd "<f7>" ) 'remove-breakpoint)
+
+
