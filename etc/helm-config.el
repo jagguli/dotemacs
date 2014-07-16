@@ -1,7 +1,7 @@
 (add-user-lib "helm")
 (require 'helm-config)
 ;;(require 'helm-ag)
-;;(require 'helm-command)
+(require 'helm-cmd-t)
 ;;(require 'ibuffer)
 (helm-mode 1)
 
@@ -69,3 +69,17 @@
 ;;                  (downcase (buffer-name a))
 ;;                  (downcase (buffer-name b)))))))
 
+
+(setq helm-adaptive-history-file 
+      (expand-file-name "~/share/Dropbox/helm-adaptive-history"))
+
+;;cmd t settings
+(setq downloads-source 
+      (helm-cmd-t-get-create-source-dir "~/"))
+(setq docs-source 
+      (helm-cmd-t-get-create-source-dir "~/share/Dropbox/OrgMode"))
+
+(defun helm-cmd-t-ad-hoc-example ()
+  "Choose file from test folder."
+  (interactive)
+  (helm :sources (list downloads-source docs-source)))

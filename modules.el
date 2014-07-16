@@ -28,6 +28,7 @@
 
 ;;(load-user-config "icicles-config.el")
 ;;(load-user-config "recent-files-config.el")
+(add-user-lib "helm-cmd-t")
 
 (load-user-config "my-config.el")
 (load-user-config "helm-config.el")
