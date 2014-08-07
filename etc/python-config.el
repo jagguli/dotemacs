@@ -15,18 +15,18 @@
   (interactive)
   (setq pymacs-python-command "/usr/bin/python2")
   (setenv "PYMACS_PYTHON" "python2.7")
+  ;;(setq pymacs-load-path "/usr/lib/python2.7/")
   (setq ropemacs-global-prefix "C-x @")
   (require 'pymacs)
   (pymacs-load "ropemacs" "rope-")
   ;; Automatically save project python buffers before refactorings
   (setq ropemacs-confirm-saving 'nil)
 )
+
 ;;(load-ropemacs)
 (global-set-key "\C-xpl" 'load-ropemacs)
-(add-hook 'outline-minor-mode-hook 
-           (lambda () 
-             (require 'outline-magic)
-))
+(add-hook 'outline-minor-mode-hook (lambda () 
+                                     (require 'outline-magic)))
 
 (defadvice goto-line (after expand-after-goto-line
                             activate compile)
