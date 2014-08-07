@@ -49,6 +49,7 @@
 (setq ido-use-filename-at-point nil)
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
+;;(setq debug-on-error t)
 
 
   
