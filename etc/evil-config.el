@@ -16,7 +16,7 @@
 (evil-set-initial-state 'jabber-chat-mode 'emacs)
 (evil-set-initial-state 'jabber-roster-mode 'emacs)
 (evil-set-initial-state 'direx:direx-mode 'emacs)
-(evil-set-initial-state 'mo-git-blame 'emacs)
+(evil-set-initial-state 'mo-git-blame-mode 'emacs)
 (evil-set-initial-state 'svn-mode 'emacs)
 (evil-set-initial-state 'svn-status-mode 'emacs)
 (evil-set-initial-state 'newsticker-mode 'emacs)
