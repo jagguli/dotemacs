@@ -133,3 +133,45 @@ Chromium."
 )
 
 (ad-activate 'replace-highlight)
+
+(defun revert-all-buffers ()
+  "Refreshes all open buffers from their respective files
+    http://blog.plover.com/prog/revert-all.html"
+  (interactive)
+  (let* ((list (buffer-list))
+         (buffer (car list)))
+    (while buffer
+      (when (and (buffer-file-name buffer) 
+                 (not (buffer-modified-p buffer)))
+        (set-buffer buffer)
+        (revert-buffer t t t))
+      (setq list (cdr list))
+      (setq buffer (car list))))
+  (message "Refreshed open files"))
+
+(defun my-insertion-filter (proc string)
+  (when (buffer-live-p (process-buffer proc))
+    (with-current-buffer (process-buffer proc)
+      ;; Insert the text, advancing the process marker.
+      (goto-char (process-mark proc))
+      (insert string)
+      (set-marker (process-mark proc) (point)))))
+
+ (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+;;(add-to-list ‘comint-output-filter-functions ‘ansi-color-process-output)
+(require 'shell)
+(defun my-mongo-tail ()
+  (interactive)
+  (let ((output (get-buffer-create "*Mongotail Output*"))
+        (default-directory (expand-file-name "~/iress/xplan/"))
+        ;;(major-mode shell-mode)
+        )
+    ;;(set-buffer-major-mode output 
+    (set-process-filter 
+     (start-process 
+      "mongotail" output "python" "scripts/mongotail.py" "-L" "DEBUG" "xplan.serverlog")
+     'my-insertion-filter)
+    (switch-to-buffer output)
+    (ansi-term)
+    (compilation-minor-mode 1)
+))

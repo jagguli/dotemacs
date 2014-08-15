@@ -49,7 +49,10 @@
 (setq ido-use-filename-at-point nil)
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
+;;(setq debug-on-error t)
 
 
   
 (setenv "SSH_AUTH_SOCK" (concat (getenv "HOME") "/.ssh-auth-sock"))
+
+(setq plantuml-jar-path "/opt/plantuml/plantuml.jar")

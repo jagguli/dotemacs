@@ -1,7 +1,13 @@
 (require 'package)
+; this is a workaround for a bug in emacs' http fetching, see
+; http://lists.gnu.org/archive/html/bug-gnu-emacs/2011-12/msg00196.html
+(setq url-http-attempt-keepalives nil)
+
  (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                            ("marmalade" . "http://marmalade-repo.org/packages/")
-                           ("melpa" . "http://melpa.milkbox.net/packages/")))
+                           ("melpa" . "http://melpa.milkbox.net/packages/")
+)
+)
 
 (package-initialize)
 
@@ -40,8 +46,7 @@
        magit git-rebase-mode git-commit-mode ido-ubiquitous smex
        find-file-in-project paredit tango-2-theme twittering-mode
        undo-tree w3m web-mode xclip web-beautify unbound guide-key
-       help-fns+ sudo-ext smart-mode-line crosshairs js2-mode dirtree
-       helm-cmd-t)
+       help-fns+ sudo-ext smart-mode-line crosshairs dirtree)
     "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
