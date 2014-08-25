@@ -1,3 +1,6 @@
+(setq  sml/no-confirm-load-theme t)
+
+(setq custom-safe-themes (quote ("3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" default)))
 (setq sml/theme 'respectful)
 (sml/setup)
 ; use setq-default to set it for /all/ modes
