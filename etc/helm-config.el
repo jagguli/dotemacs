@@ -70,14 +70,6 @@
 ;;                  (downcase (buffer-name b)))))))
 
 
-(setq helm-adaptive-history-file 
-      (expand-file-name "~/share/Dropbox/helm-adaptive-history"))
-
-;;cmd t settings
-(setq downloads-source 
-      (helm-cmd-t-get-create-source-dir "~/"))
-(setq docs-source 
-      (helm-cmd-t-get-create-source-dir "~/share/Dropbox/OrgMode"))
 
 (defun helm-cmd-t-ad-hoc-example ()
   "Choose file from test folder."

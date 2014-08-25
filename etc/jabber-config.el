@@ -5,8 +5,6 @@
 ;(require 'jabber-tmux)
 ;;(require 'jabber-otr)
 (require 'keepassdb)
-(setq jabber-alert-message-wave "~/.sounds/message-new-instant.wav")
-(setq jabber-invalid-certificate-servers '("mel-imsrv1" "mel-imsrv1.devel.iress.com.au" "iress.com.au"))
 
 (defun jabber ()
   (interactive)
