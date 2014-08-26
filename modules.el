@@ -25,6 +25,8 @@
 (require 'sudo-ext)  
 (require 'column-marker)
 (require 'buffer-move)
+(require 'ahg)
+
 (load-theme 'tango-2-steven t)
 
 ;;(load-user-config "icicles-config.el")
