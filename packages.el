@@ -2,8 +2,6 @@
 ; this is a workaround for a bug in emacs' http fetching, see
 ; http://lists.gnu.org/archive/html/bug-gnu-emacs/2011-12/msg00196.html
 (setq url-http-attempt-keepalives t)
-(setq url-proxy-services '(("no_proxy" . "work\\.com")
-                           ("http" . "localhost:8123")))
 (setq package-archives '(
                          ("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
@@ -19,9 +17,9 @@
 (defvar my-packages
   '(ag bookmark+ calfw calfw-gcal color-file-completion color-moccur
        color-theme-active color-theme-actress color-theme-approximate
-       color-theme-blackboard color-theme-buffer-local
-       color-theme-cobalt color-theme-colorful-obsolescence
-       color-theme-complexity color-theme-dawn-night color-theme-dg
+       color-theme-buffer-local
+       color-theme-cobalt 
+       color-theme-complexity color-theme-dg
        color-theme-dpaste color-theme-eclipse
        color-theme-emacs-revert-theme color-theme-github
        color-theme-gruber-darker color-theme-heroku
@@ -29,7 +27,7 @@
        color-theme-monokai color-theme-railscasts
        color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow
        color-theme-solarized color-theme-tango color-theme-twilight
-       color-theme-vim-insert-mode color-theme-wombat+
+       color-theme-vim-insert-mode
        color-theme-wombat color-theme color-theme-x column-marker
        diff-hl dired+ dired-details direx dsvn elscreen eproject
        erlang etags-select etags-table evil-leader evil-paredit evil
@@ -38,7 +36,7 @@
        helm-git-grep helm-project-persist helm-projectile helm-recoll
        helm-themes helm hideshowvis icicles ipython itail jedi
        auto-complete epc ctable concurrent deferred jinja2-mode
-       magit-commit-training-wheels markdown-mode+ markdown-mode
+       markdown-mode+ markdown-mode
        mo-git-blame multi-project multi-web-mode mustache
        mustache-mode nose notmuch-labeler notmuch org-journal
        outline-magic popup-switcher popup powerline project-persist

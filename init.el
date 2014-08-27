@@ -190,7 +190,7 @@
  '(cursor ((t (:background "light slate blue" :foreground "#888888"))))
  '(diredp-date-time ((((type tty)) :foreground "yellow") (t :foreground "goldenrod1")))
  '(diredp-dir-heading ((((type tty)) :background "yellow" :foreground "blue") (t :background "Pink" :foreground "DarkOrchid1")))
- '(diredp-dir-priv ((t (:background "color-16" :foreground "color-21"))))
+ '(diredp-dir-priv ((t (:background "color-16" :foreground "color-51"))))
  '(diredp-display-msg ((((type tty)) :foreground "blue") (t :foreground "cornflower blue")))
  '(diredp-file-name ((t nil)))
  '(diredp-file-suffix ((t nil)))
