@@ -1,9 +1,3 @@
-(setq erc-hide-list '("JOIN" "PART" "QUIT"))
-(erc-autojoin-mode t)
-(setq erc-autojoin-channels-alist
-      '((".*\\.freenode.net" "#emacs" "#python" "#archlinux" )
-        (".*\\.oftc.net" "#suckless")))
-
 (defun erc-start-or-switch ()
   "Connect to ERC, or switch to last active buffer"
   (interactive)

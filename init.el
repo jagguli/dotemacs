@@ -18,14 +18,11 @@
   (setq server-use-tcp t)
   (server-start))
 
-;; https://github.com/Bruce-Connor/smart-mode-line/issues/88 
-(custom-set-variables
- '(custom-safe-themes (quote ("3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" default)))
-)
 (load-file "~/.emacs.d/packages.el")
 (load-file "~/.emacs.d/emacs.el")
 (load-file "~/.emacs.d/modules.el")  
 
+;; https://github.com/Bruce-Connor/smart-mode-line/issues/88 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -50,6 +47,8 @@
  '(dictionary-proxy-server "syd-devproxy1.devel.iress.com.au")
  '(dictionary-use-http-proxy t)
  '(dired-omit-files "^\\.[^.]+.*$")
+ '(docs-source (helm-cmd-t-get-create-source-dir "~/share/Dropbox/OrgMode"))
+ '(downloads-source (helm-cmd-t-get-create-source-dir "~/"))
  '(ecb-activation-selects-ecb-frame-if-already-active t)
  '(ecb-options-version "2.40")
  '(ecb-source-file-regexps (quote ((".*" ("\\(^\\(\\.\\|#\\)\\|\\(~$\\|\\.\\(elc\\|obj\\|o\\|class\\|lib\\|dll\\|a\\|so\\|cache\\|pyc\\)$\\)\\)") ("^\\.\\(emacs\\|gnus\\)$")))))
@@ -57,6 +56,7 @@
  '(ecb-tree-indent 2)
  '(ecb-vc-enable-support nil)
  '(ediff-split-window-function (quote split-window-right))
+ '(erc-autojoin-channels-alist (quote ((".*\\.freenode.net" "#emacs" "#python" "#archlinux") (".*\\.oftc.net" "#suckless"))))
  '(erc-autojoin-mode t)
  '(erc-button-mode t)
  '(erc-fill-mode t)
@@ -89,7 +89,8 @@
  '(grep-highlight-matches (quote auto))
  '(gud-pdb-command-name "python -d")
  '(helm-M-x-always-save-history t)
- '(helm-adaptive-history-file "~/share/Dropbox/helm-adaptive-history")
+ '(helm-adaptative-mode t nil (helm-adaptative))
+ '(helm-adaptive-history-file (expand-file-name "~/share/Dropbox/emacs/helm-adaptive-history"))
  '(helm-always-two-windows t)
  '(helm-boring-buffer-regexp-list (quote ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-" "\\*Custom" "\\*Complet" "\\*magit" "\\*tail" "\\*cscope" "\\*scratch" "\\*epc")))
  '(helm-boring-file-regexp-list (quote ("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$" "\\.pyc$")))
@@ -106,6 +107,7 @@
  '(helm-mode t)
  '(helm-mode-handle-completion-in-region t)
  '(helm-mode-reverse-history nil)
+ '(helm-quick-update t)
  '(helm-reuse-last-window-split-state nil)
  '(helm-split-window-default-side (quote left))
  '(helm-split-window-in-side-p nil)
@@ -119,7 +121,7 @@
  '(jabber-history-enable-rotation t)
  '(jabber-history-enabled t)
  '(jabber-history-muc-enabled t)
- '(jabber-invalid-certificate-servers (quote ("mel-imsrv1" "mel-imsrv1.devel.iress.com.au" "mel-imsrv1/nil")) t)
+ '(jabber-invalid-certificate-servers (quote ("mel-imsrv1" "mel-imsrv1.devel.iress.com.au" "iress.com.au")) t)
  '(jabber-keepalive-interval 30)
  '(jabber-libnotify-method (quote dbus))
  '(jabber-roster-line-format "%c %-25n %u %-8s  %S")
@@ -154,21 +156,25 @@
  '(recentf-max-menu-items 100)
  '(recentf-max-saved-items 200)
  '(recentf-mode t)
+ '(recentf-save-file (expand-file-name "~/share/Dropbox/emacs/recentf"))
  '(repository-root-matchers (quote (repository-root-matcher/git repository-root-matcher/svn)))
  '(scss-compile-at-save nil)
  '(send-mail-function (quote mailclient-send-it))
+ '(sendmail-program "/usr/bin/msmtp")
  '(shell-file-name "/bin/sh")
- '(sml/no-confirm-load-theme t)
  '(split-height-threshold nil)
  '(split-width-threshold nil)
  '(split-window-keep-point nil)
  '(tool-bar-mode nil)
  '(url-handler-mode t)
  '(url-handler-regexp "\\`\\(\\(https?\\|ftp\\|file\\|nfs\\)://|File\\)")
+ '(user-full-name "Steven Joseph")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map (quote ((20 . "#dc322f") (40 . "#cb4b16") (60 . "#b58900") (80 . "#859900") (100 . "#2aa198") (120 . "#268bd2") (140 . "#d33682") (160 . "#6c71c4") (180 . "#dc322f") (200 . "#cb4b16") (220 . "#b58900") (240 . "#859900") (260 . "#2aa198") (280 . "#268bd2") (300 . "#d33682") (320 . "#6c71c4") (340 . "#dc322f") (360 . "#cb4b16"))))
  '(vc-annotate-very-old-color nil)
  '(xclip-mode t))
+
+
 
 
 (custom-set-faces

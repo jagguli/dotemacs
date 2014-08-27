@@ -24,6 +24,9 @@
 (require 'suggbind)  
 (require 'sudo-ext)  
 (require 'column-marker)
+(require 'buffer-move)
+(require 'ahg)
+
 (load-theme 'tango-2-steven t)
 
 ;;(load-user-config "icicles-config.el")
@@ -31,6 +34,7 @@
 (add-user-lib "helm-cmd-t")
 
 (load-user-config "my-config.el")
+(load-user-config "modeline-config.el")
 (load-user-config "helm-config.el")
 (load-user-config "helm-recoll.el")
 (load-user-config "evil-config.el")
@@ -57,7 +61,6 @@
 (load-user-config "tmux-config.el")
 (load-user-config "elisp-config.el")
 (load-user-config "eproject-config.el")
-(load-user-config "modeline-config.el")
 (load-user-config "idutils-config.el")
 (load-user-config "jedi-config.el")
 ;;(load-user-config "ecb-config.el")

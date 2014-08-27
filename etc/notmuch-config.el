@@ -3,6 +3,7 @@
 (require 'notmuch-address)
 (require 'password-cache)
 (require 'keepassdb)
+
 (notmuch-address-message-insinuate)
 
 (defun message-send-mail-with-iress-sendmail ()
@@ -30,16 +31,6 @@
       (setq notmuch-address-command "~/bin/notmuch-goobook"))))
 
 (notmuch-config)
-;; with Emacs 23.1, you have to set this explicitly (in MS Windows)
-;; otherwise it tries to send through OS associated mail client
-;; we substitute sendmail with msmtp
-(setq sendmail-program "/usr/bin/msmtp")
-;;need to tell msmtp which account we're using
-;;(setq message-sendmail-extra-arguments '("-a" "gmail"))
-;; you might want to set the following too
-;;(setq mail-host-address "iress.com.au")
-(setq user-full-name "Steven Joseph")
-;;(setq user-mail-address "example@exampl.com.au")
 
 (define-key notmuch-search-mode-map "d"
   (lambda ()
