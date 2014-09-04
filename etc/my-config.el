@@ -112,8 +112,8 @@ Chromium."
   (setq url (browse-url-encode-url url))
   (let* ((process-environment (browse-url-process-environment)))
     (apply 'start-process
-	   (concat "google-chrome " url) nil
-	   "google-chrome"
+	   (concat "conkeror " url) nil
+	   "conkeror"
 	   (append
 	    browse-url-chromium-arguments
 	    (list url)))))
@@ -175,3 +175,8 @@ Chromium."
     (ansi-term)
     (compilation-minor-mode 1)
 ))
+
+(defun delete-terminal-tmux-rename (term)
+              (shell-command "tmux rename-window zsh"))
+
+(add-hook 'delete-terminal-functions 'delete-terminal-tmux-rename)

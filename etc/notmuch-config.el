@@ -211,5 +211,4 @@
         (message (notmuch-show-get-from))
         (write-string-to-file 
           (format "%s" (notmuch-show-get-from))
-          (expand-file-name "~/.mailers")
-          ))))
+          (expand-file-name "~/.mailers")))))
