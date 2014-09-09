@@ -8,9 +8,9 @@
 
 (defun message-send-mail-with-iress-sendmail ()
   (interactive)
-  (setq message-sendmail-extra-arguments
-        `("--passwordeval"
-          ,(keepass-get-command "/iress/default" "password")))
+  ;;(setq message-sendmail-extra-arguments
+  ;;      `("--passwordeval"
+  ;;       ,(keepass-get-command "/iress/default" "password")))
   ;;(setq user-mail-address (format "%s@iress.com.au"
   ;;                                (keepass-get "/devices/iress")))
   (message-send-mail-with-sendmail))

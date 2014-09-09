@@ -133,6 +133,7 @@
  '(line-number-mode t)
  '(ls-lisp-dirs-first t)
  '(ls-lisp-verbosity (quote nil))
+ '(message-sendmail-extra-arguments nil)
  '(mml-enable-flowed nil)
  '(newsticker-html-renderer (quote w3m-region))
  '(newsticker-retrieval-method (quote extern))
