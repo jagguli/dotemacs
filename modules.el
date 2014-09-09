@@ -40,6 +40,7 @@
 (load-user-config "helm-config.el")
 (load-user-config "helm-recoll.el")
 (load-user-config "evil-config.el")
+(load-user-config "evil-clip-config.el")
 (load-user-config "web-mode-config.el")
 (load-user-config "psvn-config.el")
 (load-user-config "grin-config.el")
