@@ -73,6 +73,8 @@
 (load-user-config "orgmode-config.el")
 (add-user-lib "misc")
 (add-user-lib "jedi-direx")
+(add-user-lib "egg")
+(load-user-config "egg-config.el")
 ;;(add-user-lib "/usr/local/share/emacs/site-lisp/")
 ;;(load-user-config "elscreen-config.el")
 

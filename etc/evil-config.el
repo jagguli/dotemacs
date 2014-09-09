@@ -23,6 +23,9 @@
 (evil-set-initial-state 'newsticker-treeview-mode 'emacs)
 (evil-set-initial-state 'notmuch-show-mode 'emacs)
 (evil-set-initial-state 'dirtree-mode 'emacs)
+(evil-set-initial-state 'egg-status 'emacs)
+(evil-set-initial-state 'egg-log 'emacs)
+(evil-set-initial-state 'egg-filehistory 'emacs)
 (setq evil-flash-delay 60)
 ;;; esc quits
 
