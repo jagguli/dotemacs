@@ -1,1 +1,1 @@
-(global-set-key "\C-xgs" 'magit-status)
+(global-set-key "\C-xgg" 'magit-status)
