@@ -50,11 +50,8 @@
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
 ;;(setq debug-on-error t)
-(setq savehist-additional-variables    ;; also save...
-  '(search-ring regexp-search-ring)    ;; ... my search entries
-  savehist-file (expand-file-name "~/share/Dropbox/emacs/history"))
-(savehist-mode t)         
 
+(savehist-mode t)         
   
 ;;(setenv "SSH_AUTH_SOCK" (concat (getenv "HOME") "/.ssh-auth-sock"))
 
@@ -70,3 +67,4 @@
  version-control t)       ; use versioned backups
 
 (setq frame-title-format "%b")
+(setq sauron-dbus-cookie t)

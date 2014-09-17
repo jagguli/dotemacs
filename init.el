@@ -10,13 +10,23 @@
   (interactive)
   (load-file "~/.emacs.d/init.el")
 )
-
+(defvar server-name nil "current server name")
 (defun start-server (name)
   "start an emacs server"
   (interactive)
   (setq server-name name)
   (setq server-use-tcp t)
-  (server-start))
+  (server-start)
+  (setq helm-adaptive-history-file
+        (expand-file-name (format "~/share/Dropbox/emacs/helm-adaptive-history_%s" server-name))
+        (setq savehist-additional-variables    ;; also save...
+              '(search-ring regexp-search-ring)    ;; ... my search entries
+              savehist-file (expand-file-name 
+                             (format "~/share/Dropbox/emacs/history_%s" server-name)))
+
+        (setq recentf-save-file (expand-file-name 
+                                 (format "~/share/Dropbox/emacs/recentf_%s" server-name)))
+        ))
 
 (load-file "~/.emacs.d/packages.el")
 (load-file "~/.emacs.d/emacs.el")
@@ -90,7 +100,6 @@
  '(gud-pdb-command-name "python -d")
  '(helm-M-x-always-save-history t)
  '(helm-adaptative-mode t nil (helm-adaptative))
- '(helm-adaptive-history-file (expand-file-name "~/share/Dropbox/emacs/helm-adaptive-history"))
  '(helm-always-two-windows t)
  '(helm-boring-buffer-regexp-list (quote ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-" "\\*Custom" "\\*Complet" "\\*magit" "\\*tail" "\\*cscope" "\\*scratch" "\\*epc")))
  '(helm-boring-file-regexp-list (quote ("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$" "\\.pyc$")))
@@ -156,7 +165,6 @@
  '(recentf-max-menu-items 100)
  '(recentf-max-saved-items 200)
  '(recentf-mode t)
- '(recentf-save-file (expand-file-name "~/share/Dropbox/emacs/recentf"))
  '(repository-root-matchers (quote (repository-root-matcher/git repository-root-matcher/svn)))
  '(scss-compile-at-save nil)
  '(send-mail-function (quote mailclient-send-it))
