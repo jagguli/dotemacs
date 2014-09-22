@@ -26,6 +26,8 @@
 (require 'column-marker)
 (require 'buffer-move)
 (require 'ahg)
+(require 'wiki)
+(add-to-list 'auto-mode-alist '("\\.wiki\\'" . mediawiki-mode))
 
 (load-theme 'tango-2-steven t)
 
@@ -38,6 +40,7 @@
 (load-user-config "helm-config.el")
 (load-user-config "helm-recoll.el")
 (load-user-config "evil-config.el")
+(load-user-config "evil-clip-config.el")
 (load-user-config "web-mode-config.el")
 (load-user-config "psvn-config.el")
 (load-user-config "grin-config.el")
@@ -73,6 +76,8 @@
 (load-user-config "orgmode-config.el")
 (add-user-lib "misc")
 (add-user-lib "jedi-direx")
+(add-user-lib "egg")
+(load-user-config "egg-config.el")
 ;;(add-user-lib "/usr/local/share/emacs/site-lisp/")
 ;;(load-user-config "elscreen-config.el")
 
