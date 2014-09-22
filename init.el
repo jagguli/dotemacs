@@ -18,15 +18,15 @@
   (setq server-use-tcp t)
   (server-start)
   (setq helm-adaptive-history-file
-        (expand-file-name (format "~/share/Dropbox/emacs/helm-adaptive-history_%s" server-name))
-        (setq savehist-additional-variables    ;; also save...
-              '(search-ring regexp-search-ring)    ;; ... my search entries
-              savehist-file (expand-file-name 
-                             (format "~/share/Dropbox/emacs/history_%s" server-name)))
+        (expand-file-name (format "~/share/Dropbox/emacs/helm-adaptive-history_%s" server-name)))
+  (setq savehist-additional-variables    ;; also save...
+        '(search-ring regexp-search-ring)    ;; ... my search entries
+        savehist-file (expand-file-name 
+                        (format "~/share/Dropbox/emacs/history_%s" server-name)))
 
-        (setq recentf-save-file (expand-file-name 
-                                 (format "~/share/Dropbox/emacs/recentf_%s" server-name)))
-        ))
+  (setq recentf-save-file (expand-file-name 
+                            (format "~/share/Dropbox/emacs/recentf_%s" server-name)))
+  )
 
 (load-file "~/.emacs.d/packages.el")
 (load-file "~/.emacs.d/emacs.el")
