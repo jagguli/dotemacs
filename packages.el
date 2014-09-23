@@ -16,7 +16,7 @@
 ;; Add in your own as you wish:
 (defvar my-packages
   '(ag bookmark+ calfw calfw-gcal color-file-completion color-moccur
-       color-theme-active color-theme-actress color-theme-approximate
+       color-theme-actress color-theme-approximate
        color-theme-buffer-local
        color-theme-cobalt 
        color-theme-complexity color-theme-dg
@@ -34,7 +34,7 @@
        findr flycheck-color-mode-line flycheck flymake-cursor goto-chg
        helm-ack helm-ag anything helm-dired-recent-dirs helm-git
        helm-git-grep helm-project-persist helm-projectile helm-recoll
-       helm-themes helm hideshowvis icicles ipython itail jedi
+       helm-themes helm helm-cmd-t hideshowvis icicles ipython itail jedi
        auto-complete epc ctable concurrent deferred jinja2-mode
        markdown-mode+ markdown-mode
        mo-git-blame multi-project multi-web-mode mustache
@@ -46,7 +46,7 @@
        find-file-in-project paredit tango-2-theme twittering-mode
        undo-tree w3m web-mode xclip web-beautify unbound guide-key
        help-fns+ sudo-ext smart-mode-line crosshairs dirtree
-       buffer-move jabber ahg)
+       buffer-move jabber ahg wiki egg password-store)
     "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)

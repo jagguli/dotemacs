@@ -201,3 +201,7 @@ Chromium."
   (set-visited-file-modtime))
 
 (setq revert-buffer-function 'revert-buffer-keep-history)
+
+(defun load-config ()
+    (interactive)
+    (load-file (helm-find-files-1 (expand-file-name "~/.emacs.d/etc/"))))
