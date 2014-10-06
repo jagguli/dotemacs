@@ -17,15 +17,13 @@
   (setq server-name name)
   (setq server-use-tcp t)
   (server-start)
+  (setq history-dir (expand-file-name "~/.emacs.d/history.d/"))
   (setq helm-adaptive-history-file
-        (expand-file-name (format "~/share/Dropbox/emacs/helm-adaptive-history_%s" server-name)))
+        (concat history-dir (format "helm-adaptive-history_%s" server-name)))
   (setq savehist-additional-variables    ;; also save...
         '(search-ring regexp-search-ring)    ;; ... my search entries
-        savehist-file (expand-file-name 
-                        (format "~/share/Dropbox/emacs/history_%s" server-name)))
-
-  (setq recentf-save-file (expand-file-name 
-                            (format "~/share/Dropbox/emacs/recentf_%s" server-name)))
+        savehist-file (concat history-dir (format "history_%s" server-name)))
+  (setq recentf-save-file (concat (format "recentf_%s" server-name)))
   )
 
 (load-file "~/.emacs.d/packages.el")
