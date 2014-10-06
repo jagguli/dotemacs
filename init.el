@@ -138,6 +138,7 @@
  '(jabber-roster-line-format "%c %-25n %u %-8s  %S")
  '(jabber-use-auth-sources t)
  '(jabber-use-global-history nil)
+ '(js3-indent-level 4)
  '(lazy-highlight-cleanup nil)
  '(lazy-highlight-initial-delay 0)
  '(lazy-highlight-max-at-a-time nil)
