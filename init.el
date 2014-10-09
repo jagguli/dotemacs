@@ -147,6 +147,7 @@
  '(ls-lisp-verbosity (quote nil))
  '(message-sendmail-extra-arguments nil)
  '(mml-enable-flowed nil)
+ '(mu4e-compose-signature "Sent with emacs - the one true editor.")
  '(newsticker-html-renderer (quote w3m-region))
  '(newsticker-retrieval-method (quote extern))
  '(newsticker-url-list (quote (("FastCompany" "http://www.fastcompany.com/rss.xml" nil nil nil) ("TheNextWeb" "http://feeds2.feedburner.com/thenextweb" nil nil nil) ("BoingBoing" "http://feeds.boingboing.net/boingboing/iBag" nil nil nil) ("TechRepublic" "http://www.techrepublic.com/search?t=1&o=1&mode=rss" nil nil nil) ("TechCrunch" "http://feeds.feedburner.com/TechCrunch/" nil nil nil) ("Archlinux" "https://www.archlinux.org/feeds/news/" nil nil nil))))

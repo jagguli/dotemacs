@@ -28,6 +28,7 @@
 (require 'ahg)
 (require 'wiki)
 (add-to-list 'auto-mode-alist '("\\.wiki\\'" . mediawiki-mode))
+(require 'mu4e)
 
 (load-theme 'tango-2-steven t)
 
@@ -74,6 +75,7 @@
 (load-user-config "desktop-config.el")
 (load-user-config "magit-config.el")
 (load-user-config "orgmode-config.el")
+(load-user-config "mu4e-config.el")
 (add-user-lib "misc")
 (add-user-lib "jedi-direx")
 (add-user-lib "egg")
