@@ -3,15 +3,15 @@
 (require 'jabber-autoloads)
 (require 'jabber-libnotify)
 ;(require 'jabber-tmux)
-;;(require 'jabber-otr)
-;; (require 'keepassdb)
+(require 'jabber-otr)
 (require 'password-store)
 
+;;(setq jabber-default-show , jabber-default-status and jabber-default-priority
 (defun jabber ()
   (interactive)
   (if (string-match "^.*.iress.com.au" system-name )
       (progn
-        (setq jabber-account-list `((,(password-store-get "iress/default")
+        (setq jabber-account-list `((,(password-store-get "iress/user")
                                      (:network-server . ,(password-store-get "iress/jabber"))
                                      (:password . ,(password-store-get "iress/default")))))
         (jabber-connect-all)
