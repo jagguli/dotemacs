@@ -1,3 +1,4 @@
+(require 'password-store)
 (global-set-key "\C-xgg" 'magit-status)
 
 (defun gerrit-check-if-repo-modified ()
@@ -11,7 +12,7 @@
 
 ;; if remote url is not using the default gerrit port and
 ;; ssh scheme, need to manually set this variable
-(setq-default magit-gerrit-ssh-creds "steven.joseph@iress.com.au")
+(setq-default magit-gerrit-ssh-creds (password-store-get "iress/user"))
 
 ;; if necessary, use an alternative remote instead of 'origin'
 (setq-default magit-gerrit-remote "gerrit")  
