@@ -23,7 +23,18 @@
   (setq savehist-additional-variables    ;; also save...
         '(search-ring regexp-search-ring)    ;; ... my search entries
         savehist-file (concat history-dir (format "history_%s" server-name)))
-  (setq recentf-save-file (concat (format "recentf_%s" server-name)))
+  ;;(require recentf)
+  ;;(recentf-mode 1)
+  (setq recentf-initialize-file-name-history t)
+  (setq recentf-save-file (concat history-dir (format "recentf_%s" server-name)))
+  (recentf-load-list)
+  (setq helm-for-files-preferred-list
+        '(helm-source-buffers-list
+          helm-source-recentf
+          helm-source-bookmarks
+          helm-source-file-cache
+          helm-source-files-in-current-dir
+          helm-source-locate))
   )
 
 (load-file "~/.emacs.d/packages.el")

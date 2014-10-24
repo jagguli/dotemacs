@@ -14,7 +14,7 @@
       ))
   (helm-buffers-list))
 (global-set-key "\M-x" 'helm-M-x)
-(global-set-key "\C-x\C-r" 'helm-recentf)
+(global-set-key "\C-x\C-r" 'helm-for-files)
 (global-set-key "\C-xb" 'helm-buffers-list)
 (global-set-key "\C-x " 'helm-bookmarks)
 (global-set-key [(f3)] 'helm-split-buffers-list)
