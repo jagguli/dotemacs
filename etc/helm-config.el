@@ -9,7 +9,7 @@
   (interactive)
   (let ((buffers (mapcar 'window-buffer (window-list))))
     (if (= 1 (length buffers))
-        (split-window-horizontally)
+        (split-window)
       (other-window 1)
       ))
   (helm-buffers-list))
