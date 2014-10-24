@@ -1,9 +1,9 @@
 (require 'eproject)
 
 (define-project-type xplan (generic)
-  (look-for ".xplanproj")
+  (look-for ".project")
    :relevant-files ("\\.py$" "\\.js$"))
 
 (define-project-type python (generic)
-  (look-for ".eproject")
+  (look-for ".project")
   :relevant-files ("\\.py$" "\\.js$"))
