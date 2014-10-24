@@ -80,6 +80,7 @@
 (add-user-lib "jedi-direx")
 (add-user-lib "egg")
 (load-user-config "egg-config.el")
+(load-user-config "popwin-config.el")
 ;;(add-user-lib "/usr/local/share/emacs/site-lisp/")
 ;;(load-user-config "elscreen-config.el")
 
