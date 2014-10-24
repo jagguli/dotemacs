@@ -204,4 +204,4 @@ Chromium."
 
 (defun load-config ()
     (interactive)
-    (load-file (helm-find-files-1 (expand-file-name "~/.emacs.d/etc/"))))
+    (eval-buffer (helm-find-files-1 (expand-file-name "~/.emacs.d/etc/"))))
