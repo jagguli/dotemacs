@@ -172,6 +172,7 @@
  '(notmuch-show-insert-text/plain-hook (quote (notmuch-wash-convert-inline-patch-to-part notmuch-wash-wrap-long-lines notmuch-wash-tidy-citations notmuch-wash-elide-blank-lines notmuch-wash-excerpt-citations)))
  '(notmuch-show-only-matching-messages t)
  '(org-clock-into-drawer t)
+ '(org-ehtml-docroot "/home/steven/share/Dropbox/OrgMode/")
  '(org-journal-dir "~/documents/journal/")
  '(paredit-mode nil t)
  '(password-cache-expiry nil)
