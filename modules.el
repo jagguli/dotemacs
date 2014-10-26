@@ -76,6 +76,7 @@
 (load-user-config "magit-config.el")
 (load-user-config "orgmode-config.el")
 (load-user-config "mu4e-config.el")
+(load-user-config "windows-config.el")
 (add-user-lib "misc")
 (add-user-lib "jedi-direx")
 (add-user-lib "egg")
