@@ -17,7 +17,7 @@
 (global-set-key "\C-x\C-r" 'helm-for-files)
 (global-set-key "\C-xb" 'helm-buffers-list)
 (global-set-key "\C-x " 'helm-bookmarks)
-(global-set-key [(f3)] 'helm-split-buffers-list)
+(global-set-key [(f3)] 'helm-buffers-list)
 (define-key helm-command-map "b" 'helm-bookmarks)
                                    
 ;;(global-set-key [(control f3)] (lambda ()

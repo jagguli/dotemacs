@@ -55,3 +55,5 @@
      (define-key wdired-mode-map (vector 'remap 'end-of-buffer) 'dired-jump-to-bottom)))
 
 (provide 'setup-dired)
+
+(setq dired-listing-switches "-lXGh --group-directories-first")
