@@ -35,6 +35,7 @@
           helm-source-file-cache
           helm-source-files-in-current-dir
           helm-source-locate))
+  (require 'org-protocol)
   )
 
 (load-file "~/.emacs.d/packages.el")
@@ -185,8 +186,8 @@
  '(send-mail-function (quote mailclient-send-it))
  '(sendmail-program "/usr/bin/msmtp")
  '(shell-file-name "/bin/sh")
- '(split-height-threshold 80)
- '(split-width-threshold 160)
+ '(split-height-threshold nil)
+ '(split-width-threshold nil)
  '(split-window-keep-point nil)
  '(tab-width 4)
  '(tool-bar-mode nil)
@@ -215,7 +216,6 @@
  '(diredp-date-time ((((type tty)) :foreground "yellow") (t :foreground "goldenrod1")))
  '(diredp-dir-heading ((((type tty)) :background "yellow" :foreground "blue") (t :background "Pink" :foreground "DarkOrchid1")))
  '(diredp-dir-priv ((t (:background "color-16" :foreground "color-51"))))
- ;;'(diredp-dir-priv ((t (:background "color-16" :foreground "color-21"))))
  '(diredp-display-msg ((((type tty)) :foreground "blue") (t :foreground "cornflower blue")) t)
  '(diredp-file-name ((t nil)))
  '(diredp-file-suffix ((t nil)))
