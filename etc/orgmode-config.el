@@ -92,3 +92,18 @@
 
 (require 'org-ehtml)
 ;;(ws-start org-ehtml-handler 8888 "webserver")
+
+(defun org-toggle-todo-and-fold ()
+  (interactive)
+  (save-excursion
+    (org-back-to-heading t) ;; Make sure command works even if point is
+                            ;; below target heading
+    (cond ((looking-at "\*+ TODO")
+           (org-todo "DONE")
+           (hide-subtree))
+          ((looking-at "\*+ DONE")
+           (org-todo "TODO")
+           (hide-subtree))
+          (t (message "Can only toggle between TODO and DONE.")))))
+
+(define-key org-mode-map (kbd "C-c C-d") 'org-toggle-todo-and-fold)

@@ -1,5 +1,5 @@
 ;;(require 'emamux)
-(print (format "tmux rename-window %s" (car (last (split-string server-name "/")))))
+;;(print (format "tmux rename-window %s" (car (last (split-string server-name "/")))))
 (add-hook 'after-make-frame-functions
           (lambda (frame)
             (modify-frame-parameters 

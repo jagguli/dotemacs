@@ -1,4 +1,6 @@
 (add-user-lib "revolver")
 (require 'pushbullet)
 (require 'password-store)
-(setq pushbullet-api-key (password-store-get "internet/pushbullet"))
+
+(defadvice pushbullet (after pushbullet-init (arg char) activate)
+  (setq pushbullet-api-key (password-store-get "internet/pushbullet")))

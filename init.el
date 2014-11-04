@@ -122,7 +122,7 @@
  '(helm-ff-smart-completion t)
  '(helm-ff-transformer-show-only-basename nil)
  '(helm-findutils-skip-boring-files t)
- '(helm-for-files-preferred-list (quote (helm-source-buffers-list helm-source-recentf helm-source-bookmarks helm-source-file-cache helm-source-files-in-current-dir helm-source-locate helm-source-id-utils)))
+ '(helm-for-files-preferred-list (quote (helm-source-buffers-list helm-source-recentf helm-source-bookmarks helm-source-file-cache helm-source-files-in-current-dir helm-source-locate)))
  '(helm-match-plugin-mode t nil (helm-match-plugin))
  '(helm-mode t)
  '(helm-mode-handle-completion-in-region t)
