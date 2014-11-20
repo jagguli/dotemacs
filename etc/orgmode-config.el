@@ -13,52 +13,20 @@
 (setq org-todo-keywords (quote ((sequence "TODO" "DONE" "CANCELED"))))
 (setq org-catch-invisible-edits t)
 (setq org-agenda-file-regexp "[^.].*\\.org$")
-
-(defun add-agenda-file (p)
-  (add-to-list 'org-agenda-files (concat org-directory p)))
-
-(add-agenda-file "")
-;;(add-agenda-file "work.org")
-;;(add-agenda-file "startup.org")
-;;(add-agenda-file "zen.org")
-;;(add-agenda-file "notes.org")
-
-(defun note ()
-  (interactive)
-  (find-file (concat org-directory "notes.org"))
-  (goto-char (point-min))
-  (insert "------------------------------------------------------------\n")
-  (esk-insert-date)
-  (insert "\n\n")
- (previous-line) )
-;;(add-hook 'after-init-hook 'org-agenda-list)
-
+(setq org-default-notes-file (concat org-directory "notes.org"))
+(setq org-clock-persist 'history)
+(org-clock-persistence-insinuate)
+(setq org-todo-keywords
+       '((sequence "TODO(t)" "WAIT(w@/!)" "SOMETIME(s)" "|" "DONE(d!)" "CANCELED(c@)")))
+;; I use C-c c to start capture mode
+;;(global-set-key (kbd "C-c c") 'org-capture)
+(add-to-list 'org-agenda-files org-directory)
 
 (defun my-org-files ()
     (interactive)
     (helm-find-files-1 org-directory))
 
-(setq org-default-notes-file (concat org-directory "notes.org"))
-;;(define-key global-map "\C-cc" 'org-capture)
 
-(setq org-capture-templates
-      '(
-        ("t" "Todo" entry (file+headline "~/org/todo.org" "Tasks")
-             "* TODO %?\n  %i\n  %a")
-        ("j" "Journal" entry (file+datetree "~/org/ijournal.org")
-             "* %?\nEntered on %U\n  %i\n  %a")
-        ("n" "Note" entry (file+datetree "~/org/note.org")
-             "* %?\nEntered on %U\n  %i\n  %a")
-        ("o" "OSC" entry (file+datetree "~/org/osc.org")
-             "* %?\nOSC:\n")
-        )
-      )
-
-(setq org-clock-persist 'history)
-(org-clock-persistence-insinuate)
-
-(setq org-todo-keywords
-       '((sequence "TODO(t)" "WAIT(w@/!)" "SOMETIME(s)" "|" "DONE(d!)" "CANCELED(c@)")))
 
 (require 'ox-publish)
 (setq org-publish-project-alist
@@ -106,4 +74,29 @@
            (hide-subtree))
           (t (message "Can only toggle between TODO and DONE.")))))
 
-(define-key org-mode-map (kbd "C-c C-d") 'org-toggle-todo-and-fold)
+(define-key org-mode-map (kbd "C-c d") 'org-toggle-todo-and-fold)
+
+
+;;http://doc.norang.ca/org-mode.html
+
+;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings, and org-protocol
+(setq org-capture-templates
+      (quote (("t" "todo" entry (file "~/org/refile.org")
+               "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
+              ("r" "respond" entry (file "~/org/respond.org")
+               "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
+              ("n" "note" entry (file "~/org/notes.org")
+               "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
+              ("j" "Journal" entry (file+datetree "~/org/ijournal.org")
+               "* %?\n%U\n" :clock-in t :clock-resume t)
+              ("w" "org-protocol" entry (file "~/org/todo.org")
+               "* TODO Review %c\n%U\n" :immediate-finish t)
+              ("m" "Meeting" entry (file "~/org/meetings.org")
+               "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
+              ("p" "Phone call" entry (file "~/org/todo.org")
+               "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
+              ("h" "Habit" entry (file "~/org/todo.org")
+               "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n")
+              ("o" "OSC" entry (file+datetree "~/org/osc.org")
+               "* %?\nOSC:\n")
+)))
