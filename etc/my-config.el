@@ -63,6 +63,27 @@
       (message filename))))
 (defalias 'my-filename-to-clipboard 'filename-to-clipboard)
 
+(defun gitblt-filename-to-clipboard ()
+  "Put the current file name on the clipboard"
+  (interactive)
+  ;;(setq lineno  (what-line))
+  (let (
+        (filename (file-relative-name (if (equal major-mode 'dired-mode)
+                                          default-directory
+                                        (buffer-file-name)) (repository-root)))
+    (when filename
+      (with-temp-buffer
+        (insert (format 
+                 "https://sydxplansvn.devel.iress.com.au/gerrit/plugins/gitblit/blob/?f=%s&r=%s.git&h=%s#L%s"
+                 filename
+                 (file-name-nondirectory filename)
+                 (s-trim (vc-git--run-command-string (buffer-file-name) "symbolic-ref" "--short" "-q" "HEAD"))
+                 (what-line)
+                 ))
+        (shell-command-on-region (point-min) (point-max) "xsel -i"))
+      (message filename)))))
+
+
 (setq locate-make-command-line
       (lambda (ss) (list locate-command "--database" "/home/steven/iress/locate.db" "--basename" "--regexp" ss)))
 (defun check-debug (&optional buffer)

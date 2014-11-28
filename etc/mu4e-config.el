@@ -64,12 +64,12 @@
     (setq
      ;;mu4e-maildir       "~/.local/share/local-mail"   ;; top-level Maildir
      mu4e-maildir       "~/mail/iress-local"   ;; top-level Maildir
-     mu4e-maildir       "/home/steven/.local/share/.local-mail.directory"   ;; top-level Maildir
-     mu4e-sent-folder   "/sent-mail"       ;; folder for sent messages
-     mu4e-drafts-folder "/drafts"     ;; unfinished messages
-     mu4e-trash-folder  "/trash"      ;; trashed messages
-     )
-     ;;mu4e-refile-folder "/archive")   ;; saved messages
+     ;;mu4e-maildir       "/home/steven/.local/share/.local-mail.directory"   ;; top-level Maildir
+     mu4e-sent-folder   "/Sent"       ;; folder for sent messages
+     mu4e-drafts-folder "/Drafts"     ;; unfinished messages
+     mu4e-trash-folder  "/Trash"      ;; trashed messages
+     
+     mu4e-refile-folder "/Archive")   ;; saved messages
  
     
     ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
@@ -81,7 +81,7 @@
     ;; the 'All Mail' folder by pressing ``ma''.
  
     (setq mu4e-maildir-shortcuts
-          '( ("/inbox"               . ?i)
+          '( ("/INBOX"               . ?i)
              ("/manup"   . ?u)
              ("/me"   . ?m)
              ;; ("/gmail/[Gmail].Sent Mail"   . ?s)
@@ -132,3 +132,60 @@
 )
  
 (defalias 'org-mail 'org-mu4e-compose-org-mode)
+
+;;(defadvice epg--start (around advice-epg-disable-agent disable)
+;;  "Make epg--start not able to find a gpg-agent"
+;;  (let ((agent (getenv "GPG_AGENT_INFO")))
+;;    (setenv "GPG_AGENT_INFO" nil)
+;;    ad-do-it
+;;    (setenv "GPG_AGENT_INFO" agent)))
+;;
+;;(defun epg-disable-agent ()
+;;  "Make EasyPG bypass any gpg-agent"
+;;  (interactive)
+;;  (ad-enable-advice 'epg--start 'around 'advice-epg-disable-agent)
+;;  (ad-activate 'epg--start)
+;;  (message "EasyPG gpg-agent bypassed"))
+;;
+;;(defun epg-enable-agent ()
+;;  "Make EasyPG use a gpg-agent after having been disabled with epg-disable-agent"
+;;  (interactive)
+;;  (ad-disable-advice 'epg--start 'around 'advice-epg-disable-agent)
+;;  (ad-activate 'epg--start)
+;;  (message "EasyPG gpg-agent re-enabled"))
+;;
+;;(require 'epg-config)
+;;(setq mml2015-use 'epg
+;;
+;;      mml2015-verbose t
+;;      epg-user-id "520A188A"
+;;      mml2015-encrypt-to-self t
+;;      mml2015-always-trust nil
+;;      mml2015-cache-passphrase t
+;;      mml2015-passphrase-cache-expiry '36000
+;;      mml2015-sign-with-sender t
+;;
+;;      gnus-message-replyencrypt t
+;;      gnus-message-replysign t
+;;      gnus-message-replysignencrypted t
+;;      gnus-treat-x-pgp-sig t
+;;
+;;      ;;       mm-sign-option 'guided
+;;      ;;       mm-encrypt-option 'guided
+;;      mm-verify-option 'always
+;;      mm-decrypt-option 'always
+;;
+;;      gnus-buttonized-mime-types
+;;      '("multipart/alternative"
+;;        "multipart/encrypted"
+;;        "multipart/signed")
+;;
+;;      epg-debug t ;;  then read the *epg-debug*" buffer
+;;      )
+
+;; without this, "symbol's value as variable is void: mml2014-use" when signing
+;; then found http://www.gnu.org/software/emacs/manual/html_node/gnus/Security.html
+;; so set to epg and all was good!
+;; to sign a mail: M-x mml-secure-sign-pgpmime
+;; http://vxlabs.com/2014/06/06/configuring-emacs-mu4e-with-nullmailer-offlineimap-and-multiple-identities/
+(setq mml2015-use 'epg)

@@ -1,5 +1,6 @@
 (require 'password-store)
 (global-set-key "\C-xgg" 'magit-status)
+(global-set-key "\C-xgb" 'mo-git-blame-current)
 
 (defun gerrit-check-if-repo-modified ()
   "Check if current repo has been modified."
