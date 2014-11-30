@@ -1,4 +1,6 @@
 (require 'org-install)
+(require 'evil-org)
+;;(require 'journal)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 ;;(define-key global-map "c l" 'org-store-link)
 ;;(define-key global-map "c a" 'org-agenda)

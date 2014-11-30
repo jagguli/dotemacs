@@ -66,7 +66,7 @@
  '(auto-revert-interval 0.5)
  '(background-color nil)
  '(background-mode dark)
- '(bmkp-last-as-first-bookmark-file (expand-file-name "~/share/Dropbox/.emacsbookmarks"))
+ '(bmkp-last-as-first-bookmark-file "~/share/Dropbox/.emacsbookmarks")
  '(bookmark-default-file (expand-file-name "~/share/Dropbox/.emacsbookmarks"))
  '(bookmark-version-control (quote nospecial))
  '(browse-url-browser-function (quote browse-url-chromium))
@@ -242,7 +242,9 @@
    (quote
     (notmuch-wash-convert-inline-patch-to-part notmuch-wash-wrap-long-lines notmuch-wash-tidy-citations notmuch-wash-elide-blank-lines notmuch-wash-excerpt-citations)))
  '(notmuch-show-only-matching-messages t)
- '(org-agenda-files (quote ("/home/steven/share/Dropbox/OrgMode/antifragile.org" "/home/steven/share/Dropbox/OrgMode/blog.org" "/home/steven/share/Dropbox/OrgMode/book.org" "/home/steven/share/Dropbox/OrgMode/design.org" "/home/steven/share/Dropbox/OrgMode/emacs.org" "/home/steven/share/Dropbox/OrgMode/expenses.org" "/home/steven/share/Dropbox/OrgMode/goals.org" "/home/steven/share/Dropbox/OrgMode/gtd.org" "/home/steven/share/Dropbox/OrgMode/health.org" "/home/steven/share/Dropbox/OrgMode/ideas.org" "/home/steven/share/Dropbox/OrgMode/ijournal.org" "/home/steven/share/Dropbox/OrgMode/index.org" "/home/steven/share/Dropbox/OrgMode/interview_notes.org" "/home/steven/share/Dropbox/OrgMode/manup.org" "/home/steven/share/Dropbox/OrgMode/movies.org" "/home/steven/share/Dropbox/OrgMode/music.org" "/home/steven/share/Dropbox/OrgMode/note.org" "/home/steven/share/Dropbox/OrgMode/notes.org" "/home/steven/share/Dropbox/OrgMode/osc.org" "/home/steven/share/Dropbox/OrgMode/python_notes.org" "/home/steven/share/Dropbox/OrgMode/qtile.org" "/home/steven/share/Dropbox/OrgMode/shoppinglist.org" "/home/steven/share/Dropbox/OrgMode/startup.org" "/home/steven/share/Dropbox/OrgMode/therapy.org" "/home/steven/share/Dropbox/OrgMode/todo.org" "/home/steven/share/Dropbox/OrgMode/visualize.org" "/home/steven/share/Dropbox/OrgMode/work.org" "/home/steven/share/Dropbox/OrgMode/xplan.org" "/home/steven/share/Dropbox/OrgMode/zen.org")))
+ '(org-agenda-files
+   (quote
+    ("/home/steven/share/Dropbox/OrgMode/antifragile.org" "/home/steven/share/Dropbox/OrgMode/blog.org" "/home/steven/share/Dropbox/OrgMode/book.org" "/home/steven/share/Dropbox/OrgMode/design.org" "/home/steven/share/Dropbox/OrgMode/emacs.org" "/home/steven/share/Dropbox/OrgMode/expenses.org" "/home/steven/share/Dropbox/OrgMode/goals.org" "/home/steven/share/Dropbox/OrgMode/gtd.org" "/home/steven/share/Dropbox/OrgMode/health.org" "/home/steven/share/Dropbox/OrgMode/ideas.org" "/home/steven/share/Dropbox/OrgMode/ijournal.org" "/home/steven/share/Dropbox/OrgMode/index.org" "/home/steven/share/Dropbox/OrgMode/interview_notes.org" "/home/steven/share/Dropbox/OrgMode/manup.org" "/home/steven/share/Dropbox/OrgMode/movies.org" "/home/steven/share/Dropbox/OrgMode/music.org" "/home/steven/share/Dropbox/OrgMode/note.org" "/home/steven/share/Dropbox/OrgMode/notes.org" "/home/steven/share/Dropbox/OrgMode/osc.org" "/home/steven/share/Dropbox/OrgMode/python_notes.org" "/home/steven/share/Dropbox/OrgMode/qtile.org" "/home/steven/share/Dropbox/OrgMode/shoppinglist.org" "/home/steven/share/Dropbox/OrgMode/startup.org" "/home/steven/share/Dropbox/OrgMode/therapy.org" "/home/steven/share/Dropbox/OrgMode/todo.org" "/home/steven/share/Dropbox/OrgMode/visualize.org" "/home/steven/share/Dropbox/OrgMode/work.org" "/home/steven/share/Dropbox/OrgMode/xplan.org" "/home/steven/share/Dropbox/OrgMode/zen.org")))
  '(org-clock-into-drawer t)
  '(org-ehtml-docroot "/home/steven/share/Dropbox/OrgMode/")
  '(org-journal-dir "~/documents/journal/")
@@ -259,8 +261,8 @@
  '(send-mail-function (quote mailclient-send-it))
  '(sendmail-program "/usr/bin/msmtp")
  '(shell-file-name "/bin/sh")
- '(split-height-threshold nil)
- '(split-width-threshold nil)
+ '(split-height-threshold 200)
+ '(split-width-threshold 0)
  '(split-window-keep-point nil)
  '(tab-width 4)
  '(tool-bar-mode nil)

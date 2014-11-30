@@ -26,9 +26,8 @@
 ;;(require 'column-marker)
 (require 'buffer-move)
 (require 'ahg)
-;;(require 'wiki)
+(require 'bind-key)
 (add-to-list 'auto-mode-alist '("\\.wiki\\'" . mediawiki-mode))
-;;(require 'mu4e)
 
 (load-theme 'tango-2-steven t)
 
