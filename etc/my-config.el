@@ -145,7 +145,8 @@ Chromium."
   (before outline-expand-replace 
           (match-beg match-end range-beg range-end
                      search-string regexp-flag delimited-flag
-                     case-fold-search))
+                     case-fold-search backward))
+
   (condition-case nil 
       (save-excursion
         (outline-back-to-heading)
