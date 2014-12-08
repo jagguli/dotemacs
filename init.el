@@ -262,7 +262,7 @@
  '(sendmail-program "/usr/bin/msmtp")
  '(shell-file-name "/bin/sh")
  '(split-height-threshold 200)
- '(split-width-threshold 0)
+ '(split-width-threshold 155)
  '(split-window-keep-point nil)
  '(tab-width 4)
  '(tool-bar-mode nil)
