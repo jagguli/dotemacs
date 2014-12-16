@@ -4,5 +4,5 @@
   (if (get-buffer "irc.freenode.net:6667") ;; ERC already active?
       (erc-track-switch-buffer 1) ;; yes: switch to last active
     (when (y-or-n-p "Start ERC? ") ;; no: maybe start ERC
-      (erc :server "irc.freenode.net" :full-name "Steven J" :nick "jagguli" )
-            (erc :server "irc.oftc.net" :port 6667 :nick "jagguli" :full-name "Steven J"))))
+      (erc :server "irc.freenode.net" :full-name "J" :nick "jagguli" )
+      (erc :server "irc.oftc.net" :port 6667 :nick "jagguli" :full-name "J"))))
