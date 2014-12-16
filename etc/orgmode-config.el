@@ -12,14 +12,13 @@
 (setq org-mobile-directory (concat org-directory "MobileOrg/"))
 (setq org-mobile-inbox-for-pull (concat org-mobile-directory "mobileorg.org"))
 (setq org-return-follows-link t)
-(setq org-todo-keywords (quote ((sequence "TODO" "DONE" "CANCELED"))))
 (setq org-catch-invisible-edits t)
 (setq org-agenda-file-regexp "[^.].*\\.org$")
 (setq org-default-notes-file (concat org-directory "notes.org"))
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
 (setq org-todo-keywords
-       '((sequence "TODO(t)" "WAIT(w@/!)" "SOMETIME(s)" "|" "DONE(d!)" "CANCELED(c@)")))
+       '((sequence "TODO(t)" "WAIT(w@/!)" "SOMETIME(s)" "STARTED(i)" "|" "DONE(d!)" "CANCELED(c@)" "DEFFERED(f)")))
 ;; I use C-c c to start capture mode
 ;;(global-set-key (kbd "C-c c") 'org-capture)
 (add-to-list 'org-agenda-files org-directory)
@@ -102,3 +101,23 @@
               ("o" "OSC" entry (file+datetree "~/org/osc.org")
                "* %?\nOSC:\n")
 )))
+
+(setq org-agenda-custom-commands
+      '(("P" "Projects"   
+         ((tags "PROJECT")))
+        ("H" "Office and Home Lists"
+         ((agenda)
+          (tags-todo "OFFICE")
+          (tags-todo "HOME")
+          (tags-todo "COMPUTER")
+          (tags-todo "DVD")
+          (tags-todo "READING")))
+        ("D" "Daily Action List" 
+         ((agenda "" ((org-agenda-ndays 1)
+                      (org-agenda-sorting-strategy
+                       (quote ((agenda time-up priority-down tag-up) )))
+                      (org-deadline-warning-days 0)
+                      )))
+         )))
+
+;;(global-set-key (kbd "C-c a") 'org-agenda)

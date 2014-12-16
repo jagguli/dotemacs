@@ -2,7 +2,9 @@
 
 ;; M-x helm
 (setq helm-samewindow nil)
-(push '(".*[Hh]elm.*" :regexp t :height 40) popwin:special-display-config)
+(push '(".*[Hh]elm.*" :regexp t :width 0.5 :position right) popwin:special-display-config)
+
+(push '(".*[Hh]elp.*" :regexp t :width 0.5 :position right) popwin:special-display-config)
 
 ;; M-x dired-jump-other-window
 (push '(dired-mode :position top) popwin:special-display-config)

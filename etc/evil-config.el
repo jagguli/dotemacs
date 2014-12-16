@@ -26,6 +26,8 @@
 (evil-set-initial-state 'egg-status 'emacs)
 (evil-set-initial-state 'egg-log 'emacs)
 (evil-set-initial-state 'egg-filehistory 'emacs)
+(evil-set-initial-state 'calendar-mode 'emacs)
+(evil-set-initial-state 'journal-mode 'emacs)
 (setq evil-flash-delay 60)
 ;;; esc quits
 
