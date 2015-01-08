@@ -87,6 +87,7 @@
          mu4e-maildir       "~/mail/"   ;; top-level Maildir
          user-mail-address "steven@stevenjoseph.in"
          user-full-name  "steven@stevenjoseph.in"
+         mu4e-sent-folder   "/Sent"       ;; folder for sent messages
          mu4e-maildir-shortcuts '( ("/melit/INBOX" . ?i)
                                    ("/gmail/[Gmail].Important"   . ?I)
                                    ("/me" . ?m)

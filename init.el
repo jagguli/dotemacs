@@ -248,9 +248,11 @@
    (quote
     ("/home/steven/share/Dropbox/OrgMode/antifragile.org" "/home/steven/share/Dropbox/OrgMode/blog.org" "/home/steven/share/Dropbox/OrgMode/book.org" "/home/steven/share/Dropbox/OrgMode/design.org" "/home/steven/share/Dropbox/OrgMode/emacs.org" "/home/steven/share/Dropbox/OrgMode/expenses.org" "/home/steven/share/Dropbox/OrgMode/goals.org" "/home/steven/share/Dropbox/OrgMode/gtd.org" "/home/steven/share/Dropbox/OrgMode/health.org" "/home/steven/share/Dropbox/OrgMode/ideas.org" "/home/steven/share/Dropbox/OrgMode/ijournal.org" "/home/steven/share/Dropbox/OrgMode/index.org" "/home/steven/share/Dropbox/OrgMode/interview_notes.org" "/home/steven/share/Dropbox/OrgMode/manup.org" "/home/steven/share/Dropbox/OrgMode/movies.org" "/home/steven/share/Dropbox/OrgMode/music.org" "/home/steven/share/Dropbox/OrgMode/note.org" "/home/steven/share/Dropbox/OrgMode/notes.org" "/home/steven/share/Dropbox/OrgMode/osc.org" "/home/steven/share/Dropbox/OrgMode/python_notes.org" "/home/steven/share/Dropbox/OrgMode/qtile.org" "/home/steven/share/Dropbox/OrgMode/shoppinglist.org" "/home/steven/share/Dropbox/OrgMode/startup.org" "/home/steven/share/Dropbox/OrgMode/therapy.org" "/home/steven/share/Dropbox/OrgMode/todo.org" "/home/steven/share/Dropbox/OrgMode/visualize.org" "/home/steven/share/Dropbox/OrgMode/work.org" "/home/steven/share/Dropbox/OrgMode/xplan.org" "/home/steven/share/Dropbox/OrgMode/zen.org")))
  '(org-clock-into-drawer t)
+ '(org-default-priority 90)
  '(org-ehtml-docroot "/home/steven/share/Dropbox/OrgMode/")
  '(org-journal-dir "~/documents/share/Dropbox/org/journal/")
  '(org-journal-file-format "%A_%Y%m%d")
+ '(org-lowest-priority 90)
  '(paredit-mode nil t)
  '(password-cache-expiry nil)
  '(recentf-auto-cleanup 300)

@@ -9,6 +9,7 @@
 ;;(setq org-directory (expand-file-name "~/share/orgmodegoogle/melit.stevenjoseph@gmail.com/OrgMode/"))
 (setq org-from-is-user-regexp nil)
 (setq org-log-done t)
+(setq org-indent-mode t)
 (setq org-mobile-directory (concat org-directory "MobileOrg/"))
 (setq org-mobile-inbox-for-pull (concat org-mobile-directory "mobileorg.org"))
 (setq org-return-follows-link t)
@@ -120,4 +121,5 @@
                       )))
          )))
 
-;;(global-set-key (kbd "C-c a") 'org-agenda)
+
+(global-set-key (kbd "C-c a") 'org-agenda)
