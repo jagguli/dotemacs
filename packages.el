@@ -4,7 +4,7 @@
 (setq url-http-attempt-keepalives t)
 (setq package-archives '(
                          ("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")
                          ))
 
@@ -36,7 +36,7 @@
        findr flycheck-color-mode-line flycheck flymake-cursor goto-chg
        helm-ack helm-ag anything helm-dired-recent-dirs helm-git
        helm-git-grep helm-project-persist helm-projectile helm-recoll
-       helm-themes helm helm-cmd-t icicles itail jedi
+       helm-themes helm helm-cmd-t itail jedi
        ;;hideshowvis ipython pyflakes pymacs pysmell
        ;; repository-root  elisp-slime-nav
        ox-html5slide org-ehtml
@@ -51,7 +51,7 @@
        find-file-in-project paredit tango-2-theme twittering-mode
        undo-tree w3m web-mode xclip web-beautify unbound guide-key
        help-fns+ sudo-ext smart-mode-line crosshairs dirtree
-       buffer-move jabber ahg wiki egg password-store bind-key pushbullet)
+       buffer-move jabber ahg egg password-store bind-key pushbullet)
     "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)

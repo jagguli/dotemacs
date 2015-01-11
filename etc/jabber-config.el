@@ -1,6 +1,6 @@
 (add-user-lib "emacs-jabber")
 (add-user-lib "emacs-jabber-otr")
-(require 'jabber-autoloads)
+;;(require 'jabber-autoloads)
 (require 'jabber-libnotify)
 ;(require 'jabber-tmux)
 (require 'jabber-otr)
