@@ -83,7 +83,7 @@
 (add-user-lib "egg")
 (load-user-config "egg-config.el")
 (load-user-config "popwin-config.el")
-(load-user-config "wanderlust-config.el")
+;(load-user-config "wanderlust-config.el")
 (require 'org-protocol)
 ;;(add-user-lib "/usr/local/share/emacs/site-lisp/")
 ;;(load-user-config "elscreen-config.el")

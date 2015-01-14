@@ -10,7 +10,7 @@
 (setq org-from-is-user-regexp nil)
 (setq org-log-done t)
 (setq org-indent-mode t)
-(setq org-mobile-directory (concat org-directory "MobileOrg/"))
+(setq org-mobile-directory (expand-file-name "~/share/Dropbox/MobileOrg/"))
 (setq org-mobile-inbox-for-pull (concat org-mobile-directory "mobileorg.org"))
 (setq org-return-follows-link t)
 (setq org-catch-invisible-edits t)
