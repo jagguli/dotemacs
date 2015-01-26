@@ -1,8 +1,0 @@
-(add-user-lib "helm-recoll")
-(require 'helm-recoll)
-;;(helm-recoll-create-source "docs" "~/.recoll/docs")
-(helm-recoll-create-source "progs" "~/.recoll")
-;;(defun helmrecoll ()
-;;  (interactive)
-;;  (helm :sources '(helm-source-recoll-progs)))
-;;(global-set-key "\C-x?"  'helmrecoll)

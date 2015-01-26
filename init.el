@@ -18,8 +18,8 @@
   (setq server-use-tcp t)
   (server-start)
   (setq history-dir (expand-file-name "~/.emacs.d/history.d/"))
-  (setq helm-adaptive-history-file
-        (concat history-dir (format "helm-adaptive-history_%s" server-name)))
+  ;;(setq helm-adaptive-history-file
+   ;;     (concat history-dir (format "helm-adaptive-history_%s" server-name)))
   (setq savehist-additional-variables    ;; also save...
         '(search-ring regexp-search-ring)    ;; ... my search entries
         savehist-file (concat history-dir (format "history_%s" server-name)))
@@ -49,7 +49,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(Buffer-menu-use-frame-buffer-list "Mode")
- '(ack-and-a-half-prompt-for-directory t)
+ ;;'(ack-and-a-half-prompt-for-directory t)
  '(ansi-color-faces-vector
    [default bold shadow italic underline bold bold-italic bold])
  '(ansi-color-names-vector
@@ -137,7 +137,7 @@
  '(grep-highlight-matches (quote auto))
  '(gud-pdb-command-name "python -d")
  '(helm-M-x-always-save-history t)
- '(helm-adaptative-mode t nil (helm-adaptative))
+ ;'(helm-adaptative-mode t nil (helm-adaptative))
  '(helm-always-two-windows t)
  '(helm-boring-buffer-regexp-list
    (quote
