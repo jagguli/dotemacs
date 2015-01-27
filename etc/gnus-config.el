@@ -2,14 +2,14 @@
 
 (setq gnus-select-method
       '(nnimap "iress"
-               (nnimap-address "email2.iress.com.au")
-               (nnimap-server-port 443)
-               (nnimap-stream ssl)))
-(setq gnus-secondary-select-methods
-      '(nnimap "gmail"
-               (nnimap-address "imap.gmail.com")
-               (nnimap-server-port 993)
-               (nnimap-stream ssl)))
+               (nnimap-address "localhost")
+               (nnimap-server-port 1143)
+               (nnimap-stream network)))
+;;(setq gnus-secondary-select-methods
+;;      '(nnimap "gmail"
+;;               (nnimap-address "imap.gmail.com")
+;;               (nnimap-server-port 993)
+;;               (nnimap-stream ssl)))
 
 
 (defadvice gnus (after gnus-init (arg char) activate)
