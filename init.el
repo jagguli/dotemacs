@@ -125,6 +125,7 @@
  '(evil-fold-level 1)
  '(evil-search-module (quote evil-search))
  '(fci-rule-color "#073642")
+ '(ffap-machine-p-known (quote reject))
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
  '(flycheck-checkers
    (quote
@@ -219,7 +220,7 @@
    (quote
     ((:name "unread" :query "tag:unread")
      (:name "sent/replied" :query "tag:sent tag:replied and date:30d..0s")
-     (:name "inbox" :query "(tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s")
+     (:name "inbox" :query "(tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s" :key "i")
      (:name "osc" :query "tag:osc")
      (:name "osc_note" :query "tag:osc  and \"a NOTE has been added\"")
      (:name "nomailers" :query "not tag:mailers")
@@ -297,6 +298,8 @@
      (360 . "#cb4b16"))))
  '(vc-annotate-very-old-color nil)
  '(wiki-directories (quote ("/home/steven/iress/devwiki/")))
+ '(x-select-enable-clipboard nil)
+ '(x-select-enable-primary nil)
  '(xclip-mode nil))
 
 
@@ -345,8 +348,8 @@
  '(log-view-message ((t nil)) t)
  '(magit-header ((t (:inherit header-line :background "white" :foreground "black"))) t)
  '(match ((t (:background "color-22"))))
- '(notmuch-message-summary-face ((t (:background "color-17"))) t)
- '(notmuch-tag-face ((t (:foreground "color-19"))) t)
+ '(notmuch-message-summary-face ((t (:background "color-17"))))
+ '(notmuch-tag-face ((t (:foreground "color-19"))))
  '(rst-level-1 ((t (:background "color-236"))) t)
  '(trailing-whitespace ((t (:background "color-54" :foreground "color-54" :inverse-video t :underline nil :slant normal :weight normal))))
  '(vertical-border ((t (:inherit mode-line-inactive :background "grey" :foreground "grey" :weight thin :width condensed)))))
