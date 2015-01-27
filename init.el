@@ -125,6 +125,7 @@
  '(evil-fold-level 1)
  '(evil-search-module (quote evil-search))
  '(fci-rule-color "#073642")
+ '(ffap-machine-p-known (quote reject))
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
  '(flycheck-checkers
    (quote
@@ -219,7 +220,7 @@
    (quote
     ((:name "unread" :query "tag:unread")
      (:name "sent/replied" :query "tag:sent tag:replied and date:30d..0s")
-     (:name "inbox" :query "(tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s")
+     (:name "inbox" :query "(tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s" :key "i")
      (:name "osc" :query "tag:osc")
      (:name "osc_note" :query "tag:osc  and \"a NOTE has been added\"")
      (:name "nomailers" :query "not tag:mailers")
@@ -297,6 +298,8 @@
      (360 . "#cb4b16"))))
  '(vc-annotate-very-old-color nil)
  '(wiki-directories (quote ("/home/steven/iress/devwiki/")))
+ '(x-select-enable-clipboard nil)
+ '(x-select-enable-primary nil)
  '(xclip-mode nil))
 
 
