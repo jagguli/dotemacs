@@ -25,10 +25,10 @@
 	(setq notmuch-identites '((keepass-get-command "/iress/default" "url")))
 
 	(setq message-send-mail-function 'message-send-mail-with-iress-sendmail)
-	(setq notmuch-address-command "~/bin/mutt_ldap.py"))
+	(setq notmuch-address-command "~/.bin/mutt_ldap.py"))
     (progn
       (setq message-send-mail-function 'message-send-mail-with-sendmail)
-      (setq notmuch-address-command "~/bin/notmuch-goobook"))))
+      (setq notmuch-address-command "~/.bin/notmuch-goobook"))))
 
 (notmuch-config)
 
