@@ -1,6 +1,5 @@
 ;; CScope =============================================================================
-(req-package
-  xcscope
+(req-package xcscope
   :require (evil)
   :init
   (progn
