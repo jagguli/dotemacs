@@ -1,6 +1,6 @@
 (req-package
   helm
-  :require (helm-config helm-cmd-t)
+  :require (helm-config helm-cmd-t bookmark+)
   :defer t
   :init
   (progn
