@@ -27,7 +27,9 @@
 (require 'buffer-move)
 (require 'ahg)
 (require 'bind-key)
-;;(add-to-list 'auto-mode-alist '("\\.wiki\\'" . mediawiki-mode))
+(add-to-list 'auto-mode-alist '("\\.sls\\'" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.wiki\\'" . mediawiki-mode))
+
 (load-theme 'tango-2-steven t)
 (load-file (concat user-emacs-directory "load-directory.el"))
 (load-directory (concat user-emacs-directory "etc"))

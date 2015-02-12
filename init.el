@@ -70,7 +70,7 @@
  '(bookmark-default-file (expand-file-name "~/share/Dropbox/.emacsbookmarks"))
  '(bookmark-version-control (quote nospecial))
  '(browse-url-browser-function (quote browse-url-chromium))
- '(browse-url-chromium-program "conkeror")
+ '(browse-url-chromium-program "chromium")
  '(compilation-disable-input t)
  '(cursor-color nil)
  '(custom-safe-themes
@@ -226,7 +226,7 @@
      (:name "nomailers" :query "not tag:mailers")
      (:name "misc" :query "tag:misc")
      (:name "last30days" :query "date:30d..0s")
-     (:name "me" :query "tag:me and (tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s or (tag:sent or tag:replied or from:steven.joseph) ")
+     (:name "me" :query "tag:me and (tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s or (tag:sent or tag:replied or from:steven.joseph) " :key "m")
      (:name "unread_me" :query "tag:me and (tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s and tag:unread and (tag:sent or tag:replied or from:steven.joseph)"))))
  '(notmuch-search-hook (quote (notmuch-hl-line-mode)))
  '(notmuch-search-line-faces
