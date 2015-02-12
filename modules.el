@@ -27,6 +27,7 @@
 (require 'buffer-move)
 (require 'ahg)
 (require 'bind-key)
+(add-to-list 'auto-mode-alist '("\\.sls\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.wiki\\'" . mediawiki-mode))
 
 (load-theme 'tango-2-steven t)

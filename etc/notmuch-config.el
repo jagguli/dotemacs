@@ -136,7 +136,7 @@
 (defun open-in-chrome ()
   (interactive)
   (message "open-in-chrome")
-  (notmuch-show-pipe-message nil "/home/steven/bin/mutt_chrome.py"))
+  (notmuch-show-pipe-message nil "/home/steven/.bin/mutt_chrome.py"))
 
 (defun notmuch-toggle-all-headers ()
   (interactive)
