@@ -18,8 +18,8 @@
   (setq server-use-tcp t)
   (server-start)
   (setq history-dir (expand-file-name "~/.emacs.d/history.d/"))
-  (setq helm-adaptive-history-file
-        (concat history-dir (format "helm-adaptive-history_%s" server-name)))
+  ;;(setq helm-adaptive-history-file
+   ;;     (concat history-dir (format "helm-adaptive-history_%s" server-name)))
   (setq savehist-additional-variables    ;; also save...
         '(search-ring regexp-search-ring)    ;; ... my search entries
         savehist-file (concat history-dir (format "history_%s" server-name)))
@@ -49,7 +49,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(Buffer-menu-use-frame-buffer-list "Mode")
- '(ack-and-a-half-prompt-for-directory t)
+ ;;'(ack-and-a-half-prompt-for-directory t)
  '(ansi-color-faces-vector
    [default bold shadow italic underline bold bold-italic bold])
  '(ansi-color-names-vector
@@ -138,7 +138,7 @@
  '(grep-highlight-matches (quote auto))
  '(gud-pdb-command-name "python -d")
  '(helm-M-x-always-save-history t)
- '(helm-adaptative-mode t nil (helm-adaptative))
+ ;'(helm-adaptative-mode t nil (helm-adaptative))
  '(helm-always-two-windows t)
  '(helm-boring-buffer-regexp-list
    (quote
@@ -247,7 +247,7 @@
  '(notmuch-show-only-matching-messages t)
  '(org-agenda-files
    (quote
-    ("/home/steven/share/Dropbox/OrgMode/antifragile.org" "/home/steven/share/Dropbox/OrgMode/blog.org" "/home/steven/share/Dropbox/OrgMode/book.org" "/home/steven/share/Dropbox/OrgMode/design.org" "/home/steven/share/Dropbox/OrgMode/emacs.org" "/home/steven/share/Dropbox/OrgMode/expenses.org" "/home/steven/share/Dropbox/OrgMode/goals.org" "/home/steven/share/Dropbox/OrgMode/gtd.org" "/home/steven/share/Dropbox/OrgMode/health.org" "/home/steven/share/Dropbox/OrgMode/ideas.org" "/home/steven/share/Dropbox/OrgMode/ijournal.org" "/home/steven/share/Dropbox/OrgMode/index.org" "/home/steven/share/Dropbox/OrgMode/interview_notes.org" "/home/steven/share/Dropbox/OrgMode/manup.org" "/home/steven/share/Dropbox/OrgMode/movies.org" "/home/steven/share/Dropbox/OrgMode/music.org" "/home/steven/share/Dropbox/OrgMode/note.org" "/home/steven/share/Dropbox/OrgMode/notes.org" "/home/steven/share/Dropbox/OrgMode/osc.org" "/home/steven/share/Dropbox/OrgMode/python_notes.org" "/home/steven/share/Dropbox/OrgMode/qtile.org" "/home/steven/share/Dropbox/OrgMode/shoppinglist.org" "/home/steven/share/Dropbox/OrgMode/startup.org" "/home/steven/share/Dropbox/OrgMode/therapy.org" "/home/steven/share/Dropbox/OrgMode/todo.org" "/home/steven/share/Dropbox/OrgMode/visualize.org" "/home/steven/share/Dropbox/OrgMode/work.org" "/home/steven/share/Dropbox/OrgMode/xplan.org" "/home/steven/share/Dropbox/OrgMode/zen.org")))
+    ("/home/steven/share/Dropbox/OrgMode/9success.org" "/home/steven/share/Dropbox/OrgMode/antifragile.org" "/home/steven/share/Dropbox/OrgMode/blog.org" "/home/steven/share/Dropbox/OrgMode/book.org" "/home/steven/share/Dropbox/OrgMode/brainstorm.org" "/home/steven/share/Dropbox/OrgMode/cryptotrader.org" "/home/steven/share/Dropbox/OrgMode/design.org" "/home/steven/share/Dropbox/OrgMode/driving.org" "/home/steven/share/Dropbox/OrgMode/emacs.org" "/home/steven/share/Dropbox/OrgMode/expenses.org" "/home/steven/share/Dropbox/OrgMode/goals.org" "/home/steven/share/Dropbox/OrgMode/gtd.org" "/home/steven/share/Dropbox/OrgMode/health.org" "/home/steven/share/Dropbox/OrgMode/ideas.org" "/home/steven/share/Dropbox/OrgMode/ijournal.org" "/home/steven/share/Dropbox/OrgMode/index.org" "/home/steven/share/Dropbox/OrgMode/interview_notes.org" "/home/steven/share/Dropbox/OrgMode/manup.org" "/home/steven/share/Dropbox/OrgMode/movies.org" "/home/steven/share/Dropbox/OrgMode/music.org" "/home/steven/share/Dropbox/OrgMode/note.org" "/home/steven/share/Dropbox/OrgMode/notes.org" "/home/steven/share/Dropbox/OrgMode/osc.org" "/home/steven/share/Dropbox/OrgMode/philosophy.org" "/home/steven/share/Dropbox/OrgMode/python_notes.org" "/home/steven/share/Dropbox/OrgMode/qtile.org" "/home/steven/share/Dropbox/OrgMode/refile.org" "/home/steven/share/Dropbox/OrgMode/shoppinglist.org" "/home/steven/share/Dropbox/OrgMode/startup.org" "/home/steven/share/Dropbox/OrgMode/sypy.org" "/home/steven/share/Dropbox/OrgMode/therapy.org" "/home/steven/share/Dropbox/OrgMode/todo.org" "/home/steven/share/Dropbox/OrgMode/visualize.org" "/home/steven/share/Dropbox/OrgMode/work.org" "/home/steven/share/Dropbox/OrgMode/xplan.org" "/home/steven/share/Dropbox/OrgMode/zen.org")))
  '(org-clock-into-drawer t)
  '(org-default-priority 90)
  '(org-ehtml-docroot "/home/steven/share/Dropbox/OrgMode/")

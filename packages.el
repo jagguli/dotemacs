@@ -1,17 +1,20 @@
 (require 'package)
+(setq package-enable-at-startup nil)
 ; this is a workaround for a bug in emacs' http fetching, see
 ; http://lists.gnu.org/archive/html/bug-gnu-emacs/2011-12/msg00196.html
 (setq url-http-attempt-keepalives t)
 (setq package-archives '(
                          ("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("melpa" . "http://melpa.org/packages/")
                          ))
 
 (package-initialize)
 
-(when (not package-archive-contents)
-    (package-refresh-contents))
+;; Bootstrap `req-package'
+(unless (package-installed-p 'req-package)
+  (package-refresh-contents)
+  (package-install 'req-package))
 
 ;; Add in your own as you wish:
 (defvar my-packages
