@@ -2,6 +2,21 @@
   :init
   (progn
     (windmove-default-keybindings 'control)
+    (setq default-frame-alist
+          '(
+            (width . 100) ; character
+            (height . 52) ; lines
+            (foreground-color . blue)
+                    ))
+    ;; Reverse colors for the border to have nicer line
+    (set-face-inverse-video-p 'vertical-border nil)
+    (set-face-background 'vertical-border (face-background 'default))
+
+    ;; Set symbol for the border
+    ;; http://stackoverflow.com/questions/18210631/how-to-change-the-character-composing-the-emacs-vertical-border
+    (set-display-table-slot standard-display-table
+                            'vertical-border
+                                                    (make-glyph-code ?│))
 
 
     ;;(global-set-key (kbd "C-<left>")  'windmove-left)
