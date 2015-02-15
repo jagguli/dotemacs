@@ -49,7 +49,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(Buffer-menu-use-frame-buffer-list "Mode")
- ;;'(ack-and-a-half-prompt-for-directory t)
  '(ansi-color-faces-vector
    [default bold shadow italic underline bold bold-italic bold])
  '(ansi-color-names-vector
@@ -137,7 +136,6 @@
  '(grep-highlight-matches (quote auto))
  '(gud-pdb-command-name "python -d")
  '(helm-M-x-always-save-history t)
- ;'(helm-adaptative-mode t nil (helm-adaptative))
  '(helm-always-two-windows t)
  '(helm-boring-buffer-regexp-list
    (quote
@@ -349,4 +347,4 @@
  '(notmuch-tag-face ((t (:foreground "color-19"))))
  '(rst-level-1 ((t (:background "color-236"))) t)
  '(trailing-whitespace ((t (:background "color-54" :foreground "color-54" :inverse-video t :underline nil :slant normal :weight normal))))
- '(vertical-border ((t (:inherit mode-line-inactive :background "grey" :foreground "grey" :weight thin :width condensed)))))
+ '(vertical-border ((t (:inherit mode-line-inactive :background "black" :foreground "color-27" :weight thin :width condensed)))))
