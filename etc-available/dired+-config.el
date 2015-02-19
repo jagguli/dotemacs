@@ -1,7 +1,7 @@
 ;; Dired =============================================================================
 (req-package dired+
-             :require (ls-lisp dirtree)
-             :init
+  :require (evil ls-lisp dirtree)
+  :init
   (progn 
     (setq ls-lisp-use-insert-directory-program nil)
 
