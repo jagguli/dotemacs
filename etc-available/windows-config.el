@@ -2,12 +2,12 @@
   :init
   (progn
     (windmove-default-keybindings 'control)
-    (setq default-frame-alist
-          '(
-            (width . 100) ; character
-            (height . 52) ; lines
-            (foreground-color . blue)
-                    ))
+    ;;(setq default-frame-alist
+    ;;      '(
+    ;;        (width . 100) ; character
+    ;;        (height . 52) ; lines
+    ;;        (foreground-color . blue)
+    ;;                ))
     ;; Reverse colors for the border to have nicer line
     (set-face-inverse-video-p 'vertical-border nil)
     (set-face-background 'vertical-border (face-background 'default))

@@ -1,4 +1,5 @@
 (req-package jedi
+  :require (python)
   :init
   (progn 
     (add-user-lib "emacs-jedi")
@@ -16,6 +17,7 @@
             ))
 
     (defun my-jedi-python-mode-hook ()
+      (interactive)
       (define-key python-mode-map "\C-cx" 'jedi-direx:pop-to-buffer)
       (define-key evil-normal-state-map (kbd "C-]") 'jedi:goto-definition)
       (define-key evil-normal-state-map (kbd "C-t") 'jedi:goto-definition-pop-marker)
