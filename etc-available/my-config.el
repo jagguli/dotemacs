@@ -1,5 +1,20 @@
 ;; My miscellaneous functions
 
+(defun emacs-log ()
+  (interactive)
+  (let* ((log-buffer-name  "*Messages*")
+         (log-buffer (get-buffer log-buffer-name))
+         (log-file-name "~/.emacs.d/messages.log")
+         (log-str (concat
+                   (current-time-string)
+                   " -- "
+                   "\n")))
+    (save-excursion
+      (with-current-buffer log-buffer
+      ;;  (goto-char (point-max))
+      ;;  (insert log-str))
+        (write-region (point-min) (point-max) log-file-name t
+                      'nomessage nil nil)))))
 (defun kill-other-buffers ()
       "Kill all other buffers."
       (interactive)

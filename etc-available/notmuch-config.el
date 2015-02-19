@@ -1,5 +1,5 @@
 (req-package notmuch
-   :require (notmuch notmuch-pick notmuch-address password-cache password-store)
+   :require (notmuch-pick notmuch-address password-cache password-store)
    :init
    (progn
      (notmuch-address-message-insinuate)
@@ -23,10 +23,10 @@
              (setq notmuch-identites '((password-store-get "iress/user")))
 
              (setq message-send-mail-function 'message-send-mail-with-iress-sendmail)
-             (setq notmuch-address-command "~/bin/mutt_ldap.py"))
+             (setq notmuch-address-command "~/.bin/mutt_ldap.py"))
          (progn
            (setq message-send-mail-function 'message-send-mail-with-sendmail)
-           (setq notmuch-address-command "~/bin/notmuch-goobook"))))
+           (setq notmuch-address-command "~/.bin/notmuch-goobook"))))
 
      (notmuch-config)
 
@@ -134,7 +134,7 @@
      (defun open-in-chrome ()
        (interactive)
        (message "open-in-chrome")
-       (notmuch-show-pipe-message nil "/home/steven/bin/mutt_chrome.py"))
+       (notmuch-show-pipe-message nil "/home/steven/.bin/mutt_chrome.py"))
 
      (defun notmuch-toggle-all-headers ()
        (interactive)
