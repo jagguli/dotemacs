@@ -10,7 +10,7 @@
 ;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 ;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (req-package python
-  :require (evil multi-project)
+  :require (evil multi-project column-marker)
   :init
   (progn
     (defun load-ropemacs ()
