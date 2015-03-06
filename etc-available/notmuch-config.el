@@ -135,6 +135,11 @@
        (interactive)
        (message "open-in-chrome")
        (notmuch-show-pipe-message nil "/home/steven/.bin/mutt_chrome.py"))
+     (defun open-in-kmail ()
+       (interactive)
+       (message "open in kmail")
+       (shell-command (concat "kmail --view file://" (notmuch-show-get-filename)))
+       )
 
      (defun notmuch-toggle-all-headers ()
        (interactive)

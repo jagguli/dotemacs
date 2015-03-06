@@ -5,7 +5,7 @@
 (setq url-http-attempt-keepalives t)
 (setq package-archives '(
                          ("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ;;("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.org/packages/")
                          ))
 
