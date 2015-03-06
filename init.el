@@ -137,13 +137,15 @@
  '(grep-highlight-matches (quote auto))
  '(gud-pdb-command-name "python -d")
  '(helm-M-x-always-save-history t)
+ '(helm-adaptive-mode t nil (helm-adaptive))
  '(helm-always-two-windows t)
  '(helm-boring-buffer-regexp-list
    (quote
-    ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-" "\\*Custom" "\\*Complet" "\\*magit" "\\*tail" "\\*cscope" "\\*scratch" "\\*epc")))
+    ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-" "\\*Complet" "\\*magit" "\\*tail" "\\*cscope" "\\*scratch" "\\*epc")))
  '(helm-boring-file-regexp-list
    (quote
     ("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$" "\\.pyc$")))
+ '(helm-buffers-fuzzy-matching t)
  '(helm-c-ack-version 2)
  '(helm-ff-auto-update-initial-value nil)
  '(helm-ff-file-name-history-use-recentf t)
@@ -178,6 +180,7 @@
     (jabber-message-display jabber-message-wave jabber-message-libnotify)))
  '(jabber-alert-message-wave "~/.sounds/message-new-instant.wav")
  '(jabber-auto-reconnect t)
+ '(jabber-default-status "can I automate it ?")
  '(jabber-history-enable-rotation t)
  '(jabber-history-enabled t)
  '(jabber-history-muc-enabled t)
@@ -186,10 +189,12 @@
     ("mel-imsrv1" "mel-imsrv1.devel.iress.com.au" "iress.com.au")))
  '(jabber-keepalive-interval 30)
  '(jabber-libnotify-method (quote dbus))
+ '(jabber-mode-line-mode t)
  '(jabber-post-connect-hooks
    (quote
     (sr-jabber-post-connect-func jabber-send-current-presence jabber-muc-autojoin jabber-whitespace-ping-start jabber-vcard-avatars-find-current sauron-jabber-start)))
  '(jabber-roster-line-format "%c %-25n %u %-8s  %S")
+ '(jabber-show-offline-contacts nil)
  '(jabber-use-auth-sources t)
  '(jabber-use-global-history nil)
  '(js3-indent-level 4)
@@ -218,7 +223,7 @@
    (quote
     ((:name "unread" :query "tag:unread")
      (:name "sent/replied" :query "tag:sent tag:replied and date:30d..0s")
-     (:name "inbox" :query "(tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s" :key "i")
+     (:name "inbox" :query "(tag:INBOX or  tag:inbox) and not (tag:manup or tag:osc or tag:misc) and date:30d..0s" :key "i")
      (:name "osc" :query "tag:osc")
      (:name "osc_note" :query "tag:osc  and \"a NOTE has been added\"")
      (:name "nomailers" :query "not tag:mailers")
