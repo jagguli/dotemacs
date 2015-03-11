@@ -3,6 +3,7 @@
 ;; Enable flymake for Python only
 (add-hook 'python-mode-hook 'flycheck-mode-on-safe)
 (add-hook 'js2-mode-hook 'flycheck-mode-on-safe)
+(add-hook 'javascript-mode-hook 'flycheck-mode-on-safe)
 
 
 ;;(setq flymake-no-changes-timeout 5)
