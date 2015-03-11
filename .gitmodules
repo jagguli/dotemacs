@@ -1,3 +1,6 @@
 [submodule "lib/revolver"]
 	path = lib/revolver
 	url = https://github.com/theanalyst/revolver.git
+[submodule "lib/Pymacs"]
+	path = lib/Pymacs
+	url = https://github.com/pinard/Pymacs.git
