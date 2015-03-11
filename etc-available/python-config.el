@@ -13,6 +13,7 @@
   :require (evil multi-project column-marker)
   :init
   (progn
+    (add-user-lib "Pymacs")
     (defun load-ropemacs ()
       "Load pymacs and ropemacs"
       (interactive)
@@ -26,7 +27,7 @@
       (setq ropemacs-confirm-saving 'nil)
     )
 
-    ;;(load-ropemacs)
+    (load-ropemacs)
     (global-set-key "\C-xpl" 'load-ropemacs)
     (add-hook 'outline-minor-mode-hook (lambda () 
                                          (require 'outline-magic)))
