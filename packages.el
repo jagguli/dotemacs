@@ -49,7 +49,7 @@
        mustache-mode nose notmuch-labeler notmuch org-journal
        outline-magic popup-switcher popup project-persist
        projectile pkg-info epl dash pylint 
-       python python-magic scss-mode
+       python scss-mode
        magit git-rebase-mode git-commit-mode ido-ubiquitous smex
        find-file-in-project paredit tango-2-theme twittering-mode
        undo-tree w3m web-mode xclip web-beautify unbound guide-key

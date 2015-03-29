@@ -27,6 +27,8 @@
 (require 'buffer-move)
 (require 'ahg)
 (require 'bind-key)
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.sls\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.wiki\\'" . mediawiki-mode))
 

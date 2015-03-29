@@ -175,11 +175,13 @@
      ("[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}" . font-lock-string-face)
      ("File \\\".*\\\"" . hi-red-b)
      ("^Traceback.*$" . hi-red-b))))
- '(jabber-alert-message-hooks
-   (quote
-    (jabber-message-display jabber-message-wave jabber-message-libnotify)))
+ '(jabber-alert-info-message-hooks nil)
+ '(jabber-alert-message-hooks (quote (jabber-message-libnotify)))
  '(jabber-alert-message-wave "~/.sounds/message-new-instant.wav")
  '(jabber-auto-reconnect t)
+ '(jabber-backlog-days 30)
+ '(jabber-backlog-number 40)
+ '(jabber-default-show "chat")
  '(jabber-default-status "can I automate it ?")
  '(jabber-history-enable-rotation t)
  '(jabber-history-enabled t)

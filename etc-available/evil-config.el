@@ -66,7 +66,7 @@
 
     (setq evil-default-cursor t)
 
-    (iswitchb-mode 1)
+    ;;(iswitchb-mode 1)
     (setq iswitchb-buffer-ignore '("^\\*"))
 
 

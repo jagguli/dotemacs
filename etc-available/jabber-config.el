@@ -7,6 +7,14 @@
   :defer t
   :init
   (progn
+    (setq
+     jabber-history-enabled t
+     jabber-use-global-history nil
+     jabber-backlog-number 40
+     jabber-backlog-days 30
+      )
+    (setq jabber-default-status "How can I help ?")
+    (setq jabber-default-show "chat")
 
     ;;(setq jabber-default-show , jabber-default-status and jabber-default-priority
     (defun jabber ()
@@ -30,8 +38,10 @@
                                        (:port . 443))
                                       ))
           ))
-      (switch-to-buffer "*-jabber-roster-*"))
+      (switch-to-buffer "*-jabber-roster-*")
+      )
 
+    
 
     (defun egh:jabber-google-groupchat-create ()
       (interactive)
@@ -116,6 +126,7 @@
                              " (" *jabber-current-status* ")")))))
 
     (add-hook 'jabber-chat-mode-hook 'goto-address)
+    (add-hook 'jabber-post-connect-hooks 'jabber-send-default-presence)
 
     )
 )

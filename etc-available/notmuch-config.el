@@ -16,7 +16,7 @@
      (defun notmuch-config ()
        (interactive)
        (setq notmuch-wash-wrap-lines-length 70)
-       (if (string-match "^SYDSJOSEPH.*" system-name )
+       (if (string-match ".*\.iress\.com\.au" system-name )
            (progn 
              (setq notmuch-wash-original-regexp "^\\(From: .*\\|.* writes:\\)$")
              (setq notmuch-wash-citation-lines-prefix 0)
