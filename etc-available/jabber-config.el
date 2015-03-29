@@ -42,7 +42,6 @@
       )
 
     
-
     (defun egh:jabber-google-groupchat-create ()
       (interactive)
       (let ((group (apply 'format "private-chat-%x%x%x%x%x%x%x%x-%x%x%x%x-%x%x%x%x-%x%x%x%x-%x%x%x%x%x%x%x%x%x%x%x%x@groupchat.google.com"
