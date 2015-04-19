@@ -18,8 +18,6 @@
   (setq server-use-tcp t)
   (server-start)
   (setq history-dir (expand-file-name "~/.emacs.d/history.d/"))
-  ;;(setq helm-adaptive-history-file
-   ;;     (concat history-dir (format "helm-adaptive-history_%s" server-name)))
   (setq savehist-additional-variables    ;; also save...
         '(search-ring regexp-search-ring)    ;; ... my search entries
         savehist-file (concat history-dir (format "history_%s" server-name)))
@@ -28,13 +26,6 @@
   (setq recentf-initialize-file-name-history t)
   (setq recentf-save-file (concat history-dir (format "recentf_%s" server-name)))
   (recentf-load-list)
-  (setq helm-for-files-preferred-list
-        '(helm-source-buffers-list
-          helm-source-recentf
-          helm-source-bookmarks
-          helm-source-file-cache
-          helm-source-files-in-current-dir
-          helm-source-locate))
   (require 'org-protocol)
   )
 
@@ -136,35 +127,6 @@
  '(grep-command "ack --with-filename --nogroup --all")
  '(grep-highlight-matches (quote auto))
  '(gud-pdb-command-name "python -d")
- '(helm-M-x-always-save-history t)
- '(helm-adaptive-mode t nil (helm-adaptive))
- '(helm-always-two-windows t)
- '(helm-boring-buffer-regexp-list
-   (quote
-    ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-" "\\*Complet" "\\*magit" "\\*tail" "\\*cscope" "\\*scratch" "\\*epc")))
- '(helm-boring-file-regexp-list
-   (quote
-    ("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$" "\\.pyc$")))
- '(helm-buffers-fuzzy-matching t)
- '(helm-c-ack-version 2)
- '(helm-ff-auto-update-initial-value nil)
- '(helm-ff-file-name-history-use-recentf t)
- '(helm-ff-ido-style-backspace t)
- '(helm-ff-skip-boring-files t)
- '(helm-ff-smart-completion t)
- '(helm-ff-transformer-show-only-basename nil)
- '(helm-findutils-skip-boring-files t)
- '(helm-for-files-preferred-list
-   (quote
-    (helm-source-buffers-list helm-source-recentf helm-source-bookmarks helm-source-file-cache helm-source-files-in-current-dir helm-source-locate)))
- '(helm-match-plugin-mode t nil (helm-match-plugin))
- '(helm-mode t)
- '(helm-mode-handle-completion-in-region t)
- '(helm-mode-reverse-history nil)
- '(helm-quick-update t)
- '(helm-reuse-last-window-split-state nil)
- '(helm-split-window-default-side (quote left))
- '(helm-split-window-in-side-p nil)
  '(idle-highlight-idle-time 1.5)
  '(idle-update-delay 1.5)
  '(itail-fancy-mode-line t)
