@@ -24,6 +24,7 @@
     (evil-set-initial-state 'newsticker-mode 'emacs)
     (evil-set-initial-state 'newsticker-treeview-mode 'emacs)
     (evil-set-initial-state 'notmuch-show-mode 'emacs)
+    (evil-set-initial-state 'notmuch-tree-mode 'emacs)
     (evil-set-initial-state 'dirtree-mode 'emacs)
     (evil-set-initial-state 'egg-status 'emacs)
     (evil-set-initial-state 'egg-log 'emacs)

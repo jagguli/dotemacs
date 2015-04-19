@@ -15,7 +15,25 @@
 
      (defun notmuch-config ()
        (interactive)
-       (setq notmuch-wash-wrap-lines-length 70)
+       (setq
+        notmuch-wash-wrap-lines-length 70
+        notmuch-search-result-format
+        '(
+          ("date" . "%12s | ")
+          ("authors" . "%-50s ")
+          ("subject" . "%-80s")
+          ("tags" . "[%s]")
+          )
+        notmuch-tree-result-format
+        '(("date" . "%12s  ")
+          ("authors" . "%-15s")
+          ((("tree" . "%s ")
+            ("subject" . "%s"))
+           . " %-54s ")
+          ("tags" . "[%s]")
+          )
+        notmuch-tree-show-out t
+        )
        (if (string-match ".*\.iress\.com\.au" system-name )
            (progn 
              (setq notmuch-wash-original-regexp "^\\(From: .*\\|.* writes:\\)$")
