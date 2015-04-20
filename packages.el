@@ -39,7 +39,7 @@
        findr flycheck-color-mode-line flycheck flymake-cursor goto-chg
        helm-ack helm-ag anything helm-dired-recent-dirs helm-git
        helm-git-grep helm-project-persist helm-projectile helm-recoll
-       helm-themes helm helm-cmd-t itail jedi
+       helm-themes helm helm-cmd-t itail jedi 
        ;;hideshowvis ipython pyflakes pymacs pysmell
        ;; repository-root  elisp-slime-nav
        ox-html5slide org-ehtml

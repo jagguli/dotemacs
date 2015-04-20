@@ -32,6 +32,10 @@
      ;; need this to convert some e-mails properly
      ;; (setq mu4e-html2text-command "html2text -utf8 -width 72")
      mu4e-html2text-command "html2text "
+     mu4e-sent-folder   "/Sent"       ;; folder for sent messages
+     mu4e-drafts-folder "/Drafts"     ;; unfinished messages
+     mu4e-trash-folder  "/Trash"      ;; trashed messages
+     mu4e-refile-folder "/Archive"   ;; saved messages
      )
 
     (setq mu4e-refile-folder
@@ -66,15 +70,8 @@
            ;;mu4e-maildir       "~/.local/share/local-mail"   ;; top-level Maildir
            mu4e-maildir       "~/mail/iress-local"   ;; top-level Maildir
            ;;mu4e-maildir       "/home/steven/.local/share/.local-mail.directory"   ;; top-level Maildir
-           mu4e-sent-folder   "/Sent"       ;; folder for sent messages
-           mu4e-drafts-folder "/Drafts"     ;; unfinished messages
-           mu4e-trash-folder  "/Trash"      ;; trashed messages
-           
-           mu4e-refile-folder "/Archive"   ;; saved messages
-  
-  
            ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
-           mu4e-sent-messages-behavior 'delete
+           ;;mu4e-sent-messages-behavior 'delete
            mu4e-maildir-shortcuts '( ("/INBOX" . ?i)
                                      ("/manup" . ?u)
                                      ("/me" . ?m)
@@ -84,15 +81,16 @@
            ))
       (progn
         (setq
-         mu4e-maildir       "~/mail/"   ;; top-level Maildir
+         mu4e-maildir       "~/mail"   ;; top-level Maildir
          user-mail-address "steven@stevenjoseph.in"
          user-full-name  "steven@stevenjoseph.in"
-         mu4e-sent-folder   "/Sent"       ;; folder for sent messages
-         mu4e-maildir-shortcuts '( ("/melit/INBOX" . ?i)
-                                   ("/gmail/[Gmail].Important"   . ?I)
+           ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
+         mu4e-sent-messages-behavior 'delete
+         mu4e-maildir-shortcuts '( ("melit/Inbox" . ?i)
+                                   ("/melit/[Gmail]/Important"   . ?I)
                                    ("/me" . ?m)
-                                   ("/gmail/[Gmail].Sent Mail"   . ?s)
-                                   ("/gmail/[Gmail].Trash"       . ?t)
+                                   ("/melit/[Gmail]/Sent Mail"   . ?s)
+                                   ("/melit/[Gmail]/Trash"       . ?t)
                                    )
          )))
   

@@ -1,5 +1,5 @@
 (req-package notmuch
-   :require (notmuch-pick notmuch-address password-cache password-store)
+   :require (notmuch-pick notmuch-address password-cache password-store dash)
    :init
    (progn
      (notmuch-address-message-insinuate)
@@ -48,38 +48,34 @@
 
      (notmuch-config)
 
-     (define-key notmuch-search-mode-map "d"
-       (lambda ()
-         "toggle deleted tag for thread"
-         (interactive)
-         (if (member "deleted" (notmuch-search-get-tags))
-             (notmuch-search-tag "-deleted")
-           (notmuch-search-tag '("+deleted" "-inbox" "-unread")))))
+     (defun notmuch-search-toggle-tags (tags)
+       "toggle tags for thread"
+       (interactive)
+       (if (cl-subsetp tags (notmuch-search-get-tags) :test 'string=)
+           (notmuch-search-tag (mapcar (lambda (x) (concat "-" x)) tags))
+         (notmuch-search-tag (mapcar (lambda (x) (concat "+" x)) tags)))
+       (next-line)
+       )
+     )
 
      (define-key notmuch-show-mode-map "d"
        (lambda ()
          "toggle deleted tag for message"
          (interactive)
-         (if (member "deleted" (notmuch-show-get-tags))
-             (notmuch-show-tag "-deleted")
-           (notmuch-show-tag '("+deleted" "-inbox" "-unread")))))
+         (notmuch-search-toggle-tags '("deleted"))))
 
 
-     (define-key notmuch-search-mode-map "F"
+     (define-key notmuch-search-mode-map "x"
        (lambda ()
-         "toggle the flagged tag for thread"
+         "toggle the unread tag for message"
          (interactive)
-         (if (member "flagged" (notmuch-search-get-tags))
-             (notmuch-search-tag "-flagged")
-           (notmuch-search-tag "+flagged"))))
+         (notmuch-search-toggle-tags '("unread"))))
 
      (define-key notmuch-show-mode-map "F"
        (lambda ()
          "toggle the flagged tag for message"
          (interactive)
-         (if (member "flagged" (notmuch-show-get-tags))
-             (notmuch-show-tag "-flagged")
-           (notmuch-show-tag "+flagged"))))
+         (notmuch-search-toggle-tags '("flagged"))))
 
      (define-key notmuch-show-mode-map "b"
        (lambda (&optional address)
@@ -112,17 +108,18 @@
 
 
 
-     (defun color-inbox-if-unread () (interactive)
-            (save-excursion
-              (goto-char (point-min))
-              (let ((cnt (car (process-lines "notmuch" "count" "tag:inbox and tag:unread"))))
-                (when (> (string-to-number cnt) 0)
-                  (save-excursion
-                    (when (search-forward "inbox" (point-max) t)
-                      (let* ((overlays (overlays-in (match-beginning 0) (match-end 0)))
-                             (overlay (car overlays)))
-                        (when overlay
-                          (overlay-put overlay 'face '((:inherit bold) (:foreground "green")))))))))))
+     (defun color-inbox-if-unread ()
+       (interactive)
+       (save-excursion
+         (goto-char (point-min))
+         (let ((cnt (car (process-lines "notmuch" "count" "tag:inbox and tag:unread"))))
+           (when (> (string-to-number cnt) 0)
+             (save-excursion
+               (when (search-forward "inbox" (point-max) t)
+                 (let* ((overlays (overlays-in (match-beginning 0) (match-end 0)))
+                        (overlay (car overlays)))
+                   (when overlay
+                     (overlay-put overlay 'face '((:inherit bold) (:foreground "green")))))))))))
 
      (add-hook 'notmuch-hello-refresh-hook 'color-inbox-if-unread)
 

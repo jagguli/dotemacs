@@ -4,3 +4,12 @@
 [submodule "lib/Pymacs"]
 	path = lib/Pymacs
 	url = https://github.com/pinard/Pymacs.git
+[submodule "lib/powerline"]
+	path = lib/powerline
+	url = https://github.com/milkypostman/powerline.git
+[submodule "lib/powerline-evil"]
+	path = lib/powerline-evil
+	url = https://github.com/raugturi/powerline-evil.git
+[submodule "toodledo"]
+	path = lib/toodledo
+	url = https://github.com/christopherjwhite/org-toodledo.git

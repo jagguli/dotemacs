@@ -17,12 +17,13 @@
     (defun load-ropemacs ()
       "Load pymacs and ropemacs"
       (interactive)
+      (setq py-load-pymacs-p nil)
       (setq pymacs-python-command "/usr/bin/python2")
       (setenv "PYMACS_PYTHON" "python2.7")
-      ;;(setq pymacs-load-path "/usr/lib/python2.7/")
+      (setq pymacs-load-path "/usr/lib/python2.7/")
       (setq ropemacs-global-prefix "C-x @")
       (require 'pymacs)
-      (pymacs-load "ropemacs" "rope-")
+      ;(pymacs-load "ropemacs" "rope-")
       ;; Automatically save project python buffers before refactorings
       (setq ropemacs-confirm-saving 'nil)
     )

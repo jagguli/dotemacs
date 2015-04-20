@@ -41,8 +41,8 @@
      helm-quick-update t
      helm-reuse-last-window-split-state nil
      helm-full-frame t
-     helm-match-plugin-mode t nil (helm-match-plugin)
-     helm-adaptive-mode t nil (helm-adaptive)
+     helm-match-plugin-mode t
+     helm-adaptive-mode t
      ;;helm-split-window-default-side (quote left)
      ;;helm-adaptive-history-file
      ;;     (concat history-dir (format "helm-adaptive-history_%s" server-name))
