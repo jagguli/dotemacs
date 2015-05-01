@@ -54,7 +54,9 @@
        find-file-in-project paredit tango-2-theme twittering-mode
        undo-tree w3m web-mode xclip web-beautify unbound guide-key
        help-fns+ sudo-ext smart-mode-line crosshairs dirtree
-       buffer-move jabber ahg egg password-store bind-key pushbullet)
+       buffer-move jabber ahg egg password-store bind-key pushbullet
+       shackle
+       )
     "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)

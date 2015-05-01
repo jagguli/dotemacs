@@ -42,6 +42,7 @@
 (add-user-lib "powerline")
 (add-user-lib "powerline-evil")
 (add-user-lib "toodledo")
+(add-user-lib "calfw")
 (require 'org-toodledo)
 (req-package-finish)
 ;;(load-user-config "my-config.el")

@@ -4,15 +4,6 @@
    (progn
      (notmuch-address-message-insinuate)
 
-     (defun message-send-mail-with-iress-sendmail ()
-       (interactive)
-       ;;(setq message-sendmail-extra-arguments
-       ;;      `("--passwordeval"
-       ;;       ,(keepass-get-command "/iress/default" "password")))
-       ;;(setq user-mail-address (format "%s@iress.com.au"
-       ;;                                (keepass-get "/devices/iress")))
-       (message-send-mail-with-sendmail))
-
      (defun notmuch-config ()
        (interactive)
        (setq
@@ -33,6 +24,12 @@
           ("tags" . "[%s]")
           )
         notmuch-tree-show-out t
+
+        send-mail-function (quote mailclient-send-it)
+        message-sendmail-f-is-evil 't
+        sendmail-program "/usr/sbin/msmtp"
+        ;;need to tell msmtp which account we're using
+        message-send-mail-function 'message-send-mail-with-sendmail
         )
        (if (string-match ".*\.iress\.com\.au" system-name )
            (progn 
@@ -40,12 +37,29 @@
              (setq notmuch-wash-citation-lines-prefix 0)
              (setq notmuch-identites '((password-store-get "iress/user")))
 
-             (setq message-send-mail-function 'message-send-mail-with-iress-sendmail)
              (setq notmuch-address-command "~/.bin/mutt_ldap.py"))
          (progn
-           (setq message-send-mail-function 'message-send-mail-with-sendmail)
            (setq notmuch-address-command "~/.bin/notmuch-goobook"))))
 
+     (defun cg-feed-msmtp ()
+       (if (message-mail-p)
+           (save-excursion
+             (let* ((from
+                     (save-restriction
+                       (message-narrow-to-headers)
+                       (message-fetch-field "from")))
+                    (account
+                     (cond
+                      ;; I use email address as account label in ~/.msmtprc
+                      ((string-match "melit.stevenjoseph@gmail.com" from) "melit")
+                      ((string-match "stevenjose@gmail.com" from) "stevenjose")
+                      ((string-match "steven@stevenjoseph.in" from) "stevenjoseph.in")
+                      ;; Add more string-match lines for your email accounts
+                      ((string-match "steven.joseph@iress.com.au" from) "iress"))))
+               (setq message-sendmail-extra-arguments (list '"-a" account))))))
+
+     (setq message-sendmail-envelope-from 'header)
+     (add-hook 'message-send-mail-hook 'cg-feed-msmtp)
      (notmuch-config)
 
      (defun notmuch-search-toggle-tags (tags)
@@ -72,6 +86,11 @@
          (notmuch-search-toggle-tags '("unread"))))
 
      (define-key notmuch-show-mode-map "F"
+       (lambda ()
+         "toggle the flagged tag for message"
+         (interactive)
+         (notmuch-search-toggle-tags '("flagged"))))
+     (define-key notmuch-search-mode-map "F"
        (lambda ()
          "toggle the flagged tag for message"
          (interactive)
@@ -232,4 +251,3 @@
               (expand-file-name "~/.mailers")))))
 
      )
-   )

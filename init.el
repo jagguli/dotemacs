@@ -66,6 +66,7 @@
  '(custom-safe-themes
    (quote
     ("bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" default)))
+ '(diary-file "~/org/diary")
  '(dictionary-proxy-port 80)
  '(dictionary-proxy-server "syd-devproxy1.devel.iress.com.au")
  '(dictionary-use-http-proxy t)
@@ -141,12 +142,12 @@
  '(jabber-alert-message-hooks (quote (jabber-message-libnotify)))
  '(jabber-alert-message-wave "~/.sounds/message-new-instant.wav")
  '(jabber-auto-reconnect t)
- '(jabber-backlog-days 30)
- '(jabber-backlog-number 40)
- '(jabber-default-show "chat")
- '(jabber-default-status "can I automate it ?")
+ '(jabber-backlog-days 30 t)
+ '(jabber-backlog-number 40 t)
+ '(jabber-default-show "chat" t)
+ '(jabber-default-status "can I automate it ?" t)
  '(jabber-history-enable-rotation t)
- '(jabber-history-enabled t)
+ '(jabber-history-enabled t t)
  '(jabber-history-muc-enabled t)
  '(jabber-invalid-certificate-servers
    (quote
@@ -156,11 +157,11 @@
  '(jabber-mode-line-mode t)
  '(jabber-post-connect-hooks
    (quote
-    (sr-jabber-post-connect-func jabber-send-current-presence jabber-muc-autojoin jabber-whitespace-ping-start jabber-vcard-avatars-find-current sauron-jabber-start)))
+    (sr-jabber-post-connect-func jabber-send-current-presence jabber-muc-autojoin jabber-whitespace-ping-start jabber-vcard-avatars-find-current sauron-jabber-start)) t)
  '(jabber-roster-line-format "%c %-25n %u %-8s  %S")
  '(jabber-show-offline-contacts nil)
  '(jabber-use-auth-sources t)
- '(jabber-use-global-history nil)
+ '(jabber-use-global-history nil t)
  '(js3-indent-level 4)
  '(lazy-highlight-cleanup nil)
  '(lazy-highlight-initial-delay 0)
@@ -169,7 +170,6 @@
  '(ls-lisp-dirs-first t)
  '(ls-lisp-verbosity (quote nil))
  '(magit-repo-dirs (quote ("/home/steven/iress")))
- '(message-sendmail-extra-arguments nil)
  '(mml-enable-flowed nil)
  '(mu4e-compose-signature "Sent with emacs - the one true editor.")
  '(newsticker-html-renderer (quote w3m-region))
@@ -231,8 +231,6 @@
    (quote
     (repository-root-matcher/git repository-root-matcher/svn)))
  '(scss-compile-at-save nil)
- '(send-mail-function (quote mailclient-send-it))
- '(sendmail-program "/usr/bin/msmtp")
  '(shell-file-name "/bin/sh")
  '(split-height-threshold 200)
  '(split-width-threshold 155)
@@ -320,3 +318,4 @@
  '(rst-level-1 ((t (:background "color-236"))) t)
  '(trailing-whitespace ((t (:background "color-54" :foreground "color-54" :inverse-video t :underline nil :slant normal :weight normal))))
  '(vertical-border ((t (:inherit mode-line-inactive :background "black" :foreground "color-27" :weight thin :width condensed)))))
+

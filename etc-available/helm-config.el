@@ -1,6 +1,14 @@
 (req-package
   helm
-  :require (helm-config helm-cmd-t bookmark+ helm-adaptive helm-match-plugin)
+  :require
+  (
+   helm-config
+   helm-cmd-t
+   bookmark+
+   helm-adaptive
+   helm-match-plugin
+   shackle
+   )
   :defer t
   :init
   (progn
@@ -18,7 +26,7 @@
      helm-boring-buffer-regexp-list
      (quote
       ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-"
-       "\\*Complet" "\\*magit" "\\*tail" "\\*cscope" "\\*scratch" "\\*epc"))
+       "\\*Complet" "\\*magit" "\\*tail" "\\*cscope" "\\*epc"))
      helm-boring-file-regexp-list
      (quote
       ("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$" "\\.pyc$"))
@@ -40,9 +48,10 @@
      helm-mode-reverse-history nil
      helm-quick-update t
      helm-reuse-last-window-split-state nil
-     helm-full-frame t
      helm-match-plugin-mode t
      helm-adaptive-mode t
+     helm-full-frame nil
+     ;;shackle-rules '(("\\`\\*helm.*?\\*\\'" :regexp t :align t :ratio 0.5))
      ;;helm-split-window-default-side (quote left)
      ;;helm-adaptive-history-file
      ;;     (concat history-dir (format "helm-adaptive-history_%s" server-name))

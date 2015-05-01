@@ -13,3 +13,6 @@
 [submodule "toodledo"]
 	path = lib/toodledo
 	url = https://github.com/christopherjwhite/org-toodledo.git
+[submodule "lib/calfw"]
+	path = lib/calfw
+	url = https://github.com/kiwanami/emacs-calfw
