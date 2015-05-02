@@ -71,6 +71,11 @@
        (next-line)
        )
      )
+     (define-key notmuch-search-mode-map "d"
+       (lambda ()
+         "toggle deleted tag for message"
+         (interactive)
+         (notmuch-search-toggle-tags '("deleted"))))
 
      (define-key notmuch-show-mode-map "d"
        (lambda ()
