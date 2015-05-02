@@ -55,7 +55,7 @@
        undo-tree w3m web-mode xclip web-beautify unbound guide-key
        help-fns+ sudo-ext smart-mode-line crosshairs dirtree
        buffer-move jabber ahg egg password-store bind-key pushbullet
-       shackle
+       shackle git-messenger git-timemachine
        )
     "A list of packages to ensure are installed at launch.")
 
