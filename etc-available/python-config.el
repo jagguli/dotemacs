@@ -10,23 +10,20 @@
 ;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 ;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (req-package python
-  :require (evil multi-project column-marker)
+  :require (evil multi-project column-marker pymacs)
+  :config (setq
+           py-load-pymacs-p nil
+           pymacs-python-command "/usr/bin/python2"
+           ;pymacs-python-command "/usr/bin/python2"
+           ropemacs-confirm-saving 'nil
+           pymacs-load-path 'nil
+           ropemacs-global-prefix "C-x @"
+           ropemacs-enable-autoimport t
+           )
   :init
   (progn
     (add-user-lib "Pymacs")
-    (defun load-ropemacs ()
-      "Load pymacs and ropemacs"
-      (interactive)
-      (setq py-load-pymacs-p nil)
-      (setq pymacs-python-command "/usr/bin/python2")
-      (setenv "PYMACS_PYTHON" "python2.7")
-      (setq pymacs-load-path "/usr/lib/python2.7/")
-      (setq ropemacs-global-prefix "C-x @")
-      (require 'pymacs)
-      ;(pymacs-load "ropemacs" "rope-")
-      ;; Automatically save project python buffers before refactorings
-      (setq ropemacs-confirm-saving 'nil)
-    )
+    (pymacs-load "ropemacs" "rope-")
 
     (load-ropemacs)
     (global-set-key "\C-xpl" 'load-ropemacs)

@@ -28,6 +28,7 @@
 (require 'ahg)
 (require 'bind-key)
 (require 'yaml-mode)
+(show-paren-mode 1)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.sls\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.wiki\\'" . mediawiki-mode))

@@ -214,13 +214,9 @@
  '(notmuch-show-only-matching-messages t)
  '(org-agenda-files
    (quote
-    ("/home/steven/share/Dropbox/OrgMode/9success.org" "/home/steven/share/Dropbox/OrgMode/antifragile.org" "/home/steven/share/Dropbox/OrgMode/blog.org" "/home/steven/share/Dropbox/OrgMode/book.org" "/home/steven/share/Dropbox/OrgMode/brainstorm.org" "/home/steven/share/Dropbox/OrgMode/cryptotrader.org" "/home/steven/share/Dropbox/OrgMode/design.org" "/home/steven/share/Dropbox/OrgMode/driving.org" "/home/steven/share/Dropbox/OrgMode/emacs.org" "/home/steven/share/Dropbox/OrgMode/expenses.org" "/home/steven/share/Dropbox/OrgMode/goals.org" "/home/steven/share/Dropbox/OrgMode/gtd.org" "/home/steven/share/Dropbox/OrgMode/health.org" "/home/steven/share/Dropbox/OrgMode/ideas.org" "/home/steven/share/Dropbox/OrgMode/ijournal.org" "/home/steven/share/Dropbox/OrgMode/index.org" "/home/steven/share/Dropbox/OrgMode/interview_notes.org" "/home/steven/share/Dropbox/OrgMode/manup.org" "/home/steven/share/Dropbox/OrgMode/movies.org" "/home/steven/share/Dropbox/OrgMode/music.org" "/home/steven/share/Dropbox/OrgMode/note.org" "/home/steven/share/Dropbox/OrgMode/notes.org" "/home/steven/share/Dropbox/OrgMode/osc.org" "/home/steven/share/Dropbox/OrgMode/philosophy.org" "/home/steven/share/Dropbox/OrgMode/python_notes.org" "/home/steven/share/Dropbox/OrgMode/qtile.org" "/home/steven/share/Dropbox/OrgMode/refile.org" "/home/steven/share/Dropbox/OrgMode/shoppinglist.org" "/home/steven/share/Dropbox/OrgMode/startup.org" "/home/steven/share/Dropbox/OrgMode/sypy.org" "/home/steven/share/Dropbox/OrgMode/therapy.org" "/home/steven/share/Dropbox/OrgMode/todo.org" "/home/steven/share/Dropbox/OrgMode/visualize.org" "/home/steven/share/Dropbox/OrgMode/work.org" "/home/steven/share/Dropbox/OrgMode/xplan.org" "/home/steven/share/Dropbox/OrgMode/zen.org")))
- '(org-clock-into-drawer t)
- '(org-default-priority 90)
- '(org-ehtml-docroot "/home/steven/share/Dropbox/OrgMode/")
- '(org-journal-dir "~/documents/share/Dropbox/org/journal/")
- '(org-journal-file-format "%A_%Y%m%d")
- '(org-lowest-priority 90)
+    ("/home/steven/org/9success.org" "/home/steven/org/books.org" "/home/steven/org/driving.org" "/home/steven/org/ijournal.org" "/home/steven/org/music.org" "/home/steven/org/osc.org" "/home/steven/org/refile.org" "/home/steven/org/todo.org")))
+ '(org-agenda-repeating-timestamp-show-all nil)
+ '(org-agenda-skip-scheduled-if-deadline-is-shown (quote repeated-after-deadline))
  '(paredit-mode nil t)
  '(password-cache-expiry nil)
  '(recentf-auto-cleanup 300)
@@ -230,6 +226,8 @@
  '(repository-root-matchers
    (quote
     (repository-root-matcher/git repository-root-matcher/svn)))
+ '(req-package-log-level (quote debug))
+ '(ropemacs-enable-autoimport t)
  '(scss-compile-at-save nil)
  '(shell-file-name "/bin/sh")
  '(split-height-threshold 200)
@@ -239,6 +237,7 @@
  '(tool-bar-mode nil)
  '(url-handler-mode t)
  '(url-handler-regexp "\\`\\(\\(https?\\|ftp\\|file\\|nfs\\)://|File\\)")
+ '(url-proxy-services nil)
  '(user-full-name "Steven Joseph")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map

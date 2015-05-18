@@ -1,27 +1,42 @@
-(req-package evil-org
-  :require (org-journal org-install org-protocol)
+(req-package org
+  :require (org-journal org-install org-protocol org-indent password-store)
+  :config (setq
+   org-log-done t
+   org-directory (expand-file-name "~/org/")
+   ;;org-directory (expand-file-name "~/share/orgmodegoogle/melit.stevenjoseph@gmail.com/OrgMode/")
+   org-from-is-user-regexp nil
+   org-log-done t
+   org-indent-mode t
+   org-mobile-directory (expand-file-name "~/share/Dropbox/MobileOrg/")
+   org-mobile-inbox-for-pull (concat org-mobile-directory "mobileorg.org")
+   org-return-follows-link t
+   org-catch-invisible-edits t
+   org-agenda-file-regexp "[^.].*\\.org$"
+   org-default-notes-file (concat org-directory "notes.org")
+   org-clock-persist 'history
+   org-toodledo-userid (password-store-get "internet/toodledo/userid")
+   org-toodledo-password (password-store-get "internet/toodledo/password")
+   org-toodledo-folder-support-mode t
+   org-toodledo-folder-support-mode (quote heading)
+   ;org-agenda-files (quote
+   ; ("/home/steven/org/todo.org"))
+   org-clock-into-drawer t
+   org-default-priority 90
+   org-ehtml-docroot "~/org/ehtml/"
+   org-journal-dir "~/org/journal/"
+   org-journal-file-format "%A_%Y%m%d"
+   org-lowest-priority 90
+   )
   :init
   (progn
     ;;(require 'journal)
     (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
     ;;(define-key global-map "c l" 'org-store-link)
     ;;(define-key global-map "c a" 'org-agenda)
-    (setq org-log-done t)
-    (setq org-directory (expand-file-name "~/share/Dropbox/OrgMode/"))
-    ;;(setq org-directory (expand-file-name "~/share/orgmodegoogle/melit.stevenjoseph@gmail.com/OrgMode/"))
-    (setq org-from-is-user-regexp nil)
-    (setq org-log-done t)
-    (setq org-indent-mode t)
-    (setq org-mobile-directory (expand-file-name "~/share/Dropbox/MobileOrg/"))
-    (setq org-mobile-inbox-for-pull (concat org-mobile-directory "mobileorg.org"))
-    (setq org-return-follows-link t)
-    (setq org-catch-invisible-edits t)
-    (setq org-agenda-file-regexp "[^.].*\\.org$")
-    (setq org-default-notes-file (concat org-directory "notes.org"))
-    (setq org-clock-persist 'history)
     (org-clock-persistence-insinuate)
     (setq org-todo-keywords
           '((sequence "TODO(t)" "WAIT(w@/!)" "SOMETIME(s)" "STARTED(i)" "|" "DONE(d!)" "CANCELED(c@)" "DEFFERED(f)")))
+
     ;; I use C-c c to start capture mode
     ;;(global-set-key (kbd "C-c c") 'org-capture)
     (add-to-list 'org-agenda-files org-directory)
@@ -85,7 +100,7 @@
 
     ;; Capture templates for: TODO tasks, Notes, appointments, phone calls, meetings, and org-protocol
     (setq org-capture-templates
-          (quote (("t" "todo" entry (file "~/org/refile.org")
+          (quote (("t" "todo" entry (file "~/org/todo.org")
                    "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
                   ("r" "respond" entry (file "~/org/respond.org")
                    "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n" :clock-in t :clock-resume t :immediate-finish t)
@@ -103,6 +118,10 @@
                    "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n")
                   ("o" "OSC" entry (file+datetree "~/org/osc.org")
                    "* %?\nOSC:\n")
+                  ("c" "todo" entry (file "~/org/todo.org")
+                   "* TODO %?\nSCHEDULED: %(format-time-string \"<%Y-%m-%d>\")")
+                  ("d" "todo" entry (file "~/org/todo.org")
+                   "* TODO %?\nDEADLINE: %(format-time-string \"<%Y-%m-%d>\")")
                   )))
 
     (setq org-agenda-custom-commands

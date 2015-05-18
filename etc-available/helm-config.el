@@ -1,61 +1,59 @@
 (req-package
-  helm
+  helm-mode
   :require
   (
-   helm-config
    helm-cmd-t
    bookmark+
    helm-adaptive
    helm-match-plugin
    shackle
    )
-  :defer t
+  :config
+  (setq
+   helm-split-window-in-side-p           nil ; open helm buffer inside current window, not occupy whole other window
+   helm-move-to-line-cycle-in-source     nil ; move to end or beginning of source when reaching top or bottom of source.
+   helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+   helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+   helm-ff-file-name-history-use-recentf t
+   helm-autoresize-mode t
+   helm-M-x-always-save-history t
+   helm-always-two-windows t 
+   helm-boring-buffer-regexp-list
+   (quote
+    ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-"
+     "\\*Complet" "\\*magit" "\\*tail" "\\*cscope" "\\*epc"))
+   helm-boring-file-regexp-list
+   (quote
+    ("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$" "\\.pyc$"))
+   helm-buffers-fuzzy-matching t
+   helm-c-ack-version 2
+   helm-ff-auto-update-initial-value nil
+   helm-ff-file-name-history-use-recentf t
+   helm-ff-ido-style-backspace t
+   helm-ff-skip-boring-files t
+   helm-ff-smart-completion t
+   helm-ff-transformer-show-only-basename nil
+   helm-findutils-skip-boring-files t
+   helm-for-files-preferred-list
+   (quote
+    (helm-source-buffers-list
+     helm-source-recentf helm-source-bookmarks
+     helm-source-file-cache helm-source-files-in-current-dir helm-source-locate))
+   helm-mode-handle-completion-in-region t
+   helm-mode-reverse-history nil
+   helm-quick-update t
+   helm-reuse-last-window-split-state nil
+   helm-match-plugin-mode t
+   helm-adaptive-mode t
+   helm-full-frame nil
+   ;;shackle-rules '(("\\`\\*helm.*?\\*\\'" :regexp t :align t :ratio 0.5))
+   ;;helm-split-window-default-side (quote left)
+   ;;helm-adaptive-history-file
+   ;;     (concat history-dir (format "helm-adaptive-history_%s" server-name))
+   )
   :init
   (progn
     (add-user-lib "helm")
-    (setq
-     helm-mode t
-     helm-split-window-in-side-p           nil ; open helm buffer inside current window, not occupy whole other window
-     helm-move-to-line-cycle-in-source     nil ; move to end or beginning of source when reaching top or bottom of source.
-     helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-     helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-     helm-ff-file-name-history-use-recentf t
-     helm-autoresize-mode t
-     helm-M-x-always-save-history t
-     helm-always-two-windows t 
-     helm-boring-buffer-regexp-list
-     (quote
-      ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-"
-       "\\*Complet" "\\*magit" "\\*tail" "\\*cscope" "\\*epc"))
-     helm-boring-file-regexp-list
-     (quote
-      ("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$" "\\.pyc$"))
-     helm-buffers-fuzzy-matching t
-     helm-c-ack-version 2
-     helm-ff-auto-update-initial-value nil
-     helm-ff-file-name-history-use-recentf t
-     helm-ff-ido-style-backspace t
-     helm-ff-skip-boring-files t
-     helm-ff-smart-completion t
-     helm-ff-transformer-show-only-basename nil
-     helm-findutils-skip-boring-files t
-     helm-for-files-preferred-list
-     (quote
-      (helm-source-buffers-list
-       helm-source-recentf helm-source-bookmarks
-       helm-source-file-cache helm-source-files-in-current-dir helm-source-locate))
-     helm-mode-handle-completion-in-region t
-     helm-mode-reverse-history nil
-     helm-quick-update t
-     helm-reuse-last-window-split-state nil
-     helm-match-plugin-mode t
-     helm-adaptive-mode t
-     helm-full-frame nil
-     ;;shackle-rules '(("\\`\\*helm.*?\\*\\'" :regexp t :align t :ratio 0.5))
-     ;;helm-split-window-default-side (quote left)
-     ;;helm-adaptive-history-file
-     ;;     (concat history-dir (format "helm-adaptive-history_%s" server-name))
-     )
     
 
     (defun helm-split-buffers-list ()
@@ -126,6 +124,7 @@
 
 
 
+    (print "loaded helm-config")
     )
   )
 
