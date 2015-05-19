@@ -1,5 +1,5 @@
 (req-package jedi
-  :require (python)
+  :require (python-mode)
   :init
   (progn 
     (add-user-lib "emacs-jedi")
@@ -22,6 +22,7 @@
       (define-key evil-normal-state-map (kbd "C-]") 'jedi:goto-definition)
       (define-key evil-normal-state-map (kbd "C-t") 'jedi:goto-definition-pop-marker)
       (define-key evil-normal-state-map (kbd "C-M-]") 'helm-jedi-related-names)
+      (define-key evil-insert-state-map (kbd "C-c SPC") 'jedi:complete)
       ) 
 
     (add-hook 'python-mode-hook 'jedi:setup)

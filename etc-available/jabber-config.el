@@ -12,9 +12,48 @@
      jabber-use-global-history nil
      jabber-backlog-number 40
      jabber-backlog-days 30
+     jabber-default-status "How can I help ?"
+     jabber-default-show "chat"
+     jabber-default-priority 300
+     jabber-silent-mode nil
+     jabber-alert-info-message-hooks (quote (jabber-info-tmux jabber-info-echo))
+     jabber-alert-message-hooks (quote (jabber-message-libnotify))
+     jabber-alert-message-wave "~/.sounds/message-new-instant.wav"
+     jabber-auto-reconnect t
+     jabber-autoaway-priority 0
+     jabber-autoaway-verbose t
+     jabber-autoaway-xa-priority 0
+     jabber-backlog-days 30
+     jabber-backlog-number 40
+     jabber-default-show "chat"
+     jabber-default-status "can I automate it ?"
+     jabber-history-enable-rotation t
+     jabber-history-enabled t
+     jabber-history-muc-enabled t
+     jabber-invalid-certificate-servers
+     (quote
+      ("mel-imsrv1" "mel-imsrv1.devel.iress.com.au" "iress.com.au"))
+     jabber-keepalive-interval 30
+     jabber-libnotify-method (quote dbus)
+     jabber-mode-line-mode t
+     jabber-post-connect-hooks
+     (quote
+      (
+       ;;sr-jabber-post-connect-func
+       jabber-send-current-presence
+       jabber-muc-autojoin
+       jabber-keepalive-start
+       ;;jabber-whitespace-ping-start
+       jabber-vcard-avatars-find-current
+       ;;sauron-jabber-start
+       )
       )
-    (setq jabber-default-status "How can I help ?")
-    (setq jabber-default-show "chat")
+     jabber-roster-line-format "%c %-25n %u %-8s  %S"
+     jabber-show-offline-contacts nil
+     jabber-use-auth-sources t
+     jabber-use-global-history nil
+     password-cache-expiry 300
+     )
 
     ;;(setq jabber-default-show , jabber-default-status and jabber-default-priority
     (defun jabber ()
@@ -132,6 +171,8 @@
 
     (add-hook 'jabber-chat-mode-hook 'goto-address)
     (add-hook 'jabber-post-connect-hooks 'jabber-send-default-presence)
+    (add-hook 'jabber-post-connect-hooks 'jabber-autoaway-start)
+    
 
     )
 )

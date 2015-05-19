@@ -16,3 +16,6 @@
 [submodule "lib/calfw"]
 	path = lib/calfw
 	url = https://github.com/kiwanami/emacs-calfw
+[submodule "lib/helm-cscope"]
+	path = lib/helm-cscope
+	url = https://github.com/sergey-pashaev/helm-cscope.git
