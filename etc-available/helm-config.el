@@ -7,6 +7,7 @@
    helm-adaptive
    helm-match-plugin
    shackle
+   helm-cscope
    )
   :config
   (setq

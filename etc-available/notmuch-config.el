@@ -35,7 +35,7 @@
            (progn 
              (setq notmuch-wash-original-regexp "^\\(From: .*\\|.* writes:\\)$")
              (setq notmuch-wash-citation-lines-prefix 0)
-             (setq notmuch-identites '((password-store-get "iress/user")))
+             (setq user-mail-address (concat (password-store-get "iress/user") "@iress.com.au"))
 
              (setq notmuch-address-command "~/.bin/mutt_ldap.py"))
          (progn

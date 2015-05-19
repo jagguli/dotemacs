@@ -63,6 +63,7 @@
       (if (not (or
                 (string/starts-with (buffer-name) "*mo-git-blame")
                 (string/starts-with (buffer-name) "*svn-status")
+                (bound-and-true-p diff-auto-refine-mode)
                 ))
           (progn
             (setq outline-regexp "[ \t]*\\(class\\|def\\|with\\) ")
