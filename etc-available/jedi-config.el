@@ -1,5 +1,5 @@
 (req-package jedi
-  :require (python)
+  :require (python-mode)
   :init
   (progn 
     (add-user-lib "emacs-jedi")
