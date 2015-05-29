@@ -203,7 +203,8 @@
    (quote
     (repository-root-matcher/git repository-root-matcher/svn)))
  '(req-package-log-level (quote debug))
- '(ropemacs-enable-autoimport t)
+ '(ropemacs-confirm-saving nil)
+ '(ropemacs-global-prefix "C-x @")
  '(scss-compile-at-save nil)
  '(shell-file-name "/bin/sh")
  '(split-height-threshold 200)

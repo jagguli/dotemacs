@@ -9,7 +9,7 @@
 ;(setq ropemacs-enable-autoimport t)
 ;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 ;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
-(req-package python
+(req-package python-mode
   :require (evil multi-project column-marker pymacs)
   :config (setq
            py-load-pymacs-p nil
@@ -22,10 +22,8 @@
            )
   :init
   (progn
-    (add-user-lib "Pymacs")
     (pymacs-load "ropemacs" "rope-")
 
-    (load-ropemacs)
     (global-set-key "\C-xpl" 'load-ropemacs)
     (add-hook 'outline-minor-mode-hook (lambda () 
                                          (require 'outline-magic)))

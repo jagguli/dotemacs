@@ -45,6 +45,7 @@
 (add-user-lib "toodledo")
 (add-user-lib "calfw")
 (add-user-lib "revolver")
+(add-user-lib "Pymacs")
 ;;(add-user-lib "helm-cscope")
 (require 'org-toodledo)
 (req-package-finish)
