@@ -10,19 +10,27 @@
 ;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 ;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (req-package python-mode
-  :require (evil multi-project column-marker pymacs)
-  :config (setq
-           py-load-pymacs-p nil
-           pymacs-python-command "/usr/bin/python2"
-           ;pymacs-python-command "/usr/bin/python2"
-           ropemacs-confirm-saving 'nil
-           pymacs-load-path 'nil
-           ropemacs-global-prefix "C-x @"
-           ropemacs-enable-autoimport t
-           )
+  :require (evil multi-project column-marker )
   :init
   (progn
-    (pymacs-load "ropemacs" "rope-")
+    (setq
+     py-load-pymacs-p nil
+     pymacs-python-command "python2"
+     ropemacs-confirm-saving 'nil
+     pymacs-load-path 'nil
+     ropemacs-global-prefix "C-x @"
+     ropemacs-enable-autoimport t
+     )
+    ;(autoload 'pymacs-apply "pymacs")
+    ;(autoload 'pymacs-call "pymacs")
+    ;(autoload 'pymacs-eval "pymacs" nil t)
+    ;(autoload 'pymacs-exec "pymacs" nil t)
+    ;(autoload 'pymacs-load "pymacs" nil t)
+    (defun load-ropemacs()
+      (interactive)
+      (require 'pymacs)
+      (pymacs-load "ropemacs" "rope-")
+      )
 
     (global-set-key "\C-xpl" 'load-ropemacs)
     (add-hook 'outline-minor-mode-hook (lambda () 
