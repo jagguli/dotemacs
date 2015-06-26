@@ -214,28 +214,21 @@
      ;;
      ;;(add-hook 'notmuch-show-hook 'notmuch-show-picture-headers t)
 
-     (defun notmuch-show-accept-invite ()
-       "accept ics invite"
-       (interactive)
-       (with-current-notmuch-show-message
-        (let ((mm-handle (mm-dissect-buffer)))
-          (notmuch-save-attachments
-           mm-handle (> (notmuch-count-attachments mm-handle) 1))))
-       (message "Done"))
-
-     (defun notmuch-accept-invite ()
-       (notmuch-foreach-mime-part
-        (lambda (p)
-          (let ((disposition (mm-handle-disposition p)))
-            (and (listp disposition)
-                 (or (equal (car disposition) "attachment")
-                     (and (equal (car disposition) "inline")
-                          (assq 'filename disposition)))
-                 (or (not queryp)
-                     (y-or-n-p
-                      (concat "Save '" (cdr (assq 'filename disposition)) "' ")))
-                 (mm-save-part p))))
-        mm-handle))
+     (defun notmuch-import-calendar (cal)
+       (interactive 
+        (list
+         (completing-read "Choose one: "
+                          (split-string
+                           (shell-command-to-string
+                            "~/.bin/gcalcli_api.py list") ":"))))
+       (setq  temp_file (make-temp-file "meeting"))
+       (defun my-mm-save-part (handle)
+         (mm-save-part-to-file handle temp_file))
+       (notmuch-show-apply-to-current-part-handle #'my-mm-save-part)
+       (message (shell-command-to-string
+                 (format "gcalcli import --nocolor --calendar %s %s" cal temp_file)))
+       (message "Done")
+       )
 
      (defun write-string-to-file (string file)
        (interactive "sEnter the string: \nFFile to save to: ")
