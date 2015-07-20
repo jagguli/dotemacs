@@ -226,7 +226,7 @@
          (mm-save-part-to-file handle temp_file))
        (notmuch-show-apply-to-current-part-handle #'my-mm-save-part)
        (message (shell-command-to-string
-                 (format "gcalcli import --nocolor --calendar %s %s" cal temp_file)))
+                 (format "gcalcli --nocolor --reminder '10m popup' --calendar %s import %s" cal temp_file)))
        (message "Done")
        )
 
