@@ -5,7 +5,6 @@
    helm-cmd-t
    bookmark+
    helm-adaptive
-   helm-match-plugin
    shackle
    helm-cscope
    )

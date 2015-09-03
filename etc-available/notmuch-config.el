@@ -1,28 +1,29 @@
 (req-package notmuch
-   :require (notmuch-pick notmuch-address password-cache password-store dash)
+   :require (notmuch-pick notmuch-address password-cache password-store dash addressbook-bookmark)
    :init
    (progn
-     (notmuch-address-message-insinuate)
+    ;;(eval-after-load "addressbook-bookmark.el" (addressbook-turn-on-mail-completion))
 
      (defun notmuch-config ()
        (interactive)
+       (setq notmuch-search-result-format
+             '(
+               ("date" . "%12s│ ")
+               ("subject" . "%-100s")
+               ("authors" . "%-60s")
+               ("tags" . "[%s]")
+               )
+             notmuch-tree-result-format
+             '(("date" . "%12s  ")
+               ("authors" . "%-15s")
+               ((("tree" . "%s ")
+                 ("subject" . "%s"))
+                . " %-54s ")
+               ("tags" . "[%s]")
+               )
+             )
        (setq
         notmuch-wash-wrap-lines-length 70
-        notmuch-search-result-format
-        '(
-          ("date" . "%12s | ")
-          ("authors" . "%-50s ")
-          ("subject" . "%-80s")
-          ("tags" . "[%s]")
-          )
-        notmuch-tree-result-format
-        '(("date" . "%12s  ")
-          ("authors" . "%-15s")
-          ((("tree" . "%s ")
-            ("subject" . "%s"))
-           . " %-54s ")
-          ("tags" . "[%s]")
-          )
         notmuch-tree-show-out t
 
         send-mail-function (quote mailclient-send-it)
@@ -36,10 +37,15 @@
              (setq notmuch-wash-original-regexp "^\\(From: .*\\|.* writes:\\)$")
              (setq notmuch-wash-citation-lines-prefix 0)
              (setq user-mail-address (concat (password-store-get "iress/user") "@iress.com.au"))
-
+             
              (setq notmuch-address-command "~/.bin/mutt_ldap.py"))
          (progn
-           (setq notmuch-address-command "~/.bin/notmuch-goobook"))))
+           (setq notmuch-address-command "~/.bin/notmuch-goobook")))
+       (setq notmuch-address-selection-function
+             (lambda (prompt collection initial-input)
+               (completing-read prompt (cons initial-input collection) nil t nil 'notmuch-address-options)))
+       (notmuch-address-message-insinuate)
+       )
 
      (defun cg-feed-msmtp ()
        (if (message-mail-p)

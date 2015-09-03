@@ -36,6 +36,7 @@
      jabber-keepalive-interval 30
      jabber-libnotify-method (quote dbus)
      jabber-mode-line-mode t
+     jabber-muc-disable-disco-check t
      jabber-post-connect-hooks
      (quote
       (
@@ -60,28 +61,33 @@
       (interactive)
       (if (string-match "^.*.iress.com.au" system-name )
           (progn
-            (setq jabber-account-list `((,(password-store-get "iress/user")
-                                         (:network-server . ,(password-store-get "iress/jabber"))
-                                         (:password . ,(password-store-get "iress/default")))))
+            (setq jabber-account-list
+                  `(
+                    (,(password-store-get "iress/user")
+                     (:network-server . ,(password-store-get "iress/jabber/cisco"))
+                     ;;(:network-server . ,(password-store-get "iress/jabber"))
+                     (:password . ,(password-store-get "iress/default")))
+                    ;(,"steven.joseph@iress.com.au"
+                    ; (:password . ,(password-store-get "iress/default")))
+                  )
+            )
             )
         (progn
           (setq jabber-account-list
                 `(
-                  ;;(,(password-store-get "internet/facebook")
-                  ;; (:password . ,(password-store-get "internet/facebook/password"))
-                  ;; (:network-server . ,(password-store-get "internet/facebook/xmpp"))
-                  ;; (:port . 5222))
-                  ;;;(,(password-store-get "internet/google/melit" )
-                  ; (:password . ,(password-store-get "internet/google/melit/password"))
-                  ; (:network-server . ,"talk.google.com")
-                  ; (:connection-type . ssl)
-                  ; (:port . 443))
-                  (,(password-store-get "iress/jabber/user")
-                   (:network-server . ,(password-store-get "iress/jabber/proxy"))
-                   (:password . ,(password-store-get "iress/default")))
-                  )
+                  (,(password-store-get "internet/facebook")
+                   (:password . ,(password-store-get "internet/facebook/password"))
+                   (:network-server . ,(password-store-get "internet/facebook/xmpp"))
+                   (:port . 5222))
+                  (,(password-store-get "internet/google/melit" )
+                  (:password . ,(password-store-get "internet/google/melit/password"))
+                  (:network-server . ,"talk.google.com")
+                  (:connection-type . ssl)
+                  (:port . 443))
                 )
-          ))
+                )
+          )
+        )
       (jabber-connect-all)
       (switch-to-buffer "*-jabber-roster-*")
       )

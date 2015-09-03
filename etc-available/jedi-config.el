@@ -1,11 +1,13 @@
 (add-user-lib "emacs-jedi")
 (add-user-lib "emacs-jedi-direx")
 (req-package jedi
-  :require (python-mode jedi-direx)
+  :require (jedi-direx)
   :config
   (setq
    jedi:setup-keys t
    jedi:complete-on-dot t
+   jedi:install-server--command `("pip2" "install" "--upgrade" ,(convert-standard-filename jedi:source-dir))
+   jedi:server-command (list "python2" jedi:server-script)
    jedi:server-args
    '("--sys-path" "/home/steven/iress/xplan/src/py/"
      "--sys-path" "/home/steven/iress/xplan/lib/py/"

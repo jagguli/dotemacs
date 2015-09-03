@@ -1,1 +1,1 @@
-../etc-available/jedi-config.el
+/home/steven/.emacs.d/etc-available/jedi-config.el

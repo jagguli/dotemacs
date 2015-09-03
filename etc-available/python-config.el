@@ -10,7 +10,7 @@
 ;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 ;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (req-package python-mode
-  :require (evil multi-project column-marker )
+  :require (evil multi-project column-marker)
   :init
   (progn
     (setq
@@ -21,6 +21,13 @@
      ropemacs-global-prefix "C-x @"
      ropemacs-enable-autoimport t
      )
+    (if (string-match "^.*.iress.com.au" system-name )
+        (setq
+         py-python-command "python2"
+         python-version-checked t
+         python-python-command "python2"
+         )
+      )
     ;(autoload 'pymacs-apply "pymacs")
     ;(autoload 'pymacs-call "pymacs")
     ;(autoload 'pymacs-eval "pymacs" nil t)

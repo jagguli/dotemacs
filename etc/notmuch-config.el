@@ -1,1 +1,1 @@
-../etc-available/notmuch-config.el
+/home/steven/.emacs.d/etc-available/notmuch-config.el
