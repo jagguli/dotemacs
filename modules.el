@@ -22,7 +22,7 @@
 (require 'repository-root)
 (require 'popup-switcher)  
 (require 'suggbind)  
-(require 'sudo-ext)  
+;;(require 'sudo-ext)  
 ;;(require 'column-marker)
 (require 'buffer-move)
 (require 'ahg)
