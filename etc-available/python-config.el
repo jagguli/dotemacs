@@ -129,10 +129,10 @@
       (save-excursion 
         (next-line)
         (beginning-of-line)
-        (insert "import sj; sj.debug() ######## FIXME:REMOVE ME steven.joseph ################\n")
+        (insert "import fpdb; fpdb.set_trace() ######## FIXME:REMOVE ME steven.joseph ################\n")
         (previous-line)
-        (python-indent-line)
-      (highlight-lines-matching-regexp "^[ ]*import sj; sj.debug().*")))
+        (py-indent-line)
+      (highlight-lines-matching-regexp "^[ ]*import fpdb; fpdb.set_trace().*")))
 
 
 
@@ -140,7 +140,7 @@
       (interactive)
       (save-excursion 
         (goto-char (point-min))
-        (flush-lines "^[ ]*import sj; sj.debug().*$")))
+        (flush-lines "^[ ]*import fpdb; fpdb.set_trace().*$")))
 
 
 
