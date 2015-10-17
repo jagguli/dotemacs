@@ -32,6 +32,7 @@
 (load-file "~/.emacs.d/packages.el")
 (load-file "~/.emacs.d/emacs.el")
 (load-file "~/.emacs.d/modules.el")
+(add-to-list 'auto-mode-alist '("\\.sls\\'" . yaml-mode))
 
 ;; https://github.com/Bruce-Connor/smart-mode-line/issues/88
 (custom-set-variables
@@ -49,8 +50,7 @@
     ((imap "imap" "imaps" "143" "993")
      (pop3 "pop3" "pop" "pop3s" "110" "995")
      (ssh "ssh" "22")
-     (sftp "sftp" "115")
-     (smtp "smtp" "25"))))
+     (sftp "sftp" "115"))))
  '(auth-sources (quote ("~/.authinfo")))
  '(auto-revert-interval 0.5)
  '(background-color nil)
@@ -60,7 +60,6 @@
  '(bookmark-version-control (quote nospecial))
  '(browse-url-browser-function (quote browse-url-chromium))
  '(browse-url-chromium-program "chromium")
- '(col-highlight-vline-face-flag t)
  '(compilation-disable-input t)
  '(cursor-color nil)
  '(custom-safe-themes
@@ -122,9 +121,9 @@
    (quote
     (coffee-coffeelint css-csslint elixir emacs-lisp emacs-lisp-checkdoc erlang go-gofmt go-build go-test haml html-tidy javascript-jshint json-jsonlint lua perl php php-phpcs puppet-parser puppet-lint python-flake8 python-pylint rst ruby-rubocop ruby ruby-jruby rust sass scala scss sh-bash tex-chktex tex-lacheck xml-xmlstarlet)))
  '(flycheck-idle-change-delay 5)
+ '(flycheck-yaml-jsyaml-executable "/home/steven/.npm/bin/js-yaml")
  '(foreground-color nil)
  '(fortune-dir "/usr/share/fortune/")
- '(global-hl-line-mode t)
  '(gmm-tool-bar-style (quote retro))
  '(grep-command "ack --with-filename --nogroup --all")
  '(grep-highlight-matches (quote auto))
@@ -210,12 +209,6 @@
      ("me" :weight bold :foreground "white")
      ("INBOX" :foreground "color-243"))))
  '(notmuch-search-oldest-first nil)
- '(notmuch-search-result-format
-   (quote
-    (("date" . "%12s | ")
-     ("authors" . "%s ")
-     ("subject" . "%s")
-     ("tags" . "[%s]"))))
  '(notmuch-show-all-multipart/alternative-parts nil)
  '(notmuch-show-empty-saved-searches t)
  '(notmuch-show-indent-messages-width 2)
@@ -249,7 +242,6 @@
  '(req-package-log-level (quote debug))
  '(ropemacs-confirm-saving nil t)
  '(ropemacs-global-prefix "C-x @" t)
- '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(scss-compile-at-save nil)
  '(shell-file-name "/bin/sh")
  '(split-height-threshold 200)
@@ -297,7 +289,7 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#FFFFFF" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(bmkp-local-file-without-region ((t (:foreground "green"))))
- '(col-highlight ((t (:background "color-234"))))
+ '(col-highlight ((t (:background "color-237"))))
  '(column-marker-1 ((t (:background "color-53"))))
  '(cscope-line-face ((t nil)))
  '(cursor ((t (:background "light slate blue" :foreground "#888888"))))
@@ -321,7 +313,7 @@
  '(helm-selection ((t (:background "color-232" :foreground "color-226" :weight extra-bold))))
  '(helm-source-header ((t (:background "color-18" :foreground "black" :weight bold :height 1.3 :family "Sans Serif"))))
  '(helm-visible-mark ((t (:background "color-17"))))
- '(hl-line ((t (:background "color-233"))))
+ '(hl-line ((t (:background "color-17"))))
  '(icicle-candidate-part ((t (:background "color-17"))) t)
  '(icicle-current-candidate-highlight ((t (:background "color-19"))) t)
  '(icicle-extra-candidate ((t (:background "color-17"))) t)
@@ -336,7 +328,7 @@
  '(match ((t (:background "color-22"))))
  '(notmuch-message-summary-face ((t (:background "color-17"))))
  '(notmuch-tag-face ((t (:foreground "color-19"))))
- '(rst-level-1 ((t (:background "color-236"))) t)
+ '(rst-level-1 ((t (:background "color-236"))))
  '(trailing-whitespace ((t (:background "color-54" :foreground "color-54" :inverse-video t :underline nil :slant normal :weight normal))))
  '(vertical-border ((t (:inherit mode-line-inactive :background "black" :foreground "color-27" :weight thin :width condensed)))))
 

@@ -255,3 +255,10 @@ buffer is not visiting a file."
       (find-file (concat "/sudo:root@localhost:"
                          (ido-read-file-name "Find file(as root): ")))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+
+
+;; 2015-07-04 bug of pasting in emacs.
+;; http://debbugs.gnu.org/cgi/bugreport.cgi?bug=16737#17
+;; http://ergoemacs.org/misc/emacs_bug_cant_paste_2015.html
+;;http://ergoemacs.org/misc/emacs_bug_cant_paste_2015.html
+(setq x-selection-timeout 300)

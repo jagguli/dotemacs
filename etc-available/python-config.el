@@ -79,7 +79,10 @@
                 (bound-and-true-p diff-auto-refine-mode)
                 ))
           (progn
-            (setq outline-regexp "[ \t]*\\(class\\|def\\|with\\) ")
+            (setq
+             outline-regexp "[ \t]*\\(class\\|def\\|with\\) "
+             indent-line-function 'py-indent-line
+            )
             (outline-minor-mode t)
             (define-key evil-normal-state-map "za" 'outline-cycle)
             (define-key evil-normal-state-map "\t" 'outline-cycle)
@@ -92,6 +95,11 @@
             (define-key evil-normal-state-map "zR" 'show-all)
             (define-key evil-normal-state-map "zm" 'hide-body)
             (define-key evil-normal-state-map "zM" 'hide-sublevels)
+            (define-key evil-normal-state-map "=" 'py-indent-line)
+            (evil-define-key 'normal python-mode-map
+             (kbd "C-c C-c") 'py-indent-line
+             )
+                                                          
             (define-key evil-normal-state-map (kbd "C-i")  'evil-jump-forward)
             )
         )
@@ -132,7 +140,8 @@
         (insert "import fpdb; fpdb.set_trace() ######## FIXME:REMOVE ME steven.joseph ################\n")
         (previous-line)
         (py-indent-line)
-      (highlight-lines-matching-regexp "^[ ]*import fpdb; fpdb.set_trace().*")))
+      ;;(highlight-lines-matching-regexp "^[ ]*import fpdb; fpdb.set_trace().*")))
+      (highlight-lines-matching-regexp "^[ ]*import sj; sj.debug().*")))
 
 
 
@@ -187,5 +196,20 @@
     (define-key global-map (kbd "S-<f7>" ) 'remove-breakpoint)
     (define-key global-map (kbd "<f8>" ) 'breakpoint-set)
     (define-key global-map (kbd "<f7>" ) 'breakpoint-uset)
+    ;;; Indentation for python
+
+    ;; Ignoring electric indentation
+(defun electric-indent-ignore-python (char)
+  "Ignore electric indentation for python-mode"
+  (if (equal major-mode 'python-mode)
+      'no-indent
+    nil))
+(add-hook 'electric-indent-functions 'electric-indent-ignore-python)
+
+;; Enter key executes newline-and-indent
+(defun set-newline-and-indent ()
+  "Map the return key with `newline-and-indent'"
+  (local-set-key (kbd "RET") 'newline-and-indent))
+(add-hook 'python-mode-hook 'set-newline-and-indent)
     )
   )
