@@ -1,5 +1,5 @@
 (req-package
-  helm-mode
+   helm-mode
   :require
   (
    helm-cmd-t
@@ -7,6 +7,7 @@
    helm-adaptive
    shackle
    helm-cscope
+   helm-swoop
    )
   :config
   (setq
@@ -26,6 +27,13 @@
    (quote
     ("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$" "\\.pyc$"))
    helm-buffers-fuzzy-matching t
+   helm-M-x-fuzzy-match t
+   helm-recentf-fuzzy-match t
+   helm-mode-fuzzy-match t
+   helm-buffers-fuzzy-matching t
+   helm-imenu-fuzzy-match t
+   helm-locate-fuzzy-match t
+   helm-semantic-fuzzy-match t
    helm-c-ack-version 2
    helm-ff-auto-update-initial-value nil
    helm-ff-file-name-history-use-recentf t
@@ -51,6 +59,7 @@
    ;;helm-adaptive-history-file
    ;;     (concat history-dir (format "helm-adaptive-history_%s" server-name))
    )
+import fpdb; fpdb.set_trace() ######## FIXME:REMOVE ME steven.joseph ################
   :init
   (progn
     (add-user-lib "helm")
@@ -124,6 +133,7 @@
 
 
 
+    (helm-mode)
     (print "loaded helm-config")
     )
   )

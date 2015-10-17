@@ -1,5 +1,5 @@
 (req-package org
-  :require (org-journal org-install org-protocol org-indent password-store)
+  :require (org-journal org-install org-protocol org-indent password-store cl)
   :config (setq
    org-log-done t
    org-directory (expand-file-name "~/org/")
@@ -26,6 +26,9 @@
    org-journal-dir "~/org/journal/"
    org-journal-file-format "%A_%Y%m%d"
    org-lowest-priority 90
+   org-emphasis-alist
+          (cons '("+" '(:strike-through t :foreground "#121212"))
+                            (delete* "+" org-emphasis-alist :key 'car :test 'equal))
    )
   :init
   (progn
