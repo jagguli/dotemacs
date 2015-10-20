@@ -132,16 +132,16 @@
 
     ;; Debug statements ==================================================================
 
+    (defvar python-debugger "ipdb" "the debugger to use to set/unset breakpoints")
     (defun breakpoint-set nil
       (interactive)
       (save-excursion 
-        (next-line)
-        (beginning-of-line)
-        (insert "import fpdb; fpdb.set_trace() ######## FIXME:REMOVE ME steven.joseph ################\n")
-        (previous-line)
-        (py-indent-line)
+        (evil-open-below 1)
+        (insert (format "import %s; %s.set_trace() ######## FIXME:REMOVE ME steven.joseph ################"
+                        python-debugger python-debugger)) 
       ;;(highlight-lines-matching-regexp "^[ ]*import fpdb; fpdb.set_trace().*")))
-      (highlight-lines-matching-regexp "^[ ]*import sj; sj.debug().*")))
+        (highlight-lines-matching-regexp (format "^[ ]*import %s; %s.set_trace().*"
+                                                 python-debugger python-debugger))))
 
 
 
@@ -149,7 +149,7 @@
       (interactive)
       (save-excursion 
         (goto-char (point-min))
-        (flush-lines "^[ ]*import fpdb; fpdb.set_trace().*$")))
+        (flush-lines (format "^[ ]*import %s; %s.set_trace().*$" python-debugger python-debugger))))
 
 
 

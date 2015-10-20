@@ -59,7 +59,6 @@
    ;;helm-adaptive-history-file
    ;;     (concat history-dir (format "helm-adaptive-history_%s" server-name))
    )
-import fpdb; fpdb.set_trace() ######## FIXME:REMOVE ME steven.joseph ################
   :init
   (progn
     (add-user-lib "helm")
