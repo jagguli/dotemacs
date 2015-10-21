@@ -199,7 +199,8 @@
      (:name "last30days" :query "date:30d..0s")
      (:name "me" :query "tag:me and (tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s or (tag:sent or tag:replied or from:steven.joseph) " :key "m")
      (:name "unread_me" :query "tag:me and (tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s and tag:unread and (tag:sent or tag:replied or from:steven.joseph)")
-     (:name "calendar" :query "mimetype:text/calendar" :key "c"))))
+     (:name "calendar" :query "mimetype:text/calendar" :key "c")
+     (:name "Wire" :query "from:iress@jiveon.com" :key "w"))))
  '(notmuch-search-hook (quote (notmuch-hl-line-mode)))
  '(notmuch-search-line-faces
    (quote
@@ -212,12 +213,12 @@
  '(notmuch-show-all-multipart/alternative-parts nil)
  '(notmuch-show-empty-saved-searches t)
  '(notmuch-show-indent-messages-width 2)
- '(notmuch-show-indent-multipart t)
+ '(notmuch-show-indent-multipart nil)
  '(notmuch-show-insert-text/plain-hook
    (quote
     (notmuch-wash-convert-inline-patch-to-part notmuch-wash-wrap-long-lines notmuch-wash-tidy-citations notmuch-wash-elide-blank-lines notmuch-wash-excerpt-citations)))
  '(notmuch-show-only-matching-messages t)
- '(notmuch-show-part-button-default-action (quote notmuch-show-interactively-view-part))
+ '(notmuch-show-part-button-default-action (quote notmuch-show-view-part))
  '(notmuch-tree-show-out t)
  '(notmuch-wash-citation-lines-prefix 0)
  '(notmuch-wash-original-regexp "^\\(From: .*\\|.* writes:\\)$")

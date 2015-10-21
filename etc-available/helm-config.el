@@ -1,3 +1,4 @@
+;;http://tuhdo.github.io/helm-intro.html
 (req-package
    helm-mode
   :require
