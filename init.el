@@ -60,6 +60,9 @@
  '(bookmark-version-control (quote nospecial))
  '(browse-url-browser-function (quote browse-url-chromium))
  '(browse-url-chromium-program "chromium")
+ '(col-highlight-overlay-priority -300)
+ '(col-highlight-vline-face-flag nil)
+ '(column-highlight-mode t)
  '(compilation-disable-input t)
  '(cursor-color nil)
  '(custom-safe-themes
@@ -290,7 +293,7 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#FFFFFF" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(bmkp-local-file-without-region ((t (:foreground "green"))))
- '(col-highlight ((t (:background "color-237"))))
+ '(col-highlight ((t (:background "color-233"))))
  '(column-marker-1 ((t (:background "color-232"))))
  '(cscope-line-face ((t nil)))
  '(cursor ((t (:background "light slate blue" :foreground "#888888"))))
@@ -331,5 +334,7 @@
  '(notmuch-tag-face ((t (:foreground "color-19"))))
  '(rst-level-1 ((t (:background "color-236"))))
  '(trailing-whitespace ((t (:background "color-54" :foreground "color-54" :inverse-video t :underline nil :slant normal :weight normal))))
- '(vertical-border ((t (:inherit mode-line-inactive :background "black" :foreground "color-27" :weight thin :width condensed)))))
+ '(vertical-border ((t (:inherit mode-line-inactive :background "black" :foreground "color-27" :weight thin :width condensed))))
+ '(vline ((t (:background "color-233"))))
+ '(vline-visual ((t (:background "color-234")))))
 
