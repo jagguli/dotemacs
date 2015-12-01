@@ -72,6 +72,7 @@
       (if (< (count-lines (point-min) (point-max)) 2000) 
           (flycheck-mode) 
         (flycheck-mode -1))
+      (flyspell-prog-mode)
 
       (if (not (or
                 (string/starts-with (buffer-name) "*mo-git-blame")

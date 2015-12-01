@@ -74,7 +74,7 @@
         (insert filename)
         (insert ":")
         (insert lineno)
-        (shell-command-on-region (point-min) (point-max) "xsel -i"))
+        (shell-command-on-region (point-min) (point-max) "xclip -i"))
       (message filename))))
 (defalias 'my-filename-to-clipboard 'filename-to-clipboard)
 
