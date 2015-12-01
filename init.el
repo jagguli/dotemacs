@@ -3,6 +3,7 @@
   "Save buffers, Quit, and Shutdown (kill) server"
   (interactive)
   (save-some-buffers)
+  (recentf-save-list)
   (kill-emacs))
 
 (defun reload-emacs-config ()
@@ -228,7 +229,7 @@
  '(notmuch-wash-wrap-lines-length 70)
  '(org-agenda-files
    (quote
-    ("/home/steven/org/9success.org" "/home/steven/org/books.org" "/home/steven/org/driving.org" "/home/steven/org/ijournal.org" "/home/steven/org/music.org" "/home/steven/org/osc.org" "/home/steven/org/refile.org" "/home/steven/org/todo.org")))
+    ("/home/steven/org/babyorbust.org" "/home/steven/org/9success.org" "/home/steven/org/Getting Started with Orgzly.org" "/home/steven/org/biz.org" "/home/steven/org/books.org" "/home/steven/org/docker_meetup.org" "/home/steven/org/driving.org" "/home/steven/org/ijournal.org" "/home/steven/org/music.org" "/home/steven/org/notes.org" "/home/steven/org/orgtips.org" "/home/steven/org/osc.org" "/home/steven/org/refile.org" "/home/steven/org/todo.org" "/home/steven/org/todo_done.org" "/home/steven/org/9success.org" "/home/steven/org/books.org" "/home/steven/org/driving.org" "/home/steven/org/ijournal.org" "/home/steven/org/music.org" "/home/steven/org/osc.org" "/home/steven/org/refile.org" "/home/steven/org/todo.org")))
  '(org-agenda-repeating-timestamp-show-all nil)
  '(org-agenda-skip-scheduled-if-deadline-is-shown (quote repeated-after-deadline))
  '(paredit-mode nil t)
@@ -237,8 +238,8 @@
  '(py-ffap-p (quote py-ffap))
  '(py-shell-name "python2")
  '(recentf-auto-cleanup 300)
- '(recentf-max-menu-items 100)
- '(recentf-max-saved-items 200)
+ '(recentf-max-menu-items 500)
+ '(recentf-max-saved-items 500)
  '(recentf-mode t)
  '(repository-root-matchers
    (quote
