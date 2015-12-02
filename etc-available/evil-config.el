@@ -34,13 +34,17 @@
     (setq evil-flash-delay 60)
     ;;; esc quits
 
-
+    (defun helm-ag-with-prefix-arg ()
+      (interactive)
+      (setq current-prefix-arg '(4)) ; C-u
+      (call-interactively 'helm-ag))
     (define-key evil-insert-state-map (kbd "C-w") 'evil-window-map)
     (define-key evil-insert-state-map (kbd "C-w <left>") 'evil-window-left)
     (define-key evil-insert-state-map (kbd "C-w <right>") 'evil-window-right)
     (define-key evil-insert-state-map (kbd "C-w <up>") 'evil-window-up)
     (define-key evil-insert-state-map (kbd "C-w <down>") 'evil-window-down)
     (define-key evil-normal-state-map (kbd "`") 'helm-find-files)
+    (define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag-with-prefix-arg)
     ;;(define-key global-map (kbd "`") 'find-file)
     (evil-define-command "Ve" (function 
                                 lambda() (split-window-horizontally)))

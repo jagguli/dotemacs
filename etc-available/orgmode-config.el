@@ -11,14 +11,14 @@
    org-mobile-inbox-for-pull (concat org-mobile-directory "mobileorg.org")
    org-return-follows-link t
    org-catch-invisible-edits t
-   org-agenda-file-regexp "[^.].*\\.org$"
+   org-agenda-file-regexp "[^.#].*\\.org$"
    org-default-notes-file (concat org-directory "notes.org")
    org-clock-persist 'history
    org-toodledo-userid (password-store-get "internet/toodledo/userid")
    org-toodledo-password (password-store-get "internet/toodledo/password")
    org-toodledo-folder-support-mode t
    org-toodledo-folder-support-mode (quote heading)
-   ;org-agenda-files (quote
+   org-agenda-files '("~/org")
    ; ("/home/steven/org/todo.org"))
    org-clock-into-drawer t
    org-default-priority 90
@@ -38,7 +38,9 @@
     ;;(define-key global-map "c a" 'org-agenda)
     (org-clock-persistence-insinuate)
     (setq org-todo-keywords
-          '((sequence "TODO(t)" "WAIT(w@/!)" "SOMETIME(s)" "STARTED(i)" "|" "DONE(d!)" "CANCELED(c@)" "DEFFERED(f)")))
+          '((sequence "TODO(t)" "WAIT(w@/!)" "SOMETIME(s)"
+                      "STARTED(i)" "OSC_DEV" "|" "OSC_DONE"
+                      "DONE(d!)" "CANCELED(c@)" "DEFFERED(f)")))
 
     ;; I use C-c c to start capture mode
     ;;(global-set-key (kbd "C-c c") 'org-capture)

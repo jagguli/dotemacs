@@ -1,10 +1,12 @@
 ;; CScope =============================================================================
 (req-package xcscope
   :require (evil)
+  :config
+  (setq
+    cscope-option-do-not-update-database t
+   )
   :init
   (progn
-    (setq cscope-do-not-update-database t)
-
     (defun cscope-mappings()
       (interactive)
       (define-key evil-normal-state-map (kbd "C-c ]")

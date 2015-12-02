@@ -143,9 +143,12 @@
      ("File \\\".*\\\"" . hi-red-b)
      ("^Traceback.*$" . hi-red-b))))
  '(jabber-account-list nil)
+ '(jabber-alert-info-message-hooks
+   (quote
+    (jabber-info-tmux jabber-info-switch jabber-info-echo)) t)
  '(jabber-alert-message-hooks
    (quote
-    (jabber-message-notifications jabber-message-libnotify jabber-message-tmux jabber-message-echo jabber-message-switch jabber-message-display)) t)
+    (jabber-message-notifications jabber-message-switch jabber-message-echo jabber-message-libnotify)) t)
  '(jabber-alert-message-wave "~/.sounds/message-new-instant.wav" t)
  '(jabber-alert-muc-hooks
    (quote

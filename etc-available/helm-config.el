@@ -23,7 +23,7 @@
    helm-boring-buffer-regexp-list
    (quote
     ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-"
-     "\\*Complet" "\\*magit" "\\*tail" "\\*cscope" "\\*epc"))
+     "\\*Complet" "\\*magit" "\\*cscope" "\\*epc"))
    helm-boring-file-regexp-list
    (quote
     ("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$" "\\.pyc$"))
@@ -33,7 +33,7 @@
    helm-mode-fuzzy-match t
    helm-buffers-fuzzy-matching t
    helm-imenu-fuzzy-match t
-   helm-locate-fuzzy-match t
+   helm-locate-fuzzy-match nil
    helm-semantic-fuzzy-match t
    helm-c-ack-version 2
    helm-ff-auto-update-initial-value nil
@@ -102,6 +102,7 @@
         (helm-attrset 'name header-name helm-ag-source)
         (helm :sources '(helm-ag-source) :buffer "*helm-ag*")))
     (global-set-key "\C-xt" 'helm-eproject-ag)
+    (global-set-key "\C-xc" 'helm-resume)
     (global-set-key [(f5)] 'helm-etags-select)
     (global-set-key "\C-x/"  'helm-cmd-t)
     (global-set-key "\C-x\\"  'ag)
@@ -135,6 +136,13 @@
 
     (helm-mode)
     (print "loaded helm-config")
+    (defun helm-ag--query ()
+      (let* ((searched-word (helm-ag--searched-word))
+             (marked-word (helm-ag--marked-input))
+             (query (ag/read-from-minibuffer "Search string")))
+        (when (string= query "")
+          (error "Input is empty!!"))
+        (setq helm-ag--last-query query)))
     )
   )
 

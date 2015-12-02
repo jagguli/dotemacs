@@ -133,7 +133,7 @@
 
     ;; Debug statements ==================================================================
 
-    (defvar python-debugger "ipdb" "the debugger to use to set/unset breakpoints")
+    (defvar python-debugger "fpdb" "the debugger to use to set/unset breakpoints")
     (defun breakpoint-set nil
       (interactive)
       (save-excursion 
