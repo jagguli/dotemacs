@@ -1,5 +1,5 @@
 (req-package org
-  :require (org-journal org-install org-protocol org-indent password-store cl)
+  :require (org-journal org-install org-protocol org-indent password-store cl epa-file)
   :config (setq
    org-log-done t
    org-directory (expand-file-name "~/org/")
@@ -32,6 +32,7 @@
    )
   :init
   (progn
+    (epa-file-enable)
     ;;(require 'journal)
     (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
     ;;(define-key global-map "c l" 'org-store-link)
@@ -43,7 +44,7 @@
                       "DONE(d!)" "CANCELED(c@)" "DEFFERED(f)")))
 
     ;; I use C-c c to start capture mode
-    ;;(global-set-key (kbd "C-c c") 'org-capture)
+    (global-set-key (kbd "C-c c") 'org-capture)
     (add-to-list 'org-agenda-files org-directory)
 
     (defun my-org-files ()
@@ -121,8 +122,8 @@
                    "* PHONE %? :PHONE:\n%U" :clock-in t :clock-resume t)
                   ("h" "Habit" entry (file "~/org/todo.org")
                    "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"<%Y-%m-%d %a .+1d/3d>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n")
-                  ("o" "OSC" entry (file+datetree "~/org/osc.org")
-                   "* %?\nOSC:\n")
+                  ("o" "OSC_DEV" entry (file+datetree "~/org/osc.org")
+                   "* OSC_DEV %?\n" :clock-in t :clock-resume t)
                   ("c" "todo" entry (file "~/org/todo.org")
                    "* TODO %?\nSCHEDULED: %(format-time-string \"<%Y-%m-%d>\")")
                   ("d" "todo" entry (file "~/org/todo.org")

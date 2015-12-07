@@ -1,4 +1,8 @@
 (req-package web-mode
+  :require
+  (
+   haml-mode
+   )
   :config
   (setq
    mweb-default-major-mode 'html-mode

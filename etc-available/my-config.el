@@ -57,6 +57,10 @@
   (interactive)
   (insert (shell-command-to-string
       "xclip -o")))
+(defun xclip-copy (&optional b e)
+  (interactive "r")
+  (shell-command-on-region b e
+      "xclip -i"))
 ;(setq org-agenda-include-diary t)
 ;(pop-to-buffer (get-buffer-create (generate-new-buffer-name "*scratch-org*")))
 ;(insert "Scratch buffer with org-mode.\n\n")
@@ -262,3 +266,32 @@ buffer is not visiting a file."
 ;; http://ergoemacs.org/misc/emacs_bug_cant_paste_2015.html
 ;;http://ergoemacs.org/misc/emacs_bug_cant_paste_2015.html
 (setq x-selection-timeout 300)
+
+(defun dos2unix (buffer)
+      "Automate M-% C-q C-m RET C-q C-j RET"
+      (interactive "*b")
+      (save-excursion
+        (goto-char (point-min))
+        (while (search-forward (string ?\C-m) nil t)
+          (replace-match (string ?\C-j) nil t))))
+
+(defvar gdocs-folder-id "0B_rnOKn_aQhKSDRmUTF5bzhmbVk"
+  "location for storing org to gdocs exported files, use 'gdrive list  -t <foldername>' to find the id")
+
+(defun gdoc-export-buffer ()
+ "Export current buffer as google doc to folder irentified by gdocs-folder-id"
+ (interactive)
+ (shell-command
+  (format "gdrive upload --convert --mimetype text/plain --parent %s --file %s"
+          gdocs-folder-id buffer-file-name)))
+
+(defun gdoc-import-buffer (doc)
+  "Import a file in gdocs-folder-id into current buffer"
+  (interactive 
+   (list
+    (completing-read "Choose one: "
+                     (split-string
+                      (shell-command-to-string
+                       (format "gdrive list -q \"'%s' in parents\"" gdocs-folder-id)) "\n"))))
+  (insert (replace-regexp-in-string (string ?\C-m) (string ?\C-j) (shell-command-to-string
+   (format "gdrive download -s --format txt --id %s" (car (split-string doc " ")))))))

@@ -9,6 +9,11 @@
    shackle
    helm-cscope
    helm-swoop
+   helm-flycheck
+   helm-chrome
+   helm-projectile
+   helm-package
+   helm-fuzzy-find
    )
   :config
   (setq
@@ -55,6 +60,7 @@
    helm-match-plugin-mode t
    helm-adaptive-mode t
    helm-full-frame nil
+   projectile-completion-system 'helm
    ;;shackle-rules '(("\\`\\*helm.*?\\*\\'" :regexp t :align t :ratio 0.5))
    ;;helm-split-window-default-side (quote left)
    ;;helm-adaptive-history-file
@@ -63,6 +69,8 @@
   :init
   (progn
     (add-user-lib "helm")
+    (projectile-global-mode)
+    (helm-projectile-on)
     
 
     (defun helm-split-buffers-list ()
