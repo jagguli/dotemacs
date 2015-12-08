@@ -18,7 +18,9 @@
    org-toodledo-password (password-store-get "internet/toodledo/password")
    org-toodledo-folder-support-mode t
    org-toodledo-folder-support-mode (quote heading)
-   org-agenda-files '("~/org")
+   org-agenda-files
+   (quote
+    ("/home/steven/org/"))
    ; ("/home/steven/org/todo.org"))
    org-clock-into-drawer t
    org-default-priority 90

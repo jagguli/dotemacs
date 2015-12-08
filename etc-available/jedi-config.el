@@ -4,6 +4,7 @@
   :require (jedi-direx)
   :config
   (setq
+   popup-use-optimized-column-computation nil
    jedi:setup-keys t
    jedi:complete-on-dot t
    jedi:install-server--command `("pip2" "install" "--upgrade" ,(convert-standard-filename jedi:source-dir))
