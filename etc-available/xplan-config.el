@@ -1,3 +1,4 @@
+(require 'thingatpt)
 (defun diff-version-old (version)
   "Diff file in two xplan versions"
   (interactive "nVersion: \n")
@@ -29,3 +30,6 @@
                           (format "/%s%s/" "xplan"
                                   (if (equal version 0) "" version))
                           buffer-file-name))))
+(defun open-osc-at-point ()
+  )
+  
