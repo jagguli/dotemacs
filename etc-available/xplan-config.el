@@ -31,5 +31,7 @@
                                   (if (equal version 0) "" version))
                           buffer-file-name))))
 (defun open-osc-at-point ()
+  (interactive)
+  (browse-url (format "http://osc.iress.com.au/view.php\?id=%s" (word-at-point))) 
   )
   
