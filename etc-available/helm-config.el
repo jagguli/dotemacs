@@ -14,6 +14,7 @@
    helm-projectile
    helm-package
    helm-fuzzy-find
+   ag
    )
   :config
   (setq
