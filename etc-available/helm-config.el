@@ -82,7 +82,6 @@
    ;;helm-split-window-default-side (quote left)
    ;;helm-adaptive-history-file
    ;;     (concat history-dir (format "helm-adaptive-history_%s" server-name))
-   )
   :init
   (progn
     (add-user-lib "helm")
@@ -95,7 +94,7 @@
     (global-set-key "\C-xb" 'helm-mini)
     (global-set-key "\C-x " 'helm-bookmarks)
     (global-set-key [(f3)] 'helm-split-buffers-list)
-    (define-key helm-command-map "b" 'helm-bookmarks)
+    ;;(define-key helm-command-map "b" 'helm-bookmarks)
     (global-set-key "\C-xt" 'helm-eproject-ag)
     (global-set-key "\C-xc" 'helm-resume)
     (global-set-key [(f5)] 'helm-etags-select)
