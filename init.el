@@ -258,7 +258,7 @@
  '(split-window-keep-point nil)
  '(tab-width 4)
  '(tool-bar-mode nil)
- '(url-handler-mode t)
+ '(url-handler-mode nil)
  '(url-handler-regexp "\\`\\(\\(https?\\|ftp\\|file\\|nfs\\)://|File\\)")
  '(url-proxy-services nil)
  '(user-full-name "Steven Joseph")
