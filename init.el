@@ -122,6 +122,7 @@
  '(fci-rule-color "#073642")
  '(ffap-machine-p-known (quote reject))
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
+ '(flycheck-checker-error-threshold 5000)
  '(flycheck-checkers
    (quote
     (coffee-coffeelint css-csslint elixir emacs-lisp emacs-lisp-checkdoc erlang go-gofmt go-build go-test haml html-tidy javascript-jshint json-jsonlint lua perl php php-phpcs puppet-parser puppet-lint python-flake8 python-pylint rst ruby-rubocop ruby ruby-jruby rust sass scala scss sh-bash tex-chktex tex-lacheck xml-xmlstarlet)))
