@@ -231,9 +231,7 @@
  '(notmuch-wash-citation-lines-prefix 0)
  '(notmuch-wash-original-regexp "^\\(From: .*\\|.* writes:\\)$")
  '(notmuch-wash-wrap-lines-length 70)
- '(org-agenda-files
-   (quote
-    ("/home/steven/org/")))
+ '(org-agenda-files (quote ("/home/steven/org/")))
  '(org-agenda-repeating-timestamp-show-all nil)
  '(org-agenda-skip-scheduled-if-deadline-is-shown (quote repeated-after-deadline))
  '(paredit-mode nil t)
