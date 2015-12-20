@@ -82,10 +82,9 @@
    ;;helm-split-window-default-side (quote left)
    ;;helm-adaptive-history-file
    ;;     (concat history-dir (format "helm-adaptive-history_%s" server-name))
-   )
   :init
   (progn
-    (add-user-lib "helm")
+    ;;(add-user-lib "helm")
     (projectile-global-mode)
     (helm-projectile-on)
     
@@ -95,7 +94,7 @@
     (global-set-key "\C-xb" 'helm-mini)
     (global-set-key "\C-x " 'helm-bookmarks)
     (global-set-key [(f3)] 'helm-split-buffers-list)
-    (define-key helm-command-map "b" 'helm-bookmarks)
+    ;;(define-key helm-command-map "b" 'helm-bookmarks)
     (global-set-key "\C-xt" 'helm-eproject-ag)
     (global-set-key "\C-xc" 'helm-resume)
     (global-set-key [(f5)] 'helm-etags-select)
@@ -122,14 +121,15 @@
           (other-window 1)
           ))
       (helm-buffers-list))
-    (defun helm-ag--query ()
-      (let* ((searched-word (helm-ag--searched-word))
-             (marked-word (helm-ag--marked-input))
-             (query (ag/read-from-minibuffer "Search string")))
-        (when (string= query "")
-          (error "Input is empty!!"))
-        (setq helm-ag--last-query query)))
-    (helm-mode)
+    (eval-after-load "helm-ag"
+      '(defun helm-ag--query ()
+         (let* ((searched-word (helm-ag--searched-word))
+                (marked-word (helm-ag--marked-input))
+                (query (ag/read-from-minibuffer "Search string")))
+           (when (string= query "")
+             (error "Input is empty!!"))
+           (setq helm-ag--last-query query)))
+      )
     )
   )
 
