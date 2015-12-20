@@ -1,8 +1,8 @@
 (req-package dired
-  :require (dash dired-x dired-details)
+  :require (dash dired-x dired-details async)
   :init
   (progn
-
+    (dired-async-mode 1)
     ;;(setq dired-omit-files
     ;;      (concat dired-omit-files "\\|^\\.[a-zA-Z]+$"))
     (dired-omit-mode 1)

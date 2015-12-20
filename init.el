@@ -41,6 +41,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(async-bytecomp-package-mode 1)
  '(Buffer-menu-use-frame-buffer-list "Mode")
  '(ansi-color-faces-vector
    [default bold shadow italic underline bold bold-italic bold])
