@@ -45,6 +45,9 @@
                       "STARTED(i)" "OSC_DEV" "|" "OSC_DONE"
                       "DONE(d!)" "CANCELED(c@)" "DEFFERED(f)")))
 
+    (setq org-agenda-skip-function-global
+                '(org-agenda-skip-entry-if 'todo '("OSC_DONE" "OSC_DEV")))
+          
     ;; I use C-c c to start capture mode
     (global-set-key (kbd "C-c c") 'org-capture)
     (add-to-list 'org-agenda-files org-directory)
@@ -133,9 +136,15 @@
                   )))
 
     (setq org-agenda-custom-commands
-          '(("P" "Projects"   
+          '(
+            ("o" "OSCS"   
+             (
+              (todo "OSC_DEV")
+              (todo "OSC_DONE")
+              ))
+            ("P" "Projects"   
              ((tags "PROJECT")))
-            ("H" "Office and Home Lists"
+            ("h" "Office and Home Lists"
              ((agenda)
               (tags-todo "OFFICE")
               (tags-todo "HOME")
