@@ -48,6 +48,14 @@
         . " %-54s ")
        ("tags" . "[%s]")
        )
+     notmuch-search-line-faces
+     (quote
+      (("deleted" :foreground "red" :background "grey")
+       ("unread" :foreground "green")
+       ("today" :foreground "green" :background "color-232")
+       ("flagged" :foreground "magenta")
+       ("me" :weight bold :foreground "white")
+       ("INBOX" :foreground "color-243")))
      message-sendmail-envelope-from 'header
      notmuch-address-selection-function
      (lambda (prompt collection initial-input)

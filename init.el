@@ -212,13 +212,6 @@
      (:name "calendar" :query "mimetype:text/calendar" :key "c")
      (:name "Wire" :query "from:iress@jiveon.com" :key "w"))))
  '(notmuch-search-hook (quote (notmuch-hl-line-mode)))
- '(notmuch-search-line-faces
-   (quote
-    (("deleted" :foreground "red" :background "blue")
-     ("unread" :foreground "green")
-     ("flagged" :foreground "magenta")
-     ("me" :weight bold :foreground "white")
-     ("INBOX" :foreground "color-243"))))
  '(notmuch-search-oldest-first nil)
  '(notmuch-show-all-multipart/alternative-parts nil)
  '(notmuch-show-empty-saved-searches t)
