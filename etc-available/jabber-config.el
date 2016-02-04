@@ -1,9 +1,9 @@
-(add-user-lib "emacs-jabber")
-(add-user-lib "emacs-jabber-otr")
+;;(add-user-lib "emacs-jabber")
+;;(add-user-lib "emacs-jabber-otr")
 
 (req-package
-  jabber-libnotify
-  :require (jabber-otr password-store)
+ jabber 
+  :require (jabber-libnotify jabber-otr password-store)
   :defer t
   :init
   (progn
