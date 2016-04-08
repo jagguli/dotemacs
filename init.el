@@ -336,3 +336,4 @@
  '(vline ((t (:background "color-233"))))
  '(vline-visual ((t (:background "color-234")))))
 
+(put 'scroll-left 'disabled nil)
