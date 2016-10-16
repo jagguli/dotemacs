@@ -1,0 +1,16 @@
+
+[Unit]
+Description=Emacs: the extensible, self-documenting text editor
+
+[Service]
+Type=forking
+ExecStartPre=/bin/rm -rf %h/.emacs.d/server/%i
+ExecStart=/usr/bin/emacs --daemon --eval  "(start-server \"%i\")"
+ExecStop=/usr/bin/emacsclient -f '%i' --eval "(progn (setq kill-emacs-hook 'nil) (kill-emacs))" 
+ExecStopPost=/bin/rm -rf %h/.emacs.d/server/%i
+Restart=on-success
+WorkingDirectory=%h
+#EnvironmentFile=%h/.config/systemd/user/environment.conf
+
+[Install]
+WantedBy=default.target
