@@ -1,4 +1,11 @@
 ; define function to shutdown emacs server instance
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (defun shutdown ()
   "Save buffers, Quit, and Shutdown (kill) server"
   (interactive)
@@ -41,18 +48,19 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(async-bytecomp-package-mode 1)
  '(Buffer-menu-use-frame-buffer-list "Mode")
  '(ansi-color-faces-vector
    [default bold shadow italic underline bold bold-italic bold])
  '(ansi-color-names-vector
    (vector "#4d4d4c" "#c82829" "#718c00" "#eab700" "#4271ae" "#8959a8" "#3e999f" "#ffffff"))
+ '(async-bytecomp-package-mode 1)
  '(auth-source-protocols
    (quote
     ((imap "imap" "imaps" "143" "993")
      (pop3 "pop3" "pop" "pop3s" "110" "995")
      (ssh "ssh" "22")
      (sftp "sftp" "115"))))
+ '(auth-sources (quote ("~/.authinfo" "~/.authinfo.gpg" "~/.netrc")))
  '(auto-revert-interval 0.5)
  '(background-color nil)
  '(background-mode dark)
@@ -60,7 +68,7 @@
  '(bookmark-default-file (expand-file-name "~/share/Dropbox/.emacsbookmarks"))
  '(bookmark-version-control (quote nospecial))
  '(browse-url-browser-function (quote browse-url-chromium))
- '(browse-url-chromium-program "chromium")
+ '(browse-url-chromium-program "chrome")
  '(col-highlight-overlay-priority -300)
  '(col-highlight-vline-face-flag nil)
  '(column-highlight-mode t)
@@ -242,8 +250,8 @@
    (quote
     (repository-root-matcher/git repository-root-matcher/svn)))
  '(req-package-log-level (quote debug))
- '(ropemacs-confirm-saving nil)
- '(ropemacs-global-prefix "C-x @")
+ '(ropemacs-confirm-saving nil t)
+ '(ropemacs-global-prefix "C-x @" t)
  '(scss-compile-at-save nil)
  '(shell-file-name "/bin/sh")
  '(split-height-threshold 200)
