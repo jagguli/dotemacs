@@ -4,7 +4,8 @@
             )
   :config
   (setq circe-network-options
-        `(("Freenode"
+        `(
+          ("Freenode"
            :tls t
            :nick ,(password-store-get "irc/freenode/username")
            :password ,(password-store-get "irc/freenode/password")
@@ -15,7 +16,19 @@
                       "#emacs"
                       "#salt"
                       )
-           )))
+           )
+          ("FreenodeNoPass"
+           :tls t
+           :nick "jagguli"
+           :sasl-username "jagguli"
+           :channels (
+                      "#emacs-circe"
+                      "#emacs"
+                      "#salt"
+                      )
+           )
+          )
+        )
   :init
   (progn
     (message "circe-config loaded"))
