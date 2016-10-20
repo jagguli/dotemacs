@@ -21,6 +21,7 @@
      ropemacs-global-prefix "C-x @"
      ropemacs-enable-autoimport t
      )
+     
     (if (string-match "^.*.iress.com.au" system-name )
         (setq
          py-python-command "python2"
@@ -135,7 +136,7 @@
 
     ;; Debug statements ==================================================================
 
-    (defvar python-debugger "fpdb" "the debugger to use to set/unset breakpoints")
+    (defvar python-debugger "sj" "the debugger to use to set/unset breakpoints")
     (defun breakpoint-set nil
       (interactive)
       (save-excursion 

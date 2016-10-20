@@ -13,6 +13,6 @@
       (insert word))))
 
 (defun my-minibuffer-setup-hook ()
-  (local-set-key (kbd "C-w") 'my-minibuffer-insert-word-at-point))
+  (local-set-key (kbd "M-s") 'my-minibuffer-insert-word-at-point))
 
 (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup-hook)

@@ -58,7 +58,7 @@
         )
       )
 
-    (global-set-key [f4] 'toggle-dirtree)
+    ;;(global-set-key [f4] 'toggle-dirtree)
 
     )
   )

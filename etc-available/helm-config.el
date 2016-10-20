@@ -57,7 +57,7 @@
    helm-adaptive-mode t
    helm-full-frame nil
    projectile-completion-system 'helm
-   helm-buffer-max-length nil
+   helm-buffer-max-length 30
 
    helm-mini-default-sources
    (quote
@@ -69,13 +69,14 @@
      ))
    helm-for-files-preferred-list
    (quote
-    (helm-source-projectile-recentf-list
+    (
+     ;;helm-source-projectile-recentf-list
      helm-source-recentf
      helm-source-projectile-files-list
-     helm-source-files-in-current-dir
-     helm-source-file-cache
-     helm-source-bookmarks
-     helm-source-locate
+     ;;helm-source-files-in-current-dir
+     ;;helm-source-file-cache
+     ;;helm-source-bookmarks
+     ;;helm-source-locate
      )))
 
    ;;shackle-rules '(("\\`\\*helm.*?\\*\\'" :regexp t :align t :ratio 0.5))
@@ -86,20 +87,23 @@
   (progn
     ;;(add-user-lib "helm")
     (projectile-global-mode)
+    (helm-mode)
     (helm-projectile-on)
     
 
     (global-set-key "\M-x" 'helm-M-x)
-    (global-set-key "\C-x\C-r" 'helm-for-files)
-    (global-set-key "\C-xb" 'helm-mini)
-    (global-set-key "\C-x " 'helm-bookmarks)
-    (global-set-key [(f3)] 'helm-split-buffers-list)
+    (global-set-key "\C-xb" 'helm-bookmarks)
+    (global-set-key "\C-x " 'helm-split-mini)
+    (global-set-key "\C-c " 'helm-mini)
+    (global-set-key "\C-xr" 'helm-recentf)
     ;;(define-key helm-command-map "b" 'helm-bookmarks)
     (global-set-key "\C-xt" 'helm-eproject-ag)
     (global-set-key "\C-xc" 'helm-resume)
     (global-set-key [(f5)] 'helm-etags-select)
     (global-set-key "\C-x/"  'helm-cmd-t)
+    ;(global-set-key "\C-xv"  'helm-show-kill-ring)
     (global-set-key "\C-x\\"  'ag)
+    (global-set-key "\M-so"  'helm-occur)
     ;;(defun sort-buffers ()
     ;;  "Put the buffer list in alphabetical order."
     ;;  (interactive)
@@ -113,14 +117,14 @@
     ;;           (a b) (string<
     ;;                  (downcase (buffer-name a))
     ;;                  (downcase (buffer-name b)))))))
-    (defun helm-split-buffers-list ()
+    (defun helm-split-mini()
       (interactive)
       (let ((buffers (mapcar 'window-buffer (window-list))))
         (if (= 1 (length buffers))
             (split-window-sensibly)
           (other-window 1)
           ))
-      (helm-buffers-list))
+      (helm-mini))
     (eval-after-load "helm-ag"
       '(defun helm-ag--query ()
          (let* ((searched-word (helm-ag--searched-word))

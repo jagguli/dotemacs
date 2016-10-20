@@ -31,6 +31,8 @@
     (evil-set-initial-state 'egg-filehistory 'emacs)
     (evil-set-initial-state 'calendar-mode 'emacs)
     (evil-set-initial-state 'journal-mode 'emacs)
+    (evil-set-initial-state 'circe-mode 'emacs)
+    (evil-set-initial-state 'circe-server-mode 'emacs)
     (setq evil-flash-delay 60)
     ;;; esc quits
 
@@ -44,6 +46,7 @@
     (define-key evil-insert-state-map (kbd "C-w <up>") 'evil-window-up)
     (define-key evil-insert-state-map (kbd "C-w <down>") 'evil-window-down)
     (define-key evil-normal-state-map (kbd "`") 'helm-find-files)
+    (define-key evil-normal-state-map (kbd "C-x v") 'helm-show-kill-ring)
     (define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag-with-prefix-arg)
     ;;(define-key global-map (kbd "`") 'find-file)
     (evil-define-command "Ve" (function 

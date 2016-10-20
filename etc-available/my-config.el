@@ -295,3 +295,8 @@ buffer is not visiting a file."
                        (format "gdrive list -q \"'%s' in parents\"" gdocs-folder-id)) "\n"))))
   (insert (replace-regexp-in-string (string ?\C-m) (string ?\C-j) (shell-command-to-string
    (format "gdrive download -s --format txt --id %s" (car (split-string doc " ")))))))
+
+(defun split-tmux ()
+  (interactive)
+  (shell-command
+   (format "tmux split-window -c '%s'" default-directory)))

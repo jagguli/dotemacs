@@ -4,6 +4,7 @@
   (progn
     (global-set-key "\C-xgg" 'magit-status)
     (global-set-key "\C-xgb" 'mo-git-blame-current)
+    (global-set-key "\C-xgl" 'magit-log)
     )
   (defun magit-add-current-file ()
     "Insert the full path file name into the current buffer."

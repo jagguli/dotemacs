@@ -10,10 +10,14 @@
    jedi:install-server--command `("pip2" "install" "--upgrade" ,(convert-standard-filename jedi:source-dir))
    jedi:server-command (list "python2" jedi:server-script)
    jedi:server-args
-   '("--sys-path" "/home/steven/iress/xplan/src/py/"
-     "--sys-path" "/home/steven/iress/xplan/lib/py/"
-     "--sys-path" "/usr/lib/python2.7/site-packages/"
+   '("--sys-path" "/home/steven/streethawk/slicecloud/"
+     "--sys-path" "/home/steven/streethawk/djapps/"
      "--sys-path" "/home/steven/.local/lib/python2.7/site-packages/"
+     "--sys-path" "/home/steven/.local/lib/python3.5/site-packages/"
+     "--sys-path" "/usr/lib/python3.5/site-packages/"
+     "--sys-path" "/usr/lib/python2.7/site-packages/"
+     "--sys-path" "/usr/lib/python2.7/dist-packages/"
+     "--sys-path" "/usr/lib/python3.5/dist-packages/"
      )
    )
   :init
@@ -22,10 +26,10 @@
       (interactive)
       (jedi:setup)
       (define-key python-mode-map "\C-cx" 'jedi-direx:pop-to-buffer)
-      (define-key evil-normal-state-map (kbd "C-]") 'jedi:goto-definition)
-      (define-key evil-normal-state-map (kbd "C-t") 'jedi:goto-definition-pop-marker)
-      (define-key evil-normal-state-map (kbd "C-M-]") 'helm-jedi-related-names)
-      (define-key evil-insert-state-map (kbd "C-c SPC") 'jedi:complete)
+      (define-key evil-normal-state-local-map (kbd "C-]") 'jedi:goto-definition)
+      (define-key evil-normal-state-local-map (kbd "C-t") 'jedi:goto-definition-pop-marker)
+      (define-key evil-normal-state-local-map (kbd "C-M-]") 'helm-jedi-related-names)
+      (define-key evil-insert-state-local-map (kbd "C-c SPC") 'jedi:complete)
       ) 
 
     (add-hook 'python-mode-hook 'my-jedi-python-mode-hook)
