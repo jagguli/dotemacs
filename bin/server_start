@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/bin/emacs --daemon --eval  "(start-server \"$1\")"
