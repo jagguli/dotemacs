@@ -1,8 +1,18 @@
 (req-package org
-  :require (org-journal org-install org-protocol org-indent password-store cl epa-file)
+  :require (
+            org-journal
+            org-install
+            org-protocol
+            org-indent
+            password-store
+            cl
+            epa-file
+            org-alert
+            )
   :config (setq
+           alert-default-style 'libnotify
    org-log-done t
-   org-directory (expand-file-name "~/org/")
+   org-directory  "/home/steven/org/"
    ;;org-directory (expand-file-name "~/share/orgmodegoogle/melit.stevenjoseph@gmail.com/OrgMode/")
    org-from-is-user-regexp nil
    org-log-done t

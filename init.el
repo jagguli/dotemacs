@@ -71,7 +71,7 @@
  '(browse-url-chromium-program "chrome")
  '(col-highlight-overlay-priority -300)
  '(col-highlight-vline-face-flag nil)
- '(column-highlight-mode t)
+ '(column-highlight-mode nil)
  '(compilation-disable-input t)
  '(cursor-color nil)
  '(custom-safe-themes

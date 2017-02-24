@@ -68,3 +68,4 @@
 
 (setq frame-title-format "%b")
 (setq sauron-dbus-cookie t)
+(toggle-scroll-bar -1)
