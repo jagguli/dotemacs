@@ -6,33 +6,57 @@
             password-store
             dash
             addressbook-bookmark
-            auth-password-store
             smtpmail-async
+            ;;auth-password-store
             )
   :init
   (progn
     (helm-mode)
-    (auth-pass-enable)
-    ;;(add-hook 'async-smtpmail-before-send-hook
-    ;;          '(lambda ()
-    ;;             (require 'auth-password-store)
-    ;;             (auth-pass-enable)
-    ;;             ))
+    ;;(auth-pass-enable)
+    (defun my-async-smtpmail-send-it ()
+      (let ((to          (message-field-value "To"))
+            (buf-content (buffer-substring-no-properties
+                          (point-min) (point-max))))
+        ;;(notifications-notify
+        ;; :title (format "Delivering message to %s..." to)
+        ;; :timeout 5
+        ;; )
+        (async-smtpmail-send-it)
+        ;;(notifications-notify
+        ;; :title (format "Sent message to %s..." to)
+        ;; :timeout 5
+        ;; )
+        (message "after smtpsend ")))
     (setq
+     notmuch-saved-searches
+      (quote
+       (
+        (:name "inbox" :query "(tag:INBOX or  tag:inbox) and not (tag:misc) and date:30d..0s" :key "i")
+        (:name "all" :query "date:1M..now" :key "a")
+        (:name "streethawk" :query "date:1M..now and (to:steven@streethawk.com or to:steven@streethawk.co)" :key "S")
+        (:name "stevenjoseph.in" :query "date:1M..now and to:steven@stevenjoseph.in" :key "j")
+        (:name "important" :query "tag:important" :key "I")
+        (:name "sentry" :query "tag:sentry")
+        (:name "pullrequests" :query "tag:pullrequests")
+        (:name "bitbucket" :query "tag:bitbucket")
+        (:name "hawk" :query "tag:hawk")
+        (:name "jira" :query "tag:jira")
+        (:name "unread" :query "tag:unread")
+        (:name "sent/replied" :query "tag:sent tag:replied and date:30d..0s")
+        (:name "nomailers" :query "not tag:mailers")
+        (:name "misc" :query "tag:misc")
+        (:name "sent" :query "tag:sent")
+        (:name "drafts" :query "tag:draft" :key "d")
+        (:name "last30days" :query "date:30d..0s")
+        (:name "me" :query "tag:me and (tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s or (tag:sent or tag:replied or from:steven.joseph) " :key "m")
+        (:name "unread_me" :query "tag:me and (tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s and tag:unread and (tag:sent or tag:replied or from:steven.joseph)")
+        (:name "calendar" :query "mimetype:text/calendar" :key "c")
+        (:name "notifications" :query "tag:sentry or tag:bitbucket or tag:jira or tag:pullrequests or mimetype:text/calendar" :key "n")
+        ))
      notmuch-wash-wrap-lines-length 70
      notmuch-tree-show-out t
-     send-mail-function 'smtpmail-send-it
-     message-send-mail-function 'smtpmail-send-it
-     ;;send-mail-function 'async-smtpmail-send-it
-     ;;message-send-mail-function 'async-smtpmail-send-it
-     smtpmail-smtp-server "localhost"
-     smtpmail-smtp-user "steven.joseph"
-     smtpmail-local-domain "iress.com.au"
-     smtpmail-sendto-domain "iress.com.au"
-     smtpmail-smtp-service 1025
-     smtpmail-debug-info t
-     smtpmail-debug-verb t
-     auth-source-debug t
+     user-full-name "Steven Joseph"
+     ;;auth-source-debug t
      notmuch-search-result-format
      '(
        ("date" . "%12s│ ")
@@ -54,18 +78,39 @@
        ("unread" :foreground "green")
        ("today" :foreground "green" :background "color-232")
        ("flagged" :foreground "magenta")
+       ("draft" :foreground "brightblue")
+       ("important" :foreground "yellow")
        ("me" :weight bold :foreground "white")
        ("INBOX" :foreground "color-243")))
      message-sendmail-envelope-from 'header
      notmuch-address-selection-function
-     (lambda (prompt collection initial-input)
-       (completing-read prompt
-                        (cons initial-input collection)
-                        nil t nil 'notmuch-address-options))
+      (lambda (prompt collection initial-input)
+        (completing-read prompt (cons initial-input collection) nil t nil 'notmuch-address-history))
+
+     ;;(lambda (prompt collection initial-input)
+     ;;  (completing-read prompt
+     ;;                   (cons initial-input collection)
+     ;;                   nil t nil 'notmuch-address-options))
+     ;;NOTE smtp auth in .authinfo.gpg
+     ;;send-mail-function 'smtpmail-send-it
+     send-mail-function 'my-async-smtpmail-send-it
+     ;;smtpmail-local-domain "streethawk.com"
+     ;;smtpmail-sendto-domain "streethawk.com"
+     smtpmail-debug-info t
+     smtpmail-debug-verb t
+     ;;mail-user-agent 'message-user-agent
+     smtpmail-stream-type 'ssl
+     smtpmail-smtp-server "smtp.gmail.com"
+     smtpmail-smtp-service 465
+     user-mail-address (password-store-get "streethawk/google/email")
+     smtpmail-smtp-user (password-store-get "streethawk/google/username")
+     notmuch-wash-wrap-lines-length 80
      )
+
+    ;;(advice-add 'post-smtp-send :after 'async-smtpmail-send-it)
+
     (defun notmuch-config ()
       (interactive)
-      (auth-pass-enable)
       (if (string-match ".*\.iress\.com\.au" system-name )
           (progn 
             (setq notmuch-wash-original-regexp "^\\(From: .*\\|.* writes:\\)$")
@@ -74,8 +119,9 @@
             
             (setq notmuch-address-command "~/.bin/mutt_ldap.py"))
         (progn
-          (setq notmuch-address-command "~/.bin/notmuch-goobook")))
-      (notmuch-address-message-insinuate)
+          (setq notmuch-address-command 'internal)
+          )
+        )
       )
 
     (defun cg-feed-msmtp ()
@@ -92,7 +138,9 @@
                      ((string-match "stevenjose@gmail.com" from) "stevenjose")
                      ((string-match "steven@stevenjoseph.in" from) "stevenjoseph.in")
                      ;; Add more string-match lines for your email accounts
-                     ((string-match "steven.joseph@iress.com.au" from) "iress"))))
+                     ((string-match "steven.joseph@iress.com.au" from) "iress")
+                     ((string-match "steven@streethawk.com" from) "streethawk")
+                     )))
               ;;(setq message-sendmail-extra-arguments (list '"-a" account))
               ))))
 
@@ -107,6 +155,11 @@
         (notmuch-search-tag (mapcar (lambda (x) (concat "+" x)) tags)))
       (next-line)
       )
+  (define-key notmuch-search-mode-map "y"
+    (lambda ()
+      "swipe misc email"
+      (interactive)
+      (notmuch-search-toggle-tags '("inbox"))))
   (define-key notmuch-search-mode-map "d"
     (lambda ()
       "toggle deleted tag for message"
@@ -143,6 +196,11 @@
       (interactive "sBounce To: ")
       (notmuch-show-view-raw-message)
       (message-resend address)))
+  (define-key notmuch-search-mode-map "i"
+    (lambda ()
+      "toggle deleted tag for message"
+      (interactive)
+      (notmuch-search-toggle-tags '("important"))))
 
   (defvar notmuch-hello-refresh-count 0)
 
@@ -209,7 +267,11 @@
   (defun open-in-chrome ()
     (interactive)
     (message "open-in-chrome")
-    (notmuch-show-pipe-message nil "/home/steven/.bin/mutt_chrome.py"))
+    (condition-case nil
+        (browse-url-at-point)
+      (error (notmuch-show-pipe-message nil "/home/steven/.bin/mutt_chrome.py"))
+      )
+    )
   (defun open-in-kmail ()
     (interactive)
     (message "open in kmail")
@@ -262,7 +324,13 @@
       (mm-save-part-to-file handle temp_file))
     (notmuch-show-apply-to-current-part-handle #'my-mm-save-part)
     (message (shell-command-to-string
-              (format "gcalcli --nocolor --reminder '10m popup' --calendar %s import %s" cal temp_file)))
+              (format
+               "gcalcli --nocolor --reminder '10m popup' --calendar %s import %s"
+               cal
+               temp_file
+               )
+              )
+             )
     (message "Done")
     )
 
