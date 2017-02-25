@@ -58,6 +58,8 @@
    helm-full-frame nil
    projectile-completion-system 'helm
    helm-buffer-max-length 30
+   helm-ag-use-grep-ignore-list t
+   helm-ag-use-agignore t
 
    helm-mini-default-sources
    (quote
@@ -128,7 +130,7 @@
     (eval-after-load "helm-ag"
       '(defun helm-ag--query ()
          (let* ((searched-word (helm-ag--searched-word))
-                (marked-word (helm-ag--marked-input))
+                (marked-word (helm-ag--marked-input nil))
                 (query (ag/read-from-minibuffer "Search string")))
            (when (string= query "")
              (error "Input is empty!!"))
