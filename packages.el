@@ -38,7 +38,7 @@
        erlang etags-select etags-table evil-leader evil-paredit evil
        findr flycheck-color-mode-line flycheck flymake-cursor goto-chg
        helm-ack helm-ag anything helm-dired-recent-dirs helm-git
-       helm-git-grep helm-project-persist helm-projectile helm-recoll
+       helm-project-persist helm-projectile helm-recoll
        helm-themes helm helm-cmd-t itail jedi 
        ;;hideshowvis ipython pyflakes pymacs pysmell
        ;; repository-root  elisp-slime-nav
