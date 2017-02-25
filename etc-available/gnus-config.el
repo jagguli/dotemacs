@@ -14,10 +14,10 @@
 
 (defadvice gnus (after gnus-init (arg char) activate)
   (setq message-send-mail-function 'smtpmail-send-it
-        smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
-        smtpmail-auth-credentials '(("smtp.gmail.com" 587
-                                     (password-store-get "internet/google/stevenjoseph.in") nil))
+        smtpmail-starttls-credentials '(("smtp.gmail.com" 465 nil nil))
+        smtpmail-auth-credentials '(("smtp.gmail.com" 465
+                                     (password-store-get "streethawk/google/password") nil))
         smtpmail-default-smtp-server "smtp.gmail.com"
         smtpmail-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-service 587
+        smtpmail-smtp-service 465
         gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]"))

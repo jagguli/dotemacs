@@ -205,20 +205,6 @@
      ("Archlinux" "https://www.archlinux.org/feeds/news/" nil nil nil))))
  '(notmuch-address-command "~/.bin/mutt_ldap.py")
  '(notmuch-identities (quote ("steven.joseph@iress.com.au")))
- '(notmuch-saved-searches
-   (quote
-    ((:name "unread" :query "tag:unread")
-     (:name "sent/replied" :query "tag:sent tag:replied and date:30d..0s")
-     (:name "inbox" :query "(tag:INBOX or  tag:inbox) and not (tag:manup or tag:osc or tag:misc) and date:30d..0s" :key "i")
-     (:name "osc" :query "tag:osc")
-     (:name "osc_note" :query "tag:osc  and \"a NOTE has been added\"")
-     (:name "nomailers" :query "not tag:mailers")
-     (:name "misc" :query "tag:misc")
-     (:name "last30days" :query "date:30d..0s")
-     (:name "me" :query "tag:me and (tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s or (tag:sent or tag:replied or from:steven.joseph) " :key "m")
-     (:name "unread_me" :query "tag:me and (tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s and tag:unread and (tag:sent or tag:replied or from:steven.joseph)")
-     (:name "calendar" :query "mimetype:text/calendar" :key "c")
-     (:name "Wire" :query "from:iress@jiveon.com" :key "w"))))
  '(notmuch-search-hook (quote (notmuch-hl-line-mode)))
  '(notmuch-search-oldest-first nil)
  '(notmuch-show-all-multipart/alternative-parts nil)
@@ -237,6 +223,9 @@
  '(org-agenda-files (quote ("/home/steven/org/")))
  '(org-agenda-repeating-timestamp-show-all nil)
  '(org-agenda-skip-scheduled-if-deadline-is-shown (quote repeated-after-deadline))
+ '(package-selected-packages
+   (quote
+    (tide org-jira org-alert password-store helm-notmuch csharp-mode typescript-mode creole yaml-mode yafolding xclip web-mode web-beautify w3m unbound twittering-mode tern tango-2-theme swiper sudo-ext smex smart-mode-line slack shackle scss-mode sauron req-package python-mode pylint pushbullet popup-switcher ox-html5slide outline-magic org-toodledo org-journal org-ehtml notmuch-labeler nose nm mustache-mode mustache multi-web-mode multi-project monky mo-git-blame markdown-mode+ magit js3-mode jinja2-mode jedi-direx jabber-otr itail ido-ubiquitous hydra http-post-simple help-fns+ helm-themes helm-swoop helm-recoll helm-projectile helm-project-persist helm-package helm-git-grep helm-git helm-fuzzy-find helm-flycheck helm-flx helm-dired-recent-dirs helm-cscope helm-cmd-t helm-chrome helm-ag helm-ack haml-mode guide-key git-timemachine git-messenger gherkin-mode flymake-yaml flymake-cursor flycheck-color-mode-line findr find-file-in-project feature-mode evil-vimish-fold evil-paredit evil-org etags-table etags-select erlang eproject elscreen egg edit-server dsvn dockerfile-mode dirtree dired-details dired+ diff-hl crosshairs creole-mode column-marker calfw-gcal calfw buffer-move bookmark+ auth-password-store anything ahg ag addressbook-bookmark)))
  '(paredit-mode nil t)
  '(password-cache-expiry nil)
  '(py-complete-function (quote py-indent-or-complete))
@@ -253,6 +242,9 @@
  '(ropemacs-confirm-saving nil t)
  '(ropemacs-global-prefix "C-x @" t)
  '(scss-compile-at-save nil)
+ '(select-enable-clipboard nil)
+ '(select-enable-primary nil)
+ '(send-mail-function (quote smtpmail-send-it))
  '(shell-file-name "/bin/sh")
  '(split-height-threshold 200)
  '(split-width-threshold 155)
@@ -286,8 +278,6 @@
      (360 . "#cb4b16"))))
  '(vc-annotate-very-old-color nil)
  '(wiki-directories (quote ("/home/steven/iress/devwiki/")))
- '(x-select-enable-clipboard nil)
- '(x-select-enable-primary nil)
  '(xclip-mode nil))
 
 
