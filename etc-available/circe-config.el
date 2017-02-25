@@ -4,7 +4,6 @@
             )
   :config
   (setq
-   circe-network-options
    circe-reduce-lurker-spam t
    lui-time-stamp-position 'right-margin
    lui-time-stamp-format "%H:%M"
@@ -14,6 +13,7 @@
                         ("#hamburg" "german8")
                         (".*" "american")
                         )
+   circe-network-options
    `(
      ("Freenode"
       :tls t
