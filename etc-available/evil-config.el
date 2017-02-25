@@ -33,6 +33,7 @@
     (evil-set-initial-state 'journal-mode 'emacs)
     (evil-set-initial-state 'circe-mode 'emacs)
     (evil-set-initial-state 'circe-server-mode 'emacs)
+    (evil-set-initial-state 'circe-channel-mode 'emacs)
     (setq evil-flash-delay 60)
     ;;; esc quits
 
