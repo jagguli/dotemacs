@@ -1,9 +1,9 @@
+(setq sml/no-confirm-load-theme t)
 (req-package smart-mode-line
   :config
   (setq 
- sml/no-confirm-load-theme t
- sml/theme 'respectful
- )
+   sml/theme 'respectful
+   )
   :init
   (progn
     (sml/setup)
