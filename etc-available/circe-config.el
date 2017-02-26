@@ -5,7 +5,7 @@
   :config
   (setq
    circe-reduce-lurker-spam t
-   circe-lagmon-mode t
+   circe-lagmon t
    lui-time-stamp-position 'right-margin
    lui-time-stamp-format "%H:%M"
    lui-flyspell-p t
