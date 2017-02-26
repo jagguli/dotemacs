@@ -5,7 +5,6 @@
   :config
   (setq
    circe-reduce-lurker-spam t
-   circe-lagmon t
    lui-time-stamp-position 'right-margin
    lui-time-stamp-format "%H:%M"
    lui-flyspell-p t
@@ -66,6 +65,7 @@
     (circe-set-display-handler "JOIN" (lambda (&rest ignored) nil))
     (circe-set-display-handler "QUIT" (lambda (&rest ignored) nil))
     (enable-lui-track-bar)
+    (circe-lagmon-mode)
     (message "circe-config loaded")
   )
 )
