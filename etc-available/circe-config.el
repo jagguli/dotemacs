@@ -27,6 +27,7 @@
                  "#salt"
                  "#riak"
                  "#python"
+                 "#notmuch"
                  )
       )
      ("OFTC"
