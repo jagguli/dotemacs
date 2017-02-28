@@ -29,6 +29,16 @@
                  "#python"
                  )
       )
+     ("OFTC"
+      :tls t
+      :nick ,(password-store-get "irc/oftc/username")
+      :password ,(password-store-get "irc/oftc/password")
+      :sasl-username ,(password-store-get "irc/oftc/username")
+      :sasl-password ,(password-store-get "irc/oftc/password")
+      :channels (
+                 "#qtile"
+                 )
+      )
      )
    )
   :init
