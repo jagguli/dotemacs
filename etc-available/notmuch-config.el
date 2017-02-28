@@ -27,6 +27,10 @@
         ;; :timeout 5
         ;; )
         (message "after smtpsend ")))
+    (add-hook
+     'notmuch-message-mode-hook
+     (lambda ()
+       (flyspell-mode)))
     (setq
      notmuch-saved-searches
       (quote
@@ -37,7 +41,7 @@
         (:name "stevenjoseph.in" :query "date:1M..now and to:steven@stevenjoseph.in" :key "j")
         (:name "important" :query "tag:important" :key "I")
         (:name "sentry" :query "tag:sentry")
-        (:name "pullrequests" :query "tag:pullrequests")
+        (:name "pullrequests" :query "tag:pullrequests" :key "p")
         (:name "bitbucket" :query "tag:bitbucket")
         (:name "hawk" :query "tag:hawk")
         (:name "jira" :query "tag:jira")
