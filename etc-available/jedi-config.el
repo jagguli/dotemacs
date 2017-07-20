@@ -11,13 +11,12 @@
    jedi:server-command (list "python2" jedi:server-script)
    jedi:server-args
    '("--sys-path" "/home/steven/streethawk/slicecloud/"
-     "--sys-path" "/home/steven/streethawk/djapps/"
      "--sys-path" "/home/steven/.local/lib/python2.7/site-packages/"
      "--sys-path" "/home/steven/.local/lib/python3.5/site-packages/"
      "--sys-path" "/usr/lib/python3.5/site-packages/"
+     "--sys-path" "/usr/lib/python3.5/dist-packages/"
      "--sys-path" "/usr/lib/python2.7/site-packages/"
      "--sys-path" "/usr/lib/python2.7/dist-packages/"
-     "--sys-path" "/usr/lib/python3.5/dist-packages/"
      )
    )
   :init

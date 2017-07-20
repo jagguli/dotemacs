@@ -14,11 +14,9 @@
             evil
             multi-project
             column-marker
-            gherkin-mode
             )
-  :init
-  (progn
-    (setq
+  :config
+  (setq
      py-load-pymacs-p nil
      pymacs-python-command "python2"
      ropemacs-confirm-saving 'nil
@@ -26,14 +24,8 @@
      ropemacs-global-prefix "C-x @"
      ropemacs-enable-autoimport t
      )
-     
-    (if (string-match "^.*.iress.com.au" system-name )
-        (setq
-         py-python-command "python2"
-         python-version-checked t
-         python-python-command "python2"
-         )
-      )
+  :init
+  (progn
     ;(autoload 'pymacs-apply "pymacs")
     ;(autoload 'pymacs-call "pymacs")
     ;(autoload 'pymacs-eval "pymacs" nil t)
@@ -201,10 +193,10 @@
           (when (file-writable-p bpfile)
             (write-region (point-min) (point-max) bpfile)))))
 
-    (define-key global-map (kbd "S-<f8>" ) 'add-breakpoint)
-    (define-key global-map (kbd "S-<f7>" ) 'remove-breakpoint)
+    ;;(define-key global-map (kbd "S-<f8>" ) 'add-breakpoint)
+    ;;(define-key global-map (kbd "S-<f7>" ) 'remove-breakpoint)
     (define-key global-map (kbd "<f8>" ) 'breakpoint-set)
-    (define-key global-map (kbd "<f7>" ) 'breakpoint-uset)
+    (define-key global-map (kbd "S-<f8>" ) 'breakpoint-uset)
     ;;; Indentation for python
 
     ;; Ignoring electric indentation

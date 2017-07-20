@@ -6,10 +6,10 @@
 
     (defun my-js-mode-hooks ()
       (flycheck-mode t)
-      (tern-mode t)
-      (define-key evil-normal-state-map (kbd "C-]") 'tern-find-definition)
-      (define-key evil-normal-state-map (kbd "C-t") 'tern-pop-find-definition)
-      (define-key evil-normal-state-map (kbd "C-M-]") 'tern-find-definition-by-name)
+      ;;(tern-mode t)
+      ;;(define-key evil-normal-state-map (kbd "C-]") 'tern-find-definition)
+      ;;(define-key evil-normal-state-map (kbd "C-t") 'tern-pop-find-definition)
+      ;;(define-key evil-normal-state-map (kbd "C-M-]") 'tern-find-definition-by-name)
       (if (not (or
                 (string/starts-with (buffer-name) "*mo-git-blame")
                 (string/starts-with (buffer-name) "*svn-status")

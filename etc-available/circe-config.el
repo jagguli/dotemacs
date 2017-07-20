@@ -9,6 +9,7 @@
    lui-time-stamp-format "%H:%M"
    lui-flyspell-p t
    lui-track-bar-behavior 'before-switch-to-buffer
+   circe-format-say "{nick:s}: {body}"
    lui-flyspell-alist '(
                         ("#hamburg" "german8")
                         (".*" "american")
@@ -77,6 +78,12 @@
     (circe-set-display-handler "QUIT" (lambda (&rest ignored) nil))
     (enable-lui-track-bar)
     (circe-lagmon-mode)
+    (add-hook 'circe-chat-mode-hook 'my-circe-prompt)
+    (defun my-circe-prompt ()
+      (lui-set-prompt
+       (concat (propertize (concat (buffer-name) ">")
+                           'face 'circe-prompt-face)
+               " ")))
     (message "circe-config loaded")
   )
 )

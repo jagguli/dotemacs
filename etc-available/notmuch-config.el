@@ -108,25 +108,11 @@
      smtpmail-smtp-service 465
      user-mail-address (password-store-get "streethawk/google/email")
      smtpmail-smtp-user (password-store-get "streethawk/google/username")
-     notmuch-wash-wrap-lines-length 80
+     notmuch-wash-wrap-lines-length 180
+     notmuch-address-command 'internal
      )
 
     ;;(advice-add 'post-smtp-send :after 'async-smtpmail-send-it)
-
-    (defun notmuch-config ()
-      (interactive)
-      (if (string-match ".*\.iress\.com\.au" system-name )
-          (progn 
-            (setq notmuch-wash-original-regexp "^\\(From: .*\\|.* writes:\\)$")
-            (setq notmuch-wash-citation-lines-prefix 0)
-            (setq user-mail-address (password-store-get "iress/user"))
-            
-            (setq notmuch-address-command "~/.bin/mutt_ldap.py"))
-        (progn
-          (setq notmuch-address-command 'internal)
-          )
-        )
-      )
 
     (defun cg-feed-msmtp ()
       (if (message-mail-p)
@@ -149,7 +135,6 @@
               ))))
 
     ;;(add-hook 'message-send-mail-hook 'cg-feed-msmtp)
-    (notmuch-config)
 
     (defun notmuch-search-toggle-tags (tags)
       "toggle tags for thread"

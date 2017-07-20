@@ -300,3 +300,17 @@ buffer is not visiting a file."
   (interactive)
   (shell-command
    (format "tmux split-window -c '%s'" default-directory)))
+
+
+(defun joaot/delete-process-at-point ()
+  ;;http://stackoverflow.com/questions/10627289/emacs-internal-process-killing-any-command
+  (interactive)
+  (let ((process (get-text-property (point) 'tabulated-list-id)))
+    (cond ((and process
+                (processp process))
+           (delete-process process)
+           (revert-buffer))
+          (t
+           (error "no process at point!")))))
+
+(define-key process-menu-mode-map (kbd "C-k") 'joaot/delete-process-at-point)

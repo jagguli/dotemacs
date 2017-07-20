@@ -126,7 +126,9 @@
  '(evil-ex-hl-update-delay 0.1)
  '(evil-fold-level 1)
  '(evil-search-module (quote evil-search))
- '(fci-rule-color "#073642")
+ '(fci-rule-character 9474)
+ '(fci-rule-color "color-233")
+ '(fci-rule-use-dashes t)
  '(ffap-machine-p-known (quote reject))
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
  '(flycheck-checker-error-threshold 5000)
@@ -225,7 +227,7 @@
  '(org-agenda-skip-scheduled-if-deadline-is-shown (quote repeated-after-deadline))
  '(package-selected-packages
    (quote
-    (tide org-jira org-alert password-store helm-notmuch csharp-mode typescript-mode creole yaml-mode yafolding xclip web-mode web-beautify w3m unbound twittering-mode tern tango-2-theme swiper sudo-ext smex smart-mode-line slack shackle scss-mode sauron req-package python-mode pylint pushbullet popup-switcher ox-html5slide outline-magic org-toodledo org-journal org-ehtml notmuch-labeler nose nm mustache-mode mustache multi-web-mode multi-project monky mo-git-blame markdown-mode+ magit js3-mode jinja2-mode jedi-direx jabber-otr itail ido-ubiquitous hydra http-post-simple help-fns+ helm-themes helm-swoop helm-recoll helm-projectile helm-project-persist helm-package helm-git-grep helm-git helm-fuzzy-find helm-flycheck helm-flx helm-dired-recent-dirs helm-cscope helm-cmd-t helm-chrome helm-ag helm-ack haml-mode guide-key git-timemachine git-messenger gherkin-mode flymake-yaml flymake-cursor flycheck-color-mode-line findr find-file-in-project feature-mode evil-vimish-fold evil-paredit evil-org etags-table etags-select erlang eproject elscreen egg edit-server dsvn dockerfile-mode dirtree dired-details dired+ diff-hl crosshairs creole-mode column-marker calfw-gcal calfw buffer-move bookmark+ auth-password-store anything ahg ag addressbook-bookmark)))
+    (kotlin-mode jtags fill-column-indicator guide-key-tip deft groovy-mode gradle-mode angular-mode tide org-jira org-alert password-store helm-notmuch csharp-mode typescript-mode creole yaml-mode yafolding xclip web-mode web-beautify w3m unbound twittering-mode tern tango-2-theme swiper sudo-ext smex smart-mode-line slack shackle scss-mode sauron req-package python-mode pylint pushbullet popup-switcher ox-html5slide outline-magic org-toodledo org-journal org-ehtml notmuch-labeler nose nm mustache-mode mustache multi-web-mode multi-project monky mo-git-blame markdown-mode+ js3-mode jinja2-mode jedi-direx jabber-otr itail ido-ubiquitous hydra http-post-simple help-fns+ helm-themes helm-swoop helm-recoll helm-projectile helm-project-persist helm-package helm-git-grep helm-git helm-fuzzy-find helm-flycheck helm-flx helm-dired-recent-dirs helm-cscope helm-cmd-t helm-chrome helm-ag helm-ack haml-mode guide-key git-timemachine git-messenger flymake-yaml flymake-cursor flycheck-color-mode-line findr find-file-in-project feature-mode evil-vimish-fold evil-paredit evil-org etags-table etags-select erlang eproject elscreen egg edit-server dsvn dockerfile-mode dirtree dired-details dired+ diff-hl crosshairs creole-mode column-marker calfw-gcal calfw buffer-move bookmark+ auth-password-store anything ahg ag addressbook-bookmark)))
  '(paredit-mode nil t)
  '(password-cache-expiry nil)
  '(py-complete-function (quote py-indent-or-complete))
