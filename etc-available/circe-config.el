@@ -10,6 +10,7 @@
    lui-flyspell-p t
    lui-track-bar-behavior 'before-switch-to-buffer
    circe-format-say "{nick:s}: {body}"
+   circe-server-max-reconnect-attempts 1000
    lui-flyspell-alist '(
                         ("#hamburg" "german8")
                         (".*" "american")

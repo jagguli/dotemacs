@@ -1,1 +1,0 @@
-/home/steven/.emacs.d/etc-available/circe-config.el

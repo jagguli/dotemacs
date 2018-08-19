@@ -4,6 +4,16 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
+(require 'package)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+  (when (< emacs-major-version 24)
+    ;; For important compatibility libraries like cl-lib
+    (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 
 (defun shutdown ()
@@ -21,7 +31,8 @@
 (defvar server-name "" "current server name")
 (defun start-server (name)
   "start an emacs server"
-  (interactive)
+  (message "Starting server %s" name)
+  ;;(interactive)
   (setq server-name name)
   (setq server-use-tcp t)
   (server-start)
@@ -37,7 +48,6 @@
   (require 'org-protocol)
   )
 
-(load-file "~/.emacs.d/packages.el")
 (load-file "~/.emacs.d/emacs.el")
 (load-file "~/.emacs.d/modules.el")
 (add-to-list 'auto-mode-alist '("\\.sls\\'" . yaml-mode))
@@ -64,11 +74,9 @@
  '(auto-revert-interval 0.5)
  '(background-color nil)
  '(background-mode dark)
- '(bmkp-last-as-first-bookmark-file "~/share/Dropbox/.emacsbookmarks")
+ '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(bookmark-default-file (expand-file-name "~/share/Dropbox/.emacsbookmarks"))
  '(bookmark-version-control (quote nospecial))
- '(browse-url-browser-function (quote browse-url-chromium))
- '(browse-url-chromium-program "chrome")
  '(col-highlight-overlay-priority -300)
  '(col-highlight-vline-face-flag nil)
  '(column-highlight-mode nil)
@@ -76,7 +84,8 @@
  '(cursor-color nil)
  '(custom-safe-themes
    (quote
-    ("bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" default)))
+    ("d449d469fcfc44d5def5d076c2cfbc29389855fc537017b028583b8da7ed03df" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" default)))
+ '(desktop-path (quote ("~/.emacs.d/desktop-save" "~")))
  '(diary-file "~/org/diary")
  '(dictionary-proxy-port 80)
  '(dictionary-proxy-server "syd-devproxy1.devel.iress.com.au")
@@ -225,9 +234,6 @@
  '(org-agenda-files (quote ("/home/steven/org/")))
  '(org-agenda-repeating-timestamp-show-all nil)
  '(org-agenda-skip-scheduled-if-deadline-is-shown (quote repeated-after-deadline))
- '(package-selected-packages
-   (quote
-    (kotlin-mode jtags fill-column-indicator guide-key-tip deft groovy-mode gradle-mode angular-mode tide org-jira org-alert password-store helm-notmuch csharp-mode typescript-mode creole yaml-mode yafolding xclip web-mode web-beautify w3m unbound twittering-mode tern tango-2-theme swiper sudo-ext smex smart-mode-line slack shackle scss-mode sauron req-package python-mode pylint pushbullet popup-switcher ox-html5slide outline-magic org-toodledo org-journal org-ehtml notmuch-labeler nose nm mustache-mode mustache multi-web-mode multi-project monky mo-git-blame markdown-mode+ js3-mode jinja2-mode jedi-direx jabber-otr itail ido-ubiquitous hydra http-post-simple help-fns+ helm-themes helm-swoop helm-recoll helm-projectile helm-project-persist helm-package helm-git-grep helm-git helm-fuzzy-find helm-flycheck helm-flx helm-dired-recent-dirs helm-cscope helm-cmd-t helm-chrome helm-ag helm-ack haml-mode guide-key git-timemachine git-messenger flymake-yaml flymake-cursor flycheck-color-mode-line findr find-file-in-project feature-mode evil-vimish-fold evil-paredit evil-org etags-table etags-select erlang eproject elscreen egg edit-server dsvn dockerfile-mode dirtree dired-details dired+ diff-hl crosshairs creole-mode column-marker calfw-gcal calfw buffer-move bookmark+ auth-password-store anything ahg ag addressbook-bookmark)))
  '(paredit-mode nil t)
  '(password-cache-expiry nil)
  '(py-complete-function (quote py-indent-or-complete))
@@ -243,15 +249,19 @@
  '(req-package-log-level (quote debug))
  '(ropemacs-confirm-saving nil t)
  '(ropemacs-global-prefix "C-x @" t)
+ '(scroll-conservatively 10000)
+ '(scroll-step 1)
  '(scss-compile-at-save nil)
  '(select-enable-clipboard nil)
  '(select-enable-primary nil)
  '(send-mail-function (quote smtpmail-send-it))
  '(shell-file-name "/bin/sh")
+ '(solarized-termcolors 256 t)
  '(split-height-threshold 200)
  '(split-width-threshold 155)
  '(split-window-keep-point nil)
  '(tab-width 4)
+ '(tags-add-tables nil)
  '(tool-bar-mode nil)
  '(url-handler-mode nil)
  '(url-handler-regexp "\\`\\(\\(https?\\|ftp\\|file\\|nfs\\)://|File\\)")
@@ -309,8 +319,8 @@
  '(ediff-odd-diff-B ((t (:background "color-239" :foreground "Black"))))
  '(flycheck-error ((t (:background "color-89"))))
  '(flycheck-warning ((t (:background "color-89"))))
- '(flymake-errline ((t (:background "color-124"))))
- '(flymake-warnline ((t (:background "color-161"))))
+ '(flymake-error ((t (:background "color-124"))))
+ '(flymake-warning ((t (:background "color-161"))))
  '(helm-ff-directory ((t (:background "color-18" :foreground "white"))))
  '(helm-selection ((t (:background "color-232" :foreground "color-226" :weight extra-bold))))
  '(helm-source-header ((t (:background "color-18" :foreground "black" :weight bold :height 1.3 :family "Sans Serif"))))
@@ -337,3 +347,5 @@
  '(vline-visual ((t (:background "color-234")))))
 
 (put 'scroll-left 'disabled nil)
+
+(desktop-save-mode 1)

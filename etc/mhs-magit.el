@@ -1,0 +1,1 @@
+../etc-available/mhs-magit.el

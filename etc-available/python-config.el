@@ -1,36 +1,38 @@
 ;; Python Mode ================================================================================ 
 ;;;(require 'python-magic)
-;(autoload 'pymacs-apply "pymacs")
-;(autoload 'pymacs-call "pymacs")
-;(autoload 'pymacs-eval "pymacs" nil t)
-;(autoload 'pymacs-exec "pymacs" nil t)
-;(autoload 'pymacs-load "pymacs" nil t)
-;(autoload 'pymacs-autoload "pymacs")
-;(setq ropemacs-enable-autoimport t)
-;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+                                        ;(autoload 'pymacs-apply "pymacs")
+                                        ;(autoload 'pymacs-call "pymacs")
+                                        ;(autoload 'pymacs-eval "pymacs" nil t)
+                                        ;(autoload 'pymacs-exec "pymacs" nil t)
+                                        ;(autoload 'pymacs-load "pymacs" nil t)
+                                        ;(autoload 'pymacs-autoload "pymacs")
+                                        ;(setq ropemacs-enable-autoimport t)
+                                        ;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+                                        ;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (req-package python-mode
   :require (
             evil
             multi-project
             column-marker
+            anaconda-mode
+            company-anaconda
             )
   :config
   (setq
-     py-load-pymacs-p nil
-     pymacs-python-command "python2"
-     ropemacs-confirm-saving 'nil
-     pymacs-load-path 'nil
-     ropemacs-global-prefix "C-x @"
-     ropemacs-enable-autoimport t
-     )
+   py-load-pymacs-p nil
+   pymacs-python-command "python2"
+   ropemacs-confirm-saving 'nil
+   pymacs-load-path 'nil
+   ropemacs-global-prefix "C-x @"
+   ropemacs-enable-autoimport t
+   )
   :init
   (progn
-    ;(autoload 'pymacs-apply "pymacs")
-    ;(autoload 'pymacs-call "pymacs")
-    ;(autoload 'pymacs-eval "pymacs" nil t)
-    ;(autoload 'pymacs-exec "pymacs" nil t)
-    ;(autoload 'pymacs-load "pymacs" nil t)
+                                        ;(autoload 'pymacs-apply "pymacs")
+                                        ;(autoload 'pymacs-call "pymacs")
+                                        ;(autoload 'pymacs-eval "pymacs" nil t)
+                                        ;(autoload 'pymacs-exec "pymacs" nil t)
+                                        ;(autoload 'pymacs-load "pymacs" nil t)
     (defun load-ropemacs()
       (interactive)
       (require 'pymacs)
@@ -45,31 +47,34 @@
                                 activate compile)
       "hideshow-expand affected block when using goto-line in a collapsed buffer"
       (save-excursion
-      (ignore-errors (show-subtree))))
+        (ignore-errors (show-subtree))))
 
     (defadvice evil-goto-line (after expand-after-goto-line
-                                activate compile)
+                                     activate compile)
       "hideshow-expand affected block when using goto-line in a collapsed buffer"
       (save-excursion
-      (ignore-errors (show-subtree))))
+        (ignore-errors (show-subtree))))
 
 
     (defun string/starts-with (s begins)
-          "returns non-nil if string S starts with BEGINS.  Else nil."
-          (cond ((>= (length s) (length begins))
-                 (string-equal (substring s 0 (length begins)) begins))
-                (t nil)))
+      "returns non-nil if string S starts with BEGINS.  Else nil."
+      (cond ((>= (length s) (length begins))
+             (string-equal (substring s 0 (length begins)) begins))
+            (t nil)))
 
     (set-display-table-slot standard-display-table
                             'selective-display
                             (string-to-vector " [...]\n"))
     ;;;;http://emacs-fu.blogspot.com.au/2008/12/showing-and-hiding-blocks-of-code.html
     (defun my-python-mode-hook ()
+      (message "my-python-mode-hook")
       (interactive)
       (column-marker-1 80)
-      (if (< (count-lines (point-min) (point-max)) 2000) 
-          (flycheck-mode) 
-        (flycheck-mode -1))
+      (anaconda-mode)
+      (flycheck-mode) 
+      ;;(if (< (count-lines (point-min) (point-max)) 2000) 
+      ;;    (flycheck-mode) 
+      ;;  (flycheck-mode -1))
       (flyspell-prog-mode)
 
       (if (not (or
@@ -81,7 +86,7 @@
             (setq
              outline-regexp "[ \t]*\\(class\\|def\\|with\\) "
              indent-line-function 'py-indent-line
-            )
+             )
             (outline-minor-mode t)
             (define-key evil-normal-state-map "za" 'outline-cycle)
             (define-key evil-normal-state-map "\t" 'outline-cycle)
@@ -98,49 +103,55 @@
             (define-key evil-normal-state-map [(meta up)] 'py-up-class)
             (define-key evil-normal-state-map [(meta down)] 'py-down-class)
             (evil-define-key 'normal python-mode-map
-             (kbd "C-c C-c") 'py-indent-line
-             )
-                                                          
+              (kbd "C-c C-c") 'py-indent-line
+              )
+            
             (define-key evil-normal-state-map (kbd "C-i")  'evil-jump-forward)
             )
         )
+      (define-key python-mode-map "\C-cx" 'jedi-direx:pop-to-buffer)
+      (define-key evil-normal-state-local-map (kbd "C-]") 'anaconda-mode-find-definitions)
+      (define-key evil-normal-state-local-map (kbd "C-t") 'anaconda-mode-go-back)
+      (define-key evil-normal-state-local-map (kbd "C-M-]") 'anaconda-mode-find-references)
+      (define-key evil-insert-state-local-map (kbd "C-c SPC") 'jedi:complete)
+      (pipenv-mode)
+      (pipenv-activate)
       )
 
-    (add-hook 'python-mode-hook 'my-python-mode-hook)
 
 
     (defun pep8fix ()
-        "Execute autopep8 on current file"
-        (interactive)
-        (let (suffixMap fName suffix progName cmdStr)
+      "Execute autopep8 on current file"
+      (interactive)
+      (let (suffixMap fName suffix progName cmdStr)
 
-              ;; a keyed list of file suffix to comand-line program
-    ;; path/name
-          (setq suffixMap
-                '(("py" . "autopep8 -i")))
+        ;; a keyed list of file suffix to comand-line program
+        ;; path/name
+        (setq suffixMap
+              '(("py" . "autopep8 -i")))
 
-          (setq fName (buffer-file-name))
-          (setq suffix (file-name-extension fName))
-          (setq progName (cdr (assoc suffix suffixMap)))
-          (setq cmdStr (concat progName " \""   fName "\""))
+        (setq fName (buffer-file-name))
+        (setq suffix (file-name-extension fName))
+        (setq progName (cdr (assoc suffix suffixMap)))
+        (setq cmdStr (concat progName " \""   fName "\""))
 
-          (if progName
-              (progn
-                (message "Running…")
-                (shell-command cmdStr "*run-current-file output*")
-                (revert-buffer)))))
+        (if progName
+            (progn
+              (message "Running…")
+              (shell-command cmdStr "*run-current-file output*")
+              (revert-buffer)))))
 
 
     ;; Debug statements ==================================================================
 
-    (defvar python-debugger "sj" "the debugger to use to set/unset breakpoints")
+    (defvar python-debugger "ipdb" "the debugger to use to set/unset breakpoints")
     (defun breakpoint-set nil
       (interactive)
       (save-excursion 
         (evil-open-below 1)
         (insert (format "import %s; %s.set_trace() ######## FIXME:REMOVE ME steven.joseph ################"
                         python-debugger python-debugger)) 
-      ;;(highlight-lines-matching-regexp "^[ ]*import fpdb; fpdb.set_trace().*")))
+        ;;(highlight-lines-matching-regexp "^[ ]*import fpdb; fpdb.set_trace().*")))
         (highlight-lines-matching-regexp (format "^[ ]*import %s; %s.set_trace().*"
                                                  python-debugger python-debugger))))
 
@@ -154,17 +165,10 @@
 
 
 
-    ;; Nose configuration ==========================================================
-
-    (require 'nose)
-
-    (add-to-list 'nose-project-names "/usr/sbin/nosetests3")
-
-
     (defun clear-breakpoints nil
       (interactive)
       (write-region "" nil (if (string-match ".*xplan.*" buffer-file-name)
-                        "~/.xplanbreakpoints" "~/.cpdb/breakpoints")))
+                               "~/.xplanbreakpoints" "~/.cpdb/breakpoints")))
 
     (defun remove-breakpoint nil
       (interactive)
@@ -200,17 +204,48 @@
     ;;; Indentation for python
 
     ;; Ignoring electric indentation
-(defun electric-indent-ignore-python (char)
-  "Ignore electric indentation for python-mode"
-  (if (equal major-mode 'python-mode)
-      'no-indent
-    nil))
-(add-hook 'electric-indent-functions 'electric-indent-ignore-python)
+    (defun electric-indent-ignore-python (char)
+      "Ignore electric indentation for python-mode"
+      (if (equal major-mode 'python-mode)
+          'no-indent
+        nil))
+    (add-hook 'electric-indent-functions 'electric-indent-ignore-python)
 
-;; Enter key executes newline-and-indent
-(defun set-newline-and-indent ()
-  "Map the return key with `newline-and-indent'"
-  (local-set-key (kbd "RET") 'newline-and-indent))
-(add-hook 'python-mode-hook 'set-newline-and-indent)
+    ;; Enter key executes newline-and-indent
+    (defun set-newline-and-indent ()
+      "Map the return key with `newline-and-indent'"
+      (local-set-key (kbd "RET") 'newline-and-indent))
+
+    (defun my/python-switch-version ()
+      (interactive)
+      (setq python-shell-interpreter
+            (if (string-equal python-shell-interpreter "python3") "python2" "python3"))
+      ;;(setq elpy-rpc-backend
+      ;;      (if (string-equal elpy-rpc-backend "python") "python3" "python"))
+      (setq pymacs-python-command
+            (if (string-equal pymacs-python-command "python2") "python3" "python2"))
+      (message python-shell-interpreter))
+
+
+
+    (defun my/python-toggle-ipython ()
+      (interactive)
+      (setq python-shell-interpreter
+            (if (string-equal (substring python-shell-interpreter 0 1) "p")
+                (concat "i" python-shell-interpreter)
+              (substring python-shell-interpreter 1)))
+      (message python-shell-interpreter))
+
+    (add-hook 'python-mode-hook 'set-newline-and-indent)
+    (add-to-list 'company-backends 'company-anaconda)
+    (add-hook 'python-mode-hook 'my-python-mode-hook)
+                                        ;(add-hook 'jedi-mode-hook 'jedi-direx:setup)
     )
   )
+
+;(req-package pipenv
+;  :hook (python-mode . pipenv-mode)
+;  :init
+;  (setq
+;   pipenv-projectile-after-switch-function
+;   #'pipenv-projectile-after-switch-extended))

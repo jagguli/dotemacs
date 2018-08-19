@@ -1,4 +1,4 @@
-;; source: http://steve.yegge.googlepages.com/my-dot-emacs-file
+;;
 ;; Never understood why Emacs doesn't have this function.
 ;;
 (defun rename-file-and-buffer (new-name)

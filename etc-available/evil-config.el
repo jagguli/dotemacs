@@ -1,6 +1,9 @@
 ;; Evil =============================================================================
 (req-package evil
-  :require (evil-org)
+  :require (
+            evil-org
+            evil-goggles
+            )
   :init
   (progn
     (setq x-select-enable-clipboard t
@@ -13,6 +16,7 @@
       (setq evil-symbol-word-search t))
 
     (evil-mode 1)
+    (evil-goggles-mode)
     (add-hook 'evil-local-mode-hook 'my-text-mode-hook)
     ;;(evil-set-initial-state 'notmuch-show-mode 'normal)
     (evil-set-initial-state 'jabber-chat-mode 'emacs)
@@ -35,6 +39,7 @@
     (evil-set-initial-state 'circe-server-mode 'emacs)
     (evil-set-initial-state 'circe-channel-mode 'emacs)
     (evil-set-initial-state 'deft-mode 'emacs)
+    (evil-set-initial-state 'rope-occurrences 'emacs)
     (setq evil-flash-delay 60)
     ;;; esc quits
 
@@ -61,7 +66,9 @@
       (interactive)
       ;;(keyboard-quit)
       (message nil)
-      (evil-show-file-info))
+      (evil-show-file-info)
+      (crosshairs-flash)
+      )
 
     (global-set-key (kbd "C-g") 'fileinfo)
     ;;(global-set-key (kbd "C-c") 'quit)

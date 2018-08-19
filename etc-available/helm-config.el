@@ -60,6 +60,7 @@
    helm-buffer-max-length 30
    helm-ag-use-grep-ignore-list t
    helm-ag-use-agignore t
+   helm-truncate-lines t
 
    helm-mini-default-sources
    (quote

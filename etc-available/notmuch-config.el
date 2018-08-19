@@ -35,10 +35,11 @@
      notmuch-saved-searches
       (quote
        (
-        (:name "inbox" :query "(tag:INBOX or  tag:inbox) and not (tag:misc) and date:30d..0s" :key "i")
+        (:name "inbox" :query "tag:inbox and not (tag:misc) and not (tag:mailers) and date:30d..0s" :key "i")
         (:name "all" :query "date:1M..now" :key "a")
-        (:name "streethawk" :query "date:1M..now and (to:steven@streethawk.com or to:steven@streethawk.co)" :key "S")
+        (:name "streethawk" :query "date:1M..now and not tag:mailers and (to:steven@streethawk.com or to:steven@streethawk.co) and tag:inbox" :key "S")
         (:name "stevenjoseph.in" :query "date:1M..now and to:steven@stevenjoseph.in" :key "j")
+        (:name "melit" :query "date:1M..now and to:melit.stevenjoseph@gmail.com" :key "j")
         (:name "important" :query "tag:important" :key "I")
         (:name "sentry" :query "tag:sentry")
         (:name "pullrequests" :query "tag:pullrequests" :key "p")
@@ -52,8 +53,8 @@
         (:name "sent" :query "tag:sent")
         (:name "drafts" :query "tag:draft" :key "d")
         (:name "last30days" :query "date:30d..0s")
-        (:name "me" :query "tag:me and (tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s or (tag:sent or tag:replied or from:steven.joseph) " :key "m")
-        (:name "unread_me" :query "tag:me and (tag:INBOX or  tag:inbox) and not (tag:osc or tag:misc) and date:30d..0s and tag:unread and (tag:sent or tag:replied or from:steven.joseph)")
+        (:name "me" :query "tag:me" :key "m")
+        (:name "unread_me" :query "tag:me and tag:unread")
         (:name "calendar" :query "mimetype:text/calendar" :key "c")
         (:name "notifications" :query "tag:sentry or tag:bitbucket or tag:jira or tag:pullrequests or mimetype:text/calendar" :key "n")
         ))
@@ -79,13 +80,15 @@
      notmuch-search-line-faces
      (quote
       (("deleted" :foreground "red" :background "grey")
+       ("important" :foreground "yellow")
        ("unread" :foreground "green")
        ("today" :foreground "green" :background "color-232")
        ("flagged" :foreground "magenta")
        ("draft" :foreground "brightblue")
-       ("important" :foreground "yellow")
        ("me" :weight bold :foreground "white")
-       ("INBOX" :foreground "color-243")))
+       ("INBOX" :foreground "color-243")
+       )
+      )
      message-sendmail-envelope-from 'header
      notmuch-address-selection-function
       (lambda (prompt collection initial-input)
@@ -264,7 +267,8 @@
   (defun open-in-kmail ()
     (interactive)
     (message "open in kmail")
-    (shell-command (concat "kmail --view file://" (notmuch-show-get-filename)))
+    (notmuch-show-pipe-message nil "/home/steven/.bin/stdinoutfile /tmp/steven/emailviewer")
+    (shell-command "kmail --view 'file:///tmp/steven/emailviewer'  2>&1 > /dev/null & disown" nil nil)
     )
 
   (defun notmuch-toggle-all-headers ()
@@ -281,7 +285,7 @@
   (define-key notmuch-show-mode-map "R" 'notmuch-show-reply-sender)
   (define-key notmuch-search-mode-map "r" 'notmuch-search-reply-to-thread)
   (define-key notmuch-search-mode-map "R" 'notmuch-search-reply-to-thread-sender)
-  (define-key notmuch-show-mode-map "o" 'open-in-chrome)
+  (define-key notmuch-show-mode-map "o" 'open-in-kmail)
 
   ;; (defun match-strings-all (&optional string)
   ;;    "Return the list of all expressions matched in last search.

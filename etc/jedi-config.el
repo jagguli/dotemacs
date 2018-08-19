@@ -1,1 +1,0 @@
-/home/steven/.emacs.d/etc-available/jedi-config.el

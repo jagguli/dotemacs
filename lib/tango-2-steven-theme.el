@@ -3,12 +3,12 @@
 
 (custom-theme-set-faces
  'tango-2-steven
- '(cursor ((t (:foreground "#888888"))))
+ '(cursor ((t (:foreground "#2F4F4F"))))
  '(region ((t (:background "color-235"))))
  '(highlight ((t (:background "#222222"))))
- '(mode-line ((t (:foreground "#FFFFFF" :background "#323232"))))
+ '(mode-line ((t (:foreground "#BCBf91" :background "#2F4F4F"))))
  '(mode-line-inactive ((t (:background "#111111" :foreground "#cccddd"))))
- '(fringe ((t (:background "#111111"))))
+ '(fringe ((t (:background "#000000"))))
  '(minibuffer-prompt ((t (:foreground "#729fcf"))))
  '(font-lock-builtin-face ((t (:foreground "#729fcf"))))
  '(font-lock-comment-face ((t (:foreground "#888a85"))))
@@ -41,6 +41,7 @@
  '(persp-selected-face ((t (:foreground "#729fcf"))))
  '(show-paren-match ((t (:background "#729fcf" :foreground "#eeeeec"))))
  '(show-paren-mismatch ((t (:background "#ad7fa8" :foreground "#2e3436"))))
+ '(vertical-border ((t (:inherit mode-line-inactive :background "black" :foreground "color-27" :weight thin :width condensed))))
  '(default ((t (:background "black" :foreground "#eeeeec")))))
 
 (provide-theme 'tango-2-steven)

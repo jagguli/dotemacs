@@ -19,3 +19,6 @@
 [submodule "lib/helm-cscope"]
 	path = lib/helm-cscope
 	url = https://github.com/sergey-pashaev/helm-cscope.git
+[submodule "lib/itail"]
+	path = lib/itail
+	url = https://github.com/re5et/itail.git

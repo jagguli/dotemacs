@@ -1,4 +1,11 @@
 ;; My miscellaneous functions
+(req-package feature-mode)
+(req-package google-this)
+(req-package fill-column-indicator
+  :init(progn
+         (fci-mode)
+    )
+)
 
 (defun emacs-log ()
   (interactive)
@@ -142,23 +149,34 @@
   (recenter-top-bottom))
 (global-set-key (kbd "C-l") 'reset-font)
 
-(defun browse-url-chrome (url &optional new-window)
+(defun browse-url-webmacs (url &optional new-window)
   "Ask the Chromium WWW browser to load URL.
 Default to the URL around or before point.  The strings in
 variable `browse-url-chromium-arguments' are also passed to
 Chromium."
   (interactive (browse-url-interactive-arg "URL: "))
-  (message "opening chrome")
+  (message "opening browser")
   (setq url (browse-url-encode-url url))
   (let* ((process-environment (browse-url-process-environment)))
     (apply 'start-process
-	   (concat "conkeror " url) nil
-	   "conkeror"
+	   (concat "webmacs " url) nil
+	   "webmacs"
 	   (append
 	    browse-url-chromium-arguments
 	    (list url)))))
-
-
+(defun browse-url-can-use-xdg-open ()
+  "Return non-nil if the \"xdg-open\" program can be used.
+xdg-open is a desktop utility that calls your preferred web browser.
+This requires you to be running either Gnome, KDE, Xfce4 or LXDE."
+  (and (getenv "DISPLAY")
+       (executable-find "xdg-open")
+       ;; xdg-open may call gnome-open and that does not wait for its child
+       ;; to finish.  This child may then be killed when the parent dies.
+       ;; Use nohup to work around.  See bug#7166, bug#8917, bug#9779 and
+       ;; http://lists.gnu.org/archive/html/emacs-devel/2009-07/msg00279.html
+       (executable-find "nohup")
+       ))
+(setq browse-url-browser-function 'browse-url-webmacs)
 
 (defadvice replace-highlight 
   (before outline-expand-replace 

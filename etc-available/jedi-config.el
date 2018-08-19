@@ -1,5 +1,3 @@
-(add-user-lib "emacs-jedi")
-(add-user-lib "emacs-jedi-direx")
 (req-package jedi
   :require (jedi-direx)
   :config
@@ -8,13 +6,13 @@
    jedi:setup-keys t
    jedi:complete-on-dot t
    jedi:install-server--command `("pip2" "install" "--upgrade" ,(convert-standard-filename jedi:source-dir))
-   jedi:server-command (list "python2" jedi:server-script)
+   jedi:server-command (list "python" jedi:server-script)
    jedi:server-args
    '("--sys-path" "/home/steven/streethawk/slicecloud/"
      "--sys-path" "/home/steven/.local/lib/python2.7/site-packages/"
      "--sys-path" "/home/steven/.local/lib/python3.5/site-packages/"
-     "--sys-path" "/usr/lib/python3.5/site-packages/"
-     "--sys-path" "/usr/lib/python3.5/dist-packages/"
+     "--sys-path" "/usr/lib/python3.6/site-packages/"
+     "--sys-path" "/usr/lib/python3.6/dist-packages/"
      "--sys-path" "/usr/lib/python2.7/site-packages/"
      "--sys-path" "/usr/lib/python2.7/dist-packages/"
      )
@@ -31,7 +29,7 @@
       (define-key evil-insert-state-local-map (kbd "C-c SPC") 'jedi:complete)
       ) 
 
-    (add-hook 'python-mode-hook 'my-jedi-python-mode-hook)
-    (add-hook 'jedi-mode-hook 'jedi-direx:setup)
+    ;(add-hook 'python-mode-hook 'my-jedi-python-mode-hook)
+    ;(add-hook 'jedi-mode-hook 'jedi-direx:setup)
     )
   )
