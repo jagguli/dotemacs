@@ -4,16 +4,23 @@
             evil-org
             evil-goggles
             )
+  :config
+  (setq
+   x-select-enable-clipboard t
+   x-select-enable-primary t
+   ;;http://dnquark.com/blog/2012/02/emacs-evil-ecumenicalism/
+   evil-default-state 'normal
+   evil-flash-delay 60
+   evil-default-cursor t
+   ;;(iswitchb-mode 1)
+   iswitchb-buffer-ignore '("^\\*")
+   evil-want-integration nil ;;for evil-collection
+   )
   :init
   (progn
-    (setq x-select-enable-clipboard t
-                x-select-enable-primary t)
-
-    ;;http://dnquark.com/blog/2012/02/emacs-evil-ecumenicalism/
-    (setq evil-default-state 'normal)
-
     (defun my-text-mode-hook ()
       (setq evil-symbol-word-search t))
+    (add-hook 'git-commit-mode-hook 'evil-insert-state)
 
     (evil-mode 1)
     (evil-goggles-mode)
@@ -40,8 +47,6 @@
     (evil-set-initial-state 'circe-channel-mode 'emacs)
     (evil-set-initial-state 'deft-mode 'emacs)
     (evil-set-initial-state 'rope-occurrences 'emacs)
-    (setq evil-flash-delay 60)
-    ;;; esc quits
 
     (defun helm-ag-with-prefix-arg ()
       (interactive)
@@ -78,18 +83,7 @@
     ;(define-key minibuffer-local-completion-map [escape] 'fileinfo)
     ;(define-key minibuffer-local-must-match-map [escape] 'fileinfo)
     ;(define-key minibuffer-local-isearch-map [escape] 'fileinfo)
-
-
-
-    (setq evil-default-cursor t)
-
-    ;;(iswitchb-mode 1)
-    (setq iswitchb-buffer-ignore '("^\\*"))
-
-
     ;;(define-key evil-normal-state-map (kbd "C-^") 'iswitchb-buffer)
-
-
     (defun buffer-mode (buffer-or-string)
       "Returns the major mode associated with a buffer."
       (with-current-buffer buffer-or-string
@@ -126,3 +120,9 @@
                     (set-face-foreground 'mode-line (cdr color))))))
     )
   )
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
