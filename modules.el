@@ -47,9 +47,8 @@
 (add-to-list 'auto-mode-alist '("\\.wiki\\'" . mediawiki-mode))
 (load-theme 'tango-2-steven t)
 (load-file (concat user-emacs-directory "load-directory.el"))
+;(add-user-lib "itail")
 (add-user-lib "Pymacs")
 (load-directory (concat user-emacs-directory "etc"))
-
-
 (req-package-finish)
 

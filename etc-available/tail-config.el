@@ -1,5 +1,4 @@
 (req-package itail
-  :loadpath (concat user-lib-dir "itail")
   :init
   (progn
     (defun itail (file)
