@@ -202,6 +202,7 @@
  '(ls-lisp-dirs-first t)
  '(ls-lisp-verbosity (quote nil))
  '(magit-repo-dirs (quote ("/home/steven/iress")))
+ '(magit-section-initial-visibility-alist (quote ((untracked . hide))))
  '(mml-enable-flowed nil)
  '(mu4e-compose-signature "Sent with emacs - the one true editor.")
  '(newsticker-html-renderer (quote w3m-region))

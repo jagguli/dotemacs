@@ -5,16 +5,16 @@
     (global-set-key "\C-xgg" 'magit-status)
     (global-set-key "\C-xgb" 'mo-git-blame-current)
     (global-set-key "\C-xgl" 'magit-log)
+    (defun magit-add-current-file ()
+      "git add the current file"
+      (interactive)
+      (let ((file-path (buffer-file-name
+                        (window-buffer))))
+        (let ((default-directory (file-name-directory file-path)))
+          (message file-path)
+          (shell-command
+           (concat "git add " file-path)))))
     )
-  (defun magit-add-current-file ()
-    "Insert the full path file name into the current buffer."
-    (interactive)
-    (let ((file-path (buffer-file-name
-                      (window-buffer))))
-      (let ((default-directory (file-name-directory file-path)))
-        (message file-path)
-        (shell-command 
-         (concat "git add " file-path)))))
   )
 
 ;(req-package magit-gerrit
