@@ -1,4 +1,7 @@
 ;; Evil =============================================================================
+(setq 
+   evil-want-integration nil ;;for evil-collection
+   )
 (req-package evil
   :require (
             evil-org
@@ -14,7 +17,6 @@
    evil-default-cursor t
    ;;(iswitchb-mode 1)
    iswitchb-buffer-ignore '("^\\*")
-   evil-want-integration nil ;;for evil-collection
    )
   :init
   (progn
@@ -125,4 +127,7 @@
   :after evil
   :ensure t
   :config
-  (evil-collection-init))
+  (progn
+    (evil-collection-init)
+    )
+  )

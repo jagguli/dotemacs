@@ -167,30 +167,30 @@
  '(jabber-account-list nil)
  '(jabber-alert-info-message-hooks
    (quote
-    (jabber-info-tmux jabber-info-switch jabber-info-echo)) t)
+    (jabber-info-tmux jabber-info-switch jabber-info-echo)))
  '(jabber-alert-message-hooks
    (quote
-    (jabber-message-notifications jabber-message-switch jabber-message-echo jabber-message-libnotify)) t)
- '(jabber-alert-message-wave "~/.sounds/message-new-instant.wav" t)
+    (jabber-message-notifications jabber-message-switch jabber-message-echo jabber-message-libnotify)))
+ '(jabber-alert-message-wave "~/.sounds/message-new-instant.wav")
  '(jabber-alert-muc-hooks
    (quote
     (jabber-muc-libnotify jabber-muc-echo jabber-muc-switch jabber-muc-display jabber-muc-scroll)))
- '(jabber-auto-reconnect t t)
- '(jabber-autoaway-priority 0 t)
- '(jabber-autoaway-verbose t t)
- '(jabber-autoaway-xa-priority 0 t)
- '(jabber-backlog-days 30 t)
- '(jabber-backlog-number 40 t)
+ '(jabber-auto-reconnect t)
+ '(jabber-autoaway-priority 0)
+ '(jabber-autoaway-verbose t)
+ '(jabber-autoaway-xa-priority 0)
+ '(jabber-backlog-days 30)
+ '(jabber-backlog-number 40)
  '(jabber-default-priority 300 t)
  '(jabber-default-show "chat" t)
  '(jabber-default-status "can I automate it ?" t)
- '(jabber-history-enable-rotation t t)
- '(jabber-history-enabled t t)
- '(jabber-history-muc-enabled t t)
+ '(jabber-history-enable-rotation t)
+ '(jabber-history-enabled t)
+ '(jabber-history-muc-enabled t)
  '(jabber-keepalive-interval 30 t)
- '(jabber-mode-line-mode t t)
- '(jabber-roster-line-format "%c %-25n %u %-8s  %S" t)
- '(jabber-show-offline-contacts t t)
+ '(jabber-mode-line-mode t)
+ '(jabber-roster-line-format "%c %-25n %u %-8s  %S")
+ '(jabber-show-offline-contacts t)
  '(jedi:install-python-jedi-dev-command
    (quote
     ("pip2" "install" "--upgrade" "git+https://github.com/davidhalter/jedi.git@dev#egg=jedi")))
@@ -235,6 +235,9 @@
  '(org-agenda-files (quote ("/home/steven/org/")))
  '(org-agenda-repeating-timestamp-show-all nil)
  '(org-agenda-skip-scheduled-if-deadline-is-shown (quote repeated-after-deadline))
+ '(package-selected-packages
+   (quote
+    (flycheck-pycheckers flycheck-pyflakes evil-collection yaml-mode xclip web-mode web-beautify w3m unbound twittering-mode tide tern tango-2-theme swift3-mode sudo-ext smex smart-mode-line slack shackle scss-mode req-package python-mode pytest pylint pyfmt pyenv-mode-auto pushbullet popup-switcher pipenv ox-html5slide outline-magic org-toodledo org-journal org-jira org-ehtml org-alert notmuch-labeler nose mustache-mode mustache multi-web-mode multi-project mo-git-blame markdown-mode+ magit-annex lua-mode kotlin-mode jtags js3-mode jinja2-mode jedi jabber-otr itail ido-ubiquitous hydra http-post-simple help-fns+ helm-themes helm-swoop helm-recoll helm-projectile helm-project-persist helm-package helm-notmuch helm-git-grep helm-git helm-fuzzy-find helm-flycheck helm-dired-recent-dirs helm-cscope helm-cmd-t helm-chrome helm-ag helm-ack haml-mode guide-key-tip groovy-mode gradle-mode google-this git-timemachine git-messenger flymake-cursor flycheck-color-mode-line findr find-file-in-project fill-column-indicator feature-mode evil-paredit evil-org evil-leader evil-goggles etags-table etags-select erlang eproject elscreen el-get egg edit-server dsvn dirtree direx dired-details dired+ diff-hl deft csharp-mode crosshairs creole company-anaconda column-marker calfw-gcal calfw buffer-move bookmark+ auth-password-store anything angular-mode ahg ag addressbook-bookmark)))
  '(paredit-mode nil t)
  '(password-cache-expiry nil)
  '(py-complete-function (quote py-indent-or-complete))
@@ -336,7 +339,7 @@
  '(icicle-saved-candidate ((t (:background "color-17"))) t)
  '(icicle-special-candidate ((t (:background "color-19"))) t)
  '(idle-highlight ((t (:background "color-17"))) t)
- '(log-view-message ((t nil)) t)
+ '(log-view-message ((t nil)))
  '(magit-header ((t (:inherit header-line :background "white" :foreground "black"))) t)
  '(match ((t (:background "color-22"))))
  '(notmuch-message-summary-face ((t (:background "color-17"))))
