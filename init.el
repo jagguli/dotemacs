@@ -84,7 +84,7 @@
  '(cursor-color nil)
  '(custom-safe-themes
    (quote
-    ("d449d469fcfc44d5def5d076c2cfbc29389855fc537017b028583b8da7ed03df" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" default)))
+    ("c85a604d78d8f64cd555d11d58dad4ea14d7d97b5005afaa2ec0b73a7538f984" "fad9c3dbfd4a889499f6921f54f68de8857e6846a0398e89887dbe5f26b591c0" "d449d469fcfc44d5def5d076c2cfbc29389855fc537017b028583b8da7ed03df" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" default)))
  '(desktop-path (quote ("~/.emacs.d/desktop-save" "~")))
  '(diary-file "~/org/diary")
  '(dictionary-proxy-port 80)
@@ -136,7 +136,7 @@
  '(evil-fold-level 1)
  '(evil-search-module (quote evil-search))
  '(fci-rule-character 9474)
- '(fci-rule-color "color-233")
+ '(fci-rule-color "magenta")
  '(fci-rule-use-dashes t)
  '(ffap-machine-p-known (quote reject))
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
@@ -232,12 +232,14 @@
  '(notmuch-wash-citation-lines-prefix 0)
  '(notmuch-wash-original-regexp "^\\(From: .*\\|.* writes:\\)$")
  '(notmuch-wash-wrap-lines-length 70)
- '(org-agenda-files (quote ("/home/steven/org/")))
+ '(org-agenda-files
+   (quote
+    ("/home/steven/org/DTBR.org" "/home/steven/org/Getting Started with Orgzly.org" "/home/steven/org/articulate.org" "/home/steven/org/babyorbust.org" "/home/steven/org/code.org" "/home/steven/org/devops.org" "/home/steven/org/docker_meetup.org" "/home/steven/org/driving.org" "/home/steven/org/emacstips.org" "/home/steven/org/gcal_personal.org" "/home/steven/org/gcal_work.org" "/home/steven/org/goals_2016.org" "/home/steven/org/goals_2019.org" "/home/steven/org/gp.org" "/home/steven/org/grain_brain.org" "/home/steven/org/ideas.org" "/home/steven/org/ijournal.org" "/home/steven/org/interview_questions.org" "/home/steven/org/notes.org" "/home/steven/org/philosophy.org" "/home/steven/org/property.org" "/home/steven/org/refile.org" "/home/steven/org/salt_meetup.org" "/home/steven/org/streethawk.org" "/home/steven/org/supplements.org" "/home/steven/org/sypy.org" "/home/steven/org/time_management.org" "/home/steven/org/todo.org" "/home/steven/org/travel.org")))
  '(org-agenda-repeating-timestamp-show-all nil)
  '(org-agenda-skip-scheduled-if-deadline-is-shown (quote repeated-after-deadline))
  '(package-selected-packages
    (quote
-    (flycheck-pycheckers flycheck-pyflakes evil-collection yaml-mode xclip web-mode web-beautify w3m unbound twittering-mode tide tern tango-2-theme swift3-mode sudo-ext smex smart-mode-line slack shackle scss-mode req-package python-mode pytest pylint pyfmt pyenv-mode-auto pushbullet popup-switcher pipenv ox-html5slide outline-magic org-toodledo org-journal org-jira org-ehtml org-alert notmuch-labeler nose mustache-mode mustache multi-web-mode multi-project mo-git-blame markdown-mode+ magit-annex lua-mode kotlin-mode jtags js3-mode jinja2-mode jedi jabber-otr itail ido-ubiquitous hydra http-post-simple help-fns+ helm-themes helm-swoop helm-recoll helm-projectile helm-project-persist helm-package helm-notmuch helm-git-grep helm-git helm-fuzzy-find helm-flycheck helm-dired-recent-dirs helm-cscope helm-cmd-t helm-chrome helm-ag helm-ack haml-mode guide-key-tip groovy-mode gradle-mode google-this git-timemachine git-messenger flymake-cursor flycheck-color-mode-line findr find-file-in-project fill-column-indicator feature-mode evil-paredit evil-org evil-leader evil-goggles etags-table etags-select erlang eproject elscreen el-get egg edit-server dsvn dirtree direx dired-details dired+ diff-hl deft csharp-mode crosshairs creole company-anaconda column-marker calfw-gcal calfw buffer-move bookmark+ auth-password-store anything angular-mode ahg ag addressbook-bookmark)))
+    (adoc-mode origami rope-read-mode org-gcal srcery-theme flycheck-pycheckers flycheck-pyflakes evil-collection yaml-mode xclip web-mode web-beautify w3m unbound twittering-mode tide tern tango-2-theme swift3-mode sudo-ext smex smart-mode-line slack shackle scss-mode req-package python-mode pytest pylint pyfmt pyenv-mode-auto pushbullet popup-switcher pipenv ox-html5slide outline-magic org-toodledo org-journal org-jira org-ehtml org-alert notmuch-labeler nose mustache-mode mustache multi-web-mode multi-project mo-git-blame markdown-mode+ magit-annex lua-mode kotlin-mode jtags js3-mode jinja2-mode jedi jabber-otr itail ido-ubiquitous hydra http-post-simple help-fns+ helm-themes helm-swoop helm-recoll helm-projectile helm-project-persist helm-package helm-notmuch helm-git-grep helm-git helm-fuzzy-find helm-flycheck helm-dired-recent-dirs helm-cscope helm-cmd-t helm-chrome helm-ag helm-ack haml-mode guide-key-tip groovy-mode gradle-mode google-this git-timemachine git-messenger flymake-cursor flycheck-color-mode-line findr find-file-in-project fill-column-indicator feature-mode evil-paredit evil-org evil-leader evil-goggles etags-table etags-select erlang eproject elscreen el-get egg edit-server dsvn dirtree direx dired-details dired+ diff-hl deft csharp-mode crosshairs creole company-anaconda column-marker calfw-gcal calfw buffer-move bookmark+ auth-password-store anything angular-mode ahg ag addressbook-bookmark)))
  '(paredit-mode nil t)
  '(password-cache-expiry nil)
  '(py-complete-function (quote py-indent-or-complete))
@@ -251,8 +253,8 @@
    (quote
     (repository-root-matcher/git repository-root-matcher/svn)))
  '(req-package-log-level (quote debug))
- '(ropemacs-confirm-saving nil t)
- '(ropemacs-global-prefix "C-x @" t)
+ '(ropemacs-confirm-saving nil)
+ '(ropemacs-global-prefix "C-x @")
  '(scroll-conservatively 10000)
  '(scroll-step 1)
  '(scss-compile-at-save nil)
@@ -293,6 +295,7 @@
      (340 . "#dc322f")
      (360 . "#cb4b16"))))
  '(vc-annotate-very-old-color nil)
+ '(visible-cursor nil)
  '(wiki-directories (quote ("/home/steven/iress/devwiki/")))
  '(xclip-mode nil))
 

@@ -2,8 +2,10 @@
 (req-package feature-mode)
 (req-package google-this)
 (req-package fill-column-indicator
+  :config (setq fci-rule-column 80)
   :init(progn
          (fci-mode)
+         (blink-cursor-mode 0)
     )
 )
 
@@ -159,8 +161,8 @@ Chromium."
   (setq url (browse-url-encode-url url))
   (let* ((process-environment (browse-url-process-environment)))
     (apply 'start-process
-	   (concat "webmacs " url) nil
-	   "webmacs"
+	   (concat (expand-file-name "~/.bin/browser") url) nil
+	   "browser"
 	   (append
 	    browse-url-chromium-arguments
 	    (list url)))))

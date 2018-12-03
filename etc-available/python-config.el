@@ -19,10 +19,13 @@
             )
   :config
   (setq
-   py-load-pymacs-p nil
-   pymacs-python-command "python2"
+   py-load-pymaqcs-p t
+   pymacs-python-command "python3"
    ropemacs-confirm-saving 'nil
-   pymacs-load-path 'nil
+   pymacs-load-path '(
+                      "~/.local/lib/python3.7/site-packages"
+                      "~/.local/lib/python2.7/site-packages"
+                      )
    ropemacs-global-prefix "C-x @"
    ropemacs-enable-autoimport t
    )
@@ -36,6 +39,11 @@
     (defun load-ropemacs()
       (interactive)
       (require 'pymacs)
+      (setq pymacs-load-path '(
+                               "~/.local/lib/python3.7/site-packages"
+                               "~/.local/lib/python2.7/site-packages"
+                               )
+            )
       (pymacs-load "ropemacs" "rope-")
       )
 
