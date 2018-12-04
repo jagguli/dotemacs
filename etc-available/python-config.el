@@ -13,7 +13,7 @@
   :require (
             evil
             multi-project
-            column-marker
+            column-enforce-mode
             anaconda-mode
             company-anaconda
             )
@@ -69,7 +69,6 @@
     (defun my-python-mode-hook ()
       (message "my-python-mode-hook")
       (interactive)
-      (column-marker-1 80)
       (anaconda-mode)
       (flycheck-mode) 
       ;;(if (< (count-lines (point-min) (point-max)) 2000) 
