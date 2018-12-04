@@ -22,3 +22,9 @@
 [submodule "lib/itail"]
 	path = lib/itail
 	url = https://github.com/re5et/itail.git
+[submodule "lib/helm-cmd-t"]
+	path = lib/helm-cmd-t
+	url = https://github.com/emacs-helm/helm-cmd-t.git
+[submodule "lib/buffer-timer"]
+	path = lib/buffer-timer
+	url = https://github.com/hardaker/elisp-buffer-timer.git

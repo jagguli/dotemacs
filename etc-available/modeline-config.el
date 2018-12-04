@@ -1,5 +1,6 @@
 (setq sml/no-confirm-load-theme t)
 (req-package smart-mode-line
+  :require sml-mode
   :config
   (setq 
    sml/theme 'respectful

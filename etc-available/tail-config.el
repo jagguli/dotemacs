@@ -1,6 +1,7 @@
 (req-package itail
   :init
   (progn
+
     (defun itail (file)
       "Tail file FILE in itail mode.  Supports remote tailing through tramp "
       (interactive "ftail file: ")
@@ -17,7 +18,8 @@
       (setq itail-file file)
       (setq itail-filters ())
       (itail-mode-line)
-      (itail-mode))
+      (itail-mode)
+      )
 
     (defun itail-xplan-server (branch)
       (interactive "nBranch: \n")
@@ -33,11 +35,11 @@
 
     (add-hook 'itail-mode-hook
               #'(lambda ()
+                  (define-key itail-keymap (kbd "C-g" ) 'goto-end)
                   (compilation-minor-mode 1)))
-    
+
     (defun goto-end nil
       (interactive)
       (goto-line (point-max)))
-    (define-key itail-keymap (kbd "C-g" ) 'goto-end)
     )
   )

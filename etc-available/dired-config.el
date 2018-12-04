@@ -1,13 +1,15 @@
 (req-package dired
-  :require (dash dired-x dired-details async)
+  :require  dash async
+  :ensure nil
   :init
   (progn
-    (dired-async-mode 1)
+    (require 'dired-x)
+    (dired-async-mode t)
     ;;(setq dired-omit-files
     ;;      (concat dired-omit-files "\\|^\\.[a-zA-Z]+$"))
-    (dired-omit-mode 1)
+    ;;(dired-omit-mode t)
     ;;(setq-default dired-details-hidden-string "--- ")
-    (dired-details-install)
+   ;; (dired-details-install)
 
     ;; Reload dired after making changes
     (--each '(dired-do-rename

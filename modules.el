@@ -1,8 +1,18 @@
 (require 'package)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+  (when (< emacs-major-version 24)
+    ;; For important compatibility libraries like cl-lib
+    (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
+(package-initialize)
 (setq package-enable-at-startup nil)
 ; this is a workaround for a bug in emacs' http fetching, see
 ; http://lists.gnu.org/archive/html/bug-gnu-emacs/2011-12/msg00196.html
-(setq url-http-attempt-keepalives t)
+;;(setq url-http-attempt-keepalives t)
 
 ;; Bootstrap `req-package'
 (unless (package-installed-p 'req-package)
@@ -29,26 +39,15 @@
 (setq custom-theme-directory user-lib-dir)
 (add-to-list 'load-path user-lib-dir)
 ;;(load-theme 'tango-2-steven t)
-
-
 (require 'req-package)
-(require 'buff-menu+)
-(require 'fix-buffers-list)
-(require 'repository-root)
-;;(require 'sudo-ext)  
-;;(require 'column-marker)
-(require 'buffer-move)
-(require 'ahg)
-(require 'bind-key)
-(require 'yaml-mode)
 (show-paren-mode 1)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.sls\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.wiki\\'" . mediawiki-mode))
 (load-theme 'tango-2-steven t)
 (load-file (concat user-emacs-directory "load-directory.el"))
-;(add-user-lib "itail")
-(add-user-lib "Pymacs")
 (load-directory (concat user-emacs-directory "etc"))
+;;(load-user-config "evil-config.el")
+(add-user-lib "revolver")
+(add-user-lib "Pymacs")
 (req-package-finish)
-

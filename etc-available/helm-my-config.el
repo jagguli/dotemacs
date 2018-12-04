@@ -1,19 +1,16 @@
 ;;http://tuhdo.github.io/helm-intro.html
 (req-package
-   helm-mode
+   helm
   :require
   (
-   helm-cmd-t
-   bookmark+
-   helm-adaptive
    shackle
    helm-cscope
    helm-swoop
    helm-flycheck
    helm-chrome
    helm-projectile
-   helm-package
    helm-fuzzy-find
+   helm-cmd-t
    ag
    )
   :config
@@ -137,13 +134,6 @@
              (error "Input is empty!!"))
            (setq helm-ag--last-query query)))
       )
-    )
-  )
-
-(req-package helm-cmd-t
-  :config (concat user-lib-dir "helm-cmd-t")
-  :init
-  (progn 
     (defun helm-cmd-t-ad-hoc-example ()
       "Choose file from test folder."
       (interactive)

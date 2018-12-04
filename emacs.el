@@ -1,3 +1,34 @@
+(defun shutdown ()
+  "Save buffers, Quit, and Shutdown (kill) server"
+  (interactive)
+  (save-some-buffers)
+  (recentf-save-list)
+  (kill-emacs))
+
+(defun reload-emacs-config ()
+  "reload emacs config"
+  (interactive)
+  (load-file "~/.emacs.d/init.el")
+)
+(defvar server-name "" "current server name")
+(defun start-server (name)
+  "start an emacs server"
+  (interactive)
+  (setq server-name name)
+  (setq server-use-tcp t)
+  (server-start)
+  (setq history-dir (expand-file-name "~/.emacs.d/history.d/"))
+  (setq savehist-additional-variables    ;; also save...
+        '(search-ring regexp-search-ring)    ;; ... my search entries
+        savehist-file (concat history-dir (format "history_%s" server-name)))
+  ;;(require recentf)
+  ;;(recentf-mode 1)
+  (setq recentf-initialize-file-name-history t)
+  (setq recentf-save-file (concat history-dir (format "recentf_%s" server-name)))
+  (recentf-load-list)
+  (require 'org-protocol)
+  )
+
 (defun shell-command-maybe (exe &optional paramstr)
   "run executable EXE with PARAMSTR, or warn if EXE's not available; eg. "
   " (djcb-shell-command-maybe \"ls\" \"-l -a\")"
@@ -10,6 +41,7 @@
  c-basic-offset 4
  )
 (setq
+ req-package-log-level "debug"
  initial-scratch-message (format "     MM\"\"\"\"\"\"\"\"`M
      MM  mmmmmmmM
      M`      MMMM 88d8b.d8b. .d8888b. .d8888b. .d8888b.
@@ -54,6 +86,7 @@
  kept-old-versions 2
  version-control t       ; use versioned backups
  frame-title-format "%b"
+ use-package-always-ensure t
  )
 
 (goto-address-mode)
@@ -71,3 +104,4 @@
 (put 'narrow-to-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'scroll-left 'disabled nil)
+(add-to-list 'auto-mode-alist '("\\.sls\\'" . yaml-mode))

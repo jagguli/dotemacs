@@ -1,12 +1,8 @@
 (req-package org
   :require (
             org-journal
-            org-install
-            org-protocol
-            org-indent
             password-store
             cl
-            epa-file
             org-alert
             )
   :config (setq
@@ -24,10 +20,6 @@
    org-agenda-file-regexp "[^.#].*\\.org$"
    org-default-notes-file (concat org-directory "notes.org")
    org-clock-persist 'history
-   org-toodledo-userid (password-store-get "internet/toodledo/userid")
-   org-toodledo-password (password-store-get "internet/toodledo/password")
-   org-toodledo-folder-support-mode t
-   org-toodledo-folder-support-mode (quote heading)
    org-agenda-files
    (quote
     ("/home/steven/org/"))
@@ -98,7 +90,7 @@
     (setq org-ehtml-docroot org-directory)
     (setq org-ehtml-everything-editable t)
 
-    (require 'org-ehtml)
+    ;;(require 'org-ehtml)
     ;;(ws-start org-ehtml-handler 8888 "webserver")
 
     (defun org-toggle-todo-and-fold ()

@@ -23,7 +23,6 @@
     (defun my-text-mode-hook ()
       (setq evil-symbol-word-search t))
     (add-hook 'git-commit-mode-hook 'evil-insert-state)
-
     (evil-mode 1)
     (evil-goggles-mode)
     (add-hook 'evil-local-mode-hook 'my-text-mode-hook)
@@ -49,7 +48,6 @@
     (evil-set-initial-state 'circe-channel-mode 'emacs)
     (evil-set-initial-state 'deft-mode 'emacs)
     (evil-set-initial-state 'rope-occurrences 'emacs)
-
     (defun helm-ag-with-prefix-arg ()
       (interactive)
       (setq current-prefix-arg '(4)) ; C-u
@@ -63,8 +61,9 @@
     (define-key evil-normal-state-map (kbd "C-x v") 'helm-show-kill-ring)
     (define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag-with-prefix-arg)
     ;;(define-key global-map (kbd "`") 'find-file)
-    (evil-define-command "Ve" (function 
-                                lambda() (split-window-horizontally)))
+    (evil-define-command "Ve"
+      (function 
+       lambda() (split-window-horizontally)))
     (defun vex ()
       (interactive)
       (split-window-horizontally))
@@ -85,7 +84,7 @@
     ;(define-key minibuffer-local-completion-map [escape] 'fileinfo)
     ;(define-key minibuffer-local-must-match-map [escape] 'fileinfo)
     ;(define-key minibuffer-local-isearch-map [escape] 'fileinfo)
-    ;;(define-key evil-normal-state-map (kbd "C-^") 'iswitchb-buffer)
+    ;(define-key evil-normal-state-map (kbd "C-^") 'iswitchb-buffer)
     (defun buffer-mode (buffer-or-string)
       "Returns the major mode associated with a buffer."
       (with-current-buffer buffer-or-string
@@ -121,6 +120,17 @@
                     (set-face-background 'mode-line (car color))
                     (set-face-foreground 'mode-line (cdr color))))))
     )
+  :init
+  (setq
+    x-select-enable-clipboard t
+    x-select-enable-primary t
+    ;;http://dnquark.com/blog/2012/02/emacs-evil-ecumenicalism/
+    evil-default-state 'normal
+    evil-flash-delay 60
+    evil-default-cursor t
+    iswitchb-buffer-ignore '("^\\*")
+    )
+
   )
 
 (use-package evil-collection
