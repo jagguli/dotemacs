@@ -1,12 +1,10 @@
 (req-package notmuch
   :require (
-            notmuch-pick
-            notmuch-address
             password-cache
             password-store
             dash
             addressbook-bookmark
-            smtpmail-async
+            ;smtpmail-async
             ;;auth-password-store
             )
   :init

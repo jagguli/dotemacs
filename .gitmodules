@@ -1,30 +1,30 @@
-[submodule "lib/revolver"]
-	path = lib/revolver
+[submodule "modules.d/revolver"]
+	path = modules.d/revolver
 	url = https://github.com/theanalyst/revolver.git
-[submodule "lib/Pymacs"]
-	path = lib/Pymacs
-	url = https://github.com/pinard/Pymacs.git
-[submodule "lib/powerline"]
-	path = lib/powerline
+[submodule "modules.d/powerline"]
+	path = modules.d/powerline
 	url = https://github.com/milkypostman/powerline.git
-[submodule "lib/powerline-evil"]
-	path = lib/powerline-evil
+[submodule "modules.d/powerline-evil"]
+	path = modules.d/powerline-evil
 	url = https://github.com/raugturi/powerline-evil.git
 [submodule "toodledo"]
-	path = lib/toodledo
+	path = modules.d/toodledo
 	url = https://github.com/christopherjwhite/org-toodledo.git
-[submodule "lib/calfw"]
-	path = lib/calfw
+[submodule "modules.d/calfw"]
+	path = modules.d/calfw
 	url = https://github.com/kiwanami/emacs-calfw
-[submodule "lib/helm-cscope"]
-	path = lib/helm-cscope
+[submodule "modules.d/helm-cscope"]
+	path = modules.d/helm-cscope
 	url = https://github.com/sergey-pashaev/helm-cscope.git
-[submodule "lib/itail"]
-	path = lib/itail
+[submodule "modules.d/itail"]
+	path = modules.d/itail
 	url = https://github.com/re5et/itail.git
-[submodule "lib/helm-cmd-t"]
-	path = lib/helm-cmd-t
+[submodule "modules.d/helm-cmd-t"]
+	path = modules.d/helm-cmd-t
 	url = https://github.com/emacs-helm/helm-cmd-t.git
-[submodule "lib/buffer-timer"]
-	path = lib/buffer-timer
+[submodule "modules.d/buffer-timer"]
+	path = modlules.d/buffer-timer
 	url = https://github.com/hardaker/elisp-buffer-timer.git
+[submodule "modules.d/Pymacs"]
+	path = modules.d/Pymacs
+	url = https://github.com/dgentry/Pymacs

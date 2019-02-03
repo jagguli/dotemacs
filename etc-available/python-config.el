@@ -16,11 +16,13 @@
             column-enforce-mode
             anaconda-mode
             company-anaconda
+            outline-magic
+            pipenv
             )
   :config
   (setq
    py-load-pymacs-p nil
-   pymacs-python-command "python2"
+   pymacs-python-command "python"
    ropemacs-confirm-saving 'nil
    pymacs-load-path 'nil
    ropemacs-global-prefix "C-x @"
@@ -198,7 +200,7 @@
 
     ;;(define-key global-map (kbd "S-<f8>" ) 'add-breakpoint)
     ;;(define-key global-map (kbd "S-<f7>" ) 'remove-breakpoint)
-    (define-key global-map (kbd "<f8>" ) 'breakpoint-set)
+    (define-key global-map (kbd "M-<f8>" ) 'breakpoint-set)
     (define-key global-map (kbd "S-<f8>" ) 'breakpoint-uset)
     ;;; Indentation for python
 

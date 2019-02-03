@@ -1,6 +1,13 @@
 ;; My miscellaneous functions
 (req-package fill-column-indicator
-  :require google-this yaml-mode
+  :require (
+            powerline
+            powerline-evil
+
+            google-this
+            yaml-mode
+            feature-mode
+            )
   :config
   (progn 
     (fci-mode t)

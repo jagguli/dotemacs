@@ -1,16 +1,33 @@
-(setq sml/no-confirm-load-theme t)
-(req-package smart-mode-line
-  :require sml-mode
-  :config
-  (setq 
-   sml/theme 'respectful
-   )
+(req-package powerline
+  :require (
+    powerline-evil
+    )
   :init
   (progn
-    (sml/setup)
-    (column-number-mode)
+    ;(powerline-default-theme)
+    ;(powerline-center-theme)
+    ;(powerline-center-evil-theme)
+    ;(powerline-vim-theme)
+    ;(powerline-nano-theme)
+
+    ;(powerline-evil-vim-theme)
+    ;(powerline-evil-vim-color-theme)
+    (powerline-evil-center-color-theme)
     )
-)
+  )
+;(setq sml/no-confirm-load-theme t)
+;(req-package smart-mode-line
+;  :require sml-mode
+;  :config
+;  (setq 
+;   sml/theme 'respectful
+;   )
+;  :init
+;  (progn
+;    (sml/setup)
+;    (column-number-mode)
+;    )
+;)
 ; use setq-default to set it for /all/ modes
 ;;(setq-default mode-line-format
 ;;  (list

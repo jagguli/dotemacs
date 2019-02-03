@@ -12,6 +12,7 @@
    helm-fuzzy-find
    helm-cmd-t
    ag
+   helm-ag
    )
   :config
   (setq
