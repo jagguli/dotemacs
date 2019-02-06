@@ -37,7 +37,6 @@
 (add-to-list 'auto-mode-alist '("\\.sls\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.wiki\\'" . mediawiki-mode))
 (load-theme 'tango-2-steven t)
-(require 'req-package)
 (require 'load-dir)
 (load-file (concat user-lib-dir "vline.el"))
 (load-file (concat user-lib-dir "col-highlight.el"))
@@ -47,6 +46,7 @@
 (add-to-list 'load-path (concat user-lib-dir "buffer-timer"))
 (add-to-list 'load-path (concat user-lib-dir "powerline"))
 (add-to-list 'load-path (concat user-lib-dir "powerline-evil"))
+(require 'req-package)
 (setq
  load-dir-recursive nil
  load-dirs `(
