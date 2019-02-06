@@ -45,6 +45,8 @@
 (load-file (concat user-lib-dir "notmuch-pick.el"))
 (add-to-list 'load-path (concat user-lib-dir "Pymacs"))
 (add-to-list 'load-path (concat user-lib-dir "buffer-timer"))
+(add-to-list 'load-path (concat user-lib-dir "powerline"))
+(add-to-list 'load-path (concat user-lib-dir "powerline-evil"))
 (setq
  load-dir-recursive nil
  load-dirs `(

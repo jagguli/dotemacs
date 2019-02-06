@@ -6,6 +6,7 @@
   :require (
             evil-org
             evil-goggles
+            evil-collection
             )
   :config
   (setq
@@ -26,7 +27,6 @@
     (evil-mode 1)
     (evil-goggles-mode)
     (add-hook 'evil-local-mode-hook 'my-text-mode-hook)
-    ;;(evil-set-initial-state 'notmuch-show-mode 'normal)
     (evil-set-initial-state 'jabber-chat-mode 'emacs)
     (evil-set-initial-state 'jabber-roster-mode 'emacs)
     (evil-set-initial-state 'direx:direx-mode 'emacs)
@@ -35,8 +35,6 @@
     (evil-set-initial-state 'svn-status-mode 'emacs)
     (evil-set-initial-state 'newsticker-mode 'emacs)
     (evil-set-initial-state 'newsticker-treeview-mode 'emacs)
-    (evil-set-initial-state 'notmuch-show-mode 'emacs)
-    (evil-set-initial-state 'notmuch-tree-mode 'emacs)
     (evil-set-initial-state 'dirtree-mode 'emacs)
     (evil-set-initial-state 'egg-status 'emacs)
     (evil-set-initial-state 'egg-log 'emacs)
@@ -61,6 +59,7 @@
     (define-key evil-normal-state-map (kbd "C-x v") 'helm-show-kill-ring)
     (define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag-with-prefix-arg)
     ;;(define-key global-map (kbd "`") 'find-file)
+    (evil-collection-init)
     (evil-define-command "Ve"
       (function 
        lambda() (split-window-horizontally)))
@@ -131,13 +130,4 @@
     iswitchb-buffer-ignore '("^\\*")
     )
 
-  )
-
-(use-package evil-collection
-  :after evil
-  :ensure t
-  :config
-  (progn
-    (evil-collection-init)
-    )
   )
