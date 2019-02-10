@@ -1,4 +1,5 @@
-;; Python Mode ================================================================================ 
+;; package ---- Summary: Python Mode ================================================================================
+;;; Commentary:
 ;;;(require 'python-magic)
                                         ;(autoload 'pymacs-apply "pymacs")
                                         ;(autoload 'pymacs-call "pymacs")
@@ -9,6 +10,7 @@
                                         ;(setq ropemacs-enable-autoimport t)
                                         ;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
                                         ;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+;;; Code:
 (req-package python-mode
   :require (
             evil
@@ -22,7 +24,7 @@
   :config
   (setq
    py-load-pymacs-p nil
-   pymacs-python-command "python"
+   pymacs-python-command "python3"
    ropemacs-confirm-saving 'nil
    pymacs-load-path 'nil
    ropemacs-global-prefix "C-x @"
@@ -42,7 +44,7 @@
       )
 
     (global-set-key "\C-xpl" 'load-ropemacs)
-    (add-hook 'outline-minor-mode-hook (lambda () 
+    (add-hook 'outline-minor-mode-hook (lambda ()
                                          (require 'outline-magic)))
 
     (defadvice goto-line (after expand-after-goto-line
@@ -72,9 +74,9 @@
       (message "my-python-mode-hook")
       (interactive)
       (anaconda-mode)
-      (flycheck-mode) 
-      ;;(if (< (count-lines (point-min) (point-max)) 2000) 
-      ;;    (flycheck-mode) 
+      (flycheck-mode)
+      ;;(if (< (count-lines (point-min) (point-max)) 2000)
+      ;;    (flycheck-mode)
       ;;  (flycheck-mode -1))
       (flyspell-prog-mode)
 
@@ -106,7 +108,7 @@
             (evil-define-key 'normal python-mode-map
               (kbd "C-c C-c") 'py-indent-line
               )
-            
+
             (define-key evil-normal-state-map (kbd "C-i")  'evil-jump-forward)
             )
         )
@@ -148,10 +150,10 @@
     (defvar python-debugger "ipdb" "the debugger to use to set/unset breakpoints")
     (defun breakpoint-set nil
       (interactive)
-      (save-excursion 
+      (save-excursion
         (evil-open-below 1)
         (insert (format "import %s; %s.set_trace() ######## FIXME:REMOVE ME steven.joseph ################"
-                        python-debugger python-debugger)) 
+                        python-debugger python-debugger))
         ;;(highlight-lines-matching-regexp "^[ ]*import fpdb; fpdb.set_trace().*")))
         (highlight-lines-matching-regexp (format "^[ ]*import %s; %s.set_trace().*"
                                                  python-debugger python-debugger))))
@@ -160,7 +162,7 @@
 
     (defun breakpoint-uset nil
       (interactive)
-      (save-excursion 
+      (save-excursion
         (goto-char (point-min))
         (flush-lines (format "^[ ]*import %s; %s.set_trace().*$" python-debugger python-debugger))))
 
@@ -244,9 +246,9 @@
     )
   )
 
-;(req-package pipenv
-;  :hook (python-mode . pipenv-mode)
-;  :init
-;  (setq
-;   pipenv-projectile-after-switch-function
-;   #'pipenv-projectile-after-switch-extended))
+                                        ;(req-package pipenv
+                                        ;  :hook (python-mode . pipenv-mode)
+                                        ;  :init
+                                        ;  (setq
+                                        ;   pipenv-projectile-after-switch-function
+                                        ;   #'pipenv-projectile-after-switch-extended))
