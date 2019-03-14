@@ -195,7 +195,7 @@
  '(org-agenda-skip-scheduled-if-deadline-is-shown (quote repeated-after-deadline))
  '(package-selected-packages
    (quote
-    (format-all load-dir adoc-mode origami rope-read-mode org-gcal srcery-theme flycheck-pycheckers flycheck-pyflakes evil-collection yaml-mode xclip web-mode web-beautify w3m unbound twittering-mode tide tern tango-2-theme swift3-mode sudo-ext smex smart-mode-line slack shackle scss-mode req-package python-mode pytest pylint pyfmt pyenv-mode-auto pushbullet popup-switcher pipenv ox-html5slide outline-magic org-toodledo org-journal org-jira org-ehtml org-alert notmuch-labeler nose mustache-mode mustache multi-web-mode multi-project mo-git-blame markdown-mode+ magit-annex lua-mode kotlin-mode jtags js3-mode jinja2-mode jedi jabber-otr itail ido-ubiquitous hydra http-post-simple help-fns+ helm-themes helm-swoop helm-recoll helm-projectile helm-project-persist helm-package helm-notmuch helm-git-grep helm-git helm-fuzzy-find helm-flycheck helm-dired-recent-dirs helm-cscope helm-cmd-t helm-chrome helm-ag helm-ack haml-mode guide-key-tip groovy-mode gradle-mode google-this git-timemachine git-messenger flymake-cursor flycheck-color-mode-line findr find-file-in-project fill-column-indicator feature-mode evil-paredit evil-org evil-leader evil-goggles etags-table etags-select erlang eproject elscreen el-get egg edit-server dsvn dirtree direx dired-details dired+ diff-hl deft csharp-mode crosshairs creole company-anaconda column-marker calfw-gcal calfw buffer-move bookmark+ auth-password-store anything angular-mode ahg ag addressbook-bookmark)))
+    (lsp-mode ace-window format-all load-dir adoc-mode origami rope-read-mode org-gcal srcery-theme flycheck-pycheckers flycheck-pyflakes evil-collection yaml-mode xclip web-mode web-beautify w3m unbound twittering-mode tide tern tango-2-theme swift3-mode sudo-ext smex smart-mode-line slack shackle scss-mode req-package python-mode pytest pylint pyfmt pyenv-mode-auto pushbullet popup-switcher pipenv ox-html5slide outline-magic org-toodledo org-journal org-jira org-ehtml org-alert notmuch-labeler nose mustache-mode mustache multi-web-mode multi-project mo-git-blame markdown-mode+ magit-annex lua-mode kotlin-mode jtags js3-mode jinja2-mode jedi jabber-otr itail ido-ubiquitous hydra http-post-simple help-fns+ helm-themes helm-swoop helm-recoll helm-projectile helm-project-persist helm-package helm-notmuch helm-git-grep helm-git helm-fuzzy-find helm-flycheck helm-dired-recent-dirs helm-cscope helm-cmd-t helm-chrome helm-ag helm-ack haml-mode guide-key-tip groovy-mode gradle-mode google-this git-timemachine git-messenger flymake-cursor flycheck-color-mode-line findr find-file-in-project fill-column-indicator feature-mode evil-paredit evil-org evil-leader evil-goggles etags-table etags-select erlang eproject elscreen el-get egg edit-server dsvn dirtree direx dired-details dired+ diff-hl deft csharp-mode crosshairs creole company-anaconda column-marker calfw-gcal calfw buffer-move bookmark+ auth-password-store anything angular-mode ahg ag addressbook-bookmark)))
  '(paredit-mode nil t)
  '(password-cache-expiry nil)
  '(py-complete-function (quote py-indent-or-complete))
@@ -209,8 +209,8 @@
    (quote
     (repository-root-matcher/git repository-root-matcher/svn)))
  '(req-package-log-level (quote debug))
- '(ropemacs-confirm-saving nil)
- '(ropemacs-global-prefix "C-x @")
+ '(ropemacs-confirm-saving nil t)
+ '(ropemacs-global-prefix "C-x @" t)
  '(scroll-conservatively 10000)
  '(scroll-step 1)
  '(scss-compile-at-save nil)
