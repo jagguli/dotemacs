@@ -1,6 +1,7 @@
 (req-package org
   :require (
             org-journal
+            org-journal-list
             password-store
             cl
             org-alert
@@ -21,9 +22,9 @@
    org-default-notes-file (concat org-directory "notes.org")
    org-clock-persist 'history
    org-agenda-files
-   (quote
-    ("/home/steven/org/"))
-   ; ("/home/steven/org/todo.org"))
+      (mapcar 'abbreviate-file-name
+              (split-string
+               (shell-command-to-string "find ~/org/ -name \"*.org\"") "\n")))
    org-clock-into-drawer t
    org-default-priority 90
    org-ehtml-docroot "~/org/ehtml/"
