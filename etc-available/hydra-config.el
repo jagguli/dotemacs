@@ -63,7 +63,7 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
       ("j" org-clock-goto "Clock Goto") ; global visit the clocked task
       ("c" org-capture "Capture") ; Don't forget to define the captures you want http://orgmode.org/manual/Capture.html
       ("i" org-journal-new-entry "iJournal entry")
-      ("t" org-todo-list "List todos"))
+      ("t" org-todo-list "List todos")
       ("l" org-capture-goto-last-stored "Last Capture"))
     (global-set-key (kbd "<f3>") 'hydra-global-org/body)
     (global-set-key (kbd "C-c p") 'hydra-projectile/body)

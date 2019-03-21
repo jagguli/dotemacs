@@ -67,6 +67,7 @@
      helm-source-buffers-list
      helm-source-recentf
      helm-source-buffer-not-found
+     helm-source-locate
      ))
    helm-for-files-preferred-list
    (quote
@@ -77,7 +78,7 @@
      ;;helm-source-files-in-current-dir
      ;;helm-source-file-cache
      ;;helm-source-bookmarks
-     ;;helm-source-locate
+     helm-source-locate
      )))
 
    ;;shackle-rules '(("\\`\\*helm.*?\\*\\'" :regexp t :align t :ratio 0.5))

@@ -24,7 +24,7 @@
    org-agenda-files
       (mapcar 'abbreviate-file-name
               (split-string
-               (shell-command-to-string "find ~/org/ -name \"*.org\"") "\n")))
+               (shell-command-to-string "find ~/org/ -name \"*.org\"") "\n"))
    org-clock-into-drawer t
    org-default-priority 90
    org-ehtml-docroot "~/org/ehtml/"

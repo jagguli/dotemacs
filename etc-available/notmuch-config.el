@@ -4,32 +4,31 @@
             password-store
             dash
             addressbook-bookmark
-            ;smtpmail-async
+            smtpmail-multi
             ;;auth-password-store
             )
-  :init
-  (progn
-    (helm-mode)
-    ;;(auth-pass-enable)
-    (defun my-async-smtpmail-send-it ()
-      (let ((to          (message-field-value "To"))
-            (buf-content (buffer-substring-no-properties
-                          (point-min) (point-max))))
-        ;;(notifications-notify
-        ;; :title (format "Delivering message to %s..." to)
-        ;; :timeout 5
-        ;; )
-        (async-smtpmail-send-it)
-        ;;(notifications-notify
-        ;; :title (format "Sent message to %s..." to)
-        ;; :timeout 5
-        ;; )
-        (message "after smtpsend ")))
-    (add-hook
-     'notmuch-message-mode-hook
-     (lambda ()
-       (flyspell-mode)))
-    (setq
+  :config
+  (setq
+   smtpmail-multi-accounts '(
+                             ((password-store-get "streethawk/google/username")
+                              "smtp.gmail.com"
+                              465
+                              "steven@pointzi.com")
+                             ((password-store-get "streethawk/google/username")
+                              "smtp.gmail.com"
+                              465
+                              "steven@streethawk.com")
+                             ((password-store-get "internet/google/melit/email")
+                              "smtp.gmail.com"
+                              465
+                              "melit.stevenjoseph@gmail.com")
+                             ((password-store-get "internet/google/stevenjoseph.in")
+                              "smtp.gmail.com"
+                              465
+                              "steven@stevenjoseph.in")
+                             
+                             )
+                            
      notmuch-saved-searches
       (quote
        (
@@ -95,8 +94,8 @@
      ;;                   (cons initial-input collection)
      ;;                   nil t nil 'notmuch-address-options))
      ;;NOTE smtp auth in .authinfo.gpg
-     ;;send-mail-function 'smtpmail-send-it
-     send-mail-function 'my-async-smtpmail-send-it
+     send-mail-function 'smtpmail-send-it
+     ;;send-mail-function 'smtpmail-multi-send-it
      ;;smtpmail-local-domain "streethawk.com"
      ;;smtpmail-sendto-domain "streethawk.com"
      smtpmail-debug-info t
@@ -105,11 +104,29 @@
      smtpmail-stream-type 'ssl
      smtpmail-smtp-server "smtp.gmail.com"
      smtpmail-smtp-service 465
-     user-mail-address (password-store-get "streethawk/google/email")
+     user-mail-address "steven@pointzi.com"
      smtpmail-smtp-user (password-store-get "streethawk/google/username")
      notmuch-wash-wrap-lines-length 180
      notmuch-address-command 'internal
+     notmuch-identities '(
+                          "steven@pointzi.com"
+                          "steven@streethawk.com"
+                          "steven@stevenjoseph.in"
+                          "melit.stevenjoseph@gmail.com"
+                          )
+     ;;https://www.reddit.com/r/emacs/comments/9ep5o1/mu4e_stop_emails_setting_backgroundforeground/
+     shr-color-visible-luminance-min 60
+     shr-color-visible-distance-min 5
+     shr-use-colors nil
      )
+  :init
+  (progn
+    (helm-mode)
+    (add-hook
+     'notmuch-message-mode-hook
+     (lambda ()
+       (flyspell-mode)))
+    
 
     ;;(advice-add 'post-smtp-send :after 'async-smtpmail-send-it)
 
@@ -144,8 +161,10 @@
       (next-line)
       )
     (evil-collection-define-key 'normal 'notmuch-show-mode-map
-    "o" 'browse-url-at-point)
-  (define-key notmuch-search-mode-map "y"
+      "o" 'browse-url-at-point)
+    (evil-collection-define-key '(normal visual insert) 'notmuch-search-mode-map
+      "=" 'notmuch-refresh-this-buffer)
+    (define-key notmuch-search-mode-map "y"
     (lambda ()
       "swipe misc email"
       (interactive)
@@ -344,4 +363,5 @@
            (expand-file-name "~/.mailers")))))
 
     )
+    (advice-add #'shr-colorize-region :around (defun shr-no-colourise-region (&rest ignore)))
   )
