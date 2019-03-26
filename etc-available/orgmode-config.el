@@ -5,6 +5,9 @@
             password-store
             cl
             org-alert
+            helm-org-rfile
+            hydra
+            major-mode-hydra
             )
   :config (setq
            alert-default-style 'libnotify
@@ -164,6 +167,38 @@
 
 
     (global-set-key (kbd "C-c a") 'org-agenda)
+    (major-mode-hydra-bind org-agenda-mode "Org Agenda"
+      ("r" helm-org-rifle "org-rifle")
+      )
+    (pretty-hydra-define hydra-global-org 
+      (:hint nil :color amaranth :quit-key "q" :title "Org")
+      ("Clock"
+       (
+        ("s" org-timer-start "Start Timer")
+        ("S" org-timer-stop "Stop Timer")
+        ("r" org-timer-set-timer "Set Timer") ; This one requires you be in an orgmode doc, as it sets the timer for the header
+        ("p" org-timer "Print Timer") ; output timer value to buffer
+        ("w" (org-clock-in '(4)) "Clock-In") ; used with (org-clock-persistence-insinuate) (setq org-clock-persist t)
+        ("o" org-clock-out "Clock-Out") ; you might also want (setq org-log-note-clock-out t)
+        ("j" org-clock-goto "Clock Goto") ; global visit the clocked task
+        )
+       "Capture"
+       (
+        ("c" org-capture "Capture") ; Don't forget to define the captures you want http://orgmode.org/manual/Capture.html
+        ("l" org-capture-goto-last-stored "Last Capture")
+        )
+       "Journal"
+       (
+        ("i" org-journal-new-entry "iJournal entry")
+        )
+       "Todo"
+       (
+        ("t" org-todo-list "List todos")
+        )
+       )
+      )
+    (global-set-key (kbd "<f3>") 'hydra-global-org/body)
+
 
     )
   )

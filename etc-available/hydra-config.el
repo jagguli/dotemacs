@@ -52,20 +52,16 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
       ("`"   hydra-projectile-other-window/body "other window")
       ("q"   nil "cancel" :color blue))
 
-    (defhydra hydra-global-org (:color blue)
-      "Org"
-      ("s" org-timer-start "Start Timer")
-      ("S" org-timer-stop "Stop Timer")
-      ("r" org-timer-set-timer "Set Timer") ; This one requires you be in an orgmode doc, as it sets the timer for the header
-      ("p" org-timer "Print Timer") ; output timer value to buffer
-      ("w" (org-clock-in '(4)) "Clock-In") ; used with (org-clock-persistence-insinuate) (setq org-clock-persist t)
-      ("o" org-clock-out "Clock-Out") ; you might also want (setq org-log-note-clock-out t)
-      ("j" org-clock-goto "Clock Goto") ; global visit the clocked task
-      ("c" org-capture "Capture") ; Don't forget to define the captures you want http://orgmode.org/manual/Capture.html
-      ("i" org-journal-new-entry "iJournal entry")
-      ("t" org-todo-list "List todos")
-      ("l" org-capture-goto-last-stored "Last Capture"))
-    (global-set-key (kbd "<f3>") 'hydra-global-org/body)
+    (defhydra hydra-magit (:color blue :columns 8)
+      "Magit"
+      ("c" magit-status "status")
+      ("C" magit-checkout "checkout")
+      ("v" magit-branch-manager "branch manager")
+      ("m" magit-merge "merge")
+      ("l" magit-log "log")
+      ("!" magit-git-command "command")
+      ("$" magit-process "process"))
+    (global-set-key (kbd "C-c g") 'hydra-magit/body)
     (global-set-key (kbd "C-c p") 'hydra-projectile/body)
     )
   )
