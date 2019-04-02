@@ -74,8 +74,8 @@
        )
      notmuch-search-line-faces
      (quote
-      (("deleted" :foreground "red" :background "grey")
-       ("important" :foreground "yellow")
+      (("deleted" :foreground "grey" :background "grey")
+       ("important" :foreground "red")
        ("unread" :foreground "green")
        ("today" :foreground "green" :background "color-232")
        ("flagged" :foreground "magenta")
