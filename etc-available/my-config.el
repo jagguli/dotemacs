@@ -8,6 +8,7 @@
             yaml-mode
             feature-mode
             origami
+            findr
             )
   :config
   (progn
