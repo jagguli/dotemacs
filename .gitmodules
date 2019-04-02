@@ -28,3 +28,6 @@
 [submodule "modules.d/Pymacs"]
 	path = modules.d/Pymacs
 	url = https://github.com/dgentry/Pymacs
+[submodule "modules.d/Memacs"]
+	path = modules.d/Memacs
+	url = https://github.com/novoid/Memacs.git
