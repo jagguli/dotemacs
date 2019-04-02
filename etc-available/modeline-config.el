@@ -1,34 +1,38 @@
-(req-package powerline
-  :require (
-    powerline-evil
-    )
-  :init
-  (progn
-    ;(powerline-default-theme)
-    ;(powerline-center-theme)
-    ;(powerline-center-evil-theme)
-    ;(powerline-vim-theme)
-    ;(powerline-nano-theme)
-
-    ;(powerline-evil-vim-theme)
-    ;(powerline-evil-vim-color-theme)
-    (powerline-evil-center-color-theme)
-    )
-  )
-;(setq sml/no-confirm-load-theme t)
-;(req-package smart-mode-line
-;  :require sml-mode
-;  :config
-;  (setq 
-;   sml/theme 'respectful
-;   )
+;(req-package powerline
+;  :require (
+;    powerline-evil
+;    )
 ;  :init
 ;  (progn
-;    (sml/setup)
+;    ;(powerline-default-theme)
+;    ;(powerline-center-theme)
+;    ;(powerline-center-evil-theme)
+;    ;(powerline-vim-theme)
+;    ;(powerline-nano-theme)
+;
+;    ;(powerline-evil-vim-theme)
+;    ;(powerline-evil-vim-color-theme)
+;    (powerline-evil-center-color-theme)
 ;    (column-number-mode)
 ;    )
-;)
-; use setq-default to set it for /all/ modes
+;  )
+(setq sml/no-confirm-load-theme t)
+(req-package smart-mode-line
+  :require (
+            sml-mode
+            smart-mode-line-powerline-theme
+            )
+  :config
+  (setq 
+   sml/theme 'powerline
+   )
+  :init
+  (progn
+    (sml/setup)
+    (column-number-mode)
+    )
+)
+;; use setq-default to set it for /all/ modes
 ;;(setq-default mode-line-format
 ;;  (list
 ;;    ;; the buffer name; the file name as a tool tip

@@ -6,7 +6,7 @@
  '(cursor ((t (:foreground "#2F4F4F"))))
  '(region ((t (:background "color-235"))))
  '(highlight ((t (:background "#222222"))))
- '(mode-line ((t (:foreground "#BCBf91" :background "#2F4F4F"))))
+ '(mode-line ((t (:foreground "#BCBf91" :background "#003d00"))))
  '(mode-line-inactive ((t (:background "#111111" :foreground "#cccddd"))))
  '(fringe ((t (:background "#000000"))))
  '(minibuffer-prompt ((t (:foreground "#729fcf"))))
