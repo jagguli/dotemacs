@@ -44,8 +44,10 @@
       )
 
     (global-set-key "\C-xpl" 'load-ropemacs)
-    (add-hook 'outline-minor-mode-hook (lambda ()
-                                         (require 'outline-magic)))
+    (add-hook 'outline-minor-mode-hook 
+            (lambda () 
+                (require 'outline-magic)
+    ))
 
     (defadvice goto-line (after expand-after-goto-line
                                 activate compile)
@@ -69,6 +71,11 @@
     (set-display-table-slot standard-display-table
                             'selective-display
                             (string-to-vector " [...]\n"))
+    (defun py-outline-level ()
+        (let (buffer-invisibility-spec)
+            (save-excursion
+            (skip-chars-forward "    ")
+            (current-column))))
     ;;;;http://emacs-fu.blogspot.com.au/2008/12/showing-and-hiding-blocks-of-code.html
     (defun my-python-mode-hook ()
       (message "my-python-mode-hook")
@@ -83,18 +90,23 @@
       (if (not (or
                 (string/starts-with (buffer-name) "*mo-git-blame")
                 (string/starts-with (buffer-name) "*svn-status")
-                (bound-and-true-p diff-auto-refine-mode)
                 ))
           (progn
-            (setq
-             outline-regexp "[ \t]*\\(class\\|def\\|with\\) "
-             indent-line-function 'py-indent-line
-             )
+            (message "my-python-mode-hook:outline-mode")
+            (setq 
+                outline-regexp "[ \t]*\\(class\\|def\\|with\\) "
+                indent-line-function 'py-indent-line
+                outline-level 'py-outline-level
+            )
             (outline-minor-mode t)
-            (define-key evil-normal-state-map "za" 'outline-cycle)
-            (define-key evil-normal-state-map "\t" 'outline-cycle)
-            (hide-body)
             (show-paren-mode 1)
+            (outline-hide-body)
+            (define-key python-mode-map [tab] 'outline-cycle)
+            (define-key outline-minor-mode-map [S-tab] 'indent-for-tab-command)
+            (define-key outline-minor-mode-map [M-down] 'outline-move-subtree-down)
+            (define-key outline-minor-mode-map [M-up] 'outline-move-subtree-up)
+            (define-key evil-normal-state-map "za" 'outline-toggle-children)
+            (define-key evil-normal-state-map "\t" 'outline-cycle)
             (define-key evil-normal-state-map "zo" 'show-entry)
             (define-key evil-normal-state-map "zO" 'hide-other)
             (define-key evil-normal-state-map "zc" 'hide-entry)

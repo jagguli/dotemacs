@@ -7,13 +7,13 @@
             google-this
             yaml-mode
             feature-mode
-            origami
+            ;;origami
             findr
             )
   :config
   (progn
     (fci-mode t)
-    (global-origami-mode)
+    ;;(global-origami-mode)
     (format-all-mode)
 
     (defun emacs-log ()

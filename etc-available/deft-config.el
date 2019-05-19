@@ -3,6 +3,7 @@
   (setq
    deft-extensions '("txt" "tex" "org")
    deft-directory "~/org/"
+   deft-recursive t
   )
   :init
   (progn
