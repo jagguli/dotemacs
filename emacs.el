@@ -59,6 +59,9 @@
          MMMMMMMMMMM MMMM MMMMMMMMMMM MMMMMMMMMMMM
 
            http://github.com/jagguli/dotemacs
+
+- The first step to being your master, is mastering your self.
+
  
 %s
 
