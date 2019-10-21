@@ -25,6 +25,7 @@
    helm-M-x-always-save-history t
    helm-always-two-windows t 
    helm-boring-buffer-regexp-list
+   helm-ff-lynx-style-map t
    (quote
     ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-"
      "\\*Complet" "\\*magit" "\\*cscope" "\\*epc"))
