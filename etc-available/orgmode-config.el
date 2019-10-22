@@ -8,35 +8,47 @@
             helm-org-rfile
             hydra
             major-mode-hydra
+            org-gcal
             )
   :config (setq
            alert-default-style 'libnotify
-   org-log-done t
-   org-directory  "/home/steven/org/"
-   ;;org-directory (expand-file-name "~/share/orgmodegoogle/melit.stevenjoseph@gmail.com/OrgMode/")
-   org-from-is-user-regexp nil
-   org-log-done t
-   org-indent-mode t
-   org-mobile-directory (expand-file-name "~/share/Dropbox/MobileOrg/")
-   org-mobile-inbox-for-pull (concat org-mobile-directory "mobileorg.org")
-   org-return-follows-link t
-   org-catch-invisible-edits t
-   org-agenda-file-regexp "[^.#].*\\.org$"
-   org-default-notes-file (concat org-directory "notes.org")
-   org-clock-persist 'history
-   org-agenda-files
-      (mapcar 'abbreviate-file-name
-              (split-string
-               (shell-command-to-string "find ~/org/ -name \"*.org\"") "\n"))
-   org-clock-into-drawer t
-   org-default-priority 90
-   org-ehtml-docroot "~/org/ehtml/"
-   org-journal-dir "~/org/journal/"
-   org-journal-file-format "%A_%Y%m%d"
-   org-lowest-priority 90
-   org-emphasis-alist
-          (cons '("+" '(:strike-through t :foreground "#121212"))
-                            (delete* "+" org-emphasis-alist :key 'car :test 'equal))
+           org-log-done t
+           org-directory  "/home/steven/org/"
+           ;;org-directory (expand-file-name "~/share/orgmodegoogle/melit.stevenjoseph@gmail.com/OrgMode/")
+           org-from-is-user-regexp nil
+           org-log-done t
+           org-indent-mode t
+           org-mobile-directory (expand-file-name "~/share/Dropbox/MobileOrg/")
+           org-mobile-inbox-for-pull (concat org-mobile-directory "mobileorg.org")
+           org-return-follows-link t
+           org-catch-invisible-edits t
+           org-agenda-file-regexp "[^.#].*\\.org$"
+           org-default-notes-file (concat org-directory "notes.org")
+           org-clock-persist 'history
+           org-toodledo-userid (password-store-get "internet/toodledo/userid")
+           org-toodledo-password (password-store-get "internet/toodledo/password")
+           org-toodledo-folder-support-mode t
+           org-toodledo-folder-support-mode (quote heading)
+           org-agenda-files
+           (quote
+            ("/home/steven/org/"))
+                                        ; ("/home/steven/org/todo.org"))
+           org-clock-into-drawer t
+           org-default-priority 90
+           org-ehtml-docroot "~/org/ehtml/"
+           org-journal-dir "~/org/journal/"
+           org-journal-file-format "%A_%Y%m%d"
+           org-lowest-priority 90
+           org-emphasis-alist
+           (cons '("+" '(:strike-through t :foreground "#121212"))
+                 (delete* "+" org-emphasis-alist :key 'car :test 'equal))
+        ;; https://cestlaz.github.io/posts/using-emacs-26-gcal/#.WIqBud9vGAk
+           org-gcal-client-id (password-store-get "streethawk/google/emacs/org-gcal/clientid")
+           org-gcal-client-secret (password-store-get "streethawk/google/emacs/org-gcal/clientsecret")
+           org-gcal-file-alist '(
+                                 ("melit.stevenjoseph@gmail.com" .  "~/org/gcal_personal.org")
+                                 ("steven@streethawk.co" .  "~/org/gcal_work.org")
+                                 )
    )
   :init
   (progn
@@ -165,6 +177,9 @@
                           )))
              )))
 
+    (defun my-org-archive-done-tasks ()
+      (interactive)
+      (org-map-entries 'org-archive-subtree "/DONE" 'file))
 
     (global-set-key (kbd "C-c a") 'org-agenda)
     (major-mode-hydra-bind org-agenda-mode "Org Agenda"
@@ -199,6 +214,8 @@
       )
     (global-set-key (kbd "<f3>") 'hydra-global-org/body)
 
+    (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+    (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
 
     )
   )
