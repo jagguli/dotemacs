@@ -5,7 +5,7 @@
             password-store
             cl
             org-alert
-            helm-org-rfile
+            ;;helm-org-rfile
             hydra
             major-mode-hydra
             org-gcal

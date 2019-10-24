@@ -5,7 +5,29 @@
          (fci-mode)
          (blink-cursor-mode 0)
     )
-)
+  :require (
+            powerline
+            powerline-evil
+            format-all
+            google-this
+            yaml-mode
+            feature-mode
+            ;;origami
+            findr
+            )
+  :config
+  (progn
+    (fci-mode t)
+   (global-auto-revert-mode t)
+   (global-origami-mode)
+    (format-all-mode)
+
+        (save-excursion
+          (with-current-buffer log-buffer
+            ;;  (goto-char (point-max))
+            ;;  (insert log-str))
+            (write-region (point-min) (point-max) log-file-name t
+                          'nomessage nil nil)))))
 
 (defun emacs-log ()
   (interactive)

@@ -46,6 +46,8 @@
     (evil-set-initial-state 'circe-channel-mode 'emacs)
     (evil-set-initial-state 'deft-mode 'emacs)
     (evil-set-initial-state 'rope-occurrences 'emacs)
+    (evil-set-initial-state 'notmuch-show-mode 'emacs)
+    (evil-set-initial-state 'notmuch-search-mode 'emacs)
     (defun helm-ag-with-prefix-arg ()
       (interactive)
       (setq current-prefix-arg '(4)) ; C-u
@@ -60,7 +62,7 @@
     (define-key evil-normal-state-map (kbd "C-x v") 'helm-show-kill-ring)
     (define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag-with-prefix-arg)
     ;;(define-key global-map (kbd "`") 'find-file)
-    (evil-collection-init)
+    ;;(evil-collection-init)
     (evil-define-command "Ve"
       (function 
        lambda() (split-window-horizontally)))
@@ -140,6 +142,12 @@
   (add-hook 'org-mode-hook 'evil-org-mode)
   (add-hook 'evil-org-mode-hook
             (lambda ()
-              (evil-org-set-key-theme)))
+             (evil-org-set-key-theme)
+             (define-key org-mode-map (kbd "TAB") 'org-cycle)
+             (define-key org-mode-map (kbd "<tab>") 'org-cycle)
+             (define-key evil-org-mode-map (kbd "TAB") 'org-cycle)
+             (define-key evil-org-mode-map (kbd "<tab>") 'org-cycle)
+              ))
   (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
+  (evil-org-agenda-set-keys)
+  )

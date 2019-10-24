@@ -4,31 +4,10 @@
             password-store
             dash
             addressbook-bookmark
-            smtpmail-multi
             ;;auth-password-store
             )
   :config
   (setq
-   smtpmail-multi-accounts '(
-                             ((password-store-get "streethawk/google/username")
-                              "smtp.gmail.com"
-                              465
-                              "steven@pointzi.com")
-                             ((password-store-get "streethawk/google/username")
-                              "smtp.gmail.com"
-                              465
-                              "steven@streethawk.com")
-                             ((password-store-get "internet/google/melit/email")
-                              "smtp.gmail.com"
-                              465
-                              "melit.stevenjoseph@gmail.com")
-                             ((password-store-get "internet/google/stevenjoseph.in")
-                              "smtp.gmail.com"
-                              465
-                              "steven@stevenjoseph.in")
-                             
-                             )
-                            
      notmuch-saved-searches
       (quote
        (
@@ -72,40 +51,48 @@
         . " %-54s ")
        ("tags" . "[%s]")
        )
-     notmuch-search-line-faces
-     (quote
-      (("deleted" :foreground "grey" :background "grey")
-       ("important" :foreground "red")
-       ("unread" :foreground "green")
-       ("today" :foreground "green" :background "color-232")
-       ("flagged" :foreground "magenta")
-       ("draft" :foreground "brightblue")
-       ("me" :weight bold :foreground "white")
-       ("INBOX" :foreground "color-243")
-       )
-      )
      message-sendmail-envelope-from 'header
      notmuch-address-selection-function
       (lambda (prompt collection initial-input)
         (completing-read prompt (cons initial-input collection) nil t nil 'notmuch-address-history))
 
-     ;;(lambda (prompt collection initial-input)
-     ;;  (completing-read prompt
-     ;;                   (cons initial-input collection)
-     ;;                   nil t nil 'notmuch-address-options))
-     ;;NOTE smtp auth in .authinfo.gpg
-     send-mail-function 'smtpmail-send-it
-     ;;send-mail-function 'smtpmail-multi-send-it
-     ;;smtpmail-local-domain "streethawk.com"
-     ;;smtpmail-sendto-domain "streethawk.com"
      smtpmail-debug-info t
-     smtpmail-debug-verb t
-     ;;mail-user-agent 'message-user-agent
-     smtpmail-stream-type 'ssl
-     smtpmail-smtp-server "smtp.gmail.com"
-     smtpmail-smtp-service 465
      user-mail-address "steven@pointzi.com"
-     smtpmail-smtp-user (password-store-get "streethawk/google/username")
+
+     ;;MSMTP config
+     ;; This is needed to allow msmtp to do its magic:
+    message-sendmail-f-is-evil 't
+
+    ;;need to tell msmtp which account we're using
+    message-sendmail-extra-arguments '("--read-envelope-from")
+    ;; with Emacs 23.1, you have to set this explicitly (in MS Windows)
+    ;; otherwise it tries to send through OS associated mail client
+    message-send-mail-function 'message-send-mail-with-sendmail
+    ;; we substitute sendmail with msmtp
+    sendmail-program "/usr/sbin/msmtp"
+    ;;need to tell msmtp which account we're using
+    message-sendmail-extra-arguments '("-a" "pointzi")
+    ;; you might want to set the following too
+    mail-host-address "gmail.com"
+    user-full-name "Steven Joseph"
+    user-mail-address "steven@pointzi.com"
+    ;; end MSMTP config
+
+   gnus-alias-identity-alist
+      '(("melit"
+         nil ;; Does not refer to any other identity
+         "Steven Joseph <steven@stevenjoseph.in>"
+         nil ;; No organization header
+         nil ;; No extra headers
+         nil ;; No extra body text
+         nil)
+        ("pointzi"
+         nil
+         "Steven Joseph <steven@pointzi.com>"
+         "Pointzi."
+         nil
+         nil
+         "~/org/signatures/pointzi.txt"))     
      notmuch-wash-wrap-lines-length 180
      notmuch-address-command 'internal
      notmuch-identities '(
@@ -118,6 +105,19 @@
      shr-color-visible-luminance-min 60
      shr-color-visible-distance-min 5
      shr-use-colors nil
+     notmuch-search-line-faces
+     (quote
+      (("deleted" :foreground "grey" :background "brightblack")
+       ("important" :foreground "red")
+       ("unread" :foreground "green")
+       ("today" :foreground "green" :background "color-232")
+       ("flagged" :foreground "magenta")
+       ("team" :foreground "brightgreen")
+       ("draft" :foreground "brightblue")
+       ("me" :foreground "white")
+       ("INBOX" :foreground "color-243")
+       )
+      )
      )
   :init
   (progn
@@ -127,31 +127,6 @@
      (lambda ()
        (flyspell-mode)))
     
-
-    ;;(advice-add 'post-smtp-send :after 'async-smtpmail-send-it)
-
-    (defun cg-feed-msmtp ()
-      (if (message-mail-p)
-          (save-excursion
-            (let* ((from
-                    (save-restriction
-                      (message-narrow-to-headers)
-                      (message-fetch-field "from")))
-                   (account
-                    (cond
-                     ;; I use email address as account label in ~/.msmtprc
-                     ((string-match "melit.stevenjoseph@gmail.com" from) "melit")
-                     ((string-match "stevenjose@gmail.com" from) "stevenjose")
-                     ((string-match "steven@stevenjoseph.in" from) "stevenjoseph.in")
-                     ;; Add more string-match lines for your email accounts
-                     ((string-match "steven.joseph@iress.com.au" from) "iress")
-                     ((string-match "steven@streethawk.com" from) "streethawk")
-                     )))
-              ;;(setq message-sendmail-extra-arguments (list '"-a" account))
-              ))))
-
-    ;;(add-hook 'message-send-mail-hook 'cg-feed-msmtp)
-
     (defun notmuch-search-toggle-tags (tags)
       "toggle tags for thread"
       (interactive)
@@ -302,7 +277,7 @@
   (define-key notmuch-show-mode-map "R" 'notmuch-show-reply-sender)
   (define-key notmuch-search-mode-map "r" 'notmuch-search-reply-to-thread)
   (define-key notmuch-search-mode-map "R" 'notmuch-search-reply-to-thread-sender)
-  (define-key notmuch-show-mode-map "o" 'open-in-kmail)
+  (define-key notmuch-show-mode-map "O" 'open-in-kmail)
 
   ;; (defun match-strings-all (&optional string)
   ;;    "Return the list of all expressions matched in last search.
@@ -361,7 +336,7 @@
           (write-string-to-file 
            (format "%s" (notmuch-show-get-from))
            (expand-file-name "~/.mailers")))))
+    (advice-add #'shr-colorize-region :around (defun shr-no-colourise-region (&rest ignore)))
 
     )
-    (advice-add #'shr-colorize-region :around (defun shr-no-colourise-region (&rest ignore)))
   )

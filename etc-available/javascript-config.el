@@ -1,5 +1,5 @@
 ;;(autoload 'tern-mode "tern.el" nil t)
-(req-package js3-mode
+(req-package js2-mode
   :require (tern)
   :init
   (progn
