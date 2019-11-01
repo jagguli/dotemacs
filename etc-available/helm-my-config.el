@@ -24,8 +24,8 @@
    helm-autoresize-mode t
    helm-M-x-always-save-history t
    helm-always-two-windows t 
+   helm-ff-lynx-style-map t ;Note that if you define this variable with ‘setq’ your change will  have no effect, use customize insteadi
    helm-boring-buffer-regexp-list
-   helm-ff-lynx-style-map t
    (quote
     ("\\` " "\\*helm" "\\*helm-mode" "\\*Echo Area" "\\*Minibuf" "\\*vc-"
      "\\*Complet" "\\*magit" "\\*cscope" "\\*epc"))

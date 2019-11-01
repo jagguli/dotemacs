@@ -1,4 +1,15 @@
 ;; My miscellaneous functions
+(req-package which-key
+  :init(progn
+         (which-key-mode)))
+(req-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
 (req-package fill-column-indicator
   :config (setq fci-rule-column 80)
   :init(progn
@@ -14,20 +25,16 @@
             feature-mode
             ;;origami
             findr
+            erlang
             )
   :config
   (progn
     (fci-mode t)
    (global-auto-revert-mode t)
-   (global-origami-mode)
+   ;;(global-origami-mode)
     (format-all-mode)
 
-        (save-excursion
-          (with-current-buffer log-buffer
-            ;;  (goto-char (point-max))
-            ;;  (insert log-str))
-            (write-region (point-min) (point-max) log-file-name t
-                          'nomessage nil nil)))))
+        ))
 
 (defun emacs-log ()
   (interactive)
@@ -364,7 +371,3 @@ buffer is not visiting a file."
 e.g. Sunday, September 17, 2000."
       (interactive)                 ; permit invocation in minibuffer
       (insert (format-time-string "%A, %B %e, %Y")))
-
-
-    )
-  )

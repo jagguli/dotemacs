@@ -41,11 +41,11 @@
 (load-file (concat user-lib-dir "vline.el"))
 (load-file (concat user-lib-dir "col-highlight.el"))
 (load-file (concat user-lib-dir "hl-line+.el"))
-(load-file (concat user-lib-dir "notmuch-pick.el"))
-(add-to-list 'load-path (concat user-lib-dir "Pymacs"))
-(add-to-list 'load-path (concat user-lib-dir "buffer-timer"))
-(add-to-list 'load-path (concat user-lib-dir "powerline"))
-(add-to-list 'load-path (concat user-lib-dir "powerline-evil"))
+;(load-file (concat user-lib-dir "notmuch-pick.el"))
+;(add-to-list 'load-path (concat user-lib-dir "Pymacs"))
+;(add-to-list 'load-path (concat (user-lib-dir) "buffer-timer"))
+;(add-to-list 'load-path (concat user-lib-dir "powerline"))
+;(add-to-list 'load-path (concat user-lib-dir "powerline-evil"))
 (require 'req-package)
 (setq
  load-dir-recursive nil
