@@ -1,0 +1,20 @@
+image: debian:stretch
+
+variables:
+  GIT_STRATEGY: fetch
+  EMACS_EMBA_CI: 1
+
+before_script:
+  - apt update -qq
+  #- DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y -qq -o=Dpkg::Use-Pty=0 libc-dev gcc make autoconf automake libncurses-dev gnutls-dev git
+
+stages:
+  - test
+
+test-all:
+  # This tests also file monitor libraries inotify and inotifywatch.
+  stage: test
+  script:
+    - DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y -qq -o=Dpkg::Use-Pty=0 emacs
+    - emacs --debug-init --batch -user root
+
