@@ -16,6 +16,7 @@ test-all:
   stage: test
   script:
     - DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y -qq -o=Dpkg::Use-Pty=0 emacs
+    - mkdir /root/.emacs.d/
     - ln -sf $(pwd) /root/.emacs.d/
     - emacs --debug-init --batch -user root
     - >
