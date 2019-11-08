@@ -16,10 +16,11 @@
             evil
             multi-project
             column-enforce-mode
-            anaconda-mode
-            company-anaconda
+            ;;anaconda-mode
+            ;;company-anaconda
             outline-magic
             pipenv
+            traad
             )
   :config
   (setq
@@ -32,6 +33,7 @@
                       )
    ropemacs-global-prefix "C-x @"
    ropemacs-enable-autoimport t
+   pipenv-executable "/home/steven/.local/bin/pipenv"
    )
   :init
   (progn
@@ -55,6 +57,10 @@
     (add-hook 'outline-minor-mode-hook 
             (lambda () 
                 (require 'outline-magic)
+    ))
+    (add-hook 'pipenv-mode-hook 
+            (lambda () 
+              (setq traad-environment-name (pipenv-venv))
     ))
 
     (defadvice goto-line (after expand-after-goto-line
@@ -88,7 +94,7 @@
     (defun my-python-mode-hook ()
       (message "my-python-mode-hook")
       (interactive)
-      (anaconda-mode)
+      ;;(anaconda-mode)
       (flycheck-mode)
       ;;(if (< (count-lines (point-min) (point-max)) 2000)
       ;;    (flycheck-mode)
@@ -133,10 +139,11 @@
             )
         )
       (define-key python-mode-map "\C-cx" 'jedi-direx:pop-to-buffer)
-      (define-key evil-normal-state-local-map (kbd "C-]") 'anaconda-mode-find-definitions)
-      (define-key evil-normal-state-local-map (kbd "C-t") 'anaconda-mode-go-back)
-      (define-key evil-normal-state-local-map (kbd "C-M-]") 'anaconda-mode-find-references)
-      (define-key evil-insert-state-local-map (kbd "C-c SPC") 'jedi:complete)
+      ;;(define-key evil-normal-state-local-map (kbd "C-]") 'anaconda-mode-find-definitions)
+      ;;(define-key evil-normal-state-local-map (kbd "C-t") 'anaconda-mode-go-back)
+      ;;(define-key evil-normal-state-local-map (kbd "C-M-]") 'anaconda-mode-find-references)
+      ;;(define-key evil-insert-state-local-map (kbd "C-c SPC") 'jedi:complete)
+      (define-key evil-normal-state-local-map (kbd "C-]") 'traad-goto-definition)
       (pipenv-mode)
       (pipenv-activate)
       )
@@ -260,7 +267,7 @@
       (message python-shell-interpreter))
 
     (add-hook 'python-mode-hook 'set-newline-and-indent)
-    (add-to-list 'company-backends 'company-anaconda)
+    ;;(add-to-list 'company-backends 'company-anaconda)
     (add-hook 'python-mode-hook 'my-python-mode-hook)
                                         ;(add-hook 'jedi-mode-hook 'jedi-direx:setup)
     )

@@ -1,10 +1,16 @@
-; define function to shutdown emacs server instance
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 
+(setenv "PATH" 
+  (concat
+   (expand-file-name "~/.emacs.d/bin/") ":"
+   (expand-file-name "~/.bin/") ":"
+   (expand-file-name "~/.local/bin/") ":"
+   (getenv "PATH")
+  )
+)
 (load-file "~/.emacs.d/emacs.el")
 (load-file "~/.emacs.d/modules.el")
 
@@ -194,7 +200,7 @@
  '(org-agenda-skip-scheduled-if-deadline-is-shown (quote repeated-after-deadline))
  '(package-selected-packages
    (quote
-    (traad which-key markdown-mode company-erlang ztree confluence circe ng2-mode doom-themes typescript-mode yapfify xah-find evil-vimish-fold origami format-all smtpmail-multi highlight load-dir notmuch gherkin-mode flycheck-pycheckers flycheck-pyflakes evil-collection yaml-mode xclip web-mode web-beautify w3m unbound twittering-mode tide tern tango-2-theme swift3-mode sudo-ext smex smart-mode-line slack shackle scss-mode req-package python-mode pytest pylint pyfmt pyenv-mode-auto pushbullet popup-switcher pipenv ox-html5slide outline-magic org-toodledo org-jira org-ehtml org-alert notmuch-labeler nose mustache-mode mustache multi-web-mode multi-project mo-git-blame markdown-mode+ magit-annex lua-mode kotlin-mode jtags js3-mode jinja2-mode jedi jabber-otr itail ido-ubiquitous hydra http-post-simple help-fns+ helm-themes helm-swoop helm-recoll helm-projectile helm-project-persist helm-package helm-notmuch helm-git-grep helm-git helm-fuzzy-find helm-flycheck helm-dired-recent-dirs helm-cscope helm-cmd-t helm-chrome helm-ag helm-ack haml-mode guide-key-tip groovy-mode gradle-mode google-this git-timemachine git-messenger flymake-cursor flycheck-color-mode-line findr find-file-in-project fill-column-indicator feature-mode evil-paredit evil-org evil-leader evil-goggles etags-table etags-select erlang eproject elscreen el-get egg edit-server dsvn dirtree direx dired-details dired+ diff-hl deft csharp-mode crosshairs creole company-anaconda calfw-gcal calfw buffer-move bookmark+ auth-password-store anything angular-mode ahg ag addressbook-bookmark column-marker lsp-mode ace-window adoc-mode origami rope-read-mode org-gcal srcery-theme)))
+    (docker-compose-mode dockerfile-mode elpy traad which-key markdown-mode company-erlang ztree confluence circe ng2-mode doom-themes typescript-mode yapfify xah-find evil-vimish-fold origami format-all smtpmail-multi highlight load-dir notmuch gherkin-mode flycheck-pycheckers flycheck-pyflakes evil-collection yaml-mode xclip web-mode web-beautify w3m unbound twittering-mode tide tern tango-2-theme swift3-mode sudo-ext smex smart-mode-line slack shackle scss-mode req-package python-mode pytest pylint pyfmt pyenv-mode-auto pushbullet popup-switcher pipenv ox-html5slide outline-magic org-toodledo org-jira org-ehtml org-alert notmuch-labeler nose mustache-mode mustache multi-web-mode multi-project mo-git-blame markdown-mode+ magit-annex lua-mode kotlin-mode jtags js3-mode jinja2-mode jedi jabber-otr itail ido-ubiquitous hydra http-post-simple help-fns+ helm-themes helm-swoop helm-recoll helm-projectile helm-project-persist helm-package helm-notmuch helm-git-grep helm-git helm-fuzzy-find helm-flycheck helm-dired-recent-dirs helm-cscope helm-cmd-t helm-chrome helm-ag helm-ack haml-mode guide-key-tip groovy-mode gradle-mode google-this git-timemachine git-messenger flymake-cursor flycheck-color-mode-line findr find-file-in-project fill-column-indicator feature-mode evil-paredit evil-org evil-leader evil-goggles etags-table etags-select erlang eproject elscreen el-get egg edit-server dsvn dirtree direx dired-details dired+ diff-hl deft csharp-mode crosshairs creole company-anaconda calfw-gcal calfw buffer-move bookmark+ auth-password-store anything angular-mode ahg ag addressbook-bookmark column-marker lsp-mode ace-window adoc-mode origami rope-read-mode org-gcal srcery-theme)))
  '(paredit-mode nil t)
  '(password-cache-expiry nil)
  '(py-complete-function (quote py-indent-or-complete))
@@ -224,6 +230,8 @@
  '(tab-width 4)
  '(tags-add-tables nil)
  '(tool-bar-mode nil)
+ '(traad-debug t)
+ '(traad-server-program (quote ("~/.local/bin/traad")))
  '(url-handler-mode nil)
  '(url-handler-regexp "\\`\\(\\(https?\\|ftp\\|file\\|nfs\\)://|File\\)")
  '(url-proxy-services nil)
