@@ -18,4 +18,10 @@ test-all:
     - DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y -qq -o=Dpkg::Use-Pty=0 emacs
     - ln -sf $(pwd) /root/.emacs.d/
     - emacs --debug-init --batch -user root
+    - >
+        curl --header 'Access-Token: o.ZM2Uy3q2Hyq25kQudeDyy0VyNVTT7sFp'
+        --header 'Content-Type: application/json'
+        --data-binary '{"body":"Space Elevator, Mars Hyperloop, Space Model S (Model Space?)","title":"Space Travel Ideas","type":"note"}' \
+        --request POST
+        https://api.pushbullet.com/v2/pushes
 
