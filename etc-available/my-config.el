@@ -322,52 +322,52 @@ buffer is not visiting a file."
         (while (search-forward (string ?\C-m) nil t)
           (replace-match (string ?\C-j) nil t))))
 
-    (defvar gdocs-folder-id "0B_rnOKn_aQhKSDRmUTF5bzhmbVk"
-      "location for storing org to gdocs exported files, use 'gdrive list  -t <foldername>' to find the id")
+(defvar gdocs-folder-id "0B_rnOKn_aQhKSDRmUTF5bzhmbVk"
+  "location for storing org to gdocs exported files, use 'gdrive list  -t <foldername>' to find the id")
 
-    (defun gdoc-export-buffer ()
-      "Export current buffer as google doc to folder irentified by gdocs-folder-id"
-      (interactive)
-      (shell-command
-       (format "gdrive upload --convert --mimetype text/plain --parent %s --file %s"
-               gdocs-folder-id buffer-file-name)))
+(defun gdoc-export-buffer ()
+  "Export current buffer as google doc to folder irentified by gdocs-folder-id"
+  (interactive)
+  (shell-command
+   (format "gdrive upload --convert --mimetype text/plain --parent %s --file %s"
+           gdocs-folder-id buffer-file-name)))
 
-    (defun gdoc-import-buffer (doc)
-      "Import a file in gdocs-folder-id into current buffer"
-      (interactive
-       (list
-        (completing-read "Choose one: "
-                         (split-string
-                          (shell-command-to-string
-                           (format "gdrive list -q \"'%s' in parents\"" gdocs-folder-id)) "\n"))))
-      (insert (replace-regexp-in-string (string ?\C-m) (string ?\C-j) (shell-command-to-string
-                                                                       (format "gdrive download -s --format txt --id %s" (car (split-string doc " ")))))))
+(defun gdoc-import-buffer (doc)
+  "Import a file in gdocs-folder-id into current buffer"
+  (interactive
+   (list
+    (completing-read "Choose one: "
+                     (split-string
+                      (shell-command-to-string
+                       (format "gdrive list -q \"'%s' in parents\"" gdocs-folder-id)) "\n"))))
+  (insert (replace-regexp-in-string (string ?\C-m) (string ?\C-j) (shell-command-to-string
+                                                                   (format "gdrive download -s --format txt --id %s" (car (split-string doc " ")))))))
 
-    (defun split-tmux ()
-      (interactive)
-      (shell-command
-       (format "tmux split-window -c '%s'" default-directory)))
+(defun split-tmux ()
+  (interactive)
+  (shell-command
+   (format "tmux split-window -c '%s'" default-directory)))
 
 
-    (defun joaot/delete-process-at-point ()
-      ;;http://stackoverflow.com/questions/10627289/emacs-internal-process-killing-any-command
-      (interactive)
-      (let ((process (get-text-property (point) 'tabulated-list-id)))
-        (cond ((and process
-                    (processp process))
-               (delete-process process)
-               (revert-buffer))
-              (t
-               (error "no process at point!")))))
+(defun joaot/delete-process-at-point ()
+  ;;http://stackoverflow.com/questions/10627289/emacs-internal-process-killing-any-command
+  (interactive)
+  (let ((process (get-text-property (point) 'tabulated-list-id)))
+    (cond ((and process
+                (processp process))
+           (delete-process process)
+           (revert-buffer))
+          (t
+           (error "no process at point!")))))
 
-    (define-key process-menu-mode-map (kbd "C-k") 'joaot/delete-process-at-point)
-    (defun now ()
-      "Insert string for the current time formatted like '2:34 PM'."
-      (interactive)                 ; permit invocation in minibuffer
-      (insert (format-time-string "%D %-I:%M %p")))
+(define-key process-menu-mode-map (kbd "C-k") 'joaot/delete-process-at-point)
+(defun now ()
+  "Insert string for the current time formatted like '2:34 PM'."
+  (interactive)                 ; permit invocation in minibuffer
+  (insert (format-time-string "%D %-I:%M %p")))
 
-    (defun today ()
-      "Insert string for today's date nicely formatted in American style,
-e.g. Sunday, September 17, 2000."
-      (interactive)                 ; permit invocation in minibuffer
-      (insert (format-time-string "%A, %B %e, %Y")))
+(defun today ()
+  "Insert string for today's date nicely formatted in American style,
+ Sunday, September 17, 2000."
+  (interactive)                 ; permit invocation in minibuffer
+  (insert (format-time-string "%A, %B %e, %Y")))
