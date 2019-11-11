@@ -60,8 +60,7 @@
     ))
     (add-hook 'pipenv-mode-hook 
             (lambda () 
-              (setq traad-environment-name (pipenv-venv))
-    ))
+              (setq traad-server-program (concat python-shell-virtualenv-root "/bin/traad"))))
 
     (defadvice goto-line (after expand-after-goto-line
                                 activate compile)

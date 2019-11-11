@@ -231,7 +231,7 @@
  '(tags-add-tables nil)
  '(tool-bar-mode nil)
  '(traad-debug t)
- '(traad-server-program (quote ("~/.local/bin/traad")))
+ '(traad-server-program nil)
  '(url-handler-mode nil)
  '(url-handler-regexp "\\`\\(\\(https?\\|ftp\\|file\\|nfs\\)://|File\\)")
  '(url-proxy-services nil)
