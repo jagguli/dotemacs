@@ -1,15 +1,4 @@
-;; package ---- Summary: Python Mode ================================================================================
-;;; Commentary:
-;;;(require 'python-magic)
-                                        ;(autoload 'pymacs-apply "pymacs")
-                                        ;(autoload 'pymacs-call "pymacs")
-                                        ;(autoload 'pymacs-eval "pymacs" nil t)
-                                        ;(autoload 'pymacs-exec "pymacs" nil t)
-                                        ;(autoload 'pymacs-load "pymacs" nil t)
-                                        ;(autoload 'pymacs-autoload "pymacs")
-                                        ;(setq ropemacs-enable-autoimport t)
-                                        ;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-                                        ;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+;; package ---- Summary: Python Mode ===========================================
 ;;; Code:
 (req-package python-mode
   :require (
@@ -20,47 +9,33 @@
             ;;company-anaconda
             outline-magic
             pipenv
-            traad
             )
   :config
   (setq
    py-load-pymaqcs-p t
-   pymacs-python-command "python3"
+   pymacs-python-command "python"
    ropemacs-confirm-saving 'nil
    pymacs-load-path '(
-                      "~/.local/lib/python3.7/site-packages"
-                      "~/.local/lib/python2.7/site-packages"
+                      "~/.local/lib/python3.8/site-packages"
+                      "~/.local/share/virtualenvs/slicecloud-Y-bug9Ht"
                       )
    ropemacs-global-prefix "C-x @"
    ropemacs-enable-autoimport t
-   pipenv-executable "/home/steven/.local/bin/pipenv"
    )
   :init
   (progn
-                                        ;(autoload 'pymacs-apply "pymacs")
-                                        ;(autoload 'pymacs-call "pymacs")
-                                        ;(autoload 'pymacs-eval "pymacs" nil t)
-                                        ;(autoload 'pymacs-exec "pymacs" nil t)
-                                        ;(autoload 'pymacs-load "pymacs" nil t)
-    (defun load-ropemacs()
       (interactive)
+
       (require 'pymacs)
-      (setq pymacs-load-path '(
-                               "~/.local/lib/python3.7/site-packages"
-                               "~/.local/lib/python2.7/site-packages"
-                               )
-            )
       (pymacs-load "ropemacs" "rope-")
-      )
 
     (global-set-key "\C-xpl" 'load-ropemacs)
     (add-hook 'outline-minor-mode-hook 
             (lambda () 
                 (require 'outline-magic)
     ))
-    (add-hook 'pipenv-mode-hook 
-            (lambda () 
-              (setq traad-server-program (concat python-shell-virtualenv-root "/bin/traad"))))
+    ;;(add-hook 'pipenv-mode-hook #'lsp)
+    (add-hook 'pipenv-mode-hook 'load-ropemacs)
 
     (defadvice goto-line (after expand-after-goto-line
                                 activate compile)
@@ -142,7 +117,7 @@
       ;;(define-key evil-normal-state-local-map (kbd "C-t") 'anaconda-mode-go-back)
       ;;(define-key evil-normal-state-local-map (kbd "C-M-]") 'anaconda-mode-find-references)
       ;;(define-key evil-insert-state-local-map (kbd "C-c SPC") 'jedi:complete)
-      (define-key evil-normal-state-local-map (kbd "C-]") 'traad-goto-definition)
+      (define-key evil-normal-state-local-map (kbd "C-]") 'rope-goto-definition)
       (pipenv-mode)
       (pipenv-activate)
       )
@@ -255,26 +230,8 @@
             (if (string-equal pymacs-python-command "python2") "python3" "python2"))
       (message python-shell-interpreter))
 
-
-
-    (defun my/python-toggle-ipython ()
-      (interactive)
-      (setq python-shell-interpreter
-            (if (string-equal (substring python-shell-interpreter 0 1) "p")
-                (concat "i" python-shell-interpreter)
-              (substring python-shell-interpreter 1)))
-      (message python-shell-interpreter))
-
     (add-hook 'python-mode-hook 'set-newline-and-indent)
     ;;(add-to-list 'company-backends 'company-anaconda)
     (add-hook 'python-mode-hook 'my-python-mode-hook)
-                                        ;(add-hook 'jedi-mode-hook 'jedi-direx:setup)
     )
-  )
-
-                                        ;(req-package pipenv
-                                        ;  :hook (python-mode . pipenv-mode)
-                                        ;  :init
-                                        ;  (setq
-                                        ;   pipenv-projectile-after-switch-function
-                                        ;   #'pipenv-projectile-after-switch-extended))
+)
