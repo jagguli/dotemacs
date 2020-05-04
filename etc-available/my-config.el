@@ -188,7 +188,7 @@ Chromium."
   (setq url (browse-url-encode-url url))
   (let* ((process-environment (browse-url-process-environment)))
     (apply 'start-process
-	   (concat (expand-file-name "~/.bin/browser") url) nil
+	   (concat (expand-file-name "~/.bin/browser.sh") url) nil
 	   "browser"
 	   (append
 	    browse-url-chromium-arguments

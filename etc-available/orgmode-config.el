@@ -17,6 +17,7 @@
            ;;org-directory (expand-file-name "~/share/orgmodegoogle/melit.stevenjoseph@gmail.com/OrgMode/")
            org-from-is-user-regexp nil
            org-log-done t
+           org-archive-location "~/org/archive.org::"
            org-indent-mode t
            org-mobile-directory (expand-file-name "~/share/Dropbox/MobileOrg/")
            org-mobile-inbox-for-pull (concat org-mobile-directory "mobileorg.org")
@@ -216,6 +217,10 @@
 
     (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
     (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
+    (add-hook 'org-agenda-mode-hook (lambda () (
+            (define-key evil-normal-state-map "za" 'outline-toggle-children)
+            (define-key evil-normal-state-map "TAB" 'outline-toggle-children)
+            )))
 
     )
   )

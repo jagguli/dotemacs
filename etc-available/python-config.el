@@ -17,17 +17,17 @@
    ropemacs-confirm-saving 'nil
    pymacs-load-path '(
                       "~/.local/lib/python3.8/site-packages"
-                      "~/.local/share/virtualenvs/slicecloud-Y-bug9Ht"
+                      "~/.local/share/virtualenvs/slicecloud-Y-bug9Ht/lib/python3.8/site-packages"
                       )
    ropemacs-global-prefix "C-x @"
    ropemacs-enable-autoimport t
    )
   :init
   (progn
-      (interactive)
+    (interactive)
 
-      (require 'pymacs)
-      (pymacs-load "ropemacs" "rope-")
+    (require 'pymacs)
+    (pymacs-load "ropemacs" "rope-")
 
     (global-set-key "\C-xpl" 'load-ropemacs)
     (add-hook 'outline-minor-mode-hook 
@@ -118,6 +118,7 @@
       ;;(define-key evil-normal-state-local-map (kbd "C-M-]") 'anaconda-mode-find-references)
       ;;(define-key evil-insert-state-local-map (kbd "C-c SPC") 'jedi:complete)
       (define-key evil-normal-state-local-map (kbd "C-]") 'rope-goto-definition)
+      (define-key python-mode-map "\C-o" 'rope-pop-mark)
       (pipenv-mode)
       (pipenv-activate)
       )
