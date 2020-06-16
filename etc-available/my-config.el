@@ -364,10 +364,22 @@ buffer is not visiting a file."
 (defun now ()
   "Insert string for the current time formatted like '2:34 PM'."
   (interactive)                 ; permit invocation in minibuffer
-  (insert (format-time-string "%D %-I:%M %p")))
+  (insert (format-time-string "%A, %B %e %Y, %H:%M")))
 
 (defun today ()
   "Insert string for today's date nicely formatted in American style,
  Sunday, September 17, 2000."
   (interactive)                 ; permit invocation in minibuffer
-  (insert (format-time-string "%A, %B %e, %Y")))
+  (insert (format-time-string "%A, %B %e %Y")))
+
+(define-key process-menu-mode-map (kbd "C-k") 'joaot/delete-process-at-point)
+
+(defun joaot/delete-process-at-point ()
+  (interactive)
+  (let ((process (get-text-property (point) 'tabulated-list-id)))
+    (cond ((and process
+                (processp process))
+           (delete-process process)
+           (revert-buffer))
+          (t
+           (error "no process at point!")))))

@@ -29,13 +29,11 @@
     (require 'pymacs)
     (pymacs-load "ropemacs" "rope-")
 
-    (global-set-key "\C-xpl" 'load-ropemacs)
     (add-hook 'outline-minor-mode-hook 
             (lambda () 
                 (require 'outline-magic)
     ))
     ;;(add-hook 'pipenv-mode-hook #'lsp)
-    (add-hook 'pipenv-mode-hook 'load-ropemacs)
 
     (defadvice goto-line (after expand-after-goto-line
                                 activate compile)
@@ -118,6 +116,7 @@
       ;;(define-key evil-normal-state-local-map (kbd "C-M-]") 'anaconda-mode-find-references)
       ;;(define-key evil-insert-state-local-map (kbd "C-c SPC") 'jedi:complete)
       (define-key evil-normal-state-local-map (kbd "C-]") 'rope-goto-definition)
+      (define-key evil-normal-state-local-map (kbd "C-o") 'rope-pop-mark)
       (define-key python-mode-map "\C-o" 'rope-pop-mark)
       (pipenv-mode)
       (pipenv-activate)
