@@ -1,6 +1,7 @@
 ;; Evil =============================================================================
 (setq 
    evil-want-integration nil ;;for evil-collection
+   evil-want-C-i-jump nil
    )
 (req-package evil
   :require (
@@ -62,7 +63,7 @@
     (define-key evil-normal-state-map (kbd "C-x v") 'helm-show-kill-ring)
     (define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag-with-prefix-arg)
     ;;(define-key global-map (kbd "`") 'find-file)
-    ;;(evil-collection-init)
+    ;(evil-collection-init)
     (evil-define-command "Ve"
       (function 
        lambda() (split-window-horizontally)))
@@ -121,18 +122,8 @@
                                      (t default-color))))
                     (set-face-background 'mode-line (car color))
                     (set-face-foreground 'mode-line (cdr color))))))
+    (add-hook 'evil-insert-state-entry-hook (lambda () (message "enter insert mode")))
     )
-  :init
-  (setq
-    x-select-enable-clipboard t
-    x-select-enable-primary t
-    ;;http://dnquark.com/blog/2012/02/emacs-evil-ecumenicalism/
-    evil-default-state 'normal
-    evil-flash-delay 60
-    evil-default-cursor t
-    iswitchb-buffer-ignore '("^\\*")
-    )
-
   )
 
 (req-package evil-org
