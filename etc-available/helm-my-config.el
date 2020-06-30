@@ -80,7 +80,9 @@
      ;;helm-source-file-cache
      ;;helm-source-bookmarks
      helm-source-locate
-     )))
+     ))
+    helm-ag-insert-at-point t
+   )
 
    ;;shackle-rules '(("\\`\\*helm.*?\\*\\'" :regexp t :align t :ratio 0.5))
    ;;helm-split-window-default-side (quote left)
@@ -128,15 +130,6 @@
           (other-window 1)
           ))
       (helm-mini))
-    (eval-after-load "helm-ag"
-      '(defun helm-ag--query ()
-         (let* ((searched-word (helm-ag--searched-word))
-                (marked-word (helm-ag--marked-input nil))
-                (query (ag/read-from-minibuffer "Search string")))
-           (when (string= query "")
-             (error "Input is empty!!"))
-           (setq helm-ag--last-query query)))
-      )
     (defun helm-cmd-t-ad-hoc-example ()
       "Choose file from test folder."
       (interactive)

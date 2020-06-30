@@ -108,3 +108,4 @@
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'scroll-left 'disabled nil)
 (add-to-list 'auto-mode-alist '("\\.sls\\'" . yaml-mode))
+(set-face-attribute 'default nil :height 100)

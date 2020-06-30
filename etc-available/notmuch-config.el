@@ -109,8 +109,8 @@
      (quote
       (("deleted" :foreground "grey" :background "brightblack")
        ("important" :foreground "red")
-       ("unread" :foreground "green")
-       ("today" :foreground "green" :background "color-232")
+       ("unread" :weight bold)
+       ;("today" :foreground "green" :background "color-232")
        ("flagged" :foreground "magenta")
        ("team" :foreground "brightgreen")
        ("draft" :foreground "brightblue")

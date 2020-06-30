@@ -26,6 +26,7 @@
       (setq evil-symbol-word-search t))
     (add-hook 'git-commit-mode-hook 'evil-insert-state)
     (evil-mode 1)
+    (evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
     (evil-goggles-mode)
     (add-hook 'evil-local-mode-hook 'my-text-mode-hook)
     (evil-set-initial-state 'jabber-chat-mode 'emacs)
@@ -61,7 +62,8 @@
     (define-key evil-normal-state-map (kbd "`") 'helm-find-files)
     (define-key evil-normal-state-map (kbd "M-`") 'projectile-find-file)
     (define-key evil-normal-state-map (kbd "C-x v") 'helm-show-kill-ring)
-    (define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag-with-prefix-arg)
+    ;(define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag-with-prefix-arg)
+    (define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag)
     ;;(define-key global-map (kbd "`") 'find-file)
     ;(evil-collection-init)
     (evil-define-command "Ve"
@@ -131,14 +133,6 @@
   :after org
   :config
   (add-hook 'org-mode-hook 'evil-org-mode)
-  (add-hook 'evil-org-mode-hook
-            (lambda ()
-             (evil-org-set-key-theme)
-             (define-key org-mode-map (kbd "TAB") 'org-cycle)
-             (define-key org-mode-map (kbd "<tab>") 'org-cycle)
-             (define-key evil-org-mode-map (kbd "TAB") 'org-cycle)
-             (define-key evil-org-mode-map (kbd "<tab>") 'org-cycle)
-              ))
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys)
   )
