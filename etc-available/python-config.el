@@ -13,11 +13,29 @@
   :config
   (setq
    py-load-pymaqcs-p t
-   pymacs-python-command "python"
+   pymacs-python-command "/usr/sbin/python"
    ropemacs-confirm-saving 'nil
    pymacs-load-path '(
-                      "~/.local/lib/python3.8/site-packages"
-                      "~/.local/share/virtualenvs/slicecloud-Y-bug9Ht/lib/python3.8/site-packages"
+                       "/usr/lib/python38.zip"
+                       "/usr/lib/python3.8"
+                       "/usr/lib/python3.8/lib-dynload"
+                       "/home/steven/.local/lib/python3.8/site-packages"
+                       "/home/steven/.local/lib/python3.8/site-packages/webmacs-0.9-py3.8-linux-x86_64.egg"
+                       "/home/steven/.local/lib/python3.8/site-packages/Jinja2-3.0.0a1-py3.8.egg"
+                       "/home/steven/.local/lib/python3.8/site-packages/dateparser-0.7.6-py3.8.egg"
+                       "/home/steven/.local/lib/python3.8/site-packages/MarkupSafe-2.0.0a1-py3.8-linux-x86_64.egg"
+                       "/home/steven/.local/lib/python3.8/site-packages/tzlocal-2.1-py3.8.egg"
+                       "/home/steven/.local/lib/python3.8/site-packages/regex-2020.6.8-py3.8-linux-x86_64.egg"
+                       "/home/steven/src/ropemacs"
+                       "/home/steven/.local/lib/python3.8/site-packages/requests_toolbelt-0.9.1-py3.8.egg"
+                       "/home/steven/.local/lib/python3.8/site-packages/requests_oauthlib-1.3.0-py3.8.egg"
+                       "/home/steven/.local/lib/python3.8/site-packages/defusedxml-0.7.0rc1-py3.8.egg"
+                       "/home/steven/.local/lib/python3.8/site-packages/oauthlib-3.1.0-py3.8.egg"
+                       "/home/steven/.local/lib/python3.8/site-packages/jira-2.0.1rc4.dev1+g307f4c6-py3.8.egg"
+                       "/usr/lib/python3.8/site-packages"
+                        "/home/steven/.local/lib/python3.8/site-packages/"
+                        "/home/steven/.local/share/virtualenvs/slicecloud-Y-bug9Ht/lib/python3.8/site-packages/"
+                      
                       )
    ropemacs-global-prefix "C-x @"
    ropemacs-enable-autoimport t

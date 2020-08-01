@@ -63,7 +63,7 @@
     (define-key evil-normal-state-map (kbd "M-`") 'projectile-find-file)
     (define-key evil-normal-state-map (kbd "C-x v") 'helm-show-kill-ring)
     ;(define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag-with-prefix-arg)
-    (define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag)
+    (define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag-with-prefix-arg)
     ;;(define-key global-map (kbd "`") 'find-file)
     ;(evil-collection-init)
     (evil-define-command "Ve"
