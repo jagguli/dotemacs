@@ -1,3 +1,4 @@
+(require 'cl-lib)
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                     (not (gnutls-available-p))))

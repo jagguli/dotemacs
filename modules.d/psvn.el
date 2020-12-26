@@ -624,7 +624,7 @@ It is an experimental feature.")
 
 
 (eval-and-compile
-  (require 'cl)
+  (require 'cl-lib)
   (defconst svn-xemacsp (featurep 'xemacs))
   (if svn-xemacsp
       (require 'overlay)

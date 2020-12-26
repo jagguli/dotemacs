@@ -7,7 +7,7 @@
    circe-reduce-lurker-spam t
    lui-time-stamp-position 'right-margin
    lui-time-stamp-format "%H:%M"
-   lui-flyspell-p t
+   lui-flyspell-p nil
    lui-track-bar-behavior 'before-switch-to-buffer
    circe-format-say "{nick:s}: {body}"
    circe-server-max-reconnect-attempts 1000

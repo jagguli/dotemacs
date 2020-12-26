@@ -3,7 +3,6 @@
             org-journal
             org-journal-list
             password-store
-            cl
             org-alert
             ;;helm-org-rfile
             hydra

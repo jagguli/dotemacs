@@ -41,7 +41,7 @@
  '(persp-selected-face ((t (:foreground "#729fcf"))))
  '(show-paren-match ((t (:background "#729fcf" :foreground "#eeeeec"))))
  '(show-paren-mismatch ((t (:background "#ad7fa8" :foreground "#2e3436"))))
- '(vertical-border ((t (:inherit mode-line-inactive :background "black" :foreground "color-27" :weight thin :width condensed))))
+ '(vertical-border ((t (:inherit mode-line-inactive :background "black" :foreground "grey" :weight thin :width condensed))))
  '(default ((t (:background "black" :foreground "#eeeeec")))))
 
 (provide-theme 'tango-2-steven)

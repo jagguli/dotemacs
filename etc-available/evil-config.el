@@ -8,6 +8,7 @@
             evil-org
             evil-goggles
             evil-collection
+            undo-fu
             )
   :config
   (setq
@@ -19,6 +20,7 @@
    evil-default-cursor t
    ;;(iswitchb-mode 1)
    iswitchb-buffer-ignore '("^\\*")
+   evil-undo-system 'undo-fu
    )
   :init
   (progn

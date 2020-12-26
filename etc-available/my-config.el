@@ -184,11 +184,11 @@ Default to the URL around or before point.  The strings in
 variable `browse-url-chromium-arguments' are also passed to
 Chromium."
   (interactive (browse-url-interactive-arg "URL: "))
-  (message "opening browser")
+  (message "opening webmacs %s" url)
   (setq url (browse-url-encode-url url))
   (let* ((process-environment (browse-url-process-environment)))
     (apply 'start-process
-	   (concat (expand-file-name "~/.bin/browser.sh") url) nil
+	   (concat (expand-file-name "~/.bin/browser.py") url) nil
 	   "browser"
 	   (append
 	    browse-url-chromium-arguments
@@ -383,3 +383,9 @@ buffer is not visiting a file."
            (revert-buffer))
           (t
            (error "no process at point!")))))
+(setq ispell-program-name "hunspell")
+(setq ispell-local-dictionary "en_AU")
+(setq ispell-local-dictionary-alist
+      '(("en_AU" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8)))
+;; Auto-refresh dired on file change
+(add-hook 'dired-mode-hook 'auto-revert-mode)
