@@ -11,13 +11,6 @@
    (getenv "PATH")
   )
 )
-(setq
- byte-compile-warnings '(cl-functions)
- use-package-always-ensure t
- )
-(require 'cl-lib)
-(load-file "~/.emacs.d/emacs.el")
-(load-file "~/.emacs.d/modules.el")
 
 ;; https://github.com/Bruce-Connor/smart-mode-line/issues/88
 (custom-set-variables
@@ -308,3 +301,10 @@
  '(vline ((t (:background "color-233"))))
  '(vline-visual ((t (:background "color-234")))))
 
+(setq
+ byte-compile-warnings '(cl-functions)
+ use-package-always-ensure t
+ )
+(require 'cl-lib)
+(load-file "~/.emacs.d/emacs.el")
+(load-file "~/.emacs.d/modules.el")
