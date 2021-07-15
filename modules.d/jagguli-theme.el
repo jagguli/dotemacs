@@ -10,7 +10,7 @@
 
 (custom-theme-set-faces
  'jagguli
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#FFFFFF" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+ '(default ((t (:inherit nil :stipple nil :background "#000000" :foreground "#FFFFFF" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(bmkp-local-file-without-region ((t (:foreground "green"))))
  '(col-highlight ((t (:background "color-237"))))
  '(cscope-line-face ((t nil)))
@@ -29,7 +29,7 @@
  '(ediff-odd-diff-B ((t (:background "color-239" :foreground "Black"))))
  '(helm-ff-directory ((t (:background "color-18" :foreground "white"))))
  '(helm-selection ((t (:background "color-232" :foreground "color-226" :weight extra-bold))))
- '(helm-source-header ((t (:background "color-18" :foreground "black" :weight bold :height 1.3 :family "Sans Serif"))))
+ '(helm-source-header ((t (:background "color-18" :foreground "#000000" :weight bold :height 1.3 :family "Sans Serif"))))
  '(helm-visible-mark ((t (:background "color-17"))))
  '(log-view-message ((t nil)))
  '(match ((t (:background "color-22"))))

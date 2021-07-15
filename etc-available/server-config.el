@@ -13,8 +13,7 @@
 		   (car frame)
 		 (selected-frame))))
 	(progn
-	  (set-face-background 'default "black" f)
-	  (set-face-foreground 'default "#FFFFFF" f)
+	  (set-face-background 'default "#000000" f)
 	  (set-face-background 'fringe  "#000000" f)
 	  (set-face-background 'cursor "#2F4F4F" f)
 	  (set-face-background 'mode-line "#2F4F4F" f)
