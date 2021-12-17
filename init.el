@@ -312,8 +312,6 @@
  '(vline ((t (:background "color-233"))))
  '(vline-visual ((t (:background "color-234")))))
 
-
-
 (require 'cl-lib)
 (load-file "~/.emacs.d/emacs.el")
 (load-file "~/.emacs.d/modules.el")
