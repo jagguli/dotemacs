@@ -15,9 +15,6 @@
  byte-compile-warnings '(cl-functions)
  use-package-always-ensure t
  )
-(require 'cl-lib)
-(load-file "~/.emacs.d/emacs.el")
-(load-file "~/.emacs.d/modules.el")
 
 ;; https://github.com/Bruce-Connor/smart-mode-line/issues/88
 (custom-set-variables
@@ -40,6 +37,7 @@
  '(auto-revert-interval 0.5)
  '(background-color nil)
  '(background-mode dark)
+ '(blacken-line-length 80)
  '(bmkp-last-as-first-bookmark-file "~/.emacs.d/bookmarks")
  '(bookmark-default-file (expand-file-name "~/share/Dropbox/.emacsbookmarks"))
  '(bookmark-version-control 'nospecial)
@@ -193,10 +191,15 @@
    '("~/org/streethawk/riak.org" "~/org/streethawk/davidl.org" "~/org/streethawk/daily.org" "~/org/streethawk/meetings.org" "~/org/streethawk/idea_driven.org" "~/org/streethawk/ethan.org" "~/org/streethawk/streethawk.org" "~/org/streethawk/steven.org" "~/org/streethawk/beamer_test.org" "~/org/streethawk/steven_personal.org" "~/org/streethawk/recruitment.org" "~/org/streethawk/nick.org" "~/org/code.org" "~/org/gcal_personal.org" "~/org/gcal_work.org" "~/org/grain_brain.org" "~/org/salt_meetup.org" "~/org/goals_2016.org" "~/org/meetings.org" "~/org/ijournal.org" "~/org/gp.org" "~/org/Getting Started with Orgzly.org" "~/org/time_management.org" "~/org/archived/osc.org" "~/org/archived/iress_standup.org" "~/org/archived/ips_handover.org" "~/org/archived/driving.org" "~/org/archived/interview_questions.org" "~/org/archived/iress.org" "~/org/archived/sydjs.org" "~/org/archived/coverletter.org" "~/org/archived/todo_done.org" "~/org/philosophy.org" "~/org/docker_meetup.org" "~/org/emacstips.org" "~/org/meetup/android.org" "~/org/meetup/salt_meetup.org" "~/org/meetup/docker_meetup.org" "~/org/meetup/sypy.org" "~/org/meetup/sydjs.org" "~/org/meetup/DTBR.org" "~/org/driving.org" "~/org/travel.org" "~/org/todo.org" "~/org/ideas.org" "~/org/sypy.org" "~/org/interview_questions.org" "~/org/refile.org" "~/org/property.org" "~/org/notes.org" "~/org/books/slight_edge.org" "~/org/books/babyorbust.org" "~/org/books/9success.org" "~/org/books/books.org" "~/org/books/adaptive_leadership.org" "~/org/goals_2019.org" "~/org/devops.org" "~/org/DTBR.org" "~/org/supplements.org" "~/org/business.org" "/home/steven/org/streethawk/beamer_test.org" "/home/steven/org/streethawk/daily.org" "/home/steven/org/streethawk/davidl.org" "/home/steven/org/streethawk/ethan.org" "/home/steven/org/streethawk/idea_driven.org" "/home/steven/org/streethawk/meetings.org" "/home/steven/org/streethawk/nick.org" "/home/steven/org/streethawk/recruitment.org" "/home/steven/org/streethawk/riak.org" "/home/steven/org/streethawk/steven.org" "/home/steven/org/streethawk/steven_personal.org" "/home/steven/org/streethawk/streethawk.org"))
  '(org-agenda-repeating-timestamp-show-all nil)
  '(org-agenda-skip-scheduled-if-deadline-is-shown 'repeated-after-deadline)
+ '(org-trello-current-prefix-keybinding "C-c o" nil (org-trello))
+ '(org-trello-files '("~/org/trellos/home" "~/org/trellos/work") nil (org-trello))
+ '(orgtrello-log-level orgtrello-log-trace nil (org-trello))
  '(package-selected-packages
-   '(json-mode evil-surround wrap-region poetry undo-fu sauron org-jira highlight-indent-guides pkgbuild-mode kubernetes kubernetes-evil kubernetes-helm ripgrep yafolding vimish-fold docker-compose-mode dockerfile-mode which-key markdown-mode company-erlang ztree confluence circe ng2-mode doom-themes typescript-mode yapfify xah-find evil-vimish-fold origami format-all smtpmail-multi highlight notmuch gherkin-mode flycheck-pycheckers flycheck-pyflakes evil-collection yaml-mode xclip web-mode web-beautify w3m unbound twittering-mode tide tern tango-2-theme swift3-mode sudo-ext smex smart-mode-line slack shackle scss-mode req-package python-mode pytest pylint pyfmt pyenv-mode-auto pushbullet popup-switcher pipenv ox-html5slide outline-magic org-toodledo org-ehtml org-alert notmuch-labeler nose mustache-mode mustache multi-web-mode multi-project mo-git-blame markdown-mode+ magit-annex lua-mode kotlin-mode jtags js3-mode jinja2-mode jedi jabber-otr itail ido-ubiquitous hydra http-post-simple help-fns+ helm-themes helm-swoop helm-recoll helm-projectile helm-project-persist helm-package helm-notmuch helm-git-grep helm-git helm-fuzzy-find helm-flycheck helm-dired-recent-dirs helm-cscope helm-cmd-t helm-chrome helm-ack haml-mode guide-key-tip groovy-mode gradle-mode google-this git-timemachine git-messenger flymake-cursor flycheck-color-mode-line findr find-file-in-project fill-column-indicator feature-mode evil-paredit evil-org evil-leader evil-goggles etags-table etags-select erlang eproject elscreen el-get egg edit-server dsvn dirtree direx dired-details dired+ diff-hl deft csharp-mode crosshairs creole company-anaconda calfw-gcal calfw buffer-move bookmark+ auth-password-store anything angular-mode ahg ag addressbook-bookmark column-marker ace-window adoc-mode origami rope-read-mode org-gcal srcery-theme load-file smart-mode-line fill-column-indicator notmuch))
+   '(org-preview-html helm-org-rifle blacken robot-mode json-mode evil-surround wrap-region poetry undo-fu sauron org-jira highlight-indent-guides pkgbuild-mode kubernetes kubernetes-evil kubernetes-helm ripgrep yafolding vimish-fold docker-compose-mode dockerfile-mode which-key markdown-mode company-erlang ztree confluence circe ng2-mode doom-themes typescript-mode yapfify xah-find evil-vimish-fold origami format-all smtpmail-multi highlight notmuch gherkin-mode flycheck-pycheckers flycheck-pyflakes evil-collection yaml-mode xclip web-mode web-beautify w3m unbound twittering-mode tide tern tango-2-theme swift3-mode sudo-ext smex smart-mode-line slack shackle scss-mode req-package python-mode pytest pylint pyfmt pyenv-mode-auto pushbullet popup-switcher pipenv ox-html5slide outline-magic org-toodledo org-ehtml org-alert notmuch-labeler nose mustache-mode mustache multi-web-mode multi-project mo-git-blame markdown-mode+ magit-annex lua-mode kotlin-mode jtags js3-mode jinja2-mode jedi jabber-otr itail ido-ubiquitous hydra http-post-simple help-fns+ helm-themes helm-swoop helm-recoll helm-projectile helm-project-persist helm-package helm-notmuch helm-git-grep helm-git helm-fuzzy-find helm-flycheck helm-dired-recent-dirs helm-cscope helm-cmd-t helm-chrome helm-ack haml-mode guide-key-tip groovy-mode gradle-mode google-this git-timemachine git-messenger flymake-cursor flycheck-color-mode-line findr find-file-in-project fill-column-indicator feature-mode evil-paredit evil-org evil-leader evil-goggles etags-table etags-select erlang eproject elscreen el-get egg edit-server dsvn dirtree direx dired-details dired+ diff-hl deft csharp-mode crosshairs creole company-anaconda calfw-gcal calfw buffer-move bookmark+ auth-password-store anything angular-mode ahg ag addressbook-bookmark column-marker ace-window adoc-mode origami rope-read-mode org-gcal srcery-theme load-file smart-mode-line fill-column-indicator notmuch))
  '(paredit-mode nil t)
  '(password-cache-expiry nil)
+ '(poetry-tracking-mode t)
+ '(poetry-tracking-strategy 'switch-buffer)
  '(py-complete-function 'py-indent-or-complete)
  '(py-ffap-p 'py-ffap)
  '(py-shell-name "python2")
@@ -206,6 +209,7 @@
  '(recentf-mode t)
  '(repository-root-matchers '(repository-root-matcher/git repository-root-matcher/svn))
  '(req-package-log-level 'trace)
+ '(request-backend 'url-retrieve)
  '(ring-bell-function 'ignore)
  '(ropemacs-confirm-saving nil)
  '(ropemacs-global-prefix "C-x @")
@@ -261,7 +265,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "#FFFFFF" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#000000" :foreground "#FFFFFF" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 1 :width normal :foundry "default" :family "default"))))
  '(bmkp-local-file-without-region ((t (:foreground "green"))))
  '(col-highlight ((t (:background "color-233"))))
  '(column-marker-1 ((t (:background "color-232"))))
@@ -308,3 +312,8 @@
  '(vline ((t (:background "color-233"))))
  '(vline-visual ((t (:background "color-234")))))
 
+
+
+(require 'cl-lib)
+(load-file "~/.emacs.d/emacs.el")
+(load-file "~/.emacs.d/modules.el")
