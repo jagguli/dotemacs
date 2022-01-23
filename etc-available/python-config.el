@@ -9,27 +9,27 @@
             ;;company-anaconda
             outline-magic
             poetry
+            blacken
             )
   :config
   (setq
    py-load-pymaqcs-p t
    pymacs-python-command "/usr/sbin/python"
    ropemacs-confirm-saving 'nil
+   python-remove-cwd-from-path nil
    pymacs-load-path '(
-                       "/usr/lib/python3.9/site-packages"
-                       "/home/steven/.local/lib/python3.9/site-packages/"
-                       "/home/steven/.cache/pypoetry/virtualenvs/slicecloud-jI982s2O-py3.9/python3.9/site-packages/"
-                       "/home/steven/.cache/pypoetry/virtualenvs/steps-uLmqxvhE-py3.9/python3.9/site-packages/"
+                       "/usr/lib/python3.10/site-packages"
+                       "~/.local/lib/python3.10/site-packages/"
                       )
    ropemacs-global-prefix "C-x @"
    ropemacs-enable-autoimport t
+   blacken-executable "~/.local/bin/black"
    )
   :init
   (progn
     (interactive)
 
     (require 'pymacs)
-    (pymacs-load "ropemacs" "rope-")
 
     (add-hook 'outline-minor-mode-hook 
             (lambda () 
@@ -64,7 +64,7 @@
             (skip-chars-forward "    ")
             (current-column))))
     ;;;;http://emacs-fu.blogspot.com.au/2008/12/showing-and-hiding-blocks-of-code.html
-    (defun my-python-mode-hook ()
+   (defun my-python-mode-hook ()
       (message "my-python-mode-hook")
       (interactive)
       ;;(anaconda-mode)
@@ -75,10 +75,13 @@
       (flyspell-prog-mode)
 
       (if (not (or
+                (string/starts-with (buffer-name) "magit")
                 (string/starts-with (buffer-name) "*mo-git-blame")
                 (string/starts-with (buffer-name) "*svn-status")
                 ))
           (progn
+            (blacken-mode)
+            (pymacs-load "ropemacs" "rope-")
             (message "my-python-mode-hook:outline-mode")
             (setq 
                 outline-regexp "[ \t]*\\(class\\|def\\|with\\) "
@@ -109,16 +112,16 @@
               )
 
             (define-key evil-normal-state-map (kbd "C-i")  'evil-jump-forward)
+            (define-key python-mode-map "\C-cx" 'jedi-direx:pop-to-buffer)
+            ;;(define-key evil-normal-state-local-map (kbd "C-]") 'anaconda-mode-find-definitions)
+            ;;(define-key evil-normal-state-local-map (kbd "C-t") 'anaconda-mode-go-back)
+            ;;(define-key evil-normal-state-local-map (kbd "C-M-]") 'anaconda-mode-find-references)
+            ;;(define-key evil-insert-state-local-map (kbd "C-c SPC") 'jedi:complete)
+            (define-key evil-normal-state-local-map (kbd "C-]") 'rope-goto-definition)
+            (define-key evil-normal-state-local-map (kbd "C-o") 'rope-pop-mark)
+            (define-key python-mode-map "\C-o" 'rope-pop-mark)
             )
         )
-      (define-key python-mode-map "\C-cx" 'jedi-direx:pop-to-buffer)
-      ;;(define-key evil-normal-state-local-map (kbd "C-]") 'anaconda-mode-find-definitions)
-      ;;(define-key evil-normal-state-local-map (kbd "C-t") 'anaconda-mode-go-back)
-      ;;(define-key evil-normal-state-local-map (kbd "C-M-]") 'anaconda-mode-find-references)
-      ;;(define-key evil-insert-state-local-map (kbd "C-c SPC") 'jedi:complete)
-      (define-key evil-normal-state-local-map (kbd "C-]") 'rope-goto-definition)
-      (define-key evil-normal-state-local-map (kbd "C-o") 'rope-pop-mark)
-      (define-key python-mode-map "\C-o" 'rope-pop-mark)
       )
 
 

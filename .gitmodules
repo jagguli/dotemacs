@@ -25,9 +25,6 @@
 [submodule "modules.d/buffer-timer"]
 	path = modlules.d/buffer-timer
 	url = https://github.com/hardaker/elisp-buffer-timer.git
-[submodule "modules.d/Pymacs"]
-	path = modules.d/Pymacs
-	url = https://github.com/dgentry/Pymacs
 [submodule "modules.d/Memacs"]
 	path = modules.d/Memacs
 	url = https://github.com/novoid/Memacs.git
