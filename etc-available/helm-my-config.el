@@ -91,7 +91,6 @@
   :init
   (progn
     ;;(add-user-lib "helm")
-    (projectile-global-mode)
     (helm-mode)
     (helm-projectile-on)
     

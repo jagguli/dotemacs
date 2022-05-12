@@ -108,7 +108,6 @@
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'scroll-left 'disabled nil)
 (add-to-list 'auto-mode-alist '("\\.sls\\'" . yaml-mode))
-(set-face-attribute 'default nil :height 100)
 (desktop-save-mode 1)
 (setq create-lockfiles nil)
 
@@ -125,4 +124,6 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+(straight-use-package 'use-package)
+
 ;; Straight config end

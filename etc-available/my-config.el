@@ -56,12 +56,12 @@
       (interactive)
       (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
 
-    (defalias 'my-kill-other-buffers 'kill-other-buffers)
+(defalias 'my-kill-other-buffers 'kill-other-buffers)
 
-    (defun kill-all-buffers ()
-      "Kill all other buffers."
-      (interactive)
-      (mapc 'kill-buffer (buffer-list)))
+(defun kill-all-buffers ()
+    "Kill all other buffers."
+    (interactive)
+    (mapc 'kill-buffer (buffer-list)))
 
 (defun kill-other-file-buffers ()
     "Kill all other buffers."
@@ -383,9 +383,27 @@ buffer is not visiting a file."
            (revert-buffer))
           (t
            (error "no process at point!")))))
-(setq ispell-program-name "hunspell")
-(setq ispell-local-dictionary "en_AU")
-(setq ispell-local-dictionary-alist
-      '(("en_AU" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8)))
 ;; Auto-refresh dired on file change
 (add-hook 'dired-mode-hook 'auto-revert-mode)
+(when (version<= "26.0.50" emacs-version )
+  (global-display-line-numbers-mode))
+;; https://www.emacswiki.org/emacs/InteractiveSpell#h5o-15
+(setq ispell-program-name "hunspell")
+(setq ispell-local-dictionary "en_US")
+(setq ispell-local-dictionary-alist
+      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8)))
+
+(defun dired-do-ispell (&optional arg)
+  (interactive "P")
+  (dolist (file (dired-get-marked-files
+                 nil arg
+                 #'(lambda (f)
+                     (not (file-directory-p f)))))
+    (save-window-excursion
+      (with-current-buffer (find-file file)
+        (ispell-buffer)))
+    (message nil)))
+(defun my-first-helm-command ()
+  (interactive)
+  (helm :sources 'my-source
+        :buffer "*helm my command*"))

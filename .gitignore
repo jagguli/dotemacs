@@ -5,3 +5,5 @@ ac-comphist.dat
 elpa/*
 url/*
 *.elc
+.history.d/*
+straight/*
