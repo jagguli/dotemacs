@@ -1,5 +1,6 @@
 (req-package org
   :require (
+            org
             org-journal
             org-journal-list
             password-store
@@ -8,12 +9,13 @@
             hydra
             major-mode-hydra
             org-gcal
+            ;org-trello
+            evil
             )
   :config (setq
            alert-default-style 'libnotify
            org-log-done t
            org-directory  "/home/steven/org/"
-           ;;org-directory (expand-file-name "~/share/orgmodegoogle/melit.stevenjoseph@gmail.com/OrgMode/")
            org-from-is-user-regexp nil
            org-log-done t
            org-archive-location "~/org/archive.org::"
@@ -46,12 +48,15 @@
            org-gcal-client-id (password-store-get "streethawk/google/emacs/org-gcal/clientid")
            org-gcal-client-secret (password-store-get "streethawk/google/emacs/org-gcal/clientsecret")
            org-gcal-file-alist '(
-                                 ("melit.stevenjoseph@gmail.com" .  "~/org/gcal_personal.org")
-                                 ("steven@streethawk.co" .  "~/org/gcal_work.org")
+                                 ;((password-store-get "internet/google/melit/username") .  "~/org/gcal_personal.org")
+                                 ((password-store-get "streethawk/google/username") .  "~/org/gcal_work.org")
                                  )
-   )
+           ;org-trello-consumer-key (password-store-get "trello/home/consumer-key")
+           ;org-trello-access-token (password-store-get "trello/home/access-token")
+            )
   :init
   (progn
+    ;(custom-set-variables '(orgtrello-log-level orgtrello-log-trace))
     (epa-file-enable)
     ;;(require 'journal)
     (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -76,31 +81,6 @@
 
 
 
-    (require 'ox-publish)
-    (setq org-publish-project-alist
-          '(
-            ;; ... add all the components here (see below)...
-            ("org-notes"
-             :base-directory "~/org/"
-             :base-extension "org"
-             :publishing-directory "~/public_html/"
-             :recursive t
-             :publishing-function org-html-publish-to-html
-             :headline-levels 4             ; Just the default for this project.
-             :auto-preamble t
-             )
-            ("org-static"
-             :base-directory "~/org/"
-             :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-             :publishing-directory "~/public_html/"
-             :recursive t
-             :publishing-function org-publish-attachment
-             )
-            ("org" :components ("org-notes" "org-static"))
-
-
-            )
-          )
 
     ;; NOTE: the org-ehtml-docroot value should be fully expanded
     (setq org-ehtml-docroot org-directory)
@@ -216,10 +196,13 @@
 
     (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
     (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
-    (add-hook 'org-agenda-mode-hook (lambda () (
-            (define-key evil-normal-state-map "za" 'outline-toggle-children)
-            (define-key evil-normal-state-map "TAB" 'outline-toggle-children)
-            )))
+   (defun my-org-agenda-hook ()
+    (interactive)
+    (define-key evil-normal-state-map "za" 'outline-toggle-children)
+    (define-key evil-normal-state-map "TAB" 'outline-toggle-children)
+    )
+    (add-hook 'org-agenda-mode-hook 'my-org-agenda-hook)
 
+    ;(custom-set-variables '(org-trello-files '("~/org/trellos/home" "~/org/trellos/work")))
     )
   )
