@@ -1,1 +1,1 @@
-/home/steven/.emacs.d/etc-available/recent-files-config.el
+../etc-available/recent-files-config.el

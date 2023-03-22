@@ -1,1 +1,1 @@
-/home/steven/.emacs.d/etc-available/python-config.el
+../etc-available/python-config.el

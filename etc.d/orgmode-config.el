@@ -1,1 +1,1 @@
-/home/steven/.emacs.d/etc-available/orgmode-config.el
+../etc-available/orgmode-config.el

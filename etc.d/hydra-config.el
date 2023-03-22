@@ -1,1 +1,1 @@
-/home/steven/.emacs.d/etc-available/hydra-config.el
+../etc-available/hydra-config.el
