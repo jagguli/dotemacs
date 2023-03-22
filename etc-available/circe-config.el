@@ -6,7 +6,7 @@
   (setq
    circe-reduce-lurker-spam t
    lui-time-stamp-position 'right-margin
-   lui-time-stamp-format "%H:%M"
+   lui-time-stamp-format "%H:%M-%d"
    lui-flyspell-p nil
    lui-track-bar-behavior 'before-switch-to-buffer
    circe-format-say "{nick:s}: {body}"
