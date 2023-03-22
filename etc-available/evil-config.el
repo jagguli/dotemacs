@@ -21,6 +21,7 @@
    ;;(iswitchb-mode 1)
    iswitchb-buffer-ignore '("^\\*")
    evil-undo-system 'undo-fu
+    evil-kill-on-visual-paste nil
    )
   :init
   (progn
