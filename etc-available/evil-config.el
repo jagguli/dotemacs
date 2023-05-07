@@ -63,7 +63,7 @@
     (define-key evil-insert-state-map (kbd "C-w <up>") 'evil-window-up)
     (define-key evil-insert-state-map (kbd "C-w <down>") 'evil-window-down)
     (define-key evil-normal-state-map (kbd "`") 'helm-find-files)
-    (define-key evil-normal-state-map (kbd "M-`") 'projectile-find-file)
+    (define-key evil-normal-state-map (kbd "M-`") 'helm-find-file)
     (define-key evil-normal-state-map (kbd "C-x v") 'helm-show-kill-ring)
     ;(define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag-with-prefix-arg)
     (define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag-with-prefix-arg)
