@@ -8,9 +8,7 @@
    helm-swoop
    helm-flycheck
    helm-chrome
-   helm-projectile
    helm-fuzzy-find
-   helm-cmd-t
    ag
    helm-ag
    )
@@ -31,7 +29,9 @@
      "\\*Complet" "\\*magit" "\\*cscope" "\\*epc"))
    helm-boring-file-regexp-list
    (quote
-    ("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$" "\\.pyc$"))
+    ("\\.cache" "\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "~$" "\\.pyc$"))
+
+
    helm-buffers-fuzzy-matching t
    helm-M-x-fuzzy-match t
    helm-recentf-fuzzy-match t
@@ -55,7 +55,6 @@
    helm-match-plugin-mode t
    helm-adaptive-mode t
    helm-full-frame nil
-   projectile-completion-system 'helm
    helm-buffer-max-length 30
    helm-ag-use-grep-ignore-list t
    helm-ag-use-agignore t
@@ -64,7 +63,6 @@
    helm-mini-default-sources
    (quote
     (
-     helm-source-projectile-buffers-list
      helm-source-buffers-list
      helm-source-recentf
      helm-source-buffer-not-found
@@ -73,15 +71,17 @@
    helm-for-files-preferred-list
    (quote
     (
-     ;;helm-source-projectile-recentf-list
      helm-source-recentf
-     helm-source-projectile-files-list
      ;;helm-source-files-in-current-dir
      ;;helm-source-file-cache
      ;;helm-source-bookmarks
      helm-source-locate
      ))
     helm-ag-insert-at-point t
+    helm-buffer-list-format
+      '(("%p" . 25)
+        ("%u" . 8)
+        ("%m" . 30))
    )
 
    ;;shackle-rules '(("\\`\\*helm.*?\\*\\'" :regexp t :align t :ratio 0.5))
@@ -92,7 +92,6 @@
   (progn
     ;;(add-user-lib "helm")
     (helm-mode)
-    (helm-projectile-on)
     
 
     (global-set-key "\M-x" 'helm-M-x)
@@ -108,6 +107,8 @@
     ;(global-set-key "\C-xv"  'helm-show-kill-ring)
     (global-set-key "\C-x\\"  'ag)
     (global-set-key "\M-so"  'helm-occur)
+    (global-set-key (kbd "C-c b") 'helm-bookmarks)
+
     ;;(defun sort-buffers ()
     ;;  "Put the buffer list in alphabetical order."
     ;;  (interactive)
@@ -147,3 +148,18 @@
 ;;                       ;;(global-set-key "\C-x?"  'helmrecoll)
 ;;                       )
 ;;             )
+
+; How do i run flake8 on a python project in  emacs and visit all the files at the location reported by flake8
+; generate an emacs helm source from the output of flake8 command, and add an action to jump to selected file in helm
+
+(defvar helm-buffer-modification-time-format "%Y-%m-%d %H:%M:%S"
+  "The format to display the modification time of files in helm buffer.")
+
+(defun helm-buffer-add-modification-time ()
+  "Add modification time to helm buffer"
+  (when (eq (helm-attr 'name) "Buffers")
+    (let ((modification-time (format-time-string helm-buffer-modification-time-format (nth 5 (file-attributes (buffer-file-name)))))) 
+      (insert (propertize modification-time 'face 'font-lock-comment-face) "\t"))))
+
+(add-hook 'helm-buffer-list-after-hook 'helm-buffer-add-modification-time)
+
