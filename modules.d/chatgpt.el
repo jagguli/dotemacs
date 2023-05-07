@@ -4,7 +4,10 @@
 (require 'cl)
 
 
-(defvar chatgpt-api-key (password-store-get "internet/openai/apikey"))
+(defvar chatgpt-api-key
+  (if (not (executable-find "pass"))
+      "NOTSET"
+    (password-store-get "contextual/openai/api_key")))
 
 (defun chatgpt-handle-response (response query)
   "Handle the ChatGPT API RESPONSE by displaying the raw response and parsed choices."
@@ -21,11 +24,11 @@
                (result (plist-get json-response :choices)))
           ;; Rename the raw response buffer to "chatgpt-raw-{id}".
           (with-current-buffer "chatgpt-raw"
-            (rename-buffer (format "chatgpt-raw-%s" id)))
+            (rename-buffer (format "chatgpt-raw-%s-%s" (format-time-string "%Y%m%d%H%M%S") id)))
           ;; Display the parsed choices in a buffer named "chatgpt-{id}".
-          (with-output-to-temp-buffer (format "chatgpt-%s" id)
+          (with-output-to-temp-buffer (format "chatgpt-%s-%s" (format-time-string "%Y%m%d%H%M%S") id)
             (princ (plist-get (plist-get (elt result 0) :message) :content))
-            (switch-to-buffer-other-window (format "chatgpt-%s" id))))
+            (switch-to-buffer-other-window (format "chatgpt-%s-%s" (format-time-string "%Y%m%d%H%M%S") id))))
       
       ;; If there's an error during JSON parsing, rename the raw response buffer
       ;; to "chatgpt-error-{id}" and display an error message in "chatgpt-error".
