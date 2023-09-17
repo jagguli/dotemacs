@@ -8,7 +8,7 @@
    helm-swoop
    helm-flycheck
    helm-chrome
-   helm-fuzzy-find
+   ;;helm-fuzzy-find
    ag
    helm-ag
    )
@@ -64,6 +64,7 @@
    (quote
     (
      helm-source-buffers-list
+     helm-source-bookmarks
      helm-source-recentf
      helm-source-buffer-not-found
      helm-source-locate
