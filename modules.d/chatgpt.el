@@ -2,13 +2,20 @@
 (require 'url)
 (require 'json)
 (require 'cl)
+(require 'password-store)
 
 
 (defvar chatgpt-api-key
   (if (not (executable-find "pass"))
       "NOTSET"
-    (password-store-get "contextual/openai/api_key")))
-
+    ;(password-store-get "dev/anyscale/api_key")))
+    (password-store-get "internet/openai/apikey")))
+(defvar chatgpt-api-endpoint
+     ;;"https://api.endpoints.anyscale.com/v1/chat/completions")
+     "https://api.openai.com/v1/chat/completions")
+(defvar chatgpt-model
+;;"meta-llama/Llama-2-7b-chat-hf")
+"gpt-3.5-turbo")
 (defun chatgpt-handle-response (response query)
   "Handle the ChatGPT API RESPONSE by displaying the raw response and parsed choices."
   ;; Save the raw response in a buffer named "chatgpt-raw".
@@ -75,11 +82,11 @@
            ("Authorization" . ,(concat "Bearer " chatgpt-api-key))))
         (url-request-data
          (json-encode
-          `(("model" . "gpt-3.5-turbo")
+          `(("model" . ,chatgpt-model)
             ("messages" . [((role . "user") (content . ,message))])))))
     ;; Make the API request.
     (url-retrieve
-     "https://api.openai.com/v1/chat/completions"
+        chatgpt-api-endpoint
      (lexical-let ((captured-message message))
        (lambda (status)
          ;; Remove HTTP headers from the response.
@@ -91,11 +98,3 @@
            (kill-buffer)
            ;; Call the response handling function.
            (chatgpt-handle-response response captured-message)))))))
-
-
-
-
-
-
-
-
