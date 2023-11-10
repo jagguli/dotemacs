@@ -27,8 +27,8 @@
 (setq sophia-font-lock-keywords
       (let* (
             ;; define several category of keywords
-            (x-keywords '("include" "stateful" "entrypoint" "default" "do" "else" "for" "if" "let" "switch" "function"))
-            (x-types '("record" "float" "int" "contract" "list" "rotation" "string" "vector"))
+            (x-keywords '("include" "stateful" "entrypoint" "default" "do" "else" "for" "if" "let" "switch" "function" "payable"))
+            (x-types '("record" "float" "int" "contract" "list" "rotation" "string" "vector" "hash"))
             (x-constants '("compiler" "AGENT" "ALL_SIDES" "ATTACH_BACK"))
             (x-events '("at_rot_target" "at_target" "attach" "public" "private"))
             (x-functions '("llAbs" "llAcos" "llAddToLandBanList" "llAddToLandPassList"))

@@ -189,7 +189,7 @@ Chromium."
   (let* ((process-environment (browse-url-process-environment)))
     (apply 'start-process
 	   (concat (expand-file-name "~/.bin/browser") url) nil
-	   "browser"
+	   (expand-file-name "~/.bin/browser")
 	   (append
 	    browse-url-chromium-arguments
 	    (list url)))))

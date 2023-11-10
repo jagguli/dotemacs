@@ -11,6 +11,7 @@
             org-gcal
             ;org-trello
             evil
+            ;appt
             )
   :config (setq
            alert-default-style 'libnotify
@@ -33,26 +34,24 @@
            org-toodledo-folder-support-mode (quote heading)
            org-agenda-files
            (quote
-            ("/home/steven/org/"))
+            ("/home/steven/Org/" "/home/steven/Org/damagebdd/"))
                                         ; ("/home/steven/org/todo.org"))
            org-clock-into-drawer t
            org-default-priority 90
-           org-ehtml-docroot "~/org/ehtml/"
-           org-journal-dir "~/org/journal/"
+           org-ehtml-docroot "~/Org/ehtml/"
+           org-journal-dir "~/Org/journal/"
            org-journal-file-format "%A_%Y%m%d"
            org-lowest-priority 90
            org-emphasis-alist
            (cons '("+" '(:strike-through t :foreground "#121212"))
                  (delete* "+" org-emphasis-alist :key 'car :test 'equal))
         ;; https://cestlaz.github.io/posts/using-emacs-26-gcal/#.WIqBud9vGAk
-           org-gcal-client-id (password-store-get "streethawk/google/emacs/org-gcal/clientid")
-           org-gcal-client-secret (password-store-get "streethawk/google/emacs/org-gcal/clientsecret")
+           org-gcal-client-id (password-store-get "internet/google/melit/emacs/org-gcal/clientid")
+           org-gcal-client-secret (password-store-get "internet/google/melit/emacs/org-gcal/clientsecret")
            org-gcal-file-alist '(
-                                 ;((password-store-get "internet/google/melit/username") .  "~/org/gcal_personal.org")
-                                 ((password-store-get "streethawk/google/username") .  "~/org/gcal_work.org")
+                                 ((password-store-get "internet/google/melit/username") .  "~/Org/gcal_personal.org")
+                                 ;((password-store-get "internet/google/melit/username") .  "~/Org/gcal_work.org")
                                  )
-           ;org-trello-consumer-key (password-store-get "trello/home/consumer-key")
-           ;org-trello-access-token (password-store-get "trello/home/access-token")
             )
   :init
   (progn
@@ -194,15 +193,47 @@
       )
     (global-set-key (kbd "<f3>") 'hydra-global-org/body)
 
-    (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
-    (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
+    ;(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+    ;(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
    (defun my-org-agenda-hook ()
     (interactive)
     (define-key evil-normal-state-map "za" 'outline-toggle-children)
     (define-key evil-normal-state-map "TAB" 'outline-toggle-children)
     )
-    (add-hook 'org-agenda-mode-hook 'my-org-agenda-hook)
+    ;(add-hook 'org-agenda-mode-hook 'my-org-agenda-hook)
 
     ;(custom-set-variables '(org-trello-files '("~/org/trellos/home" "~/org/trellos/work")))
     )
+    (setq appt-time-msg-list nil) ; Clear existing appointments
+    (setq appt-display-interval '5) ; Update interval in minutes
+    (setq appt-message-warning-time '15) ; Warning time in minutes
+    (setq appt-display-mode-line t) ; Show in the mode-line
+    (setq appt-display-format 'window) ; Use a separate window for notifications
+    (appt-activate 1) ; Enable notifications
+    (defun my-org-agenda-to-appt ()
+        (interactive)
+        (setq appt-time-msg-list nil)
+        (org-agenda-to-appt))
+
+    ;(add-hook 'org-agenda-finalize-hook 'my-org-agenda-to-appt)
+    (defun my-org-save-and-update-appt ()
+        (interactive)
+        (when (eq major-mode 'org-mode)
+            (org-save-all-org-buffers)
+            (my-org-agenda-to-appt)))
+
+    ;(add-hook 'after-save-hook 'my-org-save-and-update-appt)
+    (defun org-toggle-link-display ()
+      "Toggle the literal or descriptive display of links."
+      (interactive)
+      (if org-descriptive-links
+          (progn (org-remove-from-invisibility-spec '(org-link))
+                 (org-restart-font-lock)
+                 (setq org-descriptive-links nil))
+        (progn (add-to-invisibility-spec '(org-link))
+               (org-restart-font-lock)
+               (setq org-descriptive-links t))))
   )
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars)
+;; End:
