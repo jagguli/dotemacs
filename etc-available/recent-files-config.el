@@ -1,15 +1,23 @@
 
 ;;Recent Files===========================================================================
-(defun try-require (feature)
-  (condition-case nil
-      (require feature)
-    (error (progn
-             (message "could not require %s" feature)
-             nil))))
-
-(when (try-require 'recentf)
-  (setq recentf-exclude '("~$"))
-  (setq recentf-max-saved-items 99)
+(req-package recentf
+  :config
+  (setq
+    recentf-exclude '("~$")
+    recentf-max-saved-items 99
+    ; These are directories to exclude from the recentf list:
+    ; - ~/.cache/
+    ; - ~/.*cache/
+    ; - ~/.local/share/Trash/
+    ; If the recentf-exclude list already exists, we append these directories to it.
+    recentf-exclude 
+        (append '("\\`\\(/home/[^/]+\\)?/\\.cache/.*" 
+                    "\\`\\(/home/[^/]+\\)?/\\..*cache/.*" 
+                    "\\`\\(/home/[^/]+\\)?/.local/share/Trash/.*") 
+    recentf-exclude))
+  :init
+  (progn
+(global-set-key "\C-x\C-r" 'helm-recentf)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Here I override some functions of recentf to get a merged list
   ;; This seems to be stable (used it for approx two weeks at the time 
@@ -53,23 +61,17 @@ file to write to."
        (warn "recentf mode: %s" (error-message-string error)))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   (recentf-mode 1))
+  )
 
- (defun recentf-open-files-compl ()
-      (interactive)
-      (let* ((all-files recentf-list)
-        (tocpl (mapcar (function 
-           (lambda (x) (cons (file-name-nondirectory x) x))) all-files))
-        (prompt (append '("File name: ") tocpl))
-        (fname (completing-read (car prompt) (cdr prompt) nil nil)))
-        (find-file (cdr (assoc-ignore-representation fname tocpl))))) 
-;;(global-set-key "\C-x\C-r" 'recentf-open-files-compl)
+  
 ;(global-set-key "\C-x\C-r" 'recentf-open-files)
 
 ;; Save the recentf file list every 10 minutes (= 600 seconds)
-(setq recentf-last-list '())
-(defun recentf-save-if-changes ()
-  "Test if the recentf-list has changed and saves it in this case"
-  (unless (equalp recentf-last-list recentf-list)
-    (setq recentf-last-list recentf-list)
-    (recentf-save-list)))
-(run-at-time t 600 'recentf-save-if-changes)
+;;(setq recentf-last-list '())
+;(defun recentf-save-if-changes ()
+;  "Test if the recentf-list has changed and saves it in this case"
+;  (unless (equalp recentf-last-list recentf-list)
+;    (setq recentf-last-list recentf-list)
+;    (recentf-save-list)))
+;(run-at-time t 600 'recentf-save-if-changes)
+
