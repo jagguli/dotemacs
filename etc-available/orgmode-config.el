@@ -194,15 +194,47 @@
       )
     (global-set-key (kbd "<f3>") 'hydra-global-org/body)
 
-    (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
-    (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
+    ;(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+    ;(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
    (defun my-org-agenda-hook ()
     (interactive)
     (define-key evil-normal-state-map "za" 'outline-toggle-children)
     (define-key evil-normal-state-map "TAB" 'outline-toggle-children)
     )
-    (add-hook 'org-agenda-mode-hook 'my-org-agenda-hook)
+    ;(add-hook 'org-agenda-mode-hook 'my-org-agenda-hook)
 
     ;(custom-set-variables '(org-trello-files '("~/org/trellos/home" "~/org/trellos/work")))
     )
+    (setq appt-time-msg-list nil) ; Clear existing appointments
+    (setq appt-display-interval '5) ; Update interval in minutes
+    (setq appt-message-warning-time '15) ; Warning time in minutes
+    (setq appt-display-mode-line t) ; Show in the mode-line
+    (setq appt-display-format 'window) ; Use a separate window for notifications
+    (appt-activate 1) ; Enable notifications
+    (defun my-org-agenda-to-appt ()
+        (interactive)
+        (setq appt-time-msg-list nil)
+        (org-agenda-to-appt))
+
+    ;(add-hook 'org-agenda-finalize-hook 'my-org-agenda-to-appt)
+    (defun my-org-save-and-update-appt ()
+        (interactive)
+        (when (eq major-mode 'org-mode)
+            (org-save-all-org-buffers)
+            (my-org-agenda-to-appt)))
+
+    ;(add-hook 'after-save-hook 'my-org-save-and-update-appt)
+    (defun org-toggle-link-display ()
+      "Toggle the literal or descriptive display of links."
+      (interactive)
+      (if org-descriptive-links
+          (progn (org-remove-from-invisibility-spec '(org-link))
+                 (org-restart-font-lock)
+                 (setq org-descriptive-links nil))
+        (progn (add-to-invisibility-spec '(org-link))
+               (org-restart-font-lock)
+               (setq org-descriptive-links t))))
   )
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars)
+;; End:
