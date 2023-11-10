@@ -11,6 +11,7 @@
             org-gcal
             ;org-trello
             evil
+            ;appt
             )
   :config (setq
            alert-default-style 'libnotify
@@ -33,26 +34,24 @@
            org-toodledo-folder-support-mode (quote heading)
            org-agenda-files
            (quote
-            ("/home/steven/org/"))
+            ("/home/steven/Org/" "/home/steven/Org/damagebdd/"))
                                         ; ("/home/steven/org/todo.org"))
            org-clock-into-drawer t
            org-default-priority 90
-           org-ehtml-docroot "~/org/ehtml/"
-           org-journal-dir "~/org/journal/"
+           org-ehtml-docroot "~/Org/ehtml/"
+           org-journal-dir "~/Org/journal/"
            org-journal-file-format "%A_%Y%m%d"
            org-lowest-priority 90
            org-emphasis-alist
            (cons '("+" '(:strike-through t :foreground "#121212"))
                  (delete* "+" org-emphasis-alist :key 'car :test 'equal))
         ;; https://cestlaz.github.io/posts/using-emacs-26-gcal/#.WIqBud9vGAk
-           org-gcal-client-id (password-store-get "streethawk/google/emacs/org-gcal/clientid")
-           org-gcal-client-secret (password-store-get "streethawk/google/emacs/org-gcal/clientsecret")
+           org-gcal-client-id (password-store-get "internet/google/melit/emacs/org-gcal/clientid")
+           org-gcal-client-secret (password-store-get "internet/google/melit/emacs/org-gcal/clientsecret")
            org-gcal-file-alist '(
-                                 ;((password-store-get "internet/google/melit/username") .  "~/org/gcal_personal.org")
-                                 ((password-store-get "streethawk/google/username") .  "~/org/gcal_work.org")
+                                 ((password-store-get "internet/google/melit/username") .  "~/Org/gcal_personal.org")
+                                 ;((password-store-get "internet/google/melit/username") .  "~/Org/gcal_work.org")
                                  )
-           ;org-trello-consumer-key (password-store-get "trello/home/consumer-key")
-           ;org-trello-access-token (password-store-get "trello/home/access-token")
             )
   :init
   (progn
