@@ -1,8 +1,8 @@
 ;; Evil =============================================================================
 (setq 
-   evil-want-integration nil ;;for evil-collection
-   evil-want-C-i-jump nil
-   )
+ evil-want-integration nil ;;for evil-collection
+ evil-want-C-i-jump nil
+ )
 (req-package evil
   :require (
             evil-org
@@ -21,7 +21,7 @@
    ;;(iswitchb-mode 1)
    iswitchb-buffer-ignore '("^\\*")
    evil-undo-system 'undo-fu
-    evil-kill-on-visual-paste nil
+   evil-kill-on-visual-paste nil
    )
   :init
   (progn
@@ -65,10 +65,12 @@
     (define-key evil-normal-state-map (kbd "`") 'helm-find-files)
     (define-key evil-normal-state-map (kbd "M-`") 'helm-find-file)
     (define-key evil-normal-state-map (kbd "C-x v") 'helm-show-kill-ring)
-    ;(define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag-with-prefix-arg)
+    (define-key evil-normal-state-map "=" 'evil-indent)
+                                        ;(define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag-with-prefix-arg)
+
     (define-key evil-normal-state-map (kbd "C-x \\") 'helm-ag-with-prefix-arg)
     ;;(define-key global-map (kbd "`") 'find-file)
-    ;(evil-collection-init)
+                                        ;(evil-collection-init)
     (evil-define-command "Ve"
       (function 
        lambda() (split-window-horizontally)))
@@ -87,12 +89,12 @@
     (global-set-key (kbd "C-g") 'fileinfo)
     ;;(global-set-key (kbd "C-c") 'quit)
     (define-key evil-normal-state-map [escape] 'fileinfo)
-    ;(define-key minibuffer-local-map [escape] 'fileinfo)
-    ;(define-key minibuffer-local-ns-map [escape] 'fileinfo)
-    ;(define-key minibuffer-local-completion-map [escape] 'fileinfo)
-    ;(define-key minibuffer-local-must-match-map [escape] 'fileinfo)
-    ;(define-key minibuffer-local-isearch-map [escape] 'fileinfo)
-    ;(define-key evil-normal-state-map (kbd "C-^") 'iswitchb-buffer)
+                                        ;(define-key minibuffer-local-map [escape] 'fileinfo)
+                                        ;(define-key minibuffer-local-ns-map [escape] 'fileinfo)
+                                        ;(define-key minibuffer-local-completion-map [escape] 'fileinfo)
+                                        ;(define-key minibuffer-local-must-match-map [escape] 'fileinfo)
+                                        ;(define-key minibuffer-local-isearch-map [escape] 'fileinfo)
+                                        ;(define-key evil-normal-state-map (kbd "C-^") 'iswitchb-buffer)
     (defun buffer-mode (buffer-or-string)
       "Returns the major mode associated with a buffer."
       (with-current-buffer buffer-or-string
@@ -101,7 +103,7 @@
     (defun other-buffer-ex ()
       (interactive)
       (switch-to-buffer (if (string-equal (buffer-mode (other-buffer)) "comint-mode")
-             (next-buffer) (other-buffer))))  
+                            (next-buffer) (other-buffer))))  
 
     (evil-define-command evil-buffer-ex (buffer)
       "Switches to another buffer."
@@ -116,17 +118,17 @@
 
     (define-key evil-normal-state-map (kbd "C-^") 'evil-buffer-ex)
     ;; change mode-line color by evil state
-    ;(lexical-let ((default-color (cons (face-background 'mode-line)
-    ;                                   (face-foreground 'mode-line))))
-    ;  (add-hook 'post-command-hook
-    ;            (lambda ()
-    ;              (let ((color (cond ((minibufferp) default-color)
-    ;                                 ((evil-insert-state-p) '("#e80000" . "#ffffff"))
-    ;                                 ((evil-emacs-state-p)  '("#444488" . "#ffffff"))
-    ;                                 ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
-    ;                                 (t default-color))))
-    ;                (set-face-background 'mode-line (car color))
-    ;                (set-face-foreground 'mode-line (cdr color))))))
+                                        ;(lexical-let ((default-color (cons (face-background 'mode-line)
+                                        ;                                   (face-foreground 'mode-line))))
+                                        ;  (add-hook 'post-command-hook
+                                        ;            (lambda ()
+                                        ;              (let ((color (cond ((minibufferp) default-color)
+                                        ;                                 ((evil-insert-state-p) '("#e80000" . "#ffffff"))
+                                        ;                                 ((evil-emacs-state-p)  '("#444488" . "#ffffff"))
+                                        ;                                 ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
+                                        ;                                 (t default-color))))
+                                        ;                (set-face-background 'mode-line (car color))
+                                        ;                (set-face-foreground 'mode-line (cdr color))))))
     (add-hook 'evil-insert-state-entry-hook (lambda () (message "enter insert mode")))
     )
   )

@@ -112,7 +112,6 @@
             (define-key evil-normal-state-map "zR" 'show-all)
             (define-key evil-normal-state-map "zm" 'hide-body)
             (define-key evil-normal-state-map "zM" 'hide-sublevels)
-            (define-key evil-normal-state-map "=" 'py-indent-line)
             (define-key evil-normal-state-map [(meta up)] 'py-up-class)
             (define-key evil-normal-state-map [(meta down)] 'py-down-class)
             (evil-define-key 'normal python-mode-map
