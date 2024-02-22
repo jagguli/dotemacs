@@ -27,7 +27,7 @@
 (setq sophia-font-lock-keywords
       (let* (
             ;; define several category of keywords
-            (x-keywords '("include" "stateful" "entrypoint" "default" "do" "else" "for" "if" "let" "switch" "function" "payable"))
+            (x-keywords '("include" "stateful" "entrypoint" "default" "do" "else" "elif" "for" "if" "let" "switch" "function" "payable"))
             (x-types '("record" "float" "int" "contract" "list" "rotation" "string" "vector" "hash"))
             (x-constants '("compiler" "AGENT" "ALL_SIDES" "ATTACH_BACK"))
             (x-events '("at_rot_target" "at_target" "attach" "public" "private"))
@@ -50,14 +50,31 @@
           ;; in general, put longer words first
           )))
 
+configure number of space
 ;;;###autoload
 (define-derived-mode sophia-mode c-mode "sophia mode"
   "Major mode for editing Sophia Smart Contract Language)"
 
+
   ;; code for syntax highlighting
-  (setq font-lock-defaults '((sophia-font-lock-keywords))))
+  (setq
+   font-lock-defaults '((sophia-font-lock-keywords))
+    indent-tabs-mode nil;; use spaces instead of tabs
+    tab-width 2 ;; set the indentation width to 2 spaces
+    )
+  )
 
 ;; add the mode to the `features' list
 (provide 'sophia-mode)
+
+;; define the function to enable sophia-mode when file extension is .aes
+(defun enable-sophia-mode ()
+  (when (string= (file-name-extension buffer-file-name) "aes")
+    (sophia-mode)))
+
+;; add the hook to enable sophia-mode for files with .aes extension
+(add-hook 'find-file-hook 'enable-sophia-mode)
+
+
 
 ;;; sophia-mode.el ends here
